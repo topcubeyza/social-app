@@ -11,6 +11,7 @@
     "clean": "rm -rf $TMPDIR/react-* && watchman watch-del-all && npm cache clean --force"
   },
   "dependencies": {
+    "@react-native-community/netinfo": "^5.7.1",
     "apisauce": "^1.0.3",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
