@@ -1,4 +1,4 @@
-package com.socialapp;
+package com.bemagine;
 
 import android.app.Application;
 import android.content.Context;

@@ -128,7 +128,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.socialapp"
+        applicationId "com.bemagine"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
