@@ -9,36 +9,25 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
-            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+        <view contentMode="scaleToFill" id="10P-qD-e5X">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background-image" translatesAutoresizingMaskIntoConstraints="NO" id="byI-yJ-YRI">
-                    <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
-                </imageView>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="SplashIcon" translatesAutoresizingMaskIntoConstraints="NO" id="X1k-AA-VXz">
-                    <rect key="frame" x="180" y="180" width="80" height="80"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="80" id="0fr-ua-N4O"/>
-                        <constraint firstAttribute="width" constant="80" id="Ex1-7m-sNA"/>
-                    </constraints>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash" translatesAutoresizingMaskIntoConstraints="NO" id="1Jv-0t-00H">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                 </imageView>
             </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="byI-yJ-YRI" secondAttribute="bottom" id="Ggw-jS-GQL"/>
-                <constraint firstItem="byI-yJ-YRI" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Oln-Ho-VgJ"/>
-                <constraint firstItem="X1k-AA-VXz" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="PFO-3I-nWY"/>
-                <constraint firstAttribute="trailing" secondItem="byI-yJ-YRI" secondAttribute="trailing" id="Y1W-zK-qMw"/>
-                <constraint firstItem="X1k-AA-VXz" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="wK6-lM-u1H"/>
-                <constraint firstItem="byI-yJ-YRI" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="yxB-R6-0A9"/>
+                <constraint firstAttribute="bottom" secondItem="1Jv-0t-00H" secondAttribute="bottom" id="2ox-cg-oGh"/>
+                <constraint firstItem="1Jv-0t-00H" firstAttribute="leading" secondItem="10P-qD-e5X" secondAttribute="leading" id="Dw6-zy-4vO"/>
+                <constraint firstAttribute="trailing" secondItem="1Jv-0t-00H" secondAttribute="trailing" id="ZTW-cX-spz"/>
+                <constraint firstItem="1Jv-0t-00H" firstAttribute="top" secondItem="10P-qD-e5X" secondAttribute="top" id="l43-HC-jpm"/>
             </constraints>
-            <nil key="simulatedStatusBarMetrics"/>
-            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="547.82608695652175" y="454.6875"/>
+            <point key="canvasLocation" x="1256.521739130435" y="483.48214285714283"/>
         </view>
     </objects>
     <resources>
-        <image name="SplashIcon" width="80.5" height="80"/>
-        <image name="background-image" width="384" height="821"/>
+        <image name="splash" width="226.5" height="490"/>
     </resources>
 </document>

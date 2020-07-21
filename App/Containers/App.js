@@ -11,22 +11,47 @@ import DebugConfig from "../Config/DebugConfig"
 import React, { useEffect, Component } from 'react';
 import createStore from '../Redux';
 import SplashScreen from 'react-native-splash-screen'
-import {Provider} from 'react-redux';
+import { Provider } from 'react-redux';
 import RootContainer from './RootContainer';
 
 const store = createStore();
 
-const App = () => {
+class App extends Component {
 
-    useEffect(() => {
-      SplashScreen.hide();
-    }, [])
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      firstTime: true
+    }
+  }
+
+  render() {
+
+    /*
+    setTimeout(() => {
+      console.log("running timeout function", moment.now())
+      if (this.state.firstTime) {
+        this.setState({
+          firstTime: false
+        })
+      }
+    }, 3000);
+    */
+
+    if (this.state.firstTime) {
+      SplashScreen.hide()
+      this.setState({
+        firstTime: false
+      })
+    }
 
     return (
       <Provider store={store}>
         <RootContainer />
       </Provider>
-    );
+    )
+  }
 }
 
 export default (DebugConfig.useReactotron ? console.tron.overlay(App) : App);
