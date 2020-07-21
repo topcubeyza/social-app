@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "463746538605",
+    "firebase_url": "https://bemagine-1c194.firebaseio.com",
+    "project_id": "bemagine-1c194",
+    "storage_bucket": "bemagine-1c194.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:463746538605:android:5296e1b9c2cbd0fdf0f364",
+        "android_client_info": {
+          "package_name": "com.bemagine"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "463746538605-j11n338qjttnth36h5q6vujnfqgf1oj8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD2cOmewcPW_K7pAlaNI3SbXqwrclfH74w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "463746538605-j11n338qjttnth36h5q6vujnfqgf1oj8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

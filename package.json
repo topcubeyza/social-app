@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@react-native-community/netinfo": "^5.7.1",
+    "@react-native-firebase/app": "^8.2.0",
     "apisauce": "^1.0.3",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
