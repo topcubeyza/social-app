@@ -4,6 +4,7 @@ import { createAppContainer, createStackNavigator } from "react-navigation"
 // Screens
 import LoginScreen from "../Containers/LoginScreen"
 import SignupScreen from "../Containers/SignupScreen"
+import IncompleteScreen from "../Containers/IncompleteScreen"
 
 const SignedOutNavigator = createStackNavigator(
     {
@@ -16,6 +17,9 @@ const SignedOutNavigator = createStackNavigator(
         Signup: {
             screen: SignupScreen
         },
+        Incomplete: {
+            screen: IncompleteScreen
+        }
     },
     {
         initialRouteName: "Login",

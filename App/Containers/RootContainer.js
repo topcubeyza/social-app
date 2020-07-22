@@ -41,7 +41,7 @@ class RootContainer extends Component {
 
   subscribeToAuthStateChange = () => {
     this.firebaseAuthUnsubscribe = auth().onAuthStateChanged(data => {
-      let user = data._user ? data._user : data
+      let user = (data && data._user) ? data._user : data
       this.props.authStateChange(user)
     });
   }
