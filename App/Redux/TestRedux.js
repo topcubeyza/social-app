@@ -45,7 +45,7 @@ export const failure = (state) =>
 
 /* ------------- Hookup Reducers To Types ------------- */
 
-export const reducer = createReducer(INITIAL_STATE, {
+export const TestReducer = createReducer(INITIAL_STATE, {
   [Types.USERS_REQUEST]: request,
   [Types.USERS_SUCCESS]: success,
   [Types.USERS_FAILURE]: failure

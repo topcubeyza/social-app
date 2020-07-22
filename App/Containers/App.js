@@ -13,8 +13,9 @@ import createStore from '../Redux';
 import SplashScreen from 'react-native-splash-screen'
 import { Provider } from 'react-redux';
 import RootContainer from './RootContainer';
+import { registerToEvents, unregisterFromEvents } from "../Services/Registry"
 
-const store = createStore();
+export const store = createStore();
 
 class App extends Component {
 
@@ -24,6 +25,14 @@ class App extends Component {
     this.state = {
       firstTime: true
     }
+  }
+
+  componentWillMount() {
+    registerToEvents()
+  }
+
+  componentWillUnmount() {
+    unregisterFromEvents()
   }
 
   render() {

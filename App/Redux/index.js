@@ -8,16 +8,17 @@ import ReduxPersist from '../Config/ReduxPersist';
 import rootSaga from '../Sagas/';
 
 // Reducers
-import { reducer as navigationReducer } from "./NavigationRedux"
-import { reducer as introReducer } from "./IntroRedux"
-import { reducer as appReducer } from "./AppRedux"
-import { reducer as testReducer } from "./TestRedux"
+import { NavReducer } from "./NavigationRedux"
+import { AppReducer } from "./AppRedux"
+import { TestReducer } from "./TestRedux"
+import { AuthReducer } from "./AuthRedux"
+
 
 export const reducers = combineReducers({
-    nav: navigationReducer,
-    intro: introReducer,
-    app: appReducer,
-    test: testReducer
+    nav: NavReducer,
+    app: AppReducer,
+    test: TestReducer,
+    auth: AuthReducer
 })
 
 export default () => {

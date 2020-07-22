@@ -3,13 +3,28 @@ import Immutable from 'seamless-immutable';
 
 /* ------------- Types and Action Creators ------------- */
 
-const {Types, Creators} = createActions({
-  setAppLoaded: ['status'],
-  setInternetStatus: ['status'],
-});
+const Types = {
+  SET_APP_LOADED: "app/set_app_loaded",
+  SET_INTERNET_STATUS: "app/set_internet"
+}
+
+const Actions = {
+  setAppLoaded: status => ({
+    type: Types.SET_APP_LOADED,
+    payload: {
+      status
+    }
+  }),
+  setInternetStatus: status => ({
+    type: Types.SET_INTERNET_STATUS,
+    payload: {
+      status
+    }
+  })
+}
 
 export const AppTypes = Types;
-export default Creators;
+export const AppActions = Actions;
 
 /* ------------- Initial State ------------- */
 
@@ -20,7 +35,7 @@ export const INITIAL_STATE = Immutable({
 
 /* ------------- Selectors ------------- */
 
-export const IntroSelectors = {
+export const AppSelectors = {
   app: state => state.app,
 };
 
@@ -34,7 +49,7 @@ export const _setInternetStatus = (state, action) =>
 
 /* ------------- Hookup Reducers To Types ------------- */
 
-export const reducer = createReducer(INITIAL_STATE, {
+export const AppReducer  = createReducer(INITIAL_STATE, {
   [Types.SET_APP_LOADED]: _setAppLoaded,
   [Types.SET_INTERNET_STATUS]: _setInternetStatus,
 });
