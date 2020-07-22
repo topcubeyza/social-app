@@ -8,7 +8,6 @@ export default StyleSheet.create({
     },
     topContainer: {
         backgroundColor: Colors.lightBackground,
-        //justifyContent: "space-between",
         flexGrow: 1
     },
     bottomContainer: {
@@ -49,7 +48,6 @@ export default StyleSheet.create({
         fontFamily: Fonts.type.brand,
         fontSize: Fonts.size.twenty * 2,
         marginBottom: Metrics.width * 0.01,
-        //backgroundColor: "pink",
     },
     subText: {
         fontFamily: Fonts.type.light,
@@ -57,7 +55,6 @@ export default StyleSheet.create({
         paddingLeft: Metrics.width * 0.038,
         paddingTop: Metrics.width * 0.03,
         color: Colors.darkTextColor
-        //backgroundColor: "yellow"
     },
     bemagineText: {
         fontFamily: Fonts.type.brand,

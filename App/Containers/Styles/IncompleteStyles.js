@@ -24,13 +24,11 @@ export default StyleSheet.create({
         fontFamily: Fonts.type.brand,
         fontSize: Fonts.size.twenty,
         paddingBottom: Metrics.width * 0.02
-        //backgroundColor: "pink",
     },
     subText: {
         fontFamily: Fonts.type.light,
         fontSize: Fonts.size.fourteen,
         color: Colors.darkTextColor
-        //backgroundColor: "yellow"
     },
     gobackButtonContainer: {
         paddingHorizontal: Metrics.marginHorizontalLarge,

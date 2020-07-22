@@ -22,7 +22,6 @@ class IncompleteScreen extends Component {
     }
 
     onBackButtonPress = () => {
-        console.log(this.props.navigation);
         this.props.navigation.goBack()
     }
 

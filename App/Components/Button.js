@@ -6,8 +6,6 @@ import styles from "./Styles/ButtonStyles"
 
 
 const Button = (props) => {
-    console.log(props)
-    debugger;
     let containerStyle = [
         styles.container, 
         { backgroundColor: props.backgroundColor }];
