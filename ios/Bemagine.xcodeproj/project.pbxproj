@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* BemagineTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* BemagineTests.m */; };
 		0D65C889E799FE239786EE60 /* libPods-Bemagine-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD96B62F456998C033E72674 /* libPods-Bemagine-tvOS.a */; };
+		0DB5FA86FF5546DE9BC7B8FA /* ProximaNova-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 13567813FA784AD1A6011A71 /* ProximaNova-Light.ttf */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
@@ -19,7 +20,13 @@
 		2DCD954D1E0B4F2C00145EB5 /* BemagineTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* BemagineTests.m */; };
 		2F23307EF0112E196B278443 /* libPods-Bemagine-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 30DF5C142DA95E44D3893BAF /* libPods-Bemagine-tvOSTests.a */; };
 		37C3EBFF03D53BC8461322C9 /* libPods-BemagineTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AFBF3AF1857E69C0BC8E674 /* libPods-BemagineTests.a */; };
+		44C6324341B84C5AA89F47C8 /* ProximaNova-Bold-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5112B88A28E74ED3BDB6C75D /* ProximaNova-Bold-Italic.ttf */; };
+		672381FB306948B7AEC73AEA /* ProximaNova-Regular-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 74954D55DEFE4073A1135021 /* ProximaNova-Regular-Italic.ttf */; };
+		6B0ABE24C2B645EA91DC37D0 /* ProximaNova-Light-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4CC9F1CF4CAF4DB392A3AE62 /* ProximaNova-Light-Italic.ttf */; };
 		89A6C7C314C4FA57F5680766 /* libPods-Bemagine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 10E1F806ACACB35289D6B4E3 /* libPods-Bemagine.a */; };
+		8C796CFD5D154942A147F55E /* ProximaNova-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8D50715E43FC4C08B8C6C0EC /* ProximaNova-Bold.ttf */; };
+		ABE8D62C6DA84106A217D214 /* ProximaNova-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 41440FE33E7447D5A6EF3EDF /* ProximaNova-Regular.ttf */; };
+		B4CD59B7608B4203A4274514 /* BerkshireSwash-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E0A5EF4BBCE844FB9E31E65E /* BerkshireSwash-Regular.ttf */; };
 		B8D475D024C732B0006F5D5D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B8D475CF24C732B0006F5D5D /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +54,7 @@
 		00E356F21AD99517003FC87E /* BemagineTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BemagineTests.m; sourceTree = "<group>"; };
 		10E1F806ACACB35289D6B4E3 /* libPods-Bemagine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Bemagine.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		11C6275C2B85059B833D86FB /* Pods-Bemagine-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bemagine-tvOS.release.xcconfig"; path = "Target Support Files/Pods-Bemagine-tvOS/Pods-Bemagine-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		13567813FA784AD1A6011A71 /* ProximaNova-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "ProximaNova-Light.ttf"; path = "../App/Assets/Fonts/ProximaNova-Light.ttf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* Bemagine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bemagine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Bemagine/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Bemagine/AppDelegate.m; sourceTree = "<group>"; };
@@ -58,14 +66,20 @@
 		2D02E47B1E0B4A5D006451C7 /* Bemagine-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bemagine-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* Bemagine-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Bemagine-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		30DF5C142DA95E44D3893BAF /* libPods-Bemagine-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Bemagine-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		41440FE33E7447D5A6EF3EDF /* ProximaNova-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "ProximaNova-Regular.ttf"; path = "../App/Assets/Fonts/ProximaNova-Regular.ttf"; sourceTree = "<group>"; };
+		4CC9F1CF4CAF4DB392A3AE62 /* ProximaNova-Light-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "ProximaNova-Light-Italic.ttf"; path = "../App/Assets/Fonts/ProximaNova-Light-Italic.ttf"; sourceTree = "<group>"; };
+		5112B88A28E74ED3BDB6C75D /* ProximaNova-Bold-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "ProximaNova-Bold-Italic.ttf"; path = "../App/Assets/Fonts/ProximaNova-Bold-Italic.ttf"; sourceTree = "<group>"; };
 		5E7E4DF39B5957B583B2D498 /* Pods-Bemagine.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bemagine.debug.xcconfig"; path = "Target Support Files/Pods-Bemagine/Pods-Bemagine.debug.xcconfig"; sourceTree = "<group>"; };
 		5EA7B72B72B37B388EF961D9 /* Pods-Bemagine-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bemagine-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-Bemagine-tvOSTests/Pods-Bemagine-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		74954D55DEFE4073A1135021 /* ProximaNova-Regular-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "ProximaNova-Regular-Italic.ttf"; path = "../App/Assets/Fonts/ProximaNova-Regular-Italic.ttf"; sourceTree = "<group>"; };
 		7AFBF3AF1857E69C0BC8E674 /* libPods-BemagineTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BemagineTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		880A07EDCDFF3D0F7EC388A0 /* Pods-BemagineTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BemagineTests.release.xcconfig"; path = "Target Support Files/Pods-BemagineTests/Pods-BemagineTests.release.xcconfig"; sourceTree = "<group>"; };
+		8D50715E43FC4C08B8C6C0EC /* ProximaNova-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "ProximaNova-Bold.ttf"; path = "../App/Assets/Fonts/ProximaNova-Bold.ttf"; sourceTree = "<group>"; };
 		A6F7A599ED5F1FD8AC3C2FF8 /* Pods-Bemagine-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bemagine-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-Bemagine-tvOSTests/Pods-Bemagine-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		B8D475CF24C732B0006F5D5D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CD96B62F456998C033E72674 /* libPods-Bemagine-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Bemagine-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7D737EBE3C43F79E674D415 /* Pods-Bemagine.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bemagine.release.xcconfig"; path = "Target Support Files/Pods-Bemagine/Pods-Bemagine.release.xcconfig"; sourceTree = "<group>"; };
+		E0A5EF4BBCE844FB9E31E65E /* BerkshireSwash-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "BerkshireSwash-Regular.ttf"; path = "../App/Assets/Fonts/BerkshireSwash-Regular.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		F792188CF15D4FC040EBFD83 /* Pods-BemagineTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BemagineTests.debug.xcconfig"; path = "Target Support Files/Pods-BemagineTests/Pods-BemagineTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -122,6 +136,20 @@
 				00E356F11AD99517003FC87E /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0B59762B02CE401BB249ACA6 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E0A5EF4BBCE844FB9E31E65E /* BerkshireSwash-Regular.ttf */,
+				5112B88A28E74ED3BDB6C75D /* ProximaNova-Bold-Italic.ttf */,
+				8D50715E43FC4C08B8C6C0EC /* ProximaNova-Bold.ttf */,
+				4CC9F1CF4CAF4DB392A3AE62 /* ProximaNova-Light-Italic.ttf */,
+				13567813FA784AD1A6011A71 /* ProximaNova-Light.ttf */,
+				74954D55DEFE4073A1135021 /* ProximaNova-Regular-Italic.ttf */,
+				41440FE33E7447D5A6EF3EDF /* ProximaNova-Regular.ttf */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		13B07FAE1A68108700A75B9A /* Bemagine */ = {
@@ -183,6 +211,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				5FFF39676CB11E2AAAE284FE /* Pods */,
+				0B59762B02CE401BB249ACA6 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -288,7 +317,7 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0940;
+				LastUpgradeCheck = 940;
 				ORGANIZATIONNAME = Facebook;
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
@@ -343,6 +372,13 @@
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				B8D475D024C732B0006F5D5D /* GoogleService-Info.plist in Resources */,
+				B4CD59B7608B4203A4274514 /* BerkshireSwash-Regular.ttf in Resources */,
+				44C6324341B84C5AA89F47C8 /* ProximaNova-Bold-Italic.ttf in Resources */,
+				8C796CFD5D154942A147F55E /* ProximaNova-Bold.ttf in Resources */,
+				6B0ABE24C2B645EA91DC37D0 /* ProximaNova-Light-Italic.ttf in Resources */,
+				0DB5FA86FF5546DE9BC7B8FA /* ProximaNova-Light.ttf in Resources */,
+				672381FB306948B7AEC73AEA /* ProximaNova-Regular-Italic.ttf in Resources */,
+				ABE8D62C6DA84106A217D214 /* ProximaNova-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

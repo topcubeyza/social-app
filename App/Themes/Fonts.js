@@ -1,20 +1,22 @@
 import Metrics from './Metrics'
 
 const type = {
-  regular: 'Proxima Nova Reg',
-  light: 'Proxima Nova Light',
-  bold: 'Proxima Nova Bold',
-  regular_italic: 'Proxima Nova Reg It',
-  light_italic: 'Proxima Nova Light It',
-  bold_italic: 'Proxima Nova Bold It',
+  regular: 'ProximaNova-Regular',
+  bold: 'ProximaNova-Bold',
+  light: 'ProximaNova-Light',
+  regular_italic: 'ProximaNova-Regular-Italic',
+  light_italic: 'ProximaNova-Light-Italic',
+  bold_italic: 'ProximaNova-Bold-Italic',
+  brand: 'BerkshireSwash-Regular'
 }
 
 const size = {
-  ten: Metrics.width * 0.025,
-  twelve: Metrics.width * 0.030,
-  fourteen: Metrics.width * 0.035,
-  sixteen: Metrics.width * 0.040,
-  eighteen: Metrics.width * 0.045,
+  ten: Metrics.width * 0.027,
+  twelve: Metrics.width * 0.032,
+  fourteen: Metrics.width * 0.037,
+  sixteen: Metrics.width * 0.042,
+  eighteen: Metrics.width * 0.047,
+  twenty: Metrics.width * 0.052,
 }
 
 const style = {
