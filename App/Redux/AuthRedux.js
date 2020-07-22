@@ -1,5 +1,4 @@
 import { createReducer, createActions } from 'reduxsauce'
-import Immutable from 'seamless-immutable'
 
 /* ------------- Types and Action Creators ------------- */
 
@@ -38,11 +37,11 @@ export const AuthActions = Actions
 
 /* ------------- Initial State ------------- */
 
-export const INITIAL_STATE = Immutable({
+export const INITIAL_STATE = {
     user: null,
     fetching: null,
     error: null
-})
+}
 
 /* ------------- Selectors ------------- */
 
@@ -53,21 +52,29 @@ export const AuthSelectors = {
 /* ------------- Reducers ------------- */
 
 export const request = (state, action) => {
-    console.log("auth request", state, action)
-    return state.merge({ fetching: true })
+    return {
+        ...state,
+        fetching: true
+    }
 }
 
 export const success = (state, action) => {
-    debugger;
-    console.log("auth success", state, action)
     const { user } = action.payload
-    return state.merge({ fetching: false, error: null, user })
+    return {
+        ...state,
+        fetching: false,
+        error: null,
+        user
+    }
 }
 
 export const failure = (state, action) => {
-    console.log("auth error", state, action)
     const { error } = action.payload
-    return state.merge({ fetching: false, error })
+    return {
+        ...state,
+        fetching: false,
+        error
+    }
 }
 
 /* ------------- Hookup Reducers To Types ------------- */

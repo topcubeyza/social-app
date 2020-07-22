@@ -1,5 +1,4 @@
 import {createReducer, createActions} from 'reduxsauce';
-import Immutable from 'seamless-immutable';
 
 /* ------------- Types and Action Creators ------------- */
 
@@ -28,10 +27,10 @@ export const AppActions = Actions;
 
 /* ------------- Initial State ------------- */
 
-export const INITIAL_STATE = Immutable({
+export const INITIAL_STATE = {
   is_app_loaded: false,
   is_internet_connected: null,
-});
+};
 
 /* ------------- Selectors ------------- */
 
@@ -41,11 +40,15 @@ export const AppSelectors = {
 
 /* ------------- Reducers ------------- */
 
-export const _setAppLoaded = (state, action) =>
-  state.merge({is_app_loaded: action.status});
+export const _setAppLoaded = (state, action) => ({
+  ...state,
+  is_app_loaded: action.status
+})
 
-export const _setInternetStatus = (state, action) =>
-  state.merge({is_internet_connected: action.status});
+export const _setInternetStatus = (state, action) => ({
+  ...state,
+  is_internet_connected: action.status
+})
 
 /* ------------- Hookup Reducers To Types ------------- */
 
