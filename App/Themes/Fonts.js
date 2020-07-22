@@ -1,21 +1,20 @@
 import Metrics from './Metrics'
 
 const type = {
-  regular: 'Montserrat-Regular',
-  light: 'Montserrat-Light',
-  medium: 'Montserrat-Medium',
-  semibold: 'Montserrat-SemiBold',
-  bold: 'Montserrat-Bold',
-  black: 'Montserrat-Black',
-  headerTitle: 'OpenSans-SemiBold'
+  regular: 'Proxima Nova Reg',
+  light: 'Proxima Nova Light',
+  bold: 'Proxima Nova Bold',
+  regular_italic: 'Proxima Nova Reg It',
+  light_italic: 'Proxima Nova Light It',
+  bold_italic: 'Proxima Nova Bold It',
 }
 
 const size = {
-  ten: Metrics.screenWidth * 0.025,
-  twelve: Metrics.screenWidth * 0.030,
-  fourteen: Metrics.screenWidth * 0.035,
-  sixteen: Metrics.screenWidth * 0.040,
-  eighteen: Metrics.screenWidth * 0.045,
+  ten: Metrics.width * 0.025,
+  twelve: Metrics.width * 0.030,
+  fourteen: Metrics.width * 0.035,
+  sixteen: Metrics.width * 0.040,
+  eighteen: Metrics.width * 0.045,
 }
 
 const style = {
