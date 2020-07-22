@@ -6,14 +6,6 @@ export const selectAvatar = null
 // process STARTUP actions
 export function * startup (action) {
   if (__DEV__ && console.tron) {
-    // straight-up string logging
-    console.tron.log('Hello, I\'m an example of how to log via Reactotron.')
-
-    // logging an object for better clarity
-    console.tron.log({
-      message: 'pass objects for better logging',
-      someGeneratorFunction: selectAvatar
-    })
 
     // fully customized!
     const subObject = { a: 1, b: [1, 2, 3], c: true }

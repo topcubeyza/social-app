@@ -5,7 +5,6 @@ function* getUsers(api) {
     try {
         const result = yield call(api.getUsers);
         let users = result.data.data;
-        console.log("saga result: ", users)
         yield put(TestActions.usersSuccess({
             items: users
         }))

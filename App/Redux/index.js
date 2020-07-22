@@ -23,15 +23,13 @@ export const reducers = combineReducers({
 
 export default () => {
 
-    console.log("Redux/createStore()")
     let finalReducers = reducers;
-
     if (ReduxPersist.active) {
         const persistConfig = ReduxPersist.storeConfig;
         finalReducers = persistReducer(persistConfig, reducers);
     }
 
-    let { store, sagasManager, sagaMiddleware } = configureStore(
+    let { store, persistor, sagasManager, sagaMiddleware } = configureStore(
         finalReducers,
         rootSaga,
     );
@@ -49,5 +47,5 @@ export default () => {
         });
       }
     
-      return store;
+      return {store, persistor};
 }

@@ -3,6 +3,8 @@ import ReduxNavigation from '../Navigation/ReduxNavigation';
 import {connect} from 'react-redux';
 import StartupActions from '../Redux/StartupRedux';
 import ReduxPersist from '../Config/ReduxPersist';
+import auth from '@react-native-firebase/auth';
+import {AuthActions} from "../Redux/AuthRedux"
 
 import NetInfo from '@react-native-community/netinfo';
 
@@ -13,10 +15,12 @@ class RootContainer extends Component {
       isInternetAvailable: null,
     };
     this.netInfoSubs;
+    this.firebaseAuthUnsubscribe;
   }
 
   init = () => {
     this.isInternetAvailable();
+    this.subscribeToAuthStateChange();
   };
 
   componentDidMount() {
@@ -35,6 +39,17 @@ class RootContainer extends Component {
     });
   };
 
+  subscribeToAuthStateChange = () => {
+    this.firebaseAuthUnsubscribe = auth().onAuthStateChanged(data => {
+      let user = data._user ? data._user : data
+      this.props.authStateChange(user)
+    });
+  }
+
+  componentWillUnmount = () => {
+    this.firebaseAuthUnsubscribe()
+  }
+
   render() {
     const {isInternetAvailable} = this.state;
     if (isInternetAvailable === false) {
@@ -51,6 +66,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     startup: () => dispatch(StartupActions.startup()),
+    authStateChange: (user) => dispatch(AuthActions.authStateChange({user}))
   };
 };
 

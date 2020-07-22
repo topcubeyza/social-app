@@ -12,27 +12,17 @@ import React, { useEffect, Component } from 'react';
 import createStore from '../Redux';
 import SplashScreen from 'react-native-splash-screen'
 import { Provider } from 'react-redux';
+import { PersistGate } from "redux-persist/integration/react"
 import RootContainer from './RootContainer';
-import { registerToEvents, unregisterFromEvents } from "../Services/Registry"
 
-export const store = createStore();
+const {store, persistor} = createStore();
 
 class App extends Component {
 
   constructor(props) {
     super(props)
 
-    this.state = {
-      firstTime: true
-    }
-  }
-
-  componentWillMount() {
-    registerToEvents()
-  }
-
-  componentWillUnmount() {
-    unregisterFromEvents()
+    this.firstTime = true;
   }
 
   render() {
@@ -48,16 +38,16 @@ class App extends Component {
     }, 3000);
     */
 
-    if (this.state.firstTime) {
+    if (this.firstTime) {
       SplashScreen.hide()
-      this.setState({
-        firstTime: false
-      })
+      this.firstTime = false
     }
 
     return (
       <Provider store={store}>
-        <RootContainer />
+        <PersistGate loading={null} persistor={persistor}>
+          <RootContainer />
+        </PersistGate>
       </Provider>
     )
   }

@@ -8,6 +8,7 @@ import ScreenTrackingMiddleware from "./ScreenTrackingMiddleware"
 import DebugConfig from "../Config/DebugConfig"
 import ReduxPersist from "../Config/ReduxPersist"
 import Rehydration from "../Services/Rehydration"
+import { persistStore } from "redux-persist"
 
 
 export default (rootReducer, rootSaga) => {
@@ -32,14 +33,17 @@ export default (rootReducer, rootSaga) => {
     const store = createAppropriateStore(rootReducer, compose(...enhancers));
 
     // configure persistStore
-    if (ReduxPersist.active) {
-        Rehydration.updateReducers(store);
-    }
+    // if (ReduxPersist.active) {
+    //     Rehydration.updateReducers(store);
+    // }
 
     let sagasManager = sagaMiddleware.run(rootSaga);
 
+    const persistor = persistStore(store)
+
     return {
         store,
+        persistor,
         sagasManager,
         sagaMiddleware
     }

@@ -4,9 +4,7 @@ import { AuthTypes, AuthActions } from "../Redux/AuthRedux"
 function* signIn(api) {
     try {
         let { email, password } = action.payload;
-        const result = yield call(api.signIn, {email, password});
-        console.log(result)
-        yield; //put(AuthActions.success())
+        yield call(api.signIn, {email, password});
     } catch (error) {
         yield put(AuthActions.failure({error}))
     }
@@ -17,31 +15,22 @@ function* watchSignInRequest(api) {
 }
 
 function* createUser(api, action) {
-    debugger;
     try {
-        console.log("create user saga", action)
         let { email, password } = action.payload;
-        const result = yield call(api.createUser, {email, password});
-        debugger;
-        console.log("create user result", result)
+        yield call(api.createUser, {email, password});
         yield;
     } catch (error) {
-        console.log(error)
-        debugger;
         yield put(AuthActions.failure({error}))
     }
 }
 
 function* watchCreateUserRequest(api) {
-    console.log("watcher for create user:")
     yield takeLatest(AuthTypes.CREATE_USER_REQUEST, createUser, api)
 }
 
 function* signOut(api) {
     try {
-        const result = yield call(api.signOut);
-        console.log(result)
-        yield;
+        yield call(api.signOut);
     } catch (error) {
         yield put(AuthActions.failure({error}))
     }

@@ -5,13 +5,10 @@ const signIn = ({email, password}) => {
 }
 
 const createUser = async ({email, password}) => {
-    debugger;
-    let promise = await auth()
+    await auth()
         .createUserWithEmailAndPassword(email, password)
         .then(() => {
-            debugger;
             console.log('User account created & signed in!');
-            return null;
           })
         .catch(error => {
             if (error.code === 'auth/email-already-in-use') {
@@ -28,11 +25,7 @@ const createUser = async ({email, password}) => {
                 console.log('Password is too weak!');
                 throw 'Password is too weak!'
               }
-          
-              console.error(error);
         })
-          
-    return promise;
 }
 
 const signOut = () => {
