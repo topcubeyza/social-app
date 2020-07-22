@@ -1,11 +1,22 @@
 import React from "react"
-import { createAppContainer, createStackNavigator } from "react-navigation"
+import { createAppContainer, createSwitchNavigator } from "react-navigation"
 
 // Screens
-import TestScreen from "../Containers/TestScreen"
+import SignedInNavigation from "./SignedInNavigation"
+import SignedOutNavigation from "./SignedOutNavigation"
 
-const TestNavigator = createStackNavigator({
-    Test: TestScreen
-})
+const AuthorizationNavigator = createSwitchNavigator(
+    {
+        SignedIn: {
+            screen: SignedInNavigation
+        },
+        SignedOut: {
+            screen: SignedOutNavigation
+        },
+    },
+    {
+        initialRouteName: "SignedOut"
+    }
+)
 
-export default createAppContainer(TestNavigator);
+export default createAppContainer(AuthorizationNavigator);

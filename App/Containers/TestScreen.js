@@ -2,6 +2,8 @@
 import React, { Component } from "react"
 import {View, Text} from "react-native"
 import { connect } from "react-redux";
+
+// Actions
 import TestActions from "../Redux/TestRedux"
 import { AuthActions } from "../Redux/AuthRedux"
 
