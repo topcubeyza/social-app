@@ -7,6 +7,7 @@ const Metrics = {
   width,
   height,
   marginHorizontal: width * 0.05,
+  marginHorizontalLarge: width * 0.1,
   marginVertical: width * 0.05,
   section: 25,
   baseMargin: 10,
@@ -17,22 +18,9 @@ const Metrics = {
   screenWidth: width < height ? width : height,
   screenHeight: width < height ? height : width,
   navBarHeight: (Platform.OS === 'ios') ? 64 : 54,
-  buttonRadius: 4,
-  icons: {
-    tiny: 15,
-    small: 20,
-    medium: 30,
-    large: 45,
-    xl: 50
-  },
-  images: {
-    small: 20,
-    medium: 40,
-    large: 60,
-    logo: 200
-  },
-  tabbarHeight: width * 0.15,
-  headerHeight: width * 0.15
+  borderRadiusFullRound: 50,
+  borderRadiusStandard: 3 ,
+  buttonHeight: width * 0.12
 }
 
 export default Metrics
