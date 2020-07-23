@@ -39,7 +39,7 @@ class IncompleteScreen extends Component {
                 <View style={styles.gobackButtonContainer}>
                     <Button
                         text="Go Back"
-                        textColor={Colors.lightTextColor}
+                        textColor={Colors.textOnBrandColor}
                         onPress={this.onBackButtonPress}
                         backgroundColor={Colors.brandColor}
                     />

@@ -4,7 +4,8 @@ import { Colors, Metrics, Fonts } from '../../Themes/'
 export default StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: "space-between"
+        justifyContent: "space-between",
+        backgroundColor: Colors.lightBackground_dm,
     },
     imageContainer: {
         flexGrow: 0.5,
@@ -23,12 +24,13 @@ export default StyleSheet.create({
     helloText: {
         fontFamily: Fonts.type.brand,
         fontSize: Fonts.size.twenty,
-        paddingBottom: Metrics.width * 0.02
+        paddingBottom: Metrics.width * 0.02,
+        color: Colors.black_dm
     },
     subText: {
         fontFamily: Fonts.type.light,
         fontSize: Fonts.size.fourteen,
-        color: Colors.darkTextColor
+        color: Colors.textOnLightBackground_dm
     },
     gobackButtonContainer: {
         paddingHorizontal: Metrics.marginHorizontalLarge,

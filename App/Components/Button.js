@@ -22,12 +22,17 @@ const Button = (props) => {
     )
 }
 
-export default Button
-
 Button.propTypes = {
     backgroundColor: PropTypes.string.isRequired,
     textColor: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired,
-    onPress: PropTypes.func.isRequired,
+    onPress: PropTypes.func,
     disabled: PropTypes.bool
 }
+
+Button.defaultProps = {
+    disabled: false,
+    onPress: () => {}
+}
+
+export default Button

@@ -8,7 +8,7 @@ export default StyleSheet.create({
         borderRadius: Metrics.borderRadiusStandard,
     },
     input: {
-        color: "black",
+        color: Colors.black_dm,
         fontFamily: Fonts.type.regular,
         fontSize: Fonts.size.sixteen
     },

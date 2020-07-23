@@ -23,6 +23,13 @@ class LoginScreen extends Component {
         this.props.navigation.navigate("Incomplete")
     }
 
+    onSignupPress = () => {
+        this.props.navigation.navigate("Signup")
+    }
+
+    onForgotPasswordPress = () => {
+    }
+
     render() {
         return (
             <View style={styles.container}>
@@ -35,7 +42,7 @@ class LoginScreen extends Component {
                         <View style={styles.loginButtonContainer}>
                             <Button
                                 text="Login with Google"
-                                textColor={Colors.lightTextColor}
+                                textColor={Colors.textOnDarkBackground}
                                 onPress={this.onLoginPress}
                                 backgroundColor={Colors.googleColor}
                             />
@@ -43,7 +50,7 @@ class LoginScreen extends Component {
                         <View style={styles.loginButtonContainer}>
                             <Button
                                 text="Login with Email"
-                                textColor={Colors.lightTextColor}
+                                textColor={Colors.textOnBrandColor}
                                 onPress={this.onLoginPress}
                                 backgroundColor={Colors.brandColor}
                             />
@@ -54,16 +61,16 @@ class LoginScreen extends Component {
                     <View style={styles.signupButtonContainer}>
                         <Button
                             text="Sign up"
-                            textColor={Colors.darkTextColor}
-                            onPress={this.onLoginPress}
-                            backgroundColor={Colors.lightBackground}
+                            textColor={Colors.textOnLightBackground_dm}
+                            onPress={this.onSignupPress}
+                            backgroundColor={Colors.lightBackground_dm}
                         />
                     </View>
                     <View style={styles.forgotPassContainer}>
                         <Button
                             text="Forgot Password?"
-                            textColor={Colors.midGrey}
-                            onPress={this.onLoginPress}
+                            textColor={Colors.midLightGrey_dm}
+                            onPress={this.onForgotPasswordPress}
                             backgroundColor={"transparent"}
                         />
                     </View>

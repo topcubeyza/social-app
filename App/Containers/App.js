@@ -14,8 +14,11 @@ import SplashScreen from 'react-native-splash-screen'
 import { Provider } from 'react-redux';
 import { PersistGate } from "redux-persist/integration/react"
 import RootContainer from './RootContainer';
+import { StatusBar } from 'react-native';
+import { Colors } from '../Themes';
 
-const {store, persistor} = createStore();
+
+const { store, persistor } = createStore();
 
 class App extends Component {
 
@@ -46,7 +49,8 @@ class App extends Component {
     return (
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
-          <RootContainer />
+            <StatusBar backgroundColor={Colors.lightBackground_dm} />
+            <RootContainer />
         </PersistGate>
       </Provider>
     )

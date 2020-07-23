@@ -7,11 +7,11 @@ export default StyleSheet.create({
         justifyContent: "space-between"
     },
     topContainer: {
-        backgroundColor: Colors.lightBackground,
+        backgroundColor: Colors.lightBackground_dm,
         flexGrow: 1
     },
     bottomContainer: {
-        backgroundColor: Colors.lightGrey,
+        backgroundColor: Colors.lightGrey_dm,
     },
     signupButtonContainer: {
         paddingTop: Metrics.width * 0.06,
@@ -21,42 +21,32 @@ export default StyleSheet.create({
         alignItems: "center",
         paddingBottom: Metrics.width * 0.04
     },
-    forgotPassText: {
-        fontFamily: Fonts.type.bold,
-        fontSize: Fonts.size.fourteen,
-        color: Colors.midGrey,
-    },
-    loginButtonsContainer: {
+    textinputsContainer: {
         paddingVertical: Metrics.width * 0.04,
     },
-    loginButtonContainer: {
+    textinputContainer: {
         paddingVertical: Metrics.width * 0.02,
         paddingHorizontal: Metrics.marginHorizontalLarge
     },
-    welcomeContainer: {
+    headerContainer: {
         flexGrow: 1,
         justifyContent: "center",
-        alignItems: "center",
-        paddingHorizontal: Metrics.marginHorizontalLarge
+        alignItems: "flex-start",
+        paddingHorizontal: Metrics.marginHorizontalLarge,
+        paddingTop: Metrics.marginVertical
     },
-    welcomeTextsContainer: {
-        alignItems: "center",
-        paddingVertical: Metrics.marginVertical,
-        borderRadius: Metrics.borderRadiusStandard,
-    },
-    welcomeText: {
-        fontFamily: Fonts.type.brand,
-        fontSize: Fonts.size.twenty * 2,
-        marginBottom: Metrics.width * 0.01,
-    },
-    subText: {
+    errorTextContainer:{
+        height: Metrics.buttonHeight / 2,
+        paddingHorizontal: Metrics.marginHorizontalLarge,
+        justifyContent: "flex-end"
+    } ,
+    errorText: {
         fontFamily: Fonts.type.light,
         fontSize: Fonts.size.fourteen,
-        paddingLeft: Metrics.width * 0.038,
-        paddingTop: Metrics.width * 0.03,
-        color: Colors.darkTextColor
+        color: Colors.brandColor,
+        paddingHorizontal: 5,
     },
-    bemagineText: {
+    headerText: {
         fontFamily: Fonts.type.brand,
         fontSize: Fonts.size.twenty * 3,
         color: Colors.brandColor,

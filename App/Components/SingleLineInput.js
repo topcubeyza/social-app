@@ -28,7 +28,6 @@ class SingleLineInput extends Component {
     }
 
     removeUnderline = () => {
-        console.log("removing underline")
         Animated.timing(
             this.state.underlinePadding,
             {
@@ -40,27 +39,40 @@ class SingleLineInput extends Component {
 
     onFocus = () => {
         this.drawUnderline();
-        _.isNil(this.props.onFocus) ? null : this.props.onFocus()
+        this.props.onFocus()
+    }
+
+    applyCustomStyles = () => {
+        let props = this.props;
+
+        return {
+            container: [
+                styles.container,
+                {backgroundColor: props.backgroundColor}
+            ],
+            underlineContainer: [
+                styles.underlineContainer,
+                {paddingRight: this.state.underlinePadding}
+            ],
+            underline: [
+                styles.underline,
+                {backgroundColor: props.underline}
+            ]
+        }
     }
 
     render() {
-        let props = this.props
-        let containerStyle = [
-            styles.container,
-            { backgroundColor: props.backgroundColor }];
-        let textStyle = [
-            styles.text,
-            { color: props.textColor }];
+        let { container, underlineContainer, underline } = this.applyCustomStyles()
         return (
-            <View style={styles.container}>
+            <View style={container}>
                 <TextInput
-                    {...props}
+                    {...this.props}
                     onFocus={this.onFocus}
                     style={styles.input}
                     placeholderTextColor={Colors.midGrey}>
                 </TextInput>
-                <Animated.View style={[styles.underlineContainer, {paddingRight: this.state.underlinePadding}]}>
-                    <View style={[styles.underline, { backgroundColor: props.underlineColor ? props.underlineColor : Colors.brandColor }]}></View>
+                <Animated.View style={underlineContainer}>
+                    <View style={underline}></View>
                 </Animated.View>
             </View>
         )
@@ -75,5 +87,14 @@ SingleLineInput.propTypes = {
     placeholder: PropTypes.string.isRequired,
     secureTextEntry: PropTypes.bool,
     editable: PropTypes.bool,
-    onFocus: PropTypes.func
+    onFocus: PropTypes.func,
+    backgroundColor: PropTypes.string
+}
+
+SingleLineInput.defaultProps = {
+    secureTextEntry: false,
+    editable: true,
+    onFocus: () => {},
+    backgroundColor: "transparent",
+    underline: Colors.brandColor
 }

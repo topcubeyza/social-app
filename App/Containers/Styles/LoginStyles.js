@@ -7,11 +7,11 @@ export default StyleSheet.create({
         justifyContent: "space-between"
     },
     topContainer: {
-        backgroundColor: Colors.lightBackground,
+        backgroundColor: Colors.lightBackground_dm,
         flexGrow: 1
     },
     bottomContainer: {
-        backgroundColor: Colors.lightGrey,
+        backgroundColor: Colors.lightGrey_dm,
     },
     signupButtonContainer: {
         paddingTop: Metrics.width * 0.06,
@@ -20,11 +20,6 @@ export default StyleSheet.create({
     forgotPassContainer: {
         alignItems: "center",
         paddingBottom: Metrics.width * 0.04
-    },
-    forgotPassText: {
-        fontFamily: Fonts.type.bold,
-        fontSize: Fonts.size.fourteen,
-        color: Colors.midGrey,
     },
     loginButtonsContainer: {
         paddingVertical: Metrics.width * 0.04,
@@ -54,7 +49,7 @@ export default StyleSheet.create({
         fontSize: Fonts.size.fourteen,
         paddingLeft: Metrics.width * 0.038,
         paddingTop: Metrics.width * 0.03,
-        color: Colors.darkTextColor
+        color: Colors.textOnLightBackground_dm
     },
     bemagineText: {
         fontFamily: Fonts.type.brand,
