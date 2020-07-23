@@ -14,6 +14,7 @@ const Button = (props) => {
         { color: props.textColor }];
     return (
         <TouchableOpacity
+            disabled={props.disabled}
             style={containerStyle}
             onPress={props.onPress}>
             <Text style={textStyle}>{props.text}</Text>
@@ -27,5 +28,6 @@ Button.propTypes = {
     backgroundColor: PropTypes.string.isRequired,
     textColor: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired,
-    onPress: PropTypes.func.isRequired
+    onPress: PropTypes.func.isRequired,
+    disabled: PropTypes.bool
 }
