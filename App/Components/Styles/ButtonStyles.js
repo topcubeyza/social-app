@@ -10,6 +10,6 @@ export default StyleSheet.create({
     },
     text: {
         fontFamily: Fonts.type.bold,
-        fontSize: Fonts.size.fourteen,
+        fontSize: Fonts.size.sixteen,
     }
 })
