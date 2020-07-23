@@ -10,9 +10,6 @@ const SignedOutNavigator = createStackNavigator(
     {
         Login: {
             screen: LoginScreen,
-            navigationOptions: {
-                header: null
-            }
         },
         Signup: {
             screen: SignupScreen
@@ -23,6 +20,7 @@ const SignedOutNavigator = createStackNavigator(
     },
     {
         initialRouteName: "Login",
+        headerMode: "none",
         navigationOptions: {
             headerTransparent: true
         }
