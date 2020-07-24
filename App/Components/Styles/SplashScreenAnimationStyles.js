@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native'
 import { Colors, Metrics, Fonts } from '../../Themes/'
 
-export default StyleSheet.create({
+const getStyles = (color) => StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: "orange",
@@ -12,3 +12,5 @@ export default StyleSheet.create({
         resizeMode: "cover",
     }
 })
+
+export default getStyles

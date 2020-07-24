@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native'
 import { Colors, Metrics, Fonts } from '../../Themes/'
 
-export default StyleSheet.create({
+const getStyles = (color) => StyleSheet.create({
     container: {
         height: Metrics.buttonHeight,
         justifyContent: "center",
@@ -13,3 +13,5 @@ export default StyleSheet.create({
         fontSize: Fonts.size.sixteen,
     }
 })
+
+export default getStyles

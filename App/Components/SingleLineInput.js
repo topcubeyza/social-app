@@ -3,8 +3,9 @@ import { View, Text, TextInput, Animated } from "react-native"
 import PropTypes from "prop-types"
 import _ from "lodash"
 
-import styles from "./Styles/SingleLineInputStyles"
+import getStyles from "./Styles/SingleLineInputStyles"
 import { Colors, Metrics } from "../Themes"
+import { themed } from "../Themes/ThemeManager"
 
 
 class SingleLineInput extends Component {
@@ -42,9 +43,9 @@ class SingleLineInput extends Component {
         this.props.onFocus()
     }
 
-    applyCustomStyles = () => {
+    applyCustomStyles = (styles) => {
         let props = this.props;
-
+        let color = props.theme.color
         return {
             container: [
                 styles.container,
@@ -56,13 +57,14 @@ class SingleLineInput extends Component {
             ],
             underline: [
                 styles.underline,
-                {backgroundColor: props.underline}
+                {backgroundColor: props.underline ? props.underline : color(Colors.brandColor)}
             ]
         }
     }
 
     render() {
-        let { container, underlineContainer, underline } = this.applyCustomStyles()
+        let styles = getStyles(this.props.theme.color)
+        let { container, underlineContainer, underline } = this.applyCustomStyles(styles)
         return (
             <View style={container}>
                 <TextInput
@@ -79,7 +81,7 @@ class SingleLineInput extends Component {
     }
 }
 
-export default SingleLineInput
+export default themed(SingleLineInput)
 
 SingleLineInput.propTypes = {
     onChangeText: PropTypes.func.isRequired,
@@ -95,6 +97,5 @@ SingleLineInput.defaultProps = {
     secureTextEntry: false,
     editable: true,
     onFocus: () => {},
-    backgroundColor: "transparent",
-    underline: Colors.brandColor
+    backgroundColor: "transparent"
 }

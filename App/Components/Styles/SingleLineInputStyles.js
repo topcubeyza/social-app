@@ -1,14 +1,14 @@
 import { StyleSheet } from 'react-native'
 import { Colors, Metrics, Fonts } from '../../Themes/'
 
-export default StyleSheet.create({
+const getStyles = (color) => StyleSheet.create({
     container: {
         height: Metrics.buttonHeight,
         //alignItems: "center",
         borderRadius: Metrics.borderRadiusStandard,
     },
     input: {
-        color: Colors.black_dm,
+        color: color(Colors.black_dm),
         fontFamily: Fonts.type.regular,
         fontSize: Fonts.size.sixteen
     },
@@ -19,3 +19,5 @@ export default StyleSheet.create({
         height: Metrics.horizontalLineHeight,
     }
 })
+
+export default getStyles
