@@ -1,17 +1,17 @@
 import { StyleSheet, Platform } from 'react-native'
-import { Colors, Metrics, Fonts } from '../../Themes/'
+import { Colors, Metrics, Fonts } from '../../../Themes'
 
-export default StyleSheet.create({
+const getStyles = color => StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: "space-between"
     },
     topContainer: {
-        backgroundColor: Colors.lightBackground_dm,
+        backgroundColor: color(Colors.lightBackground_dm),
         flexGrow: 1
     },
     bottomContainer: {
-        backgroundColor: Colors.lightGrey_dm,
+        backgroundColor: color(Colors.lightGrey_dm),
     },
     signupButtonContainer: {
         paddingTop: Metrics.width * 0.06,
@@ -49,11 +49,13 @@ export default StyleSheet.create({
         fontSize: Fonts.size.fourteen,
         paddingLeft: Metrics.width * 0.038,
         paddingTop: Metrics.width * 0.03,
-        color: Colors.textOnLightBackground_dm
+        color: color(Colors.textOnLightBackground_dm)
     },
     bemagineText: {
         fontFamily: Fonts.type.brand,
         fontSize: Fonts.size.twenty * 3,
-        color: Colors.brandColor,
+        color: color(Colors.brandColor),
     }
 })
+
+export default getStyles

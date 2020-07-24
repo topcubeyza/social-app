@@ -24,7 +24,6 @@ componentDidMount() {
 }
 
 const mapStateToProps = state => {
-    console.log(state)
     return {
         users: state.test.items,
         user: state.auth.user

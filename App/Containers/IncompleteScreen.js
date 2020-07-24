@@ -12,8 +12,9 @@ import { connect } from "react-redux";
 import Button from "../Components/Button"
 
 // Styles
-import styles from "./Styles/IncompleteStyles"
+import getStyles from "./CommonStyles/IncompleteStyles"
 import { Colors, Images } from '../Themes'
+import { themed } from "../Themes/ThemeManager";
 
 class IncompleteScreen extends Component {
 
@@ -26,6 +27,9 @@ class IncompleteScreen extends Component {
     }
 
     render() {
+        let color = this.props.theme.color
+        let styles = getStyles(color)
+
         return (
             <SafeAreaView style={styles.container}>
                 <View style={styles.imageContainer}>
@@ -39,9 +43,9 @@ class IncompleteScreen extends Component {
                 <View style={styles.gobackButtonContainer}>
                     <Button
                         text="Go Back"
-                        textColor={Colors.textOnBrandColor}
+                        textColor={color(Colors.textOnBrandColor)}
                         onPress={this.onBackButtonPress}
-                        backgroundColor={Colors.brandColor}
+                        backgroundColor={color(Colors.brandColor)}
                     />
                 </View>
             </SafeAreaView>
@@ -50,4 +54,4 @@ class IncompleteScreen extends Component {
 
 }
 
-export default IncompleteScreen;
+export default themed(IncompleteScreen);

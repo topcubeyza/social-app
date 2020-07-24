@@ -8,14 +8,15 @@ import {
 import { connect } from "react-redux";
 
 // Actions
-import { AuthActions } from "../Redux/AuthRedux"
+import { AuthActions } from "../../Redux/AuthRedux"
 
 // Components
-import Button from "../Components/Button"
+import Button from "../../Components/Button"
 
 // Styles
-import styles from "./Styles/LoginStyles"
-import { Colors } from '../Themes'
+import getStyles from "./Styles/LoginStyles"
+import { Colors } from '../../Themes'
+import { themed } from "../../Themes/ThemeManager";
 
 class LoginScreen extends Component {
 
@@ -31,6 +32,8 @@ class LoginScreen extends Component {
     }
 
     render() {
+        let color = this.props.theme.color;
+        let styles = getStyles(color)
         return (
             <View style={styles.container}>
                 <SafeAreaView style={styles.topContainer}>
@@ -42,17 +45,17 @@ class LoginScreen extends Component {
                         <View style={styles.loginButtonContainer}>
                             <Button
                                 text="Login with Google"
-                                textColor={Colors.textOnDarkBackground}
+                                textColor={color(Colors.textOnDarkBackground)}
                                 onPress={this.onLoginPress}
-                                backgroundColor={Colors.googleColor}
+                                backgroundColor={color(Colors.googleColor)}
                             />
                         </View>
                         <View style={styles.loginButtonContainer}>
                             <Button
                                 text="Login with Email"
-                                textColor={Colors.textOnBrandColor}
+                                textColor={color(Colors.textOnBrandColor)}
                                 onPress={this.onLoginPress}
-                                backgroundColor={Colors.brandColor}
+                                backgroundColor={color(Colors.brandColor)}
                             />
                         </View>
                     </View>
@@ -61,15 +64,15 @@ class LoginScreen extends Component {
                     <View style={styles.signupButtonContainer}>
                         <Button
                             text="Sign up"
-                            textColor={Colors.textOnLightBackground_dm}
+                            textColor={color(Colors.textOnLightBackground_dm)}
                             onPress={this.onSignupPress}
-                            backgroundColor={Colors.lightBackground_dm}
+                            backgroundColor={color(Colors.lightBackground_dm)}
                         />
                     </View>
                     <View style={styles.forgotPassContainer}>
                         <Button
                             text="Forgot Password?"
-                            textColor={Colors.midLightGrey_dm}
+                            textColor={color(Colors.midLightGrey_dm)}
                             onPress={this.onForgotPasswordPress}
                             backgroundColor={"transparent"}
                         />
@@ -81,4 +84,4 @@ class LoginScreen extends Component {
 
 }
 
-export default LoginScreen;
+export default themed(LoginScreen);

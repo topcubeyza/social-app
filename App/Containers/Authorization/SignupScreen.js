@@ -17,16 +17,17 @@ import _ from "lodash";
 import val from "validate.js"
 
 // Actions
-import { AuthActions } from "../Redux/AuthRedux"
+import { AuthActions } from "../../Redux/AuthRedux"
 
 // Components
-import Button from "../Components/Button"
-import SingleLineInput from "../Components/SingleLineInput"
+import Button from "../../Components/Button"
+import SingleLineInput from "../../Components/SingleLineInput"
 
 // Styles
-import styles from "./Styles/SignupStyles"
-import { Colors, Fonts } from '../Themes'
+import getStyles from "./Styles/SignupStyles"
+import { Colors, Fonts } from '../../Themes'
 import { duration } from "moment";
+import { themed } from "../../Themes/ThemeManager";
 
 class SignupScreen extends Component {
 
@@ -189,8 +190,9 @@ class SignupScreen extends Component {
 
     render() {
         let signupButtonDisabled = !this.checkSignupInfo().ok
+        let color = this.props.theme.color
+        let styles = getStyles(color)
         return (
-
             <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS == "ios" ? "padding" : null}>
                 <TouchableWithoutFeedback onPress={this.onBackgroundPress}>
                     <View style={styles.container}>
@@ -249,15 +251,15 @@ class SignupScreen extends Component {
                             <View style={styles.signupButtonContainer}>
                                 <Button
                                     text="Sign up"
-                                    textColor={Colors.textOnBrandColor}
+                                    textColor={color(Colors.textOnBrandColor)}
                                     onPress={this.onSignupPress}
-                                    backgroundColor={Colors.brandColor}
+                                    backgroundColor={color(Colors.brandColor)}
                                 />
                             </View>
                             <View style={styles.forgotPassContainer}>
                                 <Button
                                     text="Login instead?"
-                                    textColor={Colors.midLightGrey_dm}
+                                    textColor={color(Colors.midLightGrey_dm)}
                                     onPress={this.onLoginInsteadPress}
                                     backgroundColor={"transparent"}
                                 />
@@ -271,4 +273,4 @@ class SignupScreen extends Component {
 
 }
 
-export default SignupScreen;
+export default themed(SignupScreen);
