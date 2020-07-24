@@ -14,6 +14,7 @@ import SplashScreen from 'react-native-splash-screen'
 import { Provider } from 'react-redux';
 import { PersistGate } from "redux-persist/integration/react"
 import RootContainer from './RootContainer';
+import ThemeManager from "../Themes/ThemeManager"
 import { StatusBar } from 'react-native';
 import { Colors } from '../Themes';
 
@@ -30,17 +31,6 @@ class App extends Component {
 
   render() {
 
-    /*
-    setTimeout(() => {
-      console.log("running timeout function", moment.now())
-      if (this.state.firstTime) {
-        this.setState({
-          firstTime: false
-        })
-      }
-    }, 3000);
-    */
-
     if (this.firstTime) {
       SplashScreen.hide()
       this.firstTime = false
@@ -49,8 +39,10 @@ class App extends Component {
     return (
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
+          <ThemeManager>
             <StatusBar backgroundColor={Colors.lightBackground_dm} />
             <RootContainer />
+          </ThemeManager>
         </PersistGate>
       </Provider>
     )

@@ -21,7 +21,7 @@ const constantColors = {
   darkBackground: greyColors.darkGrey
 }
 
-const lightModeColors = {
+export const lightTheme = {
   ...constantColors,
   white_dm: constantColors.white,
   lightGrey_dm: constantColors.lightGrey,
@@ -36,7 +36,7 @@ const lightModeColors = {
   darkBackground_dm: constantColors.darkBackground
 }
 
-const darkModeColors = {
+export const darkTheme = {
   ...constantColors,
   white_dm: constantColors.darkGrey,
   lightGrey_dm: constantColors.midDarkGrey,
@@ -52,4 +52,30 @@ const darkModeColors = {
 }
 
 
-export default AppConfig.darkMode ? darkModeColors : lightModeColors;
+export default Colors = {
+  white: "white",
+  lightGrey: "lightGrey",
+  midLightGrey: "midLightGrey",
+  midGrey: "midGrey",
+  midDarkGrey: "midDarkGrey",
+  darkGrey: "darkGrey",
+  black: "black",
+  googleColor: "googleColor",
+  brandColor: "brandColor",
+  textOnBrandColor: "textOnBrandColor",
+  textOnLightBackground: "textOnLightBackground",
+  textOnDarkBackground: "textOnDarkBackground",
+  lightBackground: "lightBackground",
+  darkBackground: "darkBackground",
+  white_dm: "white_dm",
+  lightGrey_dm: "lightGrey_dm",
+  midLightGrey_dm: "midLightGrey_dm",
+  midGrey_dm: "midGrey_dm",
+  midDarkGrey_dm: "midDarkGrey_dm",
+  darkGrey_dm: "darkGrey_dm",
+  black_dm: "black_dm",
+  textOnLightBackground_dm: "textOnLightBackground_dm",
+  textOnDarkBackground_dm: "textOnDarkBackground_dm",
+  lightBackground_dm: "lightBackground_dm",
+  darkBackground_dm: "darkBackground_dm",
+}
