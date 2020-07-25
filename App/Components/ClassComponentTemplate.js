@@ -2,12 +2,6 @@
 import React, { Component } from "react"
 import {connect} from "react-redux"
 
-// Configs
-
-// Screens
-
-// Navigators
-
 // RN Components
 import {
     View,
@@ -26,7 +20,7 @@ import getStyles from "./Styles/TemplateStyles"
 import { Colors, Fonts, Metrics } from '../../Themes'
 import { ThemeContext } from "../Themes/ThemeManager"
 
-class Template extends Component {
+class ClassComponentTemplate extends Component {
 
     constructor(props) {
         super(props);
@@ -61,4 +55,4 @@ class Template extends Component {
 
 }
 
-export default connect()(Template);
+export default connect()(ClassComponentTemplate);
