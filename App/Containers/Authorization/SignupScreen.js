@@ -13,7 +13,6 @@ import {
     UIManager
 } from "react-native"
 import { connect } from "react-redux";
-import _ from "lodash";
 import val from "validate.js"
 
 // Actions
@@ -22,6 +21,9 @@ import { AuthActions } from "../../Redux/AuthRedux"
 // Components
 import Button from "../../Components/Button"
 import SingleLineInput from "../../Components/SingleLineInput"
+
+// Utils
+import checkCredentials from "./Utils/CredentialsCheck"
 
 // Styles
 import getStyles from "./Styles/SignupStyles"
@@ -38,19 +40,15 @@ class SignupScreen extends Component {
             email: "",
             password: "",
             passwordConfirm: "",
-            keyboardVisible: false,
-            brandNameFontSize: new Animated.Value(Fonts.size.twenty * 2),
+            headerFontSize: new Animated.Value(Fonts.size.twenty * 2),
             signupErrorMessage: ""
         }
 
-        this.constraints = {
-            from: {
-                email: true
-            }
-        };
-
         this.textinputs = {}
+        this.keyboardVisible = false;
     }
+
+// *** LIFECYCLE METHODS *** //
 
     componentDidMount() {
         this.keyboardDidShowListener = Keyboard.addListener("keyboardDidShow", this.onKeyboardDidShow)
@@ -62,51 +60,58 @@ class SignupScreen extends Component {
         this.keyboardDidHideListeneer.remove();
     }
 
+// *** LISTENERS *** //
+
     onKeyboardDidShow = () => {
-        if (!this.state.keyboardVisible) {
-            this.setState({
-                keyboardVisible: true
-            })
+        if (!this.keyboardVisible) {
+            this.keyboardVisible = true;
         }
     }
 
     onKeyboardDidHide = () => {
-        if (this.state.keyboardVisible) {
-            this.setState({
-                keyboardVisible: false,
-            })
-            Object.entries(this.textinputs).map(entry => {
-                if (entry[1] != null) {
-                    entry[1].removeUnderline()
+        if (this.keyboardVisible) {
+            this.keyboardVisible = false;
+
+            // When keyboard hides, underline of the active textinput must be removed
+            Object.entries(this.textinputs).map(textinput => {
+                // checking if the textinput is mounted
+                if (textinput[1] != null) {
+                    textinput[1].removeUnderline()
                 }
             })
         }
     }
 
-    onChangeEmail = (text) => {
+// *** EVENTS *** //
+
+    _onChangeTextEmail = (text) => {
         this.setState({
             email: text
         })
     }
 
-    onChangePassword = (text) => {
+    _onChangeTextPassword = (text) => {
         this.setState({
             password: text
         })
     }
 
-    onChangePasswordConfirm = (text) => {
+    _onChangeTextPasswordConfirm = (text) => {
         this.setState({
             passwordConfirm: text
         })
     }
 
-    onSignupPress = () => {
-        let {ok, message} = this.checkSignupInfo()
+    _onPressSignup = () => {
+        let {ok, message} = checkCredentials(this.state)
         if (!ok) {
             this.setState({
                 signupErrorMessage: message
             }, () => {
+                // Show an error message for two seconds if fields are not valid
+
+                // clear timeout so that when user taps button repeatedly,
+                // disappearing of error message will be delayed
                 if (this.errorMessageTimeout) {
                     clearTimeout(this.errorMessageTimeout)
                 }
@@ -119,77 +124,56 @@ class SignupScreen extends Component {
         }
     }
 
-    onLoginPress = () => {
+    _onPressLogin = () => {
+        // Navigate to Incomplete page until the login page is designed
         this.props.navigation.navigate("Incomplete")
     }
 
-    onLoginInsteadPress = () => {
+    _onPressLoginInstead = () => {
         this.props.navigation.navigate("Login");
     }
 
-    onTextInputFocus = (key) => {
-
+    // key: key of the textinput
+    _onFocusTextInput = (key) => {
+        // Remove underline of the previously focused textinput
         Object.entries(this.textinputs).map(entry => {
             if (entry[0] != key && entry[1] != null) {
                 entry[1].removeUnderline()
             }
         })
         
-        if (this.state.keyboardVisible) return;
+        // If keyboard was not previously visible and it will be shown just in a moment,
+        // Shrink the header with animation
+        if (!this.keyboardVisible) {
+            Animated.timing(
+                this.state.headerFontSize,
+                {
+                    toValue: Fonts.size.twenty * 1.5,
+                    duration: 200
+                }
+            ).start()
+        }
 
-        Animated.timing(
-            // Animate value over time
-            this.state.brandNameFontSize, // The value to drive
-            {
-                toValue: Fonts.size.twenty * 1.5,
-                duration: 200 // Animate to final value of 1
-            }
-        ).start()
     }
 
-    onBackgroundPress = () => {
-        if (!this.state.keyboardVisible) return;
+    _onPressBackground = () => {
+        // If keyboard was previously visible and it will be hidden just in a moment,
+        // Enlarge the header with animation
+        if (!this.keyboardVisible) return;
         Keyboard.dismiss();
         Animated.timing(
-            // Animate value over time
-            this.state.brandNameFontSize, // The value to drive
+            this.state.headerFontSize,
             {
                 toValue: Fonts.size.twenty * 2,
-                duration: 200 // Animate to final value of 1
+                duration: 200 
             }
         ).start()
     }
 
-    checkSignupInfo = () => {
-
-        let { email, password, passwordConfirm } = this.state
-
-        if (_.isEmpty(email) || _.isEmpty(password) || _.isEmpty(passwordConfirm)) {
-            return {
-                ok: false,
-                message: "Please fill all fields."
-            };
-        }
-        if (password !== passwordConfirm) {
-            return {
-                ok: false,
-                message: "Passwords do not match."
-            };
-        }
-        if (val({ from: email }, this.constraints)) {
-            return {
-                ok: false,
-                message: "Please enter a valid e-mail address."
-            };
-        }
-
-        return {
-            ok: true
-        };
-    }
+// *** RENDER METHODS *** //
 
     render() {
-        let signupButtonDisabled = !this.checkSignupInfo().ok
+        let signupButtonDisabled = !checkCredentials(this.state).ok
         let color = this.props.theme.color
         let styles = getStyles(color)
         return (
@@ -197,10 +181,12 @@ class SignupScreen extends Component {
                 <TouchableWithoutFeedback onPress={this.onBackgroundPress}>
                     <View style={styles.container}>
                         <SafeAreaView style={styles.topContainer}>
+{/* HEADER */}
                             <View style={styles.headerContainer}>
                                     <Animated.Text
-                                    style={[styles.headerText, { fontSize: this.state.brandNameFontSize }]}>Signup</Animated.Text>
+                                    style={[styles.headerText, { fontSize: this.state.headerFontSize }]}>Signup</Animated.Text>
                             </View>
+{/* CREDENTIAL INPUTS */}
                             <View style={styles.textinputsContainer}>
                                 <View style={styles.textinputContainer}>
                                     <SingleLineInput
@@ -208,10 +194,10 @@ class SignupScreen extends Component {
                                         keyboardType="email-address"
                                         autoCapitalize="none"
                                         key="email"
-                                        onFocus={() => this.onTextInputFocus("email")}
+                                        onFocus={() => this._onFocusTextInput("email")}
                                         placeholder={"E-mail"}
                                         value={this.state.email}
-                                        onChangeText={this.onChangeEmail}
+                                        onChangeText={this._onChangeTextEmail}
                                     />
                                 </View>
                                 <View style={styles.textinputContainer}>
@@ -219,10 +205,10 @@ class SignupScreen extends Component {
                                         ref={ref => this.textinputs.password = ref}
                                         autoCapitalize="none"
                                         key="password"
-                                        onFocus={() => this.onTextInputFocus("password")}
+                                        onFocus={() => this._onFocusTextInput("password")}
                                         placeholder={"Password"}
                                         value={this.state.password}
-                                        onChangeText={this.onChangePassword}
+                                        onChangeText={this._onChangeTextPassword}
                                         secureTextEntry={true}
                                     />
                                 </View>
@@ -231,13 +217,14 @@ class SignupScreen extends Component {
                                         ref={ref => this.textinputs.passwordconfirm = ref}
                                         autoCapitalize="none"
                                         key="passwordconfirm"
-                                        onFocus={() => this.onTextInputFocus("passwordconfirm")}
+                                        onFocus={() => this._onFocusTextInput("passwordconfirm")}
                                         placeholder={"Confirm Password"}
                                         value={this.state.passwordConfirm}
-                                        onChangeText={this.onChangePasswordConfirm}
+                                        onChangeText={this._onChangeTextPasswordConfirm}
                                         secureTextEntry={true}
                                     />
                                 </View>
+{/* ERROR MESSAGE */}
                                 <View style={styles.errorTextContainer}>
                                     {
                                         this.state.signupErrorMessage ?
@@ -247,12 +234,13 @@ class SignupScreen extends Component {
                                 </View>
                             </View>
                         </SafeAreaView>
+{/* BUTTONS */}
                         <SafeAreaView style={styles.bottomContainer}>
                             <View style={styles.signupButtonContainer}>
                                 <Button
                                     text="Sign up"
                                     textColor={color(Colors.textOnBrandColor)}
-                                    onPress={this.onSignupPress}
+                                    onPress={this._onPressSignup}
                                     backgroundColor={color(Colors.brandColor)}
                                 />
                             </View>
@@ -260,7 +248,7 @@ class SignupScreen extends Component {
                                 <Button
                                     text="Login instead?"
                                     textColor={color(Colors.midLightGrey_dm)}
-                                    onPress={this.onLoginInsteadPress}
+                                    onPress={this._onPressLoginInstead}
                                     backgroundColor={"transparent"}
                                 />
                             </View>
