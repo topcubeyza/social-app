@@ -13,7 +13,7 @@ import {
     UIManager
 } from "react-native"
 import { connect } from "react-redux";
-import val from "validate.js"
+import { duration } from "moment";
 
 // Actions
 import { AuthActions } from "../../Redux/AuthRedux"
@@ -28,8 +28,7 @@ import checkCredentials from "./Utils/CredentialsCheck"
 // Styles
 import getStyles from "./Styles/SignupStyles"
 import { Colors, Fonts } from '../../Themes'
-import { duration } from "moment";
-import { themed } from "../../Themes/ThemeManager";
+import { ThemeContext } from "../../Themes/ThemeManager";
 
 class SignupScreen extends Component {
 
@@ -48,19 +47,31 @@ class SignupScreen extends Component {
         this.keyboardVisible = false;
     }
 
+    static contextType = ThemeContext
+
 // *** LIFECYCLE METHODS *** //
 
     componentDidMount() {
         this.keyboardDidShowListener = Keyboard.addListener("keyboardDidShow", this.onKeyboardDidShow)
-        this.keyboardDidHideListeneer = Keyboard.addListener("keyboardDidHide", this.onKeyboardDidHide)
+        if (Platform.OS == "ios") {
+            this.keyboardWillHideListener = Keyboard.addListener("keyboardWillHide", this.onKeyboardDidHide)
+        }
+        else {
+            this.keyboardDidHideListeneer = Keyboard.addListener("keyboardDidHide", this.onKeyboardDidHide)
+        }
     }
 
     componentWillUnmount() {
         this.keyboardDidShowListener.remove();
-        this.keyboardDidHideListeneer.remove();
+        if (Platform.OS == "ios") {
+            this.keyboardWillHideListener.remove();
+        }
+        else {
+            this.keyboardDidHideListeneer.remove();
+        }
     }
 
-// *** LISTENERS *** //
+// *** CALLBACKS *** //
 
     onKeyboardDidShow = () => {
         if (!this.keyboardVisible) {
@@ -69,6 +80,7 @@ class SignupScreen extends Component {
     }
 
     onKeyboardDidHide = () => {
+        debugger;
         if (this.keyboardVisible) {
             this.keyboardVisible = false;
 
@@ -84,7 +96,7 @@ class SignupScreen extends Component {
                 this.state.headerFontSize,
                 {
                     toValue: Fonts.size.twenty * 2,
-                    duration: 200 
+                    duration: 300 
                 }
             ).start()
         }
@@ -157,7 +169,7 @@ class SignupScreen extends Component {
                 this.state.headerFontSize,
                 {
                     toValue: Fonts.size.twenty * 1.5,
-                    duration: 200
+                    duration: 300
                 }
             ).start()
         }
@@ -165,28 +177,22 @@ class SignupScreen extends Component {
     }
 
     _onPressBackground = () => {
+        debugger;
         // If keyboard was previously visible and it will be hidden just in a moment,
         // Enlarge the header with animation
         if (!this.keyboardVisible) return;
         Keyboard.dismiss();
-        Animated.timing(
-            this.state.headerFontSize,
-            {
-                toValue: Fonts.size.twenty * 2,
-                duration: 200 
-            }
-        ).start()
     }
 
 // *** RENDER METHODS *** //
 
     render() {
         let signupButtonDisabled = !checkCredentials(this.state).ok
-        let color = this.props.theme.color
+        let color = this.context.color
         let styles = getStyles(color)
         return (
             <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS == "ios" ? "padding" : null}>
-                <TouchableWithoutFeedback onPress={this.onBackgroundPress}>
+                <TouchableWithoutFeedback onPress={this._onPressBackground}>
                     <View style={styles.container}>
                         <SafeAreaView style={styles.topContainer}>
 {/* HEADER */}
@@ -269,4 +275,4 @@ class SignupScreen extends Component {
 
 }
 
-export default themed(SignupScreen);
+export default SignupScreen;

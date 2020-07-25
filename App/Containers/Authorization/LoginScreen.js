@@ -16,9 +16,11 @@ import Button from "../../Components/Button"
 // Styles
 import getStyles from "./Styles/LoginStyles"
 import { Colors } from '../../Themes'
-import { themed } from "../../Themes/ThemeManager";
+import { ThemeContext } from "../../Themes/ThemeManager";
 
 class LoginScreen extends Component {
+
+    static contextType = ThemeContext
 
     onLoginPress = () => {
         this.props.navigation.navigate("Incomplete")
@@ -29,11 +31,11 @@ class LoginScreen extends Component {
     }
 
     onForgotPasswordPress = () => {
-        this.props.theme.setTheme(this.props.theme.mode == 'dark' ? 'light' : 'dark')
+        this.context.setTheme(this.context.mode == 'dark' ? 'light' : 'dark')
     }
 
     render() {
-        let color = this.props.theme.color;
+        let color = this.context.color;
         let styles = getStyles(color)
         return (
             <View style={styles.container}>
@@ -85,4 +87,4 @@ class LoginScreen extends Component {
 
 }
 
-export default themed(LoginScreen);
+export default LoginScreen;

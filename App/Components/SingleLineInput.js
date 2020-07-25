@@ -1,11 +1,12 @@
+// Packages
 import React, { Component } from "react"
 import { View, Text, TextInput, Animated } from "react-native"
 import PropTypes from "prop-types"
-import _ from "lodash"
 
+// Styles
 import getStyles from "./Styles/SingleLineInputStyles"
 import { Colors, Metrics } from "../Themes"
-import { themed } from "../Themes/ThemeManager"
+import { ThemeContext } from "../Themes/ThemeManager"
 
 
 class SingleLineInput extends Component {
@@ -16,9 +17,14 @@ class SingleLineInput extends Component {
         this.state = {
             underlinePadding: new Animated.Value(Metrics.screenWidth - Metrics.marginHorizontalLarge * 2)
         }
+        
     }
 
-    drawUnderline = () => {
+    static contextType = ThemeContext
+
+// *** REF METHODS *** //
+
+     drawUnderline = () => {
         Animated.timing(
             this.state.underlinePadding,
             {
@@ -38,14 +44,18 @@ class SingleLineInput extends Component {
         ).start()
     }
 
-    onFocus = () => {
+// *** EVENTS *** //
+
+    _onFocus = () => {
         this.drawUnderline();
         this.props.onFocus()
     }
 
-    applyCustomStyles = (styles) => {
+// *** CONVENIENCE METHODS *** //
+
+    getModifiedStyles = (styles) => {
         let props = this.props;
-        let color = props.theme.color
+        let color = this.context.color;
         return {
             container: [
                 styles.container,
@@ -63,14 +73,14 @@ class SingleLineInput extends Component {
     }
 
     render() {
-        let color = this.props.theme.color
+        let color = this.context.color
         let styles = getStyles(color)
-        let { container, underlineContainer, underline } = this.applyCustomStyles(styles)
+        let { container, underlineContainer, underline } = this.getModifiedStyles(styles)
         return (
             <View style={container}>
                 <TextInput
                     {...this.props}
-                    onFocus={this.onFocus}
+                    onFocus={this._onFocus}
                     style={styles.input}
                     placeholderTextColor={color(Colors.midLightGrey_dm)}>
                 </TextInput>
@@ -82,7 +92,7 @@ class SingleLineInput extends Component {
     }
 }
 
-export default themed(SingleLineInput)
+export default SingleLineInput
 
 SingleLineInput.propTypes = {
     onChangeText: PropTypes.func.isRequired,

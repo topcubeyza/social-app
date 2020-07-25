@@ -1,14 +1,17 @@
+// Packages
 import React from "react"
 import { TouchableOpacity, Text } from "react-native"
 import PropTypes from "prop-types"
 
+// Styles
 import getStyles from "./Styles/ButtonStyles"
-import { themed } from "../Themes/ThemeManager"
+import { useThemeContext } from "../Themes/ThemeManager"
 import Colors from "../Themes/Colors"
 
 
 const Button = (props) => {
-    let styles = getStyles(props.theme.color)
+    let themeContext = useThemeContext();
+    let styles = getStyles(themeContext.color)
     let containerStyle = [
         styles.container, 
         { backgroundColor: props.backgroundColor }];
@@ -38,4 +41,4 @@ Button.defaultProps = {
     onPress: () => {}
 }
 
-export default themed(Button)
+export default Button

@@ -6,13 +6,14 @@
  * @flow
  */
 
-import '../Config';
-import DebugConfig from "../Config/DebugConfig"
 import React, { useEffect, Component } from 'react';
-import createStore from '../Redux';
 import SplashScreen from 'react-native-splash-screen'
 import { Provider } from 'react-redux';
 import { PersistGate } from "redux-persist/integration/react"
+
+import '../Config';
+import DebugConfig from "../Config/DebugConfig"
+import createStore from '../Redux';
 import RootContainer from './RootContainer';
 import ThemeManager from "../Themes/ThemeManager"
 import { StatusBar } from 'react-native';

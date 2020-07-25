@@ -7,7 +7,7 @@ import auth from '@react-native-firebase/auth';
 import {AuthActions} from "../Redux/AuthRedux"
 
 import NetInfo from '@react-native-community/netinfo';
-import { themed } from '../Themes/ThemeManager';
+import { ThemeContext } from '../Themes/ThemeManager';
 import { StatusBar } from 'react-native';
 import { Colors } from '../Themes';
 
@@ -20,6 +20,8 @@ class RootContainer extends Component {
     this.netInfoSubs;
     this.firebaseAuthUnsubscribe;
   }
+
+  static contextType = ThemeContext
 
   init = () => {
     this.isInternetAvailable();
@@ -59,7 +61,7 @@ class RootContainer extends Component {
       return null;
     }
     return <>
-      <StatusBar backgroundColor={this.props.theme.color(Colors.lightBackground_dm)}/>
+      <StatusBar backgroundColor={this.context.color(Colors.lightBackground_dm)}/>
       <ReduxNavigation />
     </>;
   }
@@ -79,4 +81,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(themed(RootContainer));
+)(RootContainer);

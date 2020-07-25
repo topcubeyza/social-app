@@ -1,16 +1,12 @@
-import React, { createContext, useState, useEffect, Component } from 'react'
+import React, { createContext, useState, useEffect, Component, useContext } from 'react'
 import { StatusBar } from 'react-native'
-import { ThemeProvider } from 'styled-components/native'
 import { Appearance, AppearanceProvider } from 'react-native-appearance'
 import Colors, { lightTheme, darkTheme } from './Colors'
 
 
-const ThemeContext = createContext({
-    colors: (colorName) => { return lightTheme[colorName] },
-    setColors: colors => console.log(colors)
-})
+export const ThemeContext = createContext()
 
-
+export const useThemeContext = () => useContext(ThemeContext);
 
 class ManageThemeProvider extends Component {
 
