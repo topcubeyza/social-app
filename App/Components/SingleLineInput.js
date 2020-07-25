@@ -5,8 +5,7 @@ import PropTypes from "prop-types"
 
 // Styles
 import getStyles from "./Styles/SingleLineInputStyles"
-import { Colors, Metrics } from "../Themes"
-import { ThemeContext } from "../Themes/ThemeManager"
+import { Colors, Metrics, ThemeContext } from "../Themes"
 
 
 class SingleLineInput extends Component {
@@ -17,14 +16,14 @@ class SingleLineInput extends Component {
         this.state = {
             underlinePadding: new Animated.Value(Metrics.screenWidth - Metrics.marginHorizontalLarge * 2)
         }
-        
+
     }
 
     static contextType = ThemeContext
 
-// *** REF METHODS *** //
+    // *** REF METHODS *** //
 
-     drawUnderline = () => {
+    drawUnderline = () => {
         Animated.timing(
             this.state.underlinePadding,
             {
@@ -44,14 +43,7 @@ class SingleLineInput extends Component {
         ).start()
     }
 
-// *** EVENTS *** //
-
-    _onFocus = () => {
-        this.drawUnderline();
-        this.props.onFocus()
-    }
-
-// *** CONVENIENCE METHODS *** //
+    // *** CONVENIENCE METHODS *** //
 
     getModifiedStyles = (styles) => {
         let props = this.props;
@@ -59,18 +51,27 @@ class SingleLineInput extends Component {
         return {
             container: [
                 styles.container,
-                {backgroundColor: props.backgroundColor}
+                { backgroundColor: props.backgroundColor }
             ],
             underlineContainer: [
                 styles.underlineContainer,
-                {paddingRight: this.state.underlinePadding}
+                { paddingRight: this.state.underlinePadding }
             ],
             underline: [
                 styles.underline,
-                {backgroundColor: props.underline ? props.underline : color(Colors.brandColor)}
+                { backgroundColor: props.underline ? props.underline : color(Colors.brandColor) }
             ]
         }
     }
+
+    // *** EVENTS *** //
+
+    onFocus = () => {
+        this.drawUnderline();
+        this.props.onFocus()
+    }
+
+    // *** RENDER METHODS *** //
 
     render() {
         let color = this.context.color
@@ -80,7 +81,7 @@ class SingleLineInput extends Component {
             <View style={container}>
                 <TextInput
                     {...this.props}
-                    onFocus={this._onFocus}
+                    onFocus={this.onFocus}
                     style={styles.input}
                     placeholderTextColor={color(Colors.midLightGrey_dm)}>
                 </TextInput>
@@ -107,6 +108,6 @@ SingleLineInput.propTypes = {
 SingleLineInput.defaultProps = {
     secureTextEntry: false,
     editable: true,
-    onFocus: () => {},
+    onFocus: () => { },
     backgroundColor: "transparent"
 }

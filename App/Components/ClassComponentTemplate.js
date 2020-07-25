@@ -17,8 +17,7 @@ import {
 
 // Styles
 import getStyles from "./Styles/TemplateStyles"
-import { Colors, Fonts, Metrics } from '../../Themes'
-import { ThemeContext } from "../Themes/ThemeManager"
+import { Colors, Fonts, Metrics, ThemeContext } from '../Themes'
 
 class ClassComponentTemplate extends Component {
 
@@ -36,7 +35,10 @@ class ClassComponentTemplate extends Component {
 
     // *** CONVENIENCE METHODS *** //
 
-    // *** EVENTS *** //
+    // *** EVENT HANDLERS *** //
+    onPress_Button = () => {
+        
+    }
 
     // *** RENDER METHODS *** //
 
@@ -46,7 +48,7 @@ class ClassComponentTemplate extends Component {
         return (
             <View style={styles.container}>
                 {/* BUTTON */}
-                <TouchableOpacity onPress={this._onPressButton}>
+                <TouchableOpacity onPress={this.onPress_Button}>
                     <Text>Press</Text>
                 </TouchableOpacity>
             </View>

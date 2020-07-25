@@ -16,19 +16,18 @@ import { connect } from "react-redux";
 import { duration } from "moment";
 
 // Actions
-import { AuthActions } from "../../Redux/AuthRedux"
+import { AuthActions } from "../Redux/AuthRedux"
 
 // Components
-import Button from "../../Components/Button"
-import SingleLineInput from "../../Components/SingleLineInput"
+import Button from "../../../Components/Button"
+import SingleLineInput from "../../../Components/SingleLineInput"
 
 // Utils
-import checkCredentials from "./Utils/CredentialsCheck"
+import checkCredentials from "../Utils/CredentialsCheck"
 
 // Styles
-import getStyles from "./Styles/SignupStyles"
-import { Colors, Fonts } from '../../Themes'
-import { ThemeContext } from "../../Themes/ThemeManager";
+import getStyles from "../Styles/SignupStyles"
+import { Colors, Fonts, ThemeContext } from '../../../Themes'
 
 class SignupScreen extends Component {
 
@@ -49,7 +48,7 @@ class SignupScreen extends Component {
 
     static contextType = ThemeContext
 
-// *** LIFECYCLE METHODS *** //
+    // *** LIFECYCLE METHODS *** //
 
     componentDidMount() {
         this.keyboardDidShowListener = Keyboard.addListener("keyboardDidShow", this.onKeyboardDidShow)
@@ -71,7 +70,7 @@ class SignupScreen extends Component {
         }
     }
 
-// *** CALLBACKS *** //
+    // *** CALLBACKS *** //
 
     onKeyboardDidShow = () => {
         if (!this.keyboardVisible) {
@@ -96,34 +95,34 @@ class SignupScreen extends Component {
                 this.state.headerFontSize,
                 {
                     toValue: Fonts.size.twenty * 2,
-                    duration: 300 
+                    duration: 300
                 }
             ).start()
         }
     }
 
-// *** EVENTS *** //
+    // *** EVENT HANDLERS *** //
 
-    _onChangeTextEmail = (text) => {
+    onChangeText_Email = (text) => {
         this.setState({
             email: text
         })
     }
 
-    _onChangeTextPassword = (text) => {
+    onChangeText_Password = (text) => {
         this.setState({
             password: text
         })
     }
 
-    _onChangeTextPasswordConfirm = (text) => {
+    onChangeText_PasswordConfirm = (text) => {
         this.setState({
             passwordConfirm: text
         })
     }
 
-    _onPressSignup = () => {
-        let {ok, message} = checkCredentials(this.state)
+    onPress_Signup = () => {
+        let { ok, message } = checkCredentials(this.state)
         if (!ok) {
             this.setState({
                 signupErrorMessage: message
@@ -142,26 +141,24 @@ class SignupScreen extends Component {
                 }, 2000);
             })
         }
+        else {
+            this.props.navigation.navigate("Incomplete")
+        }
     }
 
-    _onPressLogin = () => {
-        // Navigate to Incomplete page until the login page is designed
-        this.props.navigation.navigate("Incomplete")
-    }
-
-    _onPressLoginInstead = () => {
+    onPress_LoginInstead = () => {
         this.props.navigation.navigate("Login");
     }
 
     // key: key of the textinput
-    _onFocusTextInput = (key) => {
+    onFocus_TextInput = (key) => {
         // Remove underline of the previously focused textinput
         Object.entries(this.textinputs).map(entry => {
             if (entry[0] != key && entry[1] != null) {
                 entry[1].removeUnderline()
             }
         })
-        
+
         // If keyboard was not previously visible and it will be shown just in a moment,
         // Shrink the header with animation
         if (!this.keyboardVisible) {
@@ -176,7 +173,7 @@ class SignupScreen extends Component {
 
     }
 
-    _onPressBackground = () => {
+    onPress_Background = () => {
         debugger;
         // If keyboard was previously visible and it will be hidden just in a moment,
         // Enlarge the header with animation
@@ -184,7 +181,7 @@ class SignupScreen extends Component {
         Keyboard.dismiss();
     }
 
-// *** RENDER METHODS *** //
+    // *** RENDER METHODS *** //
 
     render() {
         let signupButtonDisabled = !checkCredentials(this.state).ok
@@ -192,15 +189,15 @@ class SignupScreen extends Component {
         let styles = getStyles(color)
         return (
             <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS == "ios" ? "padding" : null}>
-                <TouchableWithoutFeedback onPress={this._onPressBackground}>
+                <TouchableWithoutFeedback onPress={this.onPress_Background}>
                     <View style={styles.container}>
                         <SafeAreaView style={styles.topContainer}>
-{/* HEADER */}
+                            {/* HEADER */}
                             <View style={styles.headerContainer}>
-                                    <Animated.Text
+                                <Animated.Text
                                     style={[styles.headerText, { fontSize: this.state.headerFontSize }]}>Signup</Animated.Text>
                             </View>
-{/* CREDENTIAL INPUTS */}
+                            {/* CREDENTIAL INPUTS */}
                             <View style={styles.textinputsContainer}>
                                 <View style={styles.textinputContainer}>
                                     <SingleLineInput
@@ -208,10 +205,10 @@ class SignupScreen extends Component {
                                         keyboardType="email-address"
                                         autoCapitalize="none"
                                         key="email"
-                                        onFocus={() => this._onFocusTextInput("email")}
+                                        onFocus={() => this.onFocus_TextInput("email")}
                                         placeholder={"E-mail"}
                                         value={this.state.email}
-                                        onChangeText={this._onChangeTextEmail}
+                                        onChangeText={this.onChangeText_Email}
                                     />
                                 </View>
                                 <View style={styles.textinputContainer}>
@@ -219,10 +216,10 @@ class SignupScreen extends Component {
                                         ref={ref => this.textinputs.password = ref}
                                         autoCapitalize="none"
                                         key="password"
-                                        onFocus={() => this._onFocusTextInput("password")}
+                                        onFocus={() => this.onFocus_TextInput("password")}
                                         placeholder={"Password"}
                                         value={this.state.password}
-                                        onChangeText={this._onChangeTextPassword}
+                                        onChangeText={this.onChangeText_Password}
                                         secureTextEntry={true}
                                     />
                                 </View>
@@ -231,30 +228,30 @@ class SignupScreen extends Component {
                                         ref={ref => this.textinputs.passwordconfirm = ref}
                                         autoCapitalize="none"
                                         key="passwordconfirm"
-                                        onFocus={() => this._onFocusTextInput("passwordconfirm")}
+                                        onFocus={() => this.onFocus_TextInput("passwordconfirm")}
                                         placeholder={"Confirm Password"}
                                         value={this.state.passwordConfirm}
-                                        onChangeText={this._onChangeTextPasswordConfirm}
+                                        onChangeText={this.onChangeText_PasswordConfirm}
                                         secureTextEntry={true}
                                     />
                                 </View>
-{/* ERROR MESSAGE */}
+                                {/* ERROR MESSAGE */}
                                 <View style={styles.errorTextContainer}>
                                     {
                                         this.state.signupErrorMessage ?
-                                        <Text style={styles.errorText}>{this.state.signupErrorMessage}</Text>
-                                        : null
+                                            <Text style={styles.errorText}>{this.state.signupErrorMessage}</Text>
+                                            : null
                                     }
                                 </View>
                             </View>
                         </SafeAreaView>
-{/* BUTTONS */}
+                        {/* BUTTONS */}
                         <SafeAreaView style={styles.bottomContainer}>
                             <View style={styles.signupButtonContainer}>
                                 <Button
                                     text="Sign up"
                                     textColor={color(Colors.textOnBrandColor)}
-                                    onPress={this._onPressSignup}
+                                    onPress={this.onPress_Signup}
                                     backgroundColor={color(Colors.brandColor)}
                                 />
                             </View>
@@ -262,7 +259,7 @@ class SignupScreen extends Component {
                                 <Button
                                     text="Login instead?"
                                     textColor={color(Colors.midLightGrey_dm)}
-                                    onPress={this._onPressLoginInstead}
+                                    onPress={this.onPress_LoginInstead}
                                     backgroundColor={"transparent"}
                                 />
                             </View>

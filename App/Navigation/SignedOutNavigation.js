@@ -2,9 +2,9 @@ import React from "react"
 import { createAppContainer, createStackNavigator } from "react-navigation"
 
 // Screens
-import LoginScreen from "../Containers/Authorization/LoginScreen"
-import SignupScreen from "../Containers/Authorization/SignupScreen"
-import IncompleteScreen from "../Containers/IncompleteScreen"
+import LoginScreen from "../Modules/Authorization/Screens/LoginScreen"
+import SignupScreen from "../Modules/Authorization/Screens/SignupScreen"
+import IncompleteScreen from "../Modules/Main/Screens/IncompleteScreen"
 
 const SignedOutNavigator = createStackNavigator(
     {

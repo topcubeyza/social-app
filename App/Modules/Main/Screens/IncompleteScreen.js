@@ -1,20 +1,21 @@
 // Packages
 import React, { Component } from "react"
+import { connect } from "react-redux";
+
+// RN Components
 import {
     View,
     Text,
     SafeAreaView,
     Image
 } from "react-native"
-import { connect } from "react-redux";
 
 // Components
-import Button from "../Components/Button"
+import Button from "../../../Components/Button"
 
 // Styles
-import getStyles from "./CommonStyles/IncompleteStyles"
-import { Colors, Images } from '../Themes'
-import { ThemeContext } from "../Themes/ThemeManager";
+import getStyles from "../Styles/IncompleteStyles"
+import { Colors, Images, ThemeContext } from '../../../Themes'
 
 class IncompleteScreen extends Component {
 
@@ -24,7 +25,7 @@ class IncompleteScreen extends Component {
 
     static contextType = ThemeContext
 
-    onBackButtonPress = () => {
+    onPress_BackButton = () => {
         this.props.navigation.goBack()
     }
 
@@ -46,7 +47,7 @@ class IncompleteScreen extends Component {
                     <Button
                         text="Go Back"
                         textColor={color(Colors.textOnBrandColor)}
-                        onPress={this.onBackButtonPress}
+                        onPress={this.onPress_BackButton}
                         backgroundColor={color(Colors.brandColor)}
                     />
                 </View>

@@ -12,7 +12,7 @@ import {StartupTypes} from '../Redux/StartupRedux';
 
 import {startup} from './StartupSagas';
 import testSagas from "./TestSagas";
-import authSagas from "./AuthSagas";
+import authSagas from "../Modules/Authorization/Redux/AuthSagas";
 
 /* ------------- API ------------- */
 

@@ -5,8 +5,7 @@ import PropTypes from "prop-types"
 
 // Styles
 import getStyles from "./Styles/ButtonStyles"
-import { useThemeContext } from "../Themes/ThemeManager"
-import Colors from "../Themes/Colors"
+import {Colors, useThemeContext} from "../Themes"
 
 
 const Button = (props) => {

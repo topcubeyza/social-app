@@ -1,11 +1,11 @@
 import React from "react";
 import { createStackNavigator } from "react-navigation"
 
-import TestScreen from "../Containers/TestScreen"
+import IncompleteScreen from "../Modules/Main/Screens/IncompleteScreen"
 
 const SignedInNavigator = createStackNavigator({
     Test: {
-        screen: TestScreen
+        screen: IncompleteScreen
     }
 })
 

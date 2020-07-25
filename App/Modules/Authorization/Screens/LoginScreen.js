@@ -1,39 +1,44 @@
 // Packages
 import React, { Component } from "react"
+import { connect } from "react-redux";
+
+// RN Components
 import {
     View,
     Text,
     SafeAreaView
 } from "react-native"
-import { connect } from "react-redux";
-
-// Actions
-import { AuthActions } from "../../Redux/AuthRedux"
 
 // Components
-import Button from "../../Components/Button"
+import Button from "../../../Components/Button"
+
+// Actions
+import { AuthActions } from "../Redux/AuthRedux"
 
 // Styles
-import getStyles from "./Styles/LoginStyles"
-import { Colors } from '../../Themes'
-import { ThemeContext } from "../../Themes/ThemeManager";
+import getStyles from "../Styles/LoginStyles"
+import { Colors, ThemeContext } from '../../../Themes'
 
 class LoginScreen extends Component {
 
     static contextType = ThemeContext
 
-    onLoginPress = () => {
+    // *** EVENT HANDLERS *** //
+
+    onPress_Login = () => {
         this.props.navigation.navigate("Incomplete")
     }
 
-    onSignupPress = () => {
+    onPress_Signup = () => {
         this.props.navigation.navigate("Signup")
     }
 
-    onForgotPasswordPress = () => {
+    onPress_ForgotPassword = () => {
         this.context.setTheme(this.context.mode == 'dark' ? 'light' : 'dark')
     }
 
+    // *** RENDER METHODS *** //
+    
     render() {
         let color = this.context.color;
         let styles = getStyles(color)
@@ -49,7 +54,7 @@ class LoginScreen extends Component {
                             <Button
                                 text="Login with Google"
                                 textColor={color(Colors.textOnDarkBackground)}
-                                onPress={this.onLoginPress}
+                                onPress={this.onPress_Login}
                                 backgroundColor={color(Colors.googleColor)}
                             />
                         </View>
@@ -57,7 +62,7 @@ class LoginScreen extends Component {
                             <Button
                                 text="Login with Email"
                                 textColor={color(Colors.textOnBrandColor)}
-                                onPress={this.onLoginPress}
+                                onPress={this.onPress_Login}
                                 backgroundColor={color(Colors.brandColor)}
                             />
                         </View>
@@ -68,7 +73,7 @@ class LoginScreen extends Component {
                         <Button
                             text="Sign up"
                             textColor={color(Colors.textOnLightBackground_dm)}
-                            onPress={this.onSignupPress}
+                            onPress={this.onPress_Signup}
                             backgroundColor={color(Colors.lightBackground_dm)}
                         />
                     </View>
@@ -76,7 +81,7 @@ class LoginScreen extends Component {
                         <Button
                             text="Forgot Password?"
                             textColor={color(Colors.midLightGrey_dm)}
-                            onPress={this.onForgotPasswordPress}
+                            onPress={this.onPress_ForgotPassword}
                             backgroundColor={"transparent"}
                         />
                     </View>

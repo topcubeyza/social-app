@@ -11,7 +11,7 @@ import rootSaga from '../Sagas/';
 import { NavReducer } from "./NavigationRedux"
 import { AppReducer } from "./AppRedux"
 import { TestReducer } from "./TestRedux"
-import { AuthReducer } from "./AuthRedux"
+import { AuthReducer } from "../Modules/Authorization/Redux/AuthRedux"
 
 
 export const reducers = combineReducers({

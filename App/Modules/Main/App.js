@@ -6,18 +6,18 @@
  * @flow
  */
 
+ // Packages
 import React, { useEffect, Component } from 'react';
 import SplashScreen from 'react-native-splash-screen'
 import { Provider } from 'react-redux';
 import { PersistGate } from "redux-persist/integration/react"
 
-import '../Config';
-import DebugConfig from "../Config/DebugConfig"
-import createStore from '../Redux';
+// Configs etc.
+import '../../Config';
+import DebugConfig from "../../Config/DebugConfig"
+import createStore from '../../Redux';
 import RootContainer from './RootContainer';
-import ThemeManager from "../Themes/ThemeManager"
-import { StatusBar } from 'react-native';
-import { Colors } from '../Themes';
+import ThemeManager from "../../Themes/ThemeManager"
 
 
 const { store, persistor } = createStore();
