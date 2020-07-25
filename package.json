@@ -31,7 +31,6 @@
     "redux-saga": "^1.0.5",
     "reduxsauce": "^1.1.0",
     "seamless-immutable": "^7.1.4",
-    "styled-components": "^5.1.1",
     "validate.js": "^0.13.1"
   },
   "devDependencies": {
