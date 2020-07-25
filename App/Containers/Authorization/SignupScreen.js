@@ -79,6 +79,14 @@ class SignupScreen extends Component {
                     textinput[1].removeUnderline()
                 }
             })
+
+            Animated.timing(
+                this.state.headerFontSize,
+                {
+                    toValue: Fonts.size.twenty * 2,
+                    duration: 200 
+                }
+            ).start()
         }
     }
 
