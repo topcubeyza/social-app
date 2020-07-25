@@ -1,26 +1,9 @@
 import { StyleSheet, Platform } from 'react-native'
 import { Colors, Metrics, Fonts } from '../../../Themes'
+import getCommonStyles from "./CommonStyles"
 
 const getStyles = color => StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: "space-between"
-    },
-    topContainer: {
-        backgroundColor: color(Colors.lightBackground_dm),
-        flexGrow: 1
-    },
-    bottomContainer: {
-        backgroundColor: color(Colors.lightGrey_dm),
-    },
-    signupButtonContainer: {
-        paddingTop: Metrics.width * 0.06,
-        paddingHorizontal: Metrics.marginHorizontalLarge
-    },
-    forgotPassContainer: {
-        alignItems: "center",
-        paddingBottom: Metrics.width * 0.04
-    },
+    ...getCommonStyles(color),
     loginButtonsContainer: {
         paddingVertical: Metrics.width * 0.04,
     },

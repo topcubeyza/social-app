@@ -121,6 +121,12 @@ class SignupScreen extends Component {
         })
     }
 
+    onChangeText = (text, key) => {
+        let newState = {}
+        newState[key] = text;
+        this.setState(newState)
+    }
+
     onPress_Signup = () => {
         let { ok, message } = checkCredentials(this.state)
         if (!ok) {
@@ -147,7 +153,7 @@ class SignupScreen extends Component {
     }
 
     onPress_LoginInstead = () => {
-        this.props.navigation.navigate("Login");
+        this.props.navigation.navigate("Welcome");
     }
 
     // key: key of the textinput
@@ -183,6 +189,24 @@ class SignupScreen extends Component {
 
     // *** RENDER METHODS *** //
 
+    renderTextInput = (styles, key, placeholder, type) => {
+        return (
+            <View style={styles.textinputContainer}>
+                <SingleLineInput
+                    ref={ref => this.textinputs[key] = ref}
+                    keyboardType={type == "email" ? "email-address" : "default"}
+                    autoCapitalize="none"
+                    key={key}
+                    onFocus={() => this.onFocus_TextInput(key)}
+                    placeholder={placeholder}
+                    value={this.state[key]}
+                    onChangeText={text => this.onChangeText(text, key)}
+                    secureTextEntry={type == "password"}
+                />
+            </View>
+        )
+    }
+
     render() {
         let signupButtonDisabled = !checkCredentials(this.state).ok
         let color = this.context.color
@@ -192,49 +216,19 @@ class SignupScreen extends Component {
                 <TouchableWithoutFeedback onPress={this.onPress_Background}>
                     <View style={styles.container}>
                         <SafeAreaView style={styles.topContainer}>
+
                             {/* HEADER */}
                             <View style={styles.headerContainer}>
                                 <Animated.Text
                                     style={[styles.headerText, { fontSize: this.state.headerFontSize }]}>Signup</Animated.Text>
                             </View>
+
                             {/* CREDENTIAL INPUTS */}
                             <View style={styles.textinputsContainer}>
-                                <View style={styles.textinputContainer}>
-                                    <SingleLineInput
-                                        ref={ref => this.textinputs.email = ref}
-                                        keyboardType="email-address"
-                                        autoCapitalize="none"
-                                        key="email"
-                                        onFocus={() => this.onFocus_TextInput("email")}
-                                        placeholder={"E-mail"}
-                                        value={this.state.email}
-                                        onChangeText={this.onChangeText_Email}
-                                    />
-                                </View>
-                                <View style={styles.textinputContainer}>
-                                    <SingleLineInput
-                                        ref={ref => this.textinputs.password = ref}
-                                        autoCapitalize="none"
-                                        key="password"
-                                        onFocus={() => this.onFocus_TextInput("password")}
-                                        placeholder={"Password"}
-                                        value={this.state.password}
-                                        onChangeText={this.onChangeText_Password}
-                                        secureTextEntry={true}
-                                    />
-                                </View>
-                                <View style={styles.textinputContainer}>
-                                    <SingleLineInput
-                                        ref={ref => this.textinputs.passwordconfirm = ref}
-                                        autoCapitalize="none"
-                                        key="passwordconfirm"
-                                        onFocus={() => this.onFocus_TextInput("passwordconfirm")}
-                                        placeholder={"Confirm Password"}
-                                        value={this.state.passwordConfirm}
-                                        onChangeText={this.onChangeText_PasswordConfirm}
-                                        secureTextEntry={true}
-                                    />
-                                </View>
+                                {this.renderTextInput(styles, "email", "E-mail", "email")}
+                                {this.renderTextInput(styles, "password", "Password", "password")}
+                                {this.renderTextInput(styles, "passwordConfirm", "Confirm Password", "password")}
+                                
                                 {/* ERROR MESSAGE */}
                                 <View style={styles.errorTextContainer}>
                                     {
@@ -245,6 +239,7 @@ class SignupScreen extends Component {
                                 </View>
                             </View>
                         </SafeAreaView>
+
                         {/* BUTTONS */}
                         <SafeAreaView style={styles.bottomContainer}>
                             <View style={styles.signupButtonContainer}>
@@ -255,7 +250,7 @@ class SignupScreen extends Component {
                                     backgroundColor={color(Colors.brandColor)}
                                 />
                             </View>
-                            <View style={styles.forgotPassContainer}>
+                            <View style={styles.transparentButtonContainer}>
                                 <Button
                                     text="Login instead?"
                                     textColor={color(Colors.midLightGrey_dm)}

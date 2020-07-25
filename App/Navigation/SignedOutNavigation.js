@@ -2,14 +2,14 @@ import React from "react"
 import { createAppContainer, createStackNavigator } from "react-navigation"
 
 // Screens
-import LoginScreen from "../Modules/Authorization/Screens/LoginScreen"
+import WelcomeScreen from "../Modules/Authorization/Screens/WelcomeScreen"
 import SignupScreen from "../Modules/Authorization/Screens/SignupScreen"
 import IncompleteScreen from "../Modules/Main/Screens/IncompleteScreen"
 
 const SignedOutNavigator = createStackNavigator(
     {
-        Login: {
-            screen: LoginScreen,
+        Welcome: {
+            screen: WelcomeScreen,
         },
         Signup: {
             screen: SignupScreen
@@ -19,7 +19,7 @@ const SignedOutNavigator = createStackNavigator(
         }
     },
     {
-        initialRouteName: "Login",
+        initialRouteName: "Welcome",
         headerMode: "none",
         navigationOptions: {
             headerTransparent: true

@@ -19,7 +19,7 @@ import { AuthActions } from "../Redux/AuthRedux"
 import getStyles from "../Styles/LoginStyles"
 import { Colors, ThemeContext } from '../../../Themes'
 
-class LoginScreen extends Component {
+class WelcomeScreen extends Component {
 
     static contextType = ThemeContext
 
@@ -92,4 +92,4 @@ class LoginScreen extends Component {
 
 }
 
-export default LoginScreen;
+export default WelcomeScreen;
