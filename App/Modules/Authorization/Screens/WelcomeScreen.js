@@ -77,7 +77,7 @@ class WelcomeScreen extends Component {
                             backgroundColor={color(Colors.lightBackground_dm)}
                         />
                     </View>
-                    <View style={styles.forgotPassContainer}>
+                    <View style={styles.transparentButtonContainer}>
                         <Button
                             text="Forgot Password?"
                             textColor={color(Colors.midLightGrey_dm)}
