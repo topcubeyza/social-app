@@ -79,7 +79,6 @@ class SignupScreen extends Component {
     }
 
     onKeyboardDidHide = () => {
-        debugger;
         if (this.keyboardVisible) {
             this.keyboardVisible = false;
 
@@ -180,7 +179,6 @@ class SignupScreen extends Component {
     }
 
     onPress_Background = () => {
-        debugger;
         // If keyboard was previously visible and it will be hidden just in a moment,
         // Enlarge the header with animation
         if (!this.keyboardVisible) return;

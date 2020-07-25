@@ -12,13 +12,15 @@ import { NavReducer } from "./NavigationRedux"
 import { AppReducer } from "./AppRedux"
 import { TestReducer } from "./TestRedux"
 import { AuthReducer } from "../Modules/Authorization/Redux/AuthRedux"
+import { ThemeReducer } from "./ThemeRedux"
 
 
 export const reducers = combineReducers({
     nav: NavReducer,
     app: AppReducer,
     test: TestReducer,
-    auth: AuthReducer
+    auth: AuthReducer,
+    theme: ThemeReducer
 })
 
 export default () => {

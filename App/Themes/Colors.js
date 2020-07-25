@@ -1,5 +1,11 @@
 import AppConfig from "../Config/AppConfig"
 
+export const ThemeModes = {
+  dark: 'dark',
+  light: 'light',
+  device: 'device'
+}
+
 const greyColors = {
   white: "white",
   lightGrey: "#EDEDED",
