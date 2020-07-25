@@ -63,7 +63,8 @@ class SingleLineInput extends Component {
     }
 
     render() {
-        let styles = getStyles(this.props.theme.color)
+        let color = this.props.theme.color
+        let styles = getStyles(color)
         let { container, underlineContainer, underline } = this.applyCustomStyles(styles)
         return (
             <View style={container}>
@@ -71,7 +72,7 @@ class SingleLineInput extends Component {
                     {...this.props}
                     onFocus={this.onFocus}
                     style={styles.input}
-                    placeholderTextColor={Colors.midGrey}>
+                    placeholderTextColor={color(Colors.midLightGrey_dm)}>
                 </TextInput>
                 <Animated.View style={underlineContainer}>
                     <View style={underline}></View>

@@ -40,7 +40,6 @@ class App extends Component {
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <ThemeManager>
-            <StatusBar backgroundColor={Colors.lightBackground_dm} />
             <RootContainer />
           </ThemeManager>
         </PersistGate>

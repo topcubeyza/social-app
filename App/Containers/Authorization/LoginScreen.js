@@ -29,6 +29,7 @@ class LoginScreen extends Component {
     }
 
     onForgotPasswordPress = () => {
+        this.props.theme.setTheme(this.props.theme.mode == 'dark' ? 'light' : 'dark')
     }
 
     render() {

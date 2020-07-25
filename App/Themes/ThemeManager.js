@@ -17,35 +17,25 @@ class ManageThemeProvider extends Component {
     constructor(props) {
         super(props);
 
+        let defaultMode = Appearance.getColorScheme();
+
+        this.getColorFunction = (mode) => {
+            let theme = mode == "dark" ? darkTheme : lightTheme;
+            return (
+                colorName => theme[colorName]
+            )
+        }
+
         this.state = {
-            getColor: () => { },
-            mode: "light"
+            getColor: this.getColorFunction(defaultMode),
+            mode: defaultMode
         }
 
         this.subscription
 
     }
 
-    getColorFunction = (theme) => {
-        return (
-            colorName => theme[colorName]
-        )
-    }
-
-    setTheme = (mode) => {
-        let theme = mode == "dark" ? darkTheme : lightTheme;
-        let colorFunction = this.getColorFunction(theme);
-        this.setState({
-            getColor: colorFunction,
-            mode
-        })
-    }
-
     componentDidMount() {
-
-        const defaultMode = Appearance.getColorScheme();
-        this.setTheme(defaultMode)
-
         this.subscription = Appearance.addChangeListener(({ colorScheme }) => {
             this.setTheme(colorScheme)
         })
@@ -55,12 +45,26 @@ class ManageThemeProvider extends Component {
         this.subscription.remove();
     }
 
+    getColorFunction = (mode) => {
+        let theme = mode == "dark" ? darkTheme : lightTheme;
+        return (
+            colorName => theme[colorName]
+        )
+    }
+
+    setTheme = (mode) => {
+        this.setState({
+            mode,
+            getColor: this.getColorFunction(mode),
+        })
+    }
+
     render() {
         return (
             <ThemeContext.Provider value={{ color: this.state.getColor, setTheme: this.setTheme, mode: this.state.mode }}>
                 <>
                     <StatusBar
-                        barStyle={this.state.theme === 'dark' ? 'light-content' : 'dark-content'}
+                        barStyle={this.state.mode === 'dark' ? 'light-content' : 'dark-content'}
                     />
                     {this.props.children}
                 </>
