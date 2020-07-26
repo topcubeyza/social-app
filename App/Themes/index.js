@@ -3,6 +3,6 @@ import Fonts from './Fonts'
 import Metrics from './Metrics'
 import Images from './Images'
 import ApplicationStyles from './ApplicationStyles'
-import { ThemeContext, useThemeContext } from "./ThemeManager"
+import Theme from './Theme'
 
-export { Colors, Fonts, Images, Metrics, ApplicationStyles, ThemeContext, useThemeContext }
+export { Colors, Fonts, Images, Metrics, ApplicationStyles, Theme }

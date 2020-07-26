@@ -15,8 +15,7 @@ import Button from "../../../Components/Button"
 
 // Styles
 import getStyles from "../Styles/IncompleteStyles"
-import { Colors, Images, ThemeContext } from '../../../Themes'
-import { getColor } from "../../../Themes/ThemeManager";
+import { Colors, Images, Theme } from '../../../Themes'
 
 class IncompleteScreen extends Component {
 
@@ -24,15 +23,12 @@ class IncompleteScreen extends Component {
         header: null
     }
 
-    //static contextType = ThemeContext
-
     onPress_BackButton = () => {
         this.props.navigation.goBack()
     }
 
     render() {
-        let color = getColor()
-        let styles = getStyles(color)
+        let styles = getStyles(Theme.c)
 
         return (
             <SafeAreaView style={styles.container}>
@@ -47,9 +43,9 @@ class IncompleteScreen extends Component {
                 <View style={styles.gobackButtonContainer}>
                     <Button
                         text="Go Back"
-                        textColor={color(Colors.textOnBrandColor)}
+                        textColor={Theme.c(Colors.textOnBrandColor)}
                         onPress={this.onPress_BackButton}
-                        backgroundColor={color(Colors.brandColor)}
+                        backgroundColor={Theme.c(Colors.brandColor)}
                     />
                 </View>
             </SafeAreaView>

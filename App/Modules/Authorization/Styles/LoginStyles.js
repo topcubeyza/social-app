@@ -2,8 +2,8 @@ import { StyleSheet, Platform } from 'react-native'
 import { Colors, Metrics, Fonts } from '../../../Themes'
 import getCommonStyles from "./CommonStyles"
 
-const getStyles = color => StyleSheet.create({
-    ...getCommonStyles(color),
+const getStyles = c => StyleSheet.create({
+    ...getCommonStyles(c),
     loginButtonsContainer: {
         paddingVertical: Metrics.width * 0.04,
     },
@@ -32,12 +32,12 @@ const getStyles = color => StyleSheet.create({
         fontSize: Fonts.size.fourteen,
         paddingLeft: Metrics.width * 0.038,
         paddingTop: Metrics.width * 0.03,
-        color: color(Colors.textOnLightBackground_dm)
+        color: c(Colors.textOnLightBackground_dm)
     },
     bemagineText: {
         fontFamily: Fonts.type.brand,
         fontSize: Fonts.size.twenty * 3,
-        color: color(Colors.brandColor),
+        color: c(Colors.brandColor),
     }
 })
 

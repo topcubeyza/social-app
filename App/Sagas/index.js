@@ -14,6 +14,7 @@ import {startup} from './StartupSagas';
 import testSagas from "./TestSagas";
 import authSagas from "../Modules/Authorization/Redux/AuthSagas";
 import localizationSagas from "./LocalizationSagas"
+import themeSagas from './ThemeSaga';
 
 /* ------------- API ------------- */
 
@@ -30,6 +31,7 @@ export default function* root() {
     takeLatest(StartupTypes.STARTUP, startup),
     ...(testSagas(api)),
     ...(authSagas(authAPI)),
-    ...localizationSagas
+    ...localizationSagas,
+    ...themeSagas
   ]);
 }

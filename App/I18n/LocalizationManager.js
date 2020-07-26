@@ -1,4 +1,4 @@
-import React, { Component, createContext } from 'react'
+import React, { Component } from 'react'
 import { Platform } from 'react-native'
 import { connect } from "react-redux"
 import I18n from "react-native-i18n"

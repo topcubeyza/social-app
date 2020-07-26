@@ -19,15 +19,13 @@ import { AuthActions } from "../Redux/AuthRedux"
 
 // Styles
 import getStyles from "../Styles/LoginStyles"
-import { Colors, ThemeContext } from '../../../Themes'
+import { Colors, Theme } from '../../../Themes'
 import { TextNames, LanguageCodes } from "../../../I18n/languages/Names";
 import { LocalizationActions } from "../../../Redux/LocalizationRedux";
-import { ThemeModes } from "../../../Themes/Colors";
-import { getColor } from "../../../Themes/ThemeManager"
+import { ThemeActions } from "../../../Redux/ThemeRedux"
+import { ThemeModes } from "../../../Themes/Theme";
 
 class WelcomeScreen extends Component {
-
-    static contextType = ThemeContext
 
     // *** EVENT HANDLERS *** //
 
@@ -40,12 +38,13 @@ class WelcomeScreen extends Component {
     }
 
     onPress_ForgotPassword = () => {
-        let colorMode = this.context.themeMode;
+        let colorMode = this.props.theme.themeMode;
         if (colorMode == ThemeModes.device) {
             colorMode = Appearance.getColorScheme();
         }
 
-        this.context.setTheme(colorMode == 'dark' ? 'light' : 'dark')
+        this.props.changeTheme(colorMode == 'dark' ? 'light' : 'dark')
+
         let currentLocale = I18n.currentLocale().substring(0,2)
         this.props.changeLocale(currentLocale == LanguageCodes.english ? LanguageCodes.turkish : LanguageCodes.english)
     }
@@ -53,8 +52,7 @@ class WelcomeScreen extends Component {
     // *** RENDER METHODS *** //
     
     render() {
-        let color = getColor;
-        let styles = getStyles(color)
+        let styles = getStyles(Theme.c)
         return (
             <View style={styles.container}>
                 <SafeAreaView style={styles.topContainer}>
@@ -66,17 +64,17 @@ class WelcomeScreen extends Component {
                         <View style={styles.loginButtonContainer}>
                             <Button
                                 text={I18n.t(TextNames.loginWithGoogle)}
-                                textColor={color(Colors.textOnDarkBackground)}
+                                textColor={Theme.c(Colors.textOnDarkBackground)}
                                 onPress={this.onPress_Login}
-                                backgroundColor={color(Colors.googleColor)}
+                                backgroundColor={Theme.c(Colors.googleColor)}
                             />
                         </View>
                         <View style={styles.loginButtonContainer}>
                             <Button
                                 text={I18n.t(TextNames.loginWithEmail)}
-                                textColor={color(Colors.textOnBrandColor)}
+                                textColor={Theme.c(Colors.textOnBrandColor)}
                                 onPress={this.onPress_Login}
-                                backgroundColor={color(Colors.brandColor)}
+                                backgroundColor={Theme.c(Colors.brandColor)}
                             />
                         </View>
                     </View>
@@ -85,15 +83,15 @@ class WelcomeScreen extends Component {
                     <View style={styles.signupButtonContainer}>
                         <Button
                             text="Sign up"
-                            textColor={color(Colors.textOnLightBackground_dm)}
+                            textColor={Theme.c(Colors.textOnLightBackground_dm)}
                             onPress={this.onPress_Signup}
-                            backgroundColor={color(Colors.lightBackground_dm)}
+                            backgroundColor={Theme.c(Colors.lightBackground_dm)}
                         />
                     </View>
                     <View style={styles.transparentButtonContainer}>
                         <Button
                             text="Forgot Password?"
-                            textColor={color(Colors.midLightGrey_dm)}
+                            textColor={Theme.c(Colors.midLightGrey_dm)}
                             onPress={this.onPress_ForgotPassword}
                             backgroundColor={"transparent"}
                         />
@@ -106,11 +104,13 @@ class WelcomeScreen extends Component {
 }
 
 const mapStateToProps = state => ({
-    locale: state.locale
+    locale: state.locale,
+    theme: state.theme
 })
 
 const mapDispatchToProps = dispatch => ({
-    changeLocale: languageCode => dispatch(LocalizationActions.changeLocaleRequest({languageCode}))
+    changeLocale: languageCode => dispatch(LocalizationActions.changeLocaleRequest({languageCode})),
+    changeTheme: themeMode => dispatch(ThemeActions.changeThemeRequest({themeMode}))
 })
 
-export default connect(null, mapDispatchToProps)(WelcomeScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(WelcomeScreen);

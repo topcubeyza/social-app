@@ -17,8 +17,7 @@ import {
 
 // Styles
 import getStyles from "./Styles/TemplateStyles"
-import { Colors, Fonts, Metrics, ThemeContext } from '../Themes'
-import { getColor } from "../Themes/ThemeManager"
+import { Colors, Fonts, Metrics, Theme } from '../Themes'
 
 class ClassComponentTemplate extends Component {
 
@@ -42,8 +41,7 @@ class ClassComponentTemplate extends Component {
     // *** RENDER METHODS *** //
 
     render() {
-        let color = getColor()
-        let styles = getStyles(color)
+        let styles = getStyles(Theme.c)
         return (
             <View style={styles.container}>
                 {/* BUTTON */}

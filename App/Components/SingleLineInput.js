@@ -5,8 +5,7 @@ import PropTypes from "prop-types"
 
 // Styles
 import getStyles from "./Styles/SingleLineInputStyles"
-import { Colors, Metrics, ThemeContext } from "../Themes"
-import { getColor } from "../Themes/ThemeManager"
+import { Colors, Metrics, Theme } from "../Themes"
 
 
 class SingleLineInput extends Component {
@@ -46,7 +45,6 @@ class SingleLineInput extends Component {
 
     getModifiedStyles = (styles) => {
         let props = this.props;
-        let color = getColor();
         return {
             container: [
                 styles.container,
@@ -58,7 +56,7 @@ class SingleLineInput extends Component {
             ],
             underline: [
                 styles.underline,
-                { backgroundColor: props.underline ? props.underline : color(Colors.brandColor) }
+                { backgroundColor: props.underline ? props.underline : Theme.c(Colors.brandColor) }
             ]
         }
     }
@@ -73,8 +71,7 @@ class SingleLineInput extends Component {
     // *** RENDER METHODS *** //
 
     render() {
-        let color = getColor()
-        let styles = getStyles(color)
+        let styles = getStyles(Theme.c)
         let { container, underlineContainer, underline } = this.getModifiedStyles(styles)
         return (
             <View style={container}>
@@ -82,7 +79,7 @@ class SingleLineInput extends Component {
                     {...this.props}
                     onFocus={this.onFocus}
                     style={styles.input}
-                    placeholderTextColor={color(Colors.midLightGrey_dm)}>
+                    placeholderTextColor={Theme.c(Colors.midLightGrey_dm)}>
                 </TextInput>
                 <Animated.View style={underlineContainer}>
                     <View style={underline}></View>

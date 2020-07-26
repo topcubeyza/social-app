@@ -1,17 +1,17 @@
 import { StyleSheet, Platform } from 'react-native'
 import { Colors, Metrics, Fonts } from '../../../Themes'
 
-const getStyles = color => StyleSheet.create({
+const getStyles = c => StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: "space-between"
     },
     topContainer: {
-        backgroundColor: color(Colors.lightBackground_dm),
+        backgroundColor: c(Colors.lightBackground_dm),
         flexGrow: 1
     },
     bottomContainer: {
-        backgroundColor: color(Colors.lightGrey_dm),
+        backgroundColor: c(Colors.lightGrey_dm),
     },
     signupButtonContainer: {
         paddingTop: Metrics.width * 0.06,

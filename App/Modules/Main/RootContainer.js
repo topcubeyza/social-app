@@ -14,8 +14,7 @@ import ReduxPersist from '../../Config/ReduxPersist';
 import { AuthActions } from "../Authorization/Redux/AuthRedux"
 
 // styles
-import { Colors, ThemeContext } from '../../Themes';
-import { getColor } from '../../Themes/ThemeManager';
+import { Colors, Theme } from '../../Themes';
 
 class RootContainer extends Component {
   constructor(props) {
@@ -23,11 +22,9 @@ class RootContainer extends Component {
     this.state = {
       isInternetAvailable: null,
     };
-    this.netInfoSubs;
+    this.netInfoUnsubscribe;
     this.firebaseAuthUnsubscribe;
   }
-
-  //static contextType = ThemeContext
 
   // *** LIFECYCLE METHODS *** //
 
@@ -37,12 +34,13 @@ class RootContainer extends Component {
       this.props.startup();
     }
     
-    this.netInfoSubs = NetInfo.addEventListener(this.onNetStateChange);
+    this.netInfoUnsubscribe = NetInfo.addEventListener(this.onNetStateChange);
     this.firebaseAuthUnsubscribe = auth().onAuthStateChanged(this.onAuthStateChange);
     
   }
 
   componentWillUnmount = () => {
+    this.netInfoUnsubscribe()
     this.firebaseAuthUnsubscribe()
   }
 
@@ -67,7 +65,7 @@ class RootContainer extends Component {
       return null;
     }
     return <>
-      <StatusBar backgroundColor={getColor(Colors.lightBackground_dm)} />
+      <StatusBar backgroundColor={Theme.c(Colors.lightBackground_dm)} />
       <ReduxNavigation />
     </>;
   }

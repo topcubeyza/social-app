@@ -1,20 +1,11 @@
-import React, { createContext, useState, useEffect, Component, useContext } from 'react'
+import React, { Component } from 'react'
 import { StatusBar } from 'react-native'
-import { Appearance } from 'react-native-appearance'
 import { connect } from "react-redux"
 
 import { ThemeActions } from "../Redux/ThemeRedux"
-import Colors, { lightTheme, darkTheme, ThemeModes } from './Colors'
+import { getColorMode, ThemeModes } from './Theme'
 
-export const ThemeContext = createContext()
-
-export const useThemeContext = () => useContext(ThemeContext);
-
-let theme = lightTheme;
-
-export const getColor = colorName => theme[colorName]
-
-class ManageThemeProvider extends Component {
+class ThemeManager extends Component {
 
     constructor(props) {
         super(props);
@@ -25,63 +16,25 @@ class ManageThemeProvider extends Component {
     }
 
     componentDidMount() {
-        if (!this.props.theme.color) {
-            this.setTheme(this.props.theme.themeMode, false)
-        }
-        this.subscription = Appearance.addChangeListener(({ colorScheme }) => {
-            this.setTheme(colorScheme, true)
-        })
-    }
+        debugger;
+        let themeMode = this.props.theme.themeMode ? this.props.theme.themeMode : ThemeModes.device
 
-    componentWillUnmount() {
-        this.subscription.remove();
-    }
-
-    getColorMode = (themeMode) => {
-        let colorMode = themeMode;
-        if (themeMode == ThemeModes.device) {
-            colorMode = Appearance.getColorScheme();
-        }
-
-        return colorMode;
-    }
-
-    // getTheme = (colorMode) => {
-    //     return colorMode == ThemeModes.dark ? darkTheme : lightTheme;
-    // }
-
-    // getColorFunction = (themeMode) => {
-    //     let theme;
-    //     let colorMode = this.getColorMode(themeMode);
-    //     theme = colorMode == ThemeModes.dark ? darkTheme : lightTheme;
-    //     return (
-    //         colorName => theme[colorName]
-    //     )
-    // }
-
-    setTheme = (themeMode, isDeviceTheme) => {
-        if (this.props.theme.themeMode != ThemeModes.device && isDeviceTheme) return;
-        let colorMode = this.getColorMode(themeMode);
-        theme = colorMode == ThemeModes.dark ? darkTheme : lightTheme;
-        this.props.changeTheme({
-            themeMode
-        })
+        this.props.changeTheme(themeMode)
     }
 
     render() {
+        debugger;
         if (this.firstTime) {
             this.firstTime = false;
             return null;
         }
         return (
-            <ThemeContext.Provider value={{ color: this.props.theme.color, setTheme: themeMode => this.setTheme(themeMode, false), themeMode: this.props.theme.themeMode }}>
-                <>
-                    <StatusBar
-                        barStyle={this.getColorMode(this.props.theme.themeMode) === ThemeModes.light ? 'light-content' : 'dark-content'}
-                    />
-                    {this.props.children}
-                </>
-            </ThemeContext.Provider>
+            <>
+                <StatusBar
+                    barStyle={getColorMode(this.props.theme.themeMode) === ThemeModes.light ? 'light-content' : 'dark-content'}
+                />
+                {this.props.children}
+            </>
         )
     }
 }
@@ -91,7 +44,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    changeTheme: ({ themeMode, colorFunction }) => dispatch(ThemeActions.changeTheme({ themeMode, color: colorFunction }))
+    changeTheme: (themeMode) => dispatch(ThemeActions.changeThemeRequest({ themeMode }))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(ManageThemeProvider);
+export default connect(mapStateToProps, mapDispatchToProps)(ThemeManager);

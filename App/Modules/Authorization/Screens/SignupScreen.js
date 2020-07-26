@@ -28,9 +28,8 @@ import checkCredentials from "../Utils/CredentialsCheck"
 
 // Styles
 import getStyles from "../Styles/SignupStyles"
-import { Colors, Fonts, ThemeContext } from '../../../Themes'
+import { Colors, Fonts, Theme } from '../../../Themes'
 import { TextNames } from "../../../I18n/languages/Names";
-import { getColor } from "../../../Themes/ThemeManager";
 
 class SignupScreen extends Component {
 
@@ -48,8 +47,6 @@ class SignupScreen extends Component {
         this.textinputs = {}
         this.keyboardVisible = false;
     }
-
-    //static contextType = ThemeContext
 
     // *** LIFECYCLE METHODS *** //
 
@@ -210,8 +207,7 @@ class SignupScreen extends Component {
 
     render() {
         let signupButtonDisabled = !checkCredentials(this.state).ok
-        let color = getColor()
-        let styles = getStyles(color)
+        let styles = getStyles(Theme.c)
         return (
             <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS == "ios" ? "padding" : null}>
                 <TouchableWithoutFeedback onPress={this.onPress_Background}>
@@ -246,15 +242,15 @@ class SignupScreen extends Component {
                             <View style={styles.signupButtonContainer}>
                                 <Button
                                     text="Sign up"
-                                    textColor={color(Colors.textOnBrandColor)}
+                                    textColor={Theme.c(Colors.textOnBrandColor)}
                                     onPress={this.onPress_Signup}
-                                    backgroundColor={color(Colors.brandColor)}
+                                    backgroundColor={Theme.c(Colors.brandColor)}
                                 />
                             </View>
                             <View style={styles.transparentButtonContainer}>
                                 <Button
                                     text="Login instead?"
-                                    textColor={color(Colors.midLightGrey_dm)}
+                                    textColor={Theme.c(Colors.midLightGrey_dm)}
                                     onPress={this.onPress_LoginInstead}
                                     backgroundColor={"transparent"}
                                 />

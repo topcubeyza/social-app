@@ -14,14 +14,11 @@ import {
 
 // Styles
 import getStyles from "./Styles/TemplateStyles"
-import { Colors, Fonts, Metrics, useThemeContext } from '../Themes'
-import { getColor } from "../Themes/ThemeManager"
+import { Colors, Fonts, Metrics, Theme } from '../Themes'
 
 const FunctionalComponentTemplate = props => {
 
-    
-    let color = getColor()
-    let styles = getStyles(color)
+    let styles = getStyles(Theme.c)
 
     return (
         <View style={styles.container}>

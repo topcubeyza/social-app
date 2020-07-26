@@ -2,8 +2,8 @@ import { StyleSheet, Platform } from 'react-native'
 import { Colors, Metrics, Fonts } from '../../../Themes'
 import getCommonStyles from "./CommonStyles"
 
-const getStyles = color => StyleSheet.create({
-    ...getCommonStyles(color),
+const getStyles = c => StyleSheet.create({
+    ...getCommonStyles(c),
     textinputsContainer: {
         paddingVertical: Metrics.width * 0.04,
     },
@@ -26,13 +26,13 @@ const getStyles = color => StyleSheet.create({
     errorText: {
         fontFamily: Fonts.type.light,
         fontSize: Fonts.size.fourteen,
-        color: color(Colors.brandColor),
+        color: c(Colors.brandColor),
         paddingHorizontal: 5,
     },
     headerText: {
         fontFamily: Fonts.type.brand,
         fontSize: Fonts.size.twenty * 3,
-        color: color(Colors.brandColor),
+        color: c(Colors.brandColor),
     }
 })
 

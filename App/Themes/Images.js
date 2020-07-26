@@ -6,4 +6,12 @@ const images = {
   underConstruction: require(imageFileLocation + "under-construction.png")
 }
 
+export const lightThemeImages = {
+
+}
+
+export const darkThemeImages = {
+  
+}
+
 export default images
