@@ -23,7 +23,7 @@ import { Colors, Theme } from '../../../Themes'
 import { TextNames, LanguageCodes } from "../../../I18n/languages/Names";
 import { LocalizationActions } from "../../../Redux/LocalizationRedux";
 import { ThemeActions } from "../../../Redux/ThemeRedux"
-import { ThemeModes } from "../../../Themes/Theme";
+import { ThemeModes, getColorMode } from "../../../Themes/Theme";
 
 class WelcomeScreen extends Component {
 
@@ -38,15 +38,13 @@ class WelcomeScreen extends Component {
     }
 
     onPress_ForgotPassword = () => {
-        let colorMode = this.props.theme.themeMode;
-        if (colorMode == ThemeModes.device) {
-            colorMode = Appearance.getColorScheme();
-        }
+        let colorMode = getColorMode(this.props.theme.themeMode)
 
         this.props.changeTheme(colorMode == 'dark' ? 'light' : 'dark')
 
         let currentLocale = I18n.currentLocale().substring(0,2)
-        this.props.changeLocale(currentLocale == LanguageCodes.english ? LanguageCodes.turkish : LanguageCodes.english)
+        let newLocale = currentLocale == LanguageCodes.english ? LanguageCodes.turkish : LanguageCodes.english
+        this.props.changeLocale(newLocale)
     }
 
     // *** RENDER METHODS *** //
