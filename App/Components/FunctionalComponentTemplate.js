@@ -15,11 +15,12 @@ import {
 // Styles
 import getStyles from "./Styles/TemplateStyles"
 import { Colors, Fonts, Metrics, useThemeContext } from '../Themes'
+import { getColor } from "../Themes/ThemeManager"
 
 const FunctionalComponentTemplate = props => {
 
-    let context = useThemeContext()
-    let color = context.color
+    
+    let color = getColor()
     let styles = getStyles(color)
 
     return (

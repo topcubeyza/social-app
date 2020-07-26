@@ -30,6 +30,7 @@ import checkCredentials from "../Utils/CredentialsCheck"
 import getStyles from "../Styles/SignupStyles"
 import { Colors, Fonts, ThemeContext } from '../../../Themes'
 import { TextNames } from "../../../I18n/languages/Names";
+import { getColor } from "../../../Themes/ThemeManager";
 
 class SignupScreen extends Component {
 
@@ -48,7 +49,7 @@ class SignupScreen extends Component {
         this.keyboardVisible = false;
     }
 
-    static contextType = ThemeContext
+    //static contextType = ThemeContext
 
     // *** LIFECYCLE METHODS *** //
 
@@ -209,7 +210,7 @@ class SignupScreen extends Component {
 
     render() {
         let signupButtonDisabled = !checkCredentials(this.state).ok
-        let color = this.context.color
+        let color = getColor()
         let styles = getStyles(color)
         return (
             <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS == "ios" ? "padding" : null}>

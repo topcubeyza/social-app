@@ -18,14 +18,13 @@ import {
 // Styles
 import getStyles from "./Styles/TemplateStyles"
 import { Colors, Fonts, Metrics, ThemeContext } from '../Themes'
+import { getColor } from "../Themes/ThemeManager"
 
 class ClassComponentTemplate extends Component {
 
     constructor(props) {
         super(props);
     }
-
-    static contextType = ThemeContext
 
     // *** LIFECYCLE METHODS *** //
 
@@ -43,7 +42,7 @@ class ClassComponentTemplate extends Component {
     // *** RENDER METHODS *** //
 
     render() {
-        let color = this.context.color
+        let color = getColor()
         let styles = getStyles(color)
         return (
             <View style={styles.container}>

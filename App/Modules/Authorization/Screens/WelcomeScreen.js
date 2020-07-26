@@ -23,6 +23,7 @@ import { Colors, ThemeContext } from '../../../Themes'
 import { TextNames, LanguageCodes } from "../../../I18n/languages/Names";
 import { LocalizationActions } from "../../../Redux/LocalizationRedux";
 import { ThemeModes } from "../../../Themes/Colors";
+import { getColor } from "../../../Themes/ThemeManager"
 
 class WelcomeScreen extends Component {
 
@@ -52,7 +53,7 @@ class WelcomeScreen extends Component {
     // *** RENDER METHODS *** //
     
     render() {
-        let color = this.context.color;
+        let color = getColor;
         let styles = getStyles(color)
         return (
             <View style={styles.container}>

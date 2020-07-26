@@ -10,12 +10,17 @@ export const ThemeContext = createContext()
 
 export const useThemeContext = () => useContext(ThemeContext);
 
+let theme = lightTheme;
+
+export const getColor = colorName => theme[colorName]
+
 class ManageThemeProvider extends Component {
 
     constructor(props) {
         super(props);
 
         this.subscription
+        this.firstTime = true
 
     }
 
@@ -41,25 +46,33 @@ class ManageThemeProvider extends Component {
         return colorMode;
     }
 
-    getColorFunction = (themeMode) => {
-        let theme;
-        let colorMode = this.getColorMode(themeMode);
-        theme = colorMode == ThemeModes.dark ? darkTheme : lightTheme;
-        return (
-            colorName => theme[colorName]
-        )
-    }
+    // getTheme = (colorMode) => {
+    //     return colorMode == ThemeModes.dark ? darkTheme : lightTheme;
+    // }
+
+    // getColorFunction = (themeMode) => {
+    //     let theme;
+    //     let colorMode = this.getColorMode(themeMode);
+    //     theme = colorMode == ThemeModes.dark ? darkTheme : lightTheme;
+    //     return (
+    //         colorName => theme[colorName]
+    //     )
+    // }
 
     setTheme = (themeMode, isDeviceTheme) => {
-        if (!this.props.theme.themeMode == ThemeModes.device && isDeviceTheme) return;
+        if (this.props.theme.themeMode != ThemeModes.device && isDeviceTheme) return;
+        let colorMode = this.getColorMode(themeMode);
+        theme = colorMode == ThemeModes.dark ? darkTheme : lightTheme;
         this.props.changeTheme({
-            themeMode,
-            colorFunction: this.getColorFunction(themeMode)
+            themeMode
         })
     }
 
     render() {
-        if (!this.props.theme.color) return null;
+        if (this.firstTime) {
+            this.firstTime = false;
+            return null;
+        }
         return (
             <ThemeContext.Provider value={{ color: this.props.theme.color, setTheme: themeMode => this.setTheme(themeMode, false), themeMode: this.props.theme.themeMode }}>
                 <>

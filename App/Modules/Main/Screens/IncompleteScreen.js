@@ -16,6 +16,7 @@ import Button from "../../../Components/Button"
 // Styles
 import getStyles from "../Styles/IncompleteStyles"
 import { Colors, Images, ThemeContext } from '../../../Themes'
+import { getColor } from "../../../Themes/ThemeManager";
 
 class IncompleteScreen extends Component {
 
@@ -23,14 +24,14 @@ class IncompleteScreen extends Component {
         header: null
     }
 
-    static contextType = ThemeContext
+    //static contextType = ThemeContext
 
     onPress_BackButton = () => {
         this.props.navigation.goBack()
     }
 
     render() {
-        let color = this.context.color
+        let color = getColor()
         let styles = getStyles(color)
 
         return (

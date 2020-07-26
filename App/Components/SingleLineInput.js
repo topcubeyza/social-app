@@ -6,6 +6,7 @@ import PropTypes from "prop-types"
 // Styles
 import getStyles from "./Styles/SingleLineInputStyles"
 import { Colors, Metrics, ThemeContext } from "../Themes"
+import { getColor } from "../Themes/ThemeManager"
 
 
 class SingleLineInput extends Component {
@@ -18,8 +19,6 @@ class SingleLineInput extends Component {
         }
 
     }
-
-    static contextType = ThemeContext
 
     // *** REF METHODS *** //
 
@@ -47,7 +46,7 @@ class SingleLineInput extends Component {
 
     getModifiedStyles = (styles) => {
         let props = this.props;
-        let color = this.context.color;
+        let color = getColor();
         return {
             container: [
                 styles.container,
@@ -74,7 +73,7 @@ class SingleLineInput extends Component {
     // *** RENDER METHODS *** //
 
     render() {
-        let color = this.context.color
+        let color = getColor()
         let styles = getStyles(color)
         let { container, underlineContainer, underline } = this.getModifiedStyles(styles)
         return (

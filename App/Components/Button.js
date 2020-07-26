@@ -6,11 +6,12 @@ import PropTypes from "prop-types"
 // Styles
 import getStyles from "./Styles/ButtonStyles"
 import {Colors, useThemeContext} from "../Themes"
+import {getColor} from "../Themes/ThemeManager"
 
 
 const Button = (props) => {
-    let themeContext = useThemeContext();
-    let styles = getStyles(themeContext.color)
+    //let themeContext = useThemeContext();
+    let styles = getStyles(getColor())
     let containerStyle = [
         styles.container, 
         { backgroundColor: props.backgroundColor }];

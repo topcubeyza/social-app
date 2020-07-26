@@ -15,6 +15,7 @@ import { AuthActions } from "../Authorization/Redux/AuthRedux"
 
 // styles
 import { Colors, ThemeContext } from '../../Themes';
+import { getColor } from '../../Themes/ThemeManager';
 
 class RootContainer extends Component {
   constructor(props) {
@@ -26,7 +27,7 @@ class RootContainer extends Component {
     this.firebaseAuthUnsubscribe;
   }
 
-  static contextType = ThemeContext
+  //static contextType = ThemeContext
 
   // *** LIFECYCLE METHODS *** //
 
@@ -66,7 +67,7 @@ class RootContainer extends Component {
       return null;
     }
     return <>
-      <StatusBar backgroundColor={this.context.color(Colors.lightBackground_dm)} />
+      <StatusBar backgroundColor={getColor(Colors.lightBackground_dm)} />
       <ReduxNavigation />
     </>;
   }
