@@ -54,7 +54,8 @@ export const AuthSelectors = {
 export const request = (state, action) => {
     return {
         ...state,
-        fetching: true
+        fetching: true,
+        error: null
     }
 }
 
