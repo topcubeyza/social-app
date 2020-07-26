@@ -27,6 +27,14 @@ import { ThemeModes, getColorMode } from "../../../Themes/Theme";
 
 class WelcomeScreen extends Component {
 
+    // *** LIFECYCLE METHODS *** //
+
+    componentDidMount() {
+        if (this.props.auth.user) {
+            this.props.navigation.navigate("SignedIn")
+        }
+    }
+
     // *** EVENT HANDLERS *** //
 
     onPress_Login = () => {
@@ -103,7 +111,8 @@ class WelcomeScreen extends Component {
 
 const mapStateToProps = state => ({
     locale: state.locale,
-    theme: state.theme
+    theme: state.theme,
+    auth: state.auth
 })
 
 const mapDispatchToProps = dispatch => ({
