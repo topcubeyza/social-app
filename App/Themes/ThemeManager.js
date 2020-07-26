@@ -32,12 +32,18 @@ class ManageThemeProvider extends Component {
         this.subscription.remove();
     }
 
-    getColorFunction = (themeMode) => {
-        let theme;
+    getColorMode = (themeMode) => {
         let colorMode = themeMode;
         if (themeMode == ThemeModes.device) {
             colorMode = Appearance.getColorScheme();
         }
+
+        return colorMode;
+    }
+
+    getColorFunction = (themeMode) => {
+        let theme;
+        let colorMode = this.getColorMode(themeMode);
         theme = colorMode == ThemeModes.dark ? darkTheme : lightTheme;
         return (
             colorName => theme[colorName]
@@ -58,7 +64,7 @@ class ManageThemeProvider extends Component {
             <ThemeContext.Provider value={{ color: this.props.theme.color, setTheme: themeMode => this.setTheme(themeMode, false), themeMode: this.props.theme.themeMode }}>
                 <>
                     <StatusBar
-                        barStyle={this.props.theme.themeMode === ThemeModes.light ? 'light-content' : 'dark-content'}
+                        barStyle={this.getColorMode(this.props.theme.themeMode) === ThemeModes.light ? 'light-content' : 'dark-content'}
                     />
                     {this.props.children}
                 </>

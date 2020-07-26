@@ -21,7 +21,7 @@ export const ThemeActions = Actions
 
 export const INITIAL_STATE = {
     themeMode: ThemeModes.light,
-    color: () => { }
+    color: null
 }
 
 /* ------------- Reducers ------------- */
