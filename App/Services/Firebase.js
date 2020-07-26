@@ -28,11 +28,9 @@ const createUser = async ({email, password}) => {
 const signOut = async () => {
   await auth().signOut()
     .then(() => {
-      debugger;
       console.log('User signed out!')
     })
     .catch(error => {
-      debugger;
       console.log("signout error: ", error)
     })
 }

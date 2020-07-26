@@ -3,7 +3,6 @@ import { ThemeActions, ThemeTypes } from "../Redux/ThemeRedux"
 import { getColorMode, setThemeMode } from "../Themes/Theme";
 
 function* setTheme(action) {
-    debugger;
     try {
         let {themeMode} = action.payload;
         setThemeMode(themeMode)
