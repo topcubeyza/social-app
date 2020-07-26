@@ -33,6 +33,9 @@ export const getColorMode = (themeMode) => {
     let colorMode = themeMode;
     if (themeMode == ThemeModes.device) {
         colorMode = Appearance.getColorScheme();
+        if (colorMode != ThemeModes.dark || colorMode != ThemeModes.light) {
+            colorMode = ThemeModes.light
+        }
     }
 
     return colorMode;
