@@ -1,5 +1,10 @@
 // Packages
 import React, { Component } from "react"
+import { connect } from "react-redux";
+import { duration } from "moment";
+import I18n from "react-native-i18n";
+
+// RN Components
 import {
     View,
     Text,
@@ -9,22 +14,18 @@ import {
     TouchableWithoutFeedback,
     Platform,
     Animated,
-    LayoutAnimation,
-    UIManager
 } from "react-native"
-import { connect } from "react-redux";
-import { duration } from "moment";
-import I18n from "react-native-i18n"
-
-// Actions
-import { AuthActions } from "../Redux/AuthRedux"
 
 // Components
 import Button from "../../../Components/Button"
 import SingleLineInput from "../../../Components/SingleLineInput"
 
+// Actions
+import { AuthActions } from "../Redux/AuthRedux"
+
 // Utils
 import checkCredentials from "../Utils/CredentialsCheck"
+import { getUpdateCause, UpdateCauses } from "../../../Helpers/ReduxHelpers";
 
 // Styles
 import getStyles from "../Styles/SignupStyles"
@@ -57,6 +58,22 @@ class SignupScreen extends Component {
         }
         else {
             this.keyboardDidHideListeneer = Keyboard.addListener("keyboardDidHide", this.onKeyboardDidHide)
+        }
+    }
+
+    componentDidUpdate(prevProps) {
+        let cause = getUpdateCause(prevProps.auth, this.props.auth, "user", data => data != null);
+        switch (cause) {
+            case UpdateCauses.fetching:
+                break;
+            case UpdateCauses.fail:
+                this.showErrorMessage(this.props.auth.error)
+                break;
+            case UpdateCauses.success:
+                this.props.navigation.navigate("SignedIn");
+                break;
+            default:
+                break;
         }
     }
 
@@ -100,6 +117,27 @@ class SignupScreen extends Component {
         }
     }
 
+    // *** CONVENIENCE METHODS *** //
+
+    showErrorMessage = (message) => {
+        this.setState({
+            signupErrorMessage: message
+        }, () => {
+            // Show an error message for two seconds if fields are not valid
+
+            // clear timeout so that when user taps button repeatedly,
+            // disappearing of error message will be delayed
+            if (this.errorMessageTimeout) {
+                clearTimeout(this.errorMessageTimeout)
+            }
+            this.errorMessageTimeout = setTimeout(() => {
+                this.setState({
+                    signupErrorMessage: ""
+                })
+            }, 2000);
+        })
+    }
+
     // *** EVENT HANDLERS *** //
 
     onChangeText_Email = (text) => {
@@ -129,25 +167,13 @@ class SignupScreen extends Component {
     onPress_Signup = () => {
         let { ok, message } = checkCredentials(this.state)
         if (!ok) {
-            this.setState({
-                signupErrorMessage: message
-            }, () => {
-                // Show an error message for two seconds if fields are not valid
-
-                // clear timeout so that when user taps button repeatedly,
-                // disappearing of error message will be delayed
-                if (this.errorMessageTimeout) {
-                    clearTimeout(this.errorMessageTimeout)
-                }
-                this.errorMessageTimeout = setTimeout(() => {
-                    this.setState({
-                        signupErrorMessage: ""
-                    })
-                }, 2000);
-            })
+            this.showErrorMessage(message)
         }
         else {
-            this.props.navigation.navigate("Incomplete")
+            this.props.createUserRequest({
+                email: this.state.email,
+                password: this.state.password
+            })
         }
     }
 
@@ -225,7 +251,7 @@ class SignupScreen extends Component {
                                 {this.renderTextInput(styles, "email", I18n.t(TextNames.username), "email")}
                                 {this.renderTextInput(styles, "password", "Password", "password")}
                                 {this.renderTextInput(styles, "passwordConfirm", "Confirm Password", "password")}
-                                
+
                                 {/* ERROR MESSAGE */}
                                 <View style={styles.errorTextContainer}>
                                     {
@@ -264,4 +290,12 @@ class SignupScreen extends Component {
 
 }
 
-export default SignupScreen;
+const mapStateToProps = state => ({
+    auth: state.auth
+})
+
+const mapDispatchToProps = dispatch => ({
+    createUserRequest: ({ email, password }) => dispatch(AuthActions.createUserRequest({ email, password }))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignupScreen);
