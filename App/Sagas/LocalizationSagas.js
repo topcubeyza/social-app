@@ -15,7 +15,7 @@ getDeviceLocale = () => {
         locale = NativeModules.I18nManager.localeIdentifier
     }
 
-    return locale.substring(0,2);
+    return locale ? locale.substring(0,2) : LanguageCodes.english;
 }
 
 function* setLocale(action) {
