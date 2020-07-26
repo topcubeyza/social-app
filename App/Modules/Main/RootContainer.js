@@ -14,7 +14,6 @@ import ReduxPersist from '../../Config/ReduxPersist';
 import { AuthActions } from "../Authorization/Redux/AuthRedux"
 
 // styles
-import { Colors, Theme } from '../../Themes';
 
 class RootContainer extends Component {
   constructor(props) {
@@ -65,7 +64,6 @@ class RootContainer extends Component {
       return null;
     }
     return <>
-      <StatusBar backgroundColor={Theme.c(Colors.lightBackground_dm)} />
       <ReduxNavigation />
     </>;
   }
