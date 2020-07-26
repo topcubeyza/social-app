@@ -4,14 +4,23 @@ import { LanguageCodes } from '../I18n/languages/Names'
 /* ------------- Types and Action Creators ------------- */
 
 const Types = {
+    CHANGE_LOCALE_REQUEST: "locale/change_locale_request",
     CHANGE_LOCALE: "locale/change_locale",
 }
 
 const Actions = {
-    changeLocale: ({ languageCode }) => ({
-        type: Types.CHANGE_LOCALE,
-        payload: { languageCode }
-    })
+    changeLocaleRequest: ({ languageCode }) => {
+        return ({
+            type: Types.CHANGE_LOCALE_REQUEST,
+            payload: { languageCode }
+        })
+    },
+    changeLocale: ({ languageCode }) => {
+        return ({
+            type: Types.CHANGE_LOCALE,
+            payload: { languageCode }
+        })
+    },
 }
 
 export const LocalizationTypes = Types
@@ -20,7 +29,7 @@ export const LocalizationActions = Actions
 /* ------------- Initial State ------------- */
 
 export const INITIAL_STATE = {
-    locale: "",
+    languageCode: "",
 }
 
 /* ------------- Reducers ------------- */
@@ -36,5 +45,5 @@ export const changeLocale = (state, action) => {
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const LocalizationReducer = createReducer(INITIAL_STATE, {
-    [Types.CHANGE_LOCALE]: changeLocale
+    [Types.CHANGE_LOCALE]: changeLocale,
 })

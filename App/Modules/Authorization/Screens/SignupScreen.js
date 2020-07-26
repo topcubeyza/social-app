@@ -14,6 +14,7 @@ import {
 } from "react-native"
 import { connect } from "react-redux";
 import { duration } from "moment";
+import I18n from "react-native-i18n"
 
 // Actions
 import { AuthActions } from "../Redux/AuthRedux"
@@ -28,6 +29,7 @@ import checkCredentials from "../Utils/CredentialsCheck"
 // Styles
 import getStyles from "../Styles/SignupStyles"
 import { Colors, Fonts, ThemeContext } from '../../../Themes'
+import { TextNames } from "../../../I18n/languages/Names";
 
 class SignupScreen extends Component {
 
@@ -223,7 +225,7 @@ class SignupScreen extends Component {
 
                             {/* CREDENTIAL INPUTS */}
                             <View style={styles.textinputsContainer}>
-                                {this.renderTextInput(styles, "email", "E-mail", "email")}
+                                {this.renderTextInput(styles, "email", I18n.t(TextNames.username), "email")}
                                 {this.renderTextInput(styles, "password", "Password", "password")}
                                 {this.renderTextInput(styles, "passwordConfirm", "Confirm Password", "password")}
                                 

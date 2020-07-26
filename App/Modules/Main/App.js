@@ -6,7 +6,7 @@
  * @flow
  */
 
- // Packages
+// Packages
 import React, { useEffect, Component } from 'react';
 import SplashScreen from 'react-native-splash-screen'
 import { Provider } from 'react-redux';
@@ -18,6 +18,7 @@ import DebugConfig from "../../Config/DebugConfig"
 import createStore from '../../Redux';
 import RootContainer from './RootContainer';
 import ThemeManager from "../../Themes/ThemeManager"
+import LocalizationManager from "../../I18n/LocalizationManager"
 
 
 const { store, persistor } = createStore();
@@ -41,7 +42,9 @@ class App extends Component {
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <ThemeManager>
-            <RootContainer />
+            <LocalizationManager>
+              <RootContainer />
+            </LocalizationManager>
           </ThemeManager>
         </PersistGate>
       </Provider>

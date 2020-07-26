@@ -10,6 +10,7 @@ export const TextNames = {
  }
 
  export const LanguageCodes = {
-     english: "english",
-     turkish: "tr"
+     english: "en",
+     turkish: "tr",
+     device: "device"
  }

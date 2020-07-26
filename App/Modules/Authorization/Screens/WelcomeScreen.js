@@ -2,6 +2,7 @@
 import React, { Component } from "react"
 import { connect } from "react-redux";
 import I18n from "react-native-i18n"
+import { Appearance } from "react-native-appearance"
 
 // RN Components
 import {
@@ -19,7 +20,9 @@ import { AuthActions } from "../Redux/AuthRedux"
 // Styles
 import getStyles from "../Styles/LoginStyles"
 import { Colors, ThemeContext } from '../../../Themes'
-import { TextNames } from "../../../I18n/languages/Names";
+import { TextNames, LanguageCodes } from "../../../I18n/languages/Names";
+import { LocalizationActions } from "../../../Redux/LocalizationRedux";
+import { ThemeModes } from "../../../Themes/Colors";
 
 class WelcomeScreen extends Component {
 
@@ -36,8 +39,14 @@ class WelcomeScreen extends Component {
     }
 
     onPress_ForgotPassword = () => {
-        this.context.setTheme(this.context.mode == 'dark' ? 'light' : 'dark')
-        I18n.locale("tr")
+        let colorMode = this.context.themeMode;
+        if (colorMode == ThemeModes.device) {
+            colorMode = Appearance.getColorScheme();
+        }
+
+        this.context.setTheme(colorMode == 'dark' ? 'light' : 'dark')
+        let currentLocale = I18n.currentLocale().substring(0,2)
+        this.props.changeLocale(currentLocale == LanguageCodes.english ? LanguageCodes.turkish : LanguageCodes.english)
     }
 
     // *** RENDER METHODS *** //
@@ -95,4 +104,12 @@ class WelcomeScreen extends Component {
 
 }
 
-export default WelcomeScreen;
+const mapStateToProps = state => ({
+    locale: state.locale
+})
+
+const mapDispatchToProps = dispatch => ({
+    changeLocale: languageCode => dispatch(LocalizationActions.changeLocaleRequest({languageCode}))
+})
+
+export default connect(null, mapDispatchToProps)(WelcomeScreen);
