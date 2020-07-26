@@ -1,6 +1,7 @@
 // Packages
 import React, { Component } from "react"
 import { connect } from "react-redux";
+import I18n from "react-native-i18n"
 
 // RN Components
 import {
@@ -18,6 +19,7 @@ import { AuthActions } from "../Redux/AuthRedux"
 // Styles
 import getStyles from "../Styles/LoginStyles"
 import { Colors, ThemeContext } from '../../../Themes'
+import { TextNames } from "../../../I18n/languages/Names";
 
 class WelcomeScreen extends Component {
 
@@ -35,6 +37,7 @@ class WelcomeScreen extends Component {
 
     onPress_ForgotPassword = () => {
         this.context.setTheme(this.context.mode == 'dark' ? 'light' : 'dark')
+        I18n.locale("tr")
     }
 
     // *** RENDER METHODS *** //
@@ -52,7 +55,7 @@ class WelcomeScreen extends Component {
                     <View style={styles.loginButtonsContainer}>
                         <View style={styles.loginButtonContainer}>
                             <Button
-                                text="Login with Google"
+                                text={I18n.t(TextNames.loginWithGoogle)}
                                 textColor={color(Colors.textOnDarkBackground)}
                                 onPress={this.onPress_Login}
                                 backgroundColor={color(Colors.googleColor)}
@@ -60,7 +63,7 @@ class WelcomeScreen extends Component {
                         </View>
                         <View style={styles.loginButtonContainer}>
                             <Button
-                                text="Login with Email"
+                                text={I18n.t(TextNames.loginWithEmail)}
                                 textColor={color(Colors.textOnBrandColor)}
                                 onPress={this.onPress_Login}
                                 backgroundColor={color(Colors.brandColor)}

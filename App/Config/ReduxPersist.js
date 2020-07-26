@@ -11,7 +11,7 @@ const REDUX_PERSIST = {
     blacklist: ['nav', 'app'],
     // Optionally, just specify the keys you DO want stored to persistence.
     // An empty array means 'don't store any reducers' -> infinitered/ignite#409
-    whitelist: ['auth', 'theme']  
+    whitelist: ['auth', 'theme', 'locale']  
   },
 };
 

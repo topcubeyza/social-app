@@ -13,6 +13,7 @@ import { AppReducer } from "./AppRedux"
 import { TestReducer } from "./TestRedux"
 import { AuthReducer } from "../Modules/Authorization/Redux/AuthRedux"
 import { ThemeReducer } from "./ThemeRedux"
+import { LocalizationReducer } from "./LocalizationRedux"
 
 
 export const reducers = combineReducers({
@@ -20,7 +21,8 @@ export const reducers = combineReducers({
     app: AppReducer,
     test: TestReducer,
     auth: AuthReducer,
-    theme: ThemeReducer
+    theme: ThemeReducer,
+    locale: LocalizationReducer
 })
 
 export default () => {

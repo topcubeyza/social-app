@@ -1,0 +1,10 @@
+{
+    "login": "Giriş Yap",
+    "loginWithGoogle": "Google ile Giriş Yap",
+    "loginWithEmail": "E-mail ile Giriş Yap",
+    "logOut": "Çıkış Yap",
+    "forgotPassword": "Şifremi unuttum",
+    "username": "Kullanıcı Adı",
+    "password": "Şifre",
+    "cancel": "Çık",
+ }

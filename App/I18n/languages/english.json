@@ -1,0 +1,10 @@
+{
+   "login": "Login",
+   "loginWithGoogle": "Login with Google",
+   "loginWithEmail": "Login with E-mail",
+   "logOut": "Log Out",
+   "forgotPassword": "Forgot Password",
+   "username": "Username",
+   "password": "Password",
+   "cancel": "Cancel"
+}
