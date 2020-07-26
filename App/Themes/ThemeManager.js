@@ -1,6 +1,6 @@
 import React, { createContext, useState, useEffect, Component, useContext } from 'react'
 import { StatusBar } from 'react-native'
-import { Appearance, AppearanceProvider } from 'react-native-appearance'
+import { Appearance } from 'react-native-appearance'
 import { connect } from "react-redux"
 
 import { ThemeActions } from "../Redux/ThemeRedux"
@@ -67,17 +67,6 @@ class ManageThemeProvider extends Component {
     }
 }
 
-const ThemeManager = ({ children }) => {
-    let ReduxThemeProvider = connect(mapStateToProps, mapDispatchToProps)(ManageThemeProvider);
-    return (
-        (
-            <AppearanceProvider>
-                <ReduxThemeProvider>{children}</ReduxThemeProvider>
-            </AppearanceProvider>
-        )
-    )
-}
-
 const mapStateToProps = state => ({
     theme: state.theme
 })
@@ -86,4 +75,4 @@ const mapDispatchToProps = dispatch => ({
     changeTheme: ({ themeMode, colorFunction }) => dispatch(ThemeActions.changeTheme({ themeMode, color: colorFunction }))
 })
 
-export default ThemeManager;
+export default connect(mapStateToProps, mapDispatchToProps)(ManageThemeProvider);
