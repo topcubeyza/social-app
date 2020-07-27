@@ -95,6 +95,11 @@ class LoginWithEmailScreen extends Component {
     onKeyboardDidShow = () => {
         if (!this.keyboardVisible) {
             this.keyboardVisible = true;
+            Object.entries(this.textinputs).map(entry => {
+                if (entry[1] != null && entry[1].isFocused()) {
+                    entry[1].drawUnderline();
+                }
+            })
         }
     }
 
@@ -105,7 +110,7 @@ class LoginWithEmailScreen extends Component {
             // When keyboard hides, underline of the active textinput must be removed
             Object.entries(this.textinputs).map(textinput => {
                 // checking if the textinput is mounted
-                if (textinput[1] != null) {
+                if (textinput[1] != null  && !textinput[1].isFocused()) {
                     textinput[1].removeUnderline()
                 }
             })
@@ -126,7 +131,7 @@ class LoginWithEmailScreen extends Component {
         this.setState({
             errorMessage: message
         }, () => {
-            // Show an error message for two seconds if fields are not valid
+            // Show an error message for a short while if fields are not valid
 
             // clear timeout so that when user taps button repeatedly,
             // disappearing of error message will be delayed
@@ -137,7 +142,7 @@ class LoginWithEmailScreen extends Component {
                 this.setState({
                     errorMessage: ""
                 })
-            }, 2000);
+            }, 3000);
         })
     }
 
@@ -239,7 +244,7 @@ class LoginWithEmailScreen extends Component {
                                 <View style={styles.errorTextContainer}>
                                     {
                                         this.state.errorMessage ?
-                                            <Text style={styles.errorText}>{this.state.errorMessage}</Text>
+                                            <Text numberOfLines={2} style={styles.errorText}>{this.state.errorMessage}</Text>
                                             : null
                                     }
                                 </View>

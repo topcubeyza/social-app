@@ -21,6 +21,10 @@ class SingleLineInput extends Component {
 
     // *** REF METHODS *** //
 
+    isFocused = () => {
+        return this.textInput && this.textInput.isFocused()
+    }
+
     drawUnderline = () => {
         Animated.timing(
             this.state.underlinePadding,
@@ -77,6 +81,7 @@ class SingleLineInput extends Component {
             <View style={container}>
                 <TextInput
                     {...this.props}
+                    ref={ref => this.textInput = ref}
                     onFocus={this.onFocus}
                     style={styles.input}
                     placeholderTextColor={Theme.c(Colors.midLightGrey_dm)}>
