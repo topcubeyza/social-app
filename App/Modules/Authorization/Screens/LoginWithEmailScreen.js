@@ -65,16 +65,13 @@ class LoginWithEmailScreen extends Component {
         let cause = getUpdateCause(prevProps.auth, this.props.auth, "user", data => data != null);
         switch (cause) {
             case UpdateCauses.fetching:
-                debugger;
                 this.props.setLoadingMode(true)
                 break;
             case UpdateCauses.fail:
-                debugger;
                 this.showErrorMessage(this.props.auth.error)
                 this.props.setLoadingMode(false)
                 break;
             case UpdateCauses.success:
-                debugger;
                 this.props.navigation.navigate("SignedIn");
                 this.props.setLoadingMode(false)
                 break;
@@ -158,7 +155,6 @@ class LoginWithEmailScreen extends Component {
             this.showErrorMessage(message)
         }
         else {
-            debugger;
             this.props.signInRequest({
                 email: this.state.email,
                 password: this.state.password
