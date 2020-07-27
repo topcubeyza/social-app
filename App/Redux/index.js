@@ -14,6 +14,7 @@ import { TestReducer } from "./TestRedux"
 import { AuthReducer } from "../Modules/Authorization/Redux/AuthRedux"
 import { ThemeReducer } from "./ThemeRedux"
 import { LocalizationReducer } from "./LocalizationRedux"
+import { LoadingReducer } from "./LoadingRedux"
 
 
 export const reducers = combineReducers({
@@ -22,7 +23,8 @@ export const reducers = combineReducers({
     test: TestReducer,
     auth: AuthReducer,
     theme: ThemeReducer,
-    locale: LocalizationReducer
+    locale: LocalizationReducer,
+    loading: LoadingReducer
 })
 
 export default () => {

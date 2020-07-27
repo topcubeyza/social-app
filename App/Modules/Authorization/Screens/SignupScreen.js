@@ -31,6 +31,7 @@ import { getUpdateCause, UpdateCauses } from "../../../Helpers/ReduxHelpers";
 import getStyles from "../Styles/SignupStyles"
 import { Colors, Fonts, Theme } from '../../../Themes'
 import { TextNames } from "../../../I18n/languages/Names";
+import { LoadingActions } from "../../../Redux/LoadingRedux";
 
 class SignupScreen extends Component {
 
@@ -65,12 +66,15 @@ class SignupScreen extends Component {
         let cause = getUpdateCause(prevProps.auth, this.props.auth, "user", data => data != null);
         switch (cause) {
             case UpdateCauses.fetching:
+                this.props.setLoadingMode(true)
                 break;
             case UpdateCauses.fail:
                 this.showErrorMessage(this.props.auth.error)
+                this.props.setLoadingMode(false)
                 break;
             case UpdateCauses.success:
                 this.props.navigation.navigate("SignedIn");
+                this.props.setLoadingMode(false)
                 break;
             default:
                 break;
@@ -291,11 +295,12 @@ class SignupScreen extends Component {
 }
 
 const mapStateToProps = state => ({
-    auth: state.auth
+    auth: state.auth,
 })
 
 const mapDispatchToProps = dispatch => ({
-    createUserRequest: ({ email, password }) => dispatch(AuthActions.createUserRequest({ email, password }))
+    createUserRequest: ({ email, password }) => dispatch(AuthActions.createUserRequest({ email, password })),
+    setLoadingMode: isLoading => dispatch(LoadingActions.setLoadingMode(isLoading))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignupScreen);

@@ -33,7 +33,8 @@ export const lightThemeColors = {
   textOnLightBackground_dm: constantColors.textOnLightBackground,
   textOnDarkBackground_dm: constantColors.textOnDarkBackground,
   lightBackground_dm: constantColors.lightBackground,
-  darkBackground_dm: constantColors.darkBackground
+  darkBackground_dm: constantColors.darkBackground,
+  overlayColor: "rgba(0,0,0,0.75)"
 }
 
 export const darkThemeColors = {
@@ -48,7 +49,8 @@ export const darkThemeColors = {
   textOnLightBackground_dm: constantColors.textOnDarkBackground,
   textOnDarkBackground_dm: constantColors.textOnLightBackground,
   lightBackground_dm: constantColors.darkBackground,
-  darkBackground_dm: constantColors.lightBackground
+  darkBackground_dm: constantColors.lightBackground,
+  overlayColor: "rgba(255,255,255,0.75)"
 }
 
 
@@ -78,4 +80,5 @@ export default Colors = {
   textOnDarkBackground_dm: "textOnDarkBackground_dm",
   lightBackground_dm: "lightBackground_dm",
   darkBackground_dm: "darkBackground_dm",
+  overlayColor: "overlayColor",
 }

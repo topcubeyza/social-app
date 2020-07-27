@@ -12,6 +12,9 @@ import ReduxPersist from '../../Config/ReduxPersist';
 import ThemeManager from "../../Themes/ThemeManager"
 import LocalizationManager from "../../I18n/LocalizationManager"
 
+// Components
+import LoadingOverlay from "../Main/LoadingOverlay"
+
 // Actions
 import { AuthActions } from "../Authorization/Redux/AuthRedux"
 
@@ -68,6 +71,7 @@ class RootContainer extends Component {
     return (
       <ThemeManager>
         <LocalizationManager>
+          <LoadingOverlay />
           <ReduxNavigation />
         </LocalizationManager>
       </ThemeManager>
