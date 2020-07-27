@@ -34,10 +34,10 @@ class RootContainer extends Component {
     if (!ReduxPersist.active) {
       this.props.startup();
     }
-    
+
     this.netInfoUnsubscribe = NetInfo.addEventListener(this.onNetStateChange);
     this.firebaseAuthUnsubscribe = auth().onAuthStateChanged(this.onAuthStateChange);
-    
+
   }
 
   componentWillUnmount = () => {
@@ -65,13 +65,13 @@ class RootContainer extends Component {
     if (isInternetAvailable === false) {
       return null;
     }
-    return 
-    <ThemeManager>
-      <LocalizationManager>
-      <ReduxNavigation />
-            </LocalizationManager>
-          </ThemeManager>
-    </>;
+    return (
+      <ThemeManager>
+        <LocalizationManager>
+          <ReduxNavigation />
+        </LocalizationManager>
+      </ThemeManager>
+    )
   }
 }
 
