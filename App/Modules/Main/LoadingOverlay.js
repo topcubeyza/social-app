@@ -20,6 +20,7 @@ class LoadingOverlay extends Component {
 
         return (
             <LottieView 
+            speed={2}
             source={Theme.i(Images.loadingAnimation)} 
             style={styles.lottie}
             autoPlay 

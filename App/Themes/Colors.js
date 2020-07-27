@@ -34,7 +34,7 @@ export const lightThemeColors = {
   textOnDarkBackground_dm: constantColors.textOnDarkBackground,
   lightBackground_dm: constantColors.lightBackground,
   darkBackground_dm: constantColors.darkBackground,
-  overlayColor: "rgba(0,0,0,0.75)"
+  overlayColor: "rgba(0,0,0,0.5)"
 }
 
 export const darkThemeColors = {
@@ -50,7 +50,7 @@ export const darkThemeColors = {
   textOnDarkBackground_dm: constantColors.textOnLightBackground,
   lightBackground_dm: constantColors.darkBackground,
   darkBackground_dm: constantColors.lightBackground,
-  overlayColor: "rgba(255,255,255,0.75)"
+  overlayColor: "rgba(255,255,255,0.25)"
 }
 
 
