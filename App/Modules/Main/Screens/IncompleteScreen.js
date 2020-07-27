@@ -33,7 +33,7 @@ class IncompleteScreen extends Component {
         return (
             <SafeAreaView style={styles.container}>
                 <View style={styles.imageContainer}>
-                    <Image style={styles.image} source={Images.underConstruction} />
+                    <Image style={styles.image} source={Theme.i(Images.underConstruction)} />
                 </View>
                 <View style={styles.textsContainer}>
                     <Text style={styles.helloText}>Hey, curious!</Text>
