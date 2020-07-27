@@ -1,7 +1,7 @@
 import { takeEvery, takeLatest, take, call, fork, put } from "redux-saga/effects"
 import { AuthTypes, AuthActions } from "../Redux/AuthRedux"
 
-function* signIn(api) {
+function* signIn(api, action) {
     try {
         let { email, password } = action.payload;
         yield call(api.signIn, {email, password});
