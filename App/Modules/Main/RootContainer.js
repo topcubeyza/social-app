@@ -9,6 +9,8 @@ import { StatusBar } from 'react-native';
 import ReduxNavigation from '../../Navigation/ReduxNavigation';
 import StartupActions from '../../Redux/StartupRedux';
 import ReduxPersist from '../../Config/ReduxPersist';
+import ThemeManager from "../../Themes/ThemeManager"
+import LocalizationManager from "../../I18n/LocalizationManager"
 
 // Actions
 import { AuthActions } from "../Authorization/Redux/AuthRedux"
@@ -63,8 +65,12 @@ class RootContainer extends Component {
     if (isInternetAvailable === false) {
       return null;
     }
-    return <>
+    return 
+    <ThemeManager>
+      <LocalizationManager>
       <ReduxNavigation />
+            </LocalizationManager>
+          </ThemeManager>
     </>;
   }
 }

@@ -1,7 +1,7 @@
 // leave off @2x/@3x
 
 const imageFileLocation = "../Assets/Images/"
-const animationFileLocation = "../Assets/Lottie"
+const animationFileLocation = "../Assets/Lottie/"
 
 const constantImages = {
   splashTransparent: require(imageFileLocation + "splash-transparent.png"),

@@ -17,8 +17,6 @@ import '../../Config';
 import DebugConfig from "../../Config/DebugConfig"
 import createStore from '../../Redux';
 import RootContainer from './RootContainer';
-import ThemeManager from "../../Themes/ThemeManager"
-import LocalizationManager from "../../I18n/LocalizationManager"
 
 
 const { store, persistor } = createStore();
@@ -41,11 +39,7 @@ class App extends Component {
     return (
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
-          <ThemeManager>
-            <LocalizationManager>
               <RootContainer />
-            </LocalizationManager>
-          </ThemeManager>
         </PersistGate>
       </Provider>
     )
