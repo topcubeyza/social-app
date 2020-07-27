@@ -144,24 +144,6 @@ class SignupScreen extends Component {
 
     // *** EVENT HANDLERS *** //
 
-    onChangeText_Email = (text) => {
-        this.setState({
-            email: text
-        })
-    }
-
-    onChangeText_Password = (text) => {
-        this.setState({
-            password: text
-        })
-    }
-
-    onChangeText_PasswordConfirm = (text) => {
-        this.setState({
-            passwordConfirm: text
-        })
-    }
-
     onChangeText = (text, key) => {
         let newState = {}
         newState[key] = text;
@@ -236,7 +218,6 @@ class SignupScreen extends Component {
     }
 
     render() {
-        let signupButtonDisabled = !checkCredentials(this.state).ok
         let styles = getStyles(Theme.c)
         return (
             <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS == "ios" ? "padding" : null}>
@@ -247,14 +228,14 @@ class SignupScreen extends Component {
                             {/* HEADER */}
                             <View style={styles.headerContainer}>
                                 <Animated.Text
-                                    style={[styles.headerText, { fontSize: this.state.headerFontSize }]}>Signup</Animated.Text>
+                                    style={[styles.headerText, { fontSize: this.state.headerFontSize }]}>{I18n.t(TextNames.signup)}</Animated.Text>
                             </View>
 
                             {/* CREDENTIAL INPUTS */}
                             <View style={styles.textinputsContainer}>
-                                {this.renderTextInput(styles, "email", I18n.t(TextNames.username), "email")}
-                                {this.renderTextInput(styles, "password", "Password", "password")}
-                                {this.renderTextInput(styles, "passwordConfirm", "Confirm Password", "password")}
+                                {this.renderTextInput(styles, "email", I18n.t(TextNames.email), "email")}
+                                {this.renderTextInput(styles, "password", I18n.t(TextNames.password), "password")}
+                                {this.renderTextInput(styles, "passwordConfirm", I18n.t(TextNames.confirmPassword), "password")}
 
                                 {/* ERROR MESSAGE */}
                                 <View style={styles.errorTextContainer}>
@@ -269,9 +250,9 @@ class SignupScreen extends Component {
 
                         {/* BUTTONS */}
                         <SafeAreaView style={styles.bottomContainer}>
-                            <View style={styles.signupButtonContainer}>
+                            <View style={styles.bottomButtonContainer}>
                                 <Button
-                                    text="Sign up"
+                                    text={I18n.t(TextNames.signup)}
                                     textColor={Theme.c(Colors.textOnBrandColor)}
                                     onPress={this.onPress_Signup}
                                     backgroundColor={Theme.c(Colors.brandColor)}
@@ -279,7 +260,7 @@ class SignupScreen extends Component {
                             </View>
                             <View style={styles.transparentButtonContainer}>
                                 <Button
-                                    text="Login instead?"
+                                    text={I18n.t(TextNames.loginInstead)}
                                     textColor={Theme.c(Colors.midLightGrey_dm)}
                                     onPress={this.onPress_LoginInstead}
                                     backgroundColor={"transparent"}

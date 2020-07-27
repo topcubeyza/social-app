@@ -13,7 +13,7 @@ const getStyles = c => StyleSheet.create({
     bottomContainer: {
         backgroundColor: c(Colors.lightGrey_dm),
     },
-    signupButtonContainer: {
+    bottomButtonContainer: {
         paddingTop: Metrics.width * 0.06,
         paddingHorizontal: Metrics.marginHorizontalLarge
     },

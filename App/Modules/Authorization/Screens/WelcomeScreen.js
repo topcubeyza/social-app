@@ -41,6 +41,10 @@ class WelcomeScreen extends Component {
         this.props.navigation.navigate("Incomplete")
     }
 
+    onPress_LoginWithEmail = () => {
+        this.props.navigation.navigate("LoginWithEmail")
+    }
+
     onPress_Signup = () => {
         this.props.navigation.navigate("Signup")
     }
@@ -64,7 +68,7 @@ class WelcomeScreen extends Component {
                 <SafeAreaView style={styles.topContainer}>
                     <View style={styles.welcomeContainer}>
                         <Text style={styles.bemagineText}>Bemagine</Text>
-                        <Text style={styles.subText}>Where imagination meets hardwork</Text>
+                        <Text style={styles.subText}>{I18n.t(TextNames.welcomeMessage)}</Text>
                     </View>
                     <View style={styles.loginButtonsContainer}>
                         <View style={styles.loginButtonContainer}>
@@ -79,16 +83,16 @@ class WelcomeScreen extends Component {
                             <Button
                                 text={I18n.t(TextNames.loginWithEmail)}
                                 textColor={Theme.c(Colors.textOnBrandColor)}
-                                onPress={this.onPress_Login}
+                                onPress={this.onPress_LoginWithEmail}
                                 backgroundColor={Theme.c(Colors.brandColor)}
                             />
                         </View>
                     </View>
                 </SafeAreaView>
                 <SafeAreaView style={styles.bottomContainer}>
-                    <View style={styles.signupButtonContainer}>
+                    <View style={styles.bottomButtonContainer}>
                         <Button
-                            text="Sign up"
+                            text={I18n.t(TextNames.signup)}
                             textColor={Theme.c(Colors.textOnLightBackground_dm)}
                             onPress={this.onPress_Signup}
                             backgroundColor={Theme.c(Colors.lightBackground_dm)}
@@ -96,7 +100,7 @@ class WelcomeScreen extends Component {
                     </View>
                     <View style={styles.transparentButtonContainer}>
                         <Button
-                            text="Forgot Password?"
+                            text={I18n.t(TextNames.forgotPassword)}
                             textColor={Theme.c(Colors.midLightGrey_dm)}
                             onPress={this.onPress_ForgotPassword}
                             backgroundColor={"transparent"}

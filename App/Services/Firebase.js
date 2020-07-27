@@ -1,42 +1,56 @@
 import auth from "@react-native-firebase/auth"
+import I18n from "react-native-i18n"
+import { TextNames } from "../I18n/languages/Names"
 
-const signIn = ({email, password}) => {
-    
+const signIn = async ({ email, password }) => {
+  await auth()
+    .signInWithEmailAndPassword(email, password)
+    .catch(error => {
+      if (error.code === 'auth/invalid-email') {
+        throw I18n.t(TextNames.errorMessages.invalidEmail)
+      }
+
+      if (error.code === 'auth/user-not-found') {
+        throw I18n.t(TextNames.errorMessages.userNotFound)
+      }
+
+      if (error.code === 'auth/wrong-password') {
+        throw I18n.t(TextNames.errorMessages.wrongPassword)
+      }
+
+      throw I18n.t(TextNames.genericError)
+    })
 }
 
-const createUser = async ({email, password}) => {
-    await auth()
-        .createUserWithEmailAndPassword(email, password)
-        .then(() => {
-            console.log('User account created & signed in!');
-          })
-        .catch(error => {
-            if (error.code === 'auth/email-already-in-use') {
-                throw 'That email address is already in use!'
-              }
-          
-              if (error.code === 'auth/invalid-email') {
-                throw 'That email address is invalid!'
-              }
+const createUser = async ({ email, password }) => {
+  await auth()
+    .createUserWithEmailAndPassword(email, password)
+    .catch(error => {
+      if (error.code === 'auth/email-already-in-use') {
+        throw I18n.t(TextNames.errorMessages.emailAddressAlreadyInUse)
+      }
 
-              if (error.code === 'auth/weak-password') {
-                throw 'Password is too weak!'
-              }
-        })
+      if (error.code === 'auth/invalid-email') {
+        throw I18n.t(TextNames.errorMessages.invalidEmail)
+      }
+
+      if (error.code === 'auth/weak-password') {
+        throw I18n.t(TextNames.errorMessages.weakPassword)
+      }
+      
+      throw I18n.t(TextNames.genericError)
+    })
 }
 
 const signOut = async () => {
   await auth().signOut()
-    .then(() => {
-      console.log('User signed out!')
-    })
     .catch(error => {
-      console.log("signout error: ", error)
+      throw I18n.t(TextNames.genericError)
     })
 }
 
 export default {
-    signIn,
-    createUser,
-    signOut
+  signIn,
+  createUser,
+  signOut
 }
