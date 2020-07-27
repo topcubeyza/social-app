@@ -19,7 +19,7 @@ const getStyles = c => StyleSheet.create({
         paddingTop: Metrics.marginVertical
     },
     errorTextContainer:{
-        height: Metrics.buttonHeight / 2,
+        height: Metrics.buttonHeight,
         paddingHorizontal: Metrics.marginHorizontalLarge,
         justifyContent: "flex-end"
     } ,
