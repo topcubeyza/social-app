@@ -69,11 +69,11 @@ class LoginWithEmailScreen extends Component {
                 break;
             case UpdateCauses.fail:
                 this.showErrorMessage(this.props.auth.error)
-                this.props.setLoadingMode(false)
+                this.turnOffLoadingMode()
                 break;
             case UpdateCauses.success:
                 this.props.navigation.navigate("SignedIn");
-                this.props.setLoadingMode(false)
+                this.turnOffLoadingMode()
                 break;
             default:
                 break;
@@ -115,13 +115,7 @@ class LoginWithEmailScreen extends Component {
                 }
             })
 
-            Animated.timing(
-                this.state.headerFontSize,
-                {
-                    toValue: Fonts.size.twenty * 2,
-                    duration: 300
-                }
-            ).start()
+            this.increaseHeaderFontSize()
         }
     }
 
@@ -144,6 +138,31 @@ class LoginWithEmailScreen extends Component {
                 })
             }, 3000);
         })
+    }
+
+    increaseHeaderFontSize = () => {
+        Animated.timing(
+            this.state.headerFontSize,
+            {
+                toValue: Fonts.size.twenty * 2,
+                duration: 300
+            }
+        ).start()
+    }
+
+    decreaseHeaderFontSize = () => {
+        Animated.timing(
+            this.state.headerFontSize,
+            {
+                toValue: Fonts.size.twenty * 1.5,
+                duration: 300
+            }
+        ).start()
+    }
+
+    turnOffLoadingMode = () => {
+        this.props.setLoadingMode(false)
+        this.decreaseHeaderFontSize()
     }
 
     // *** EVENT HANDLERS *** //
@@ -183,13 +202,7 @@ class LoginWithEmailScreen extends Component {
         // If keyboard was not previously visible and it will be shown just in a moment,
         // Shrink the header with animation
         if (!this.keyboardVisible) {
-            Animated.timing(
-                this.state.headerFontSize,
-                {
-                    toValue: Fonts.size.twenty * 1.5,
-                    duration: 300
-                }
-            ).start()
+            this.decreaseHeaderFontSize()
         }
 
     }
