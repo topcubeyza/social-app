@@ -70,7 +70,7 @@ class AuthScreensWrapper extends Component {
                 this.turnOffLoadingMode()
                 break;
             case UpdateCauses.success:
-                this.props.navigation.navigate("SignedIn");
+                this.props.onRequestSuccess();
                 this.turnOffLoadingMode()
                 break;
             default:
@@ -212,6 +212,7 @@ class AuthScreensWrapper extends Component {
             return (
                 <AuthInputsComponent
                     {...value}
+                    autoFocus={index==0}
                     key={value.inputKey}
                     reference={ref => this.textinputs[value.inputKey] = ref}
                     onFocus={this.onFocus_TextInput}

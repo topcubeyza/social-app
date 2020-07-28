@@ -23,6 +23,10 @@ class LoginWithEmailScreen extends Component {
         this.props.signInRequest({email, password})
     }
 
+    onLoginSuccess = () => {
+        this.props.navigation.navigate("SignedIn");
+    }
+
     onPress_Back = () => {
         this.props.navigation.navigate("Welcome");
     }
@@ -41,7 +45,7 @@ class LoginWithEmailScreen extends Component {
                 transparentButtonText={I18n.t(TextNames.goBack)}
                 onPress_TransparentButton={this.onPress_Back}
                 request={this.loginRequest}
-                navigation={this.props.navigation}
+                onRequestSuccess={this.onLoginSuccess}
             />
         )
     }

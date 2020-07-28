@@ -18,6 +18,7 @@ export const TextNames = {
     pageUnderConstruction: "pageUnderConstruction",
     exploreApp: "exploreApp",
     displayName: "displayName",
+    sendLink: "sendLink",
     errorMessages: {
         fillAllFields: "fillAllFields",
         enterValidEmail: "enterValidEmail",

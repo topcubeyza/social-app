@@ -15,16 +15,16 @@ import { AuthActions } from "../Redux/AuthRedux"
 // Styles
 import { TextNames } from "../../../I18n/languages/Names";
 
-class SignupScreen extends Component {
+class SendLinkScreen extends Component {
 
     // *** EVENT HANDLERS *** //
 
-    signupRequest = ({email}) => {
+    sendLinkRequest = ({email}) => {
         this.props.sendLinkRequest({ email })
     }
 
-    onSignupSuccess = () => {
-        this.props.navigation.navigate("SignedIn");
+    onSendLinkSuccess = () => {
+        
     }
 
     onPress_LoginInstead = () => {
@@ -38,24 +38,25 @@ class SignupScreen extends Component {
             <AuthScreensWrapper
                 headerText={I18n.t(TextNames.signup)}
                 textInputsParams={[
-                    { inputKey: "displayName", placeholder: I18n.t(TextNames.displayName), type: "text" },
                     { inputKey: "email", placeholder: I18n.t(TextNames.email), type: "email" },
-                    { inputKey: "password", placeholder: I18n.t(TextNames.password), type: "password" },
-                    { inputKey: "passwordConfirm", placeholder: I18n.t(TextNames.confirmPassword), type: "password" },
                 ]}
-                topButtonText={I18n.t(TextNames.signup)}
-                transparentButtonText={""}
-                onPress_TransparentButton={() => {}}
-                request={this.signupRequest}
-                onRequestSuccess={this.onSignupSuccess}
+                topButtonText={I18n.t(TextNames.sendLink)}
+                transparentButtonText={I18n.t(TextNames.loginInstead)}
+                onPress_TransparentButton={this.onPress_LoginInstead}
+                request={this.sendLinkRequest}
+                onRequestSuccess={this.onSendLinkSuccess}
             />
         )
     }
 
 }
 
+const mapStateToProps = state => ({
+    auth: state.auth
+})
+
 const mapDispatchToProps = dispatch => ({
     sendLinkRequest: ({ email }) => dispatch(AuthActions.sendLinkRequest({ email })),
 })
 
-export default connect(null, mapDispatchToProps)(SignupScreen);
+export default connect(null, mapDispatchToProps)(SendLinkScreen);

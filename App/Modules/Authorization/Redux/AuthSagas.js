@@ -16,9 +16,10 @@ function* watchSignInRequest(api) {
 
 function* createUser(api, action) {
     try {
-        let { email, password } = action.payload;
-        yield call(api.createUser, {email, password});
-        yield;
+        let { email } = action.payload;
+        yield put(AuthActions.candidateEmail({email}));
+        yield call(api.sendLink, {email});
+        yield put(AuthActions.candidateEmail({email}));
     } catch (error) {
         yield put(AuthActions.failure({error}))
     }
