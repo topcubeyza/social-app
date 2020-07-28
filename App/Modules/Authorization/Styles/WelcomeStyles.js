@@ -4,10 +4,10 @@ import getCommonStyles from "./CommonStyles"
 
 const getStyles = c => StyleSheet.create({
     ...getCommonStyles(c),
-    loginButtonsContainer: {
+    buttonsContainer: {
         paddingVertical: Metrics.width * 0.04,
     },
-    loginButtonContainer: {
+    buttonContainer: {
         paddingVertical: Metrics.width * 0.02,
         paddingHorizontal: Metrics.marginHorizontalLarge
     },
@@ -21,11 +21,6 @@ const getStyles = c => StyleSheet.create({
         alignItems: "center",
         paddingVertical: Metrics.marginVertical,
         borderRadius: Metrics.borderRadiusStandard,
-    },
-    welcomeText: {
-        fontFamily: Fonts.type.brand,
-        fontSize: Fonts.size.twenty * 2,
-        marginBottom: Metrics.width * 0.01,
     },
     subText: {
         fontFamily: Fonts.type.light,

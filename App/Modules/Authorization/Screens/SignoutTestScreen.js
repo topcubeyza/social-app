@@ -21,7 +21,7 @@ import { AuthActions } from "../Redux/AuthRedux"
 import { getUpdateCause, UpdateCauses } from "../../../Helpers/ReduxHelpers";
 
 // Styles
-import getStyles from "../Styles/LoginStyles"
+import getStyles from "../Styles/WelcomeStyles"
 import { Colors, Theme } from '../../../Themes'
 import { TextNames } from "../../../I18n/languages/Names";
 
