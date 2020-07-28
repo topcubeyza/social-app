@@ -9,13 +9,11 @@ const getStyles = c => StyleSheet.create({
     },
     buttonContainer: {
         paddingVertical: Metrics.width * 0.02,
-        paddingHorizontal: Metrics.marginHorizontalLarge
     },
     welcomeContainer: {
         flexGrow: 1,
         justifyContent: "center",
         alignItems: "center",
-        paddingHorizontal: Metrics.marginHorizontalLarge
     },
     welcomeTextsContainer: {
         alignItems: "center",

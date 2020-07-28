@@ -15,10 +15,11 @@ import { Colors, Theme } from '../../../Themes'
 
 const AuthInputsComponent = (props) => {
         let styles = getStyles(Theme.c)
-        let { reference, inputKey, onFocus, placeholder, value, onChangeText, type} = props;
+        let { reference, inputKey, onFocus, placeholder, value, onChangeText, type, autoFocus } = props;
         return (
             <View style={styles.textinputContainer}>
                 <SingleLineInput
+                    autoFocus={autoFocus}
                     ref={reference}
                     keyboardType={type == "email" ? "email-address" : "default"}
                     autoCapitalize= {(type == "email" || type == "password") ? "none" : null}
