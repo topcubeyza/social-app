@@ -48,6 +48,8 @@ class SignupScreen extends Component {
                 onPress_TransparentButton={() => {}}
                 request={this.signupRequest}
                 onRequestSuccess={this.onSignupSuccess}
+                dataFieldName="user"
+                dataFieldSuccess={data => data && !validate.isEmpty(data.displayName)}
             />
         )
     }

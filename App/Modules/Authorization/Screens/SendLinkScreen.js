@@ -30,12 +30,15 @@ class SendLinkScreen extends Component {
     }
 
     onSendLinkSuccess = () => {
+        this.props.navigation.navigate("Welcome")
         let alert = this.context;
         alert.show({
             title: "Bağlantı Gönderildi",
             message: "Size bir bağlantı gönderildi. Ona tıklayın.",
             buttons: [
-                {text: "OK", onPress: alert.close},
+                {text: "OK", onPress: () => {
+                    alert.close();
+                }},
             ]
         })
     }
@@ -58,6 +61,8 @@ class SendLinkScreen extends Component {
                 onPress_TransparentButton={this.onPress_LoginInstead}
                 request={this.sendLinkRequest}
                 onRequestSuccess={this.onSendLinkSuccess}
+                dataFieldName={"unimportant"}
+                isDataValid={() => true}
             />
         )
     }

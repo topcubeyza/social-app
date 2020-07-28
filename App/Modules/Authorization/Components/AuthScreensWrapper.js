@@ -60,7 +60,7 @@ class AuthScreensWrapper extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        let cause = getUpdateCause(prevProps.auth, this.props.auth, "user", data => data != null);
+        let cause = getUpdateCause(prevProps.auth, this.props.auth, this.props.dataFieldName, this.props.isDataValid);  
         switch (cause) {
             case UpdateCauses.fetching:
                 this.props.setLoadingMode(true)

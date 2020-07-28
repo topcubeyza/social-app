@@ -111,5 +111,6 @@ export const AuthReducer = createReducer(INITIAL_STATE, {
     [Types.SIGN_OUT_REQUEST]: request,
     [Types.AUTH_STATE_CHANGE]: success,
     [Types.FAILURE]: failure,
-    [Types.CANDIDATE_EMAIL]: candidateEmail
+    [Types.CANDIDATE_EMAIL]: candidateEmail,
+    [Types.SEND_LINK_SUCCESS]: sendLinkSuccess,
 })

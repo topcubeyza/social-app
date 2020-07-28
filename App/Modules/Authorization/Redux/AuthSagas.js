@@ -19,6 +19,7 @@ function* sendLink(api, action) {
         let { email } = action.payload;
         yield put(AuthActions.candidateEmail({email}));
         yield call(api.sendLink, {email});
+        yield put(AuthActions.sendLinkSuccess())
     } catch (error) {
         yield put(AuthActions.failure({error}))
     }

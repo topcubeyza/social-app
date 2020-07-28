@@ -22,29 +22,25 @@ const signIn = async ({ email, password }) => {
     })
 }
 
-const sendLink = ({ email }) => {
-  debugger;
+const sendLink = async ({ email }) => {
   let actionCodeSettings = {
     url: 'https://bemagine-1c194.firebaseapp.com',
     // This must be true.
     handleCodeInApp: true,
     dynamicLinkDomain: 'bemagine.page.link'
   }
-  try {
-    auth()
+    return await auth()
       .sendSignInLinkToEmail(email, actionCodeSettings)
       .then(response => {
         debugger;
         console.log(response)
+        return;
       })
       .catch(error => {
         debugger;
         console.log(error.code, error.message)
+        throw error.message
       })
-  } catch (error) {
-    debugger;
-    console.log(error)
-  }
 }
 
 const createUser = async ({ email, password }) => {

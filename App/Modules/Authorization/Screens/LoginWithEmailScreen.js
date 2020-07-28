@@ -3,6 +3,7 @@ import React, { Component } from "react"
 import { connect } from "react-redux";
 import { duration } from "moment";
 import I18n from "react-native-i18n";
+import validate from "validate.js"
 
 // RN Components
 
@@ -46,6 +47,8 @@ class LoginWithEmailScreen extends Component {
                 onPress_TransparentButton={this.onPress_Back}
                 request={this.loginRequest}
                 onRequestSuccess={this.onLoginSuccess}
+                dataFieldName="user"
+                isDataValid={data => data && !validate.isEmpty(data.displayName)}
             />
         )
     }
