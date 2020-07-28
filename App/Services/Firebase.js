@@ -22,6 +22,31 @@ const signIn = async ({ email, password }) => {
     })
 }
 
+const sendLink = ({ email }) => {
+  debugger;
+  let actionCodeSettings = {
+    url: 'https://bemagine-1c194.firebaseapp.com',
+    // This must be true.
+    handleCodeInApp: true,
+    dynamicLinkDomain: 'bemagine.page.link'
+  }
+  try {
+    auth()
+      .sendSignInLinkToEmail(email, actionCodeSettings)
+      .then(response => {
+        debugger;
+        console.log(response)
+      })
+      .catch(error => {
+        debugger;
+        console.log(error.code, error.message)
+      })
+  } catch (error) {
+    debugger;
+    console.log(error)
+  }
+}
+
 const createUser = async ({ email, password }) => {
   await auth()
     .createUserWithEmailAndPassword(email, password)
@@ -37,7 +62,7 @@ const createUser = async ({ email, password }) => {
       if (error.code === 'auth/weak-password') {
         throw I18n.t(TextNames.errorMessages.weakPassword)
       }
-      
+
       throw I18n.t(TextNames.genericError)
     })
 }
@@ -52,5 +77,6 @@ const signOut = async () => {
 export default {
   signIn,
   createUser,
-  signOut
+  signOut,
+  sendLink
 }
