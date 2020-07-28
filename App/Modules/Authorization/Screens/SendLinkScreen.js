@@ -12,10 +12,16 @@ import AuthScreensWrapper from "../Components/AuthScreensWrapper"
 // Actions
 import { AuthActions } from "../Redux/AuthRedux"
 
+// Utils
+import useAlert from "../../../Helpers/UseAlert"
+import { alertContext } from "../../Main/AlertProvider";
+
 // Styles
 import { TextNames } from "../../../I18n/languages/Names";
 
 class SendLinkScreen extends Component {
+
+    static contextType = alertContext
 
     // *** EVENT HANDLERS *** //
 
@@ -24,7 +30,14 @@ class SendLinkScreen extends Component {
     }
 
     onSendLinkSuccess = () => {
-        
+        let alert = this.context;
+        alert.show({
+            title: "Bağlantı Gönderildi",
+            message: "Size bir bağlantı gönderildi. Ona tıklayın.",
+            buttons: [
+                {text: "OK", onPress: alert.close},
+            ]
+        })
     }
 
     onPress_LoginInstead = () => {

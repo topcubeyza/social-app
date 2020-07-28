@@ -47,7 +47,7 @@ class WelcomeScreen extends Component {
     }
 
     onPress_Signup = () => {
-        this.props.navigation.navigate("Signup")
+        this.props.navigation.navigate("SendLink")
     }
 
     onPress_ForgotPassword = () => {

@@ -11,6 +11,7 @@ import StartupActions from '../../Redux/StartupRedux';
 import ReduxPersist from '../../Config/ReduxPersist';
 import ThemeManager from "../../Themes/ThemeManager"
 import LocalizationManager from "../../I18n/LocalizationManager"
+import AlertProvider from './AlertProvider';
 
 // Components
 import LoadingOverlay from "../Main/LoadingOverlay"
@@ -71,8 +72,10 @@ class RootContainer extends Component {
     return (
       <ThemeManager>
         <LocalizationManager>
-          <LoadingOverlay />
-          <ReduxNavigation />
+          <AlertProvider>
+            <LoadingOverlay />
+            <ReduxNavigation />
+          </AlertProvider>
         </LocalizationManager>
       </ThemeManager>
     )

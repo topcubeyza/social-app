@@ -14,19 +14,18 @@ function* watchSignInRequest(api) {
     yield takeLatest(AuthTypes.SIGN_IN_REQUEST, signIn, api)
 }
 
-function* createUser(api, action) {
+function* sendLink(api, action) {
     try {
         let { email } = action.payload;
         yield put(AuthActions.candidateEmail({email}));
         yield call(api.sendLink, {email});
-        yield put(AuthActions.candidateEmail({email}));
     } catch (error) {
         yield put(AuthActions.failure({error}))
     }
 }
 
-function* watchCreateUserRequest(api) {
-    yield takeLatest(AuthTypes.CREATE_USER_REQUEST, createUser, api)
+function* watchSendLinkRequest(api) {
+    yield takeLatest(AuthTypes.SEND_LINK_REQUEST, sendLink, api)
 }
 
 function* signOut(api) {
@@ -46,7 +45,7 @@ function* watchSignOutRequest(api) {
 
 const authSagas = (api) => [
     fork(watchSignInRequest, api),
-    fork(watchCreateUserRequest, api),
+    fork(watchSendLinkRequest, api),
     fork(watchSignOutRequest, api)
 ]
 
