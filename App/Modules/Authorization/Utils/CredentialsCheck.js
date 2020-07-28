@@ -13,8 +13,8 @@ const emailConstraint = {
 export default ({email, password, passwordConfirm, displayName}) => {
     
     if (
-        _.isEmpty(email) || 
-        _.isEmpty(password) || 
+        (email !== undefined && _.isEmpty(email)) || 
+        (password !== undefined && _.isEmpty(password)) || 
         (passwordConfirm !== undefined && _.isEmpty(passwordConfirm)) || 
         (displayName !== undefined && _.isEmpty(displayName))) 
     {
