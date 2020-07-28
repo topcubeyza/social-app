@@ -8,14 +8,15 @@ const getStyles = c => StyleSheet.create({
     },
     topContainer: {
         backgroundColor: c(Colors.lightBackground_dm),
-        flexGrow: 1
+        flexGrow: 1,
+        justifyContent: "space-between",
+        marginHorizontal: Metrics.marginHorizontalLarge
     },
     headerContainer: {
-        flexGrow: 1,
+        flex:0.25,
         justifyContent: "center",
         alignItems: "flex-start",
-        paddingHorizontal: Metrics.marginHorizontalLarge,
-        paddingTop: Metrics.marginVertical
+        paddingVertical: Metrics.marginHorizontalLarge,
     },
     headerText: {
         fontFamily: Fonts.type.brand,
@@ -23,22 +24,22 @@ const getStyles = c => StyleSheet.create({
         color: c(Colors.brandColor),
     },
     textinputsContainer: {
-        paddingVertical: Metrics.width * 0.04,
+        marginBottom: 1
     },
     textinputContainer: {
-        paddingVertical: Metrics.width * 0.02,
-        paddingHorizontal: Metrics.marginHorizontalLarge
+        paddingTop: Metrics.width * 0.02,
     },
     errorTextContainer:{
-        height: Metrics.buttonHeight,
-        paddingHorizontal: Metrics.marginHorizontalLarge,
-        justifyContent: "flex-end"
+        height: Metrics.buttonHeight / 1.25,
+        paddingHorizontal: Metrics.marginHorizontalLarge,        
+        justifyContent: "flex-end",
+        paddingBottom: Metrics.width * 0.02,
+        backgroundColor: c(Colors.lightBackground_dm)
     } ,
     errorText: {
         fontFamily: Fonts.type.light,
         fontSize: Fonts.size.fourteen,
         color: c(Colors.brandColor),
-        paddingHorizontal: 5,
     },
     bottomContainer: {
         backgroundColor: c(Colors.lightGrey_dm),

@@ -19,7 +19,7 @@ class SignupScreen extends Component {
 
     // *** EVENT HANDLERS *** //
 
-    signupRequest = (email, password) => {
+    signupRequest = ({email, password, displayName}) => {
         this.props.createUserRequest({ email, password })
     }
 
@@ -34,9 +34,10 @@ class SignupScreen extends Component {
             <AuthScreensWrapper
                 headerText={I18n.t(TextNames.signup)}
                 textInputsParams={[
+                    { inputKey: "displayName", placeholder: I18n.t(TextNames.displayName), type: "text" },
                     { inputKey: "email", placeholder: I18n.t(TextNames.email), type: "email" },
                     { inputKey: "password", placeholder: I18n.t(TextNames.password), type: "password" },
-                    { inputKey: "passwordConfirm", placeholder: I18n.t(TextNames.confirmPassword), type: "password" }
+                    { inputKey: "passwordConfirm", placeholder: I18n.t(TextNames.confirmPassword), type: "password" },
                 ]}
                 topButtonText={I18n.t(TextNames.signup)}
                 transparentButtonText={I18n.t(TextNames.loginInstead)}

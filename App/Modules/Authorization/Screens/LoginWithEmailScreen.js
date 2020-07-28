@@ -19,7 +19,7 @@ class LoginWithEmailScreen extends Component {
 
     // *** EVENT HANDLERS *** //
 
-    loginRequest = (email, password) => {
+    loginRequest = ({email, password}) => {
         this.props.signInRequest({email, password})
     }
 

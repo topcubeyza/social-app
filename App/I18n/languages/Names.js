@@ -17,6 +17,7 @@ export const TextNames = {
     heyCurious: "heyCurious",
     pageUnderConstruction: "pageUnderConstruction",
     exploreApp: "exploreApp",
+    displayName: "displayName",
     errorMessages: {
         fillAllFields: "fillAllFields",
         enterValidEmail: "enterValidEmail",

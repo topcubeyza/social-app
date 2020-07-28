@@ -40,7 +40,7 @@ class AuthScreensWrapper extends Component {
 
         this.state = {
             headerFontSize: new Animated.Value(Fonts.size.twenty * 2),
-            errorMessage: ""
+            errorMessage: "",
         }
 
         this.textinputs = {}
@@ -177,8 +177,7 @@ class AuthScreensWrapper extends Component {
             this.showErrorMessage(message)
         }
         else {
-            let {email, password} = this.state
-            this.props.request(email, password)
+            this.props.request(this.state)
         }
     }
 
@@ -211,7 +210,7 @@ class AuthScreensWrapper extends Component {
     renderTextInputs = () => {
         return this.props.textInputsParams.map((value, index) => {
             return (
-                <AuthInputsComponent 
+                <AuthInputsComponent
                     {...value}
                     key={value.inputKey}
                     reference={ref => this.textinputs[value.inputKey] = ref}
@@ -229,20 +228,20 @@ class AuthScreensWrapper extends Component {
             <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS == "ios" ? "padding" : null}>
                 <TouchableWithoutFeedback onPress={this.onPress_Background}>
                     <View style={styles.container}>
-                        <ScreenWrapper
-                            topContainerContent={
-                                <>
-                                    {/* HEADER */}
+                            <ScreenWrapper
+                                header={
                                     <View style={styles.headerContainer}>
+                                        {/* HEADER */}
                                         <Animated.Text
                                             style={[styles.headerText, { fontSize: this.state.headerFontSize }]}>{this.props.headerText}</Animated.Text>
                                     </View>
-
-                                    {/* CREDENTIAL INPUTS */}
-                                    <View style={styles.textinputsContainer}>
-                                        {this.renderTextInputs()}
-
-                                        {/* ERROR MESSAGE */}
+                                }
+                                topContainerContent={
+                                        <View style={styles.textinputsContainer} onStartShouldSetResponder={() => true}>
+                                            {this.renderTextInputs()}
+                                        </View>
+                                }
+                                errorContent={
                                         <View style={styles.errorTextContainer}>
                                             {
                                                 this.state.errorMessage ?
@@ -250,26 +249,24 @@ class AuthScreensWrapper extends Component {
                                                     : null
                                             }
                                         </View>
-                                    </View>
-                                </>
-                            }
-                            topButtonComponent={
-                                <Button
-                                    text={this.props.topButtonText}
-                                    textColor={Theme.c(Colors.textOnBrandColor)}
-                                    onPress={this.onPress_TopButton}
-                                    backgroundColor={Theme.c(Colors.brandColor)}
-                                />
-                            }
-                            transparentButtonComponent={
-                                <Button
-                                    text={this.props.transparentButtonText}
-                                    textColor={Theme.c(Colors.midLightGrey_dm)}
-                                    onPress={this.props.onPress_TransparentButton}
-                                    backgroundColor={"transparent"}
-                                />
-                            }
-                        />
+                                }
+                                topButtonComponent={
+                                    <Button
+                                        text={this.props.topButtonText}
+                                        textColor={Theme.c(Colors.textOnBrandColor)}
+                                        onPress={this.onPress_TopButton}
+                                        backgroundColor={Theme.c(Colors.brandColor)}
+                                    />
+                                }
+                                transparentButtonComponent={
+                                    <Button
+                                        text={this.props.transparentButtonText}
+                                        textColor={Theme.c(Colors.midLightGrey_dm)}
+                                        onPress={this.props.onPress_TransparentButton}
+                                        backgroundColor={"transparent"}
+                                    />
+                                }
+                            />
                     </View>
                 </TouchableWithoutFeedback>
             </KeyboardAvoidingView>

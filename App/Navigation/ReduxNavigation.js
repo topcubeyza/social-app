@@ -25,7 +25,7 @@ class ReduxNavigation extends Component {
 
         BackHandler.addEventListener('hardwareBackPress', () => {
             const { dispatch, nav } = this.props;
-            // if this is we are on the first screen, block back press
+            // if this is the first screen, block back press
             if (nav.routes.length == 1 && (nav.routes[0].routeName === "TestScreen")) {
                 return false;
             }

@@ -52,7 +52,7 @@ class SingleLineInput extends Component {
         return {
             container: [
                 styles.container,
-                { backgroundColor: props.backgroundColor }
+                props.backgroundColor ? { backgroundColor: props.backgroundColor }: null
             ],
             underlineContainer: [
                 styles.underlineContainer,

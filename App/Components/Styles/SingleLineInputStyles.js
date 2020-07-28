@@ -6,11 +6,13 @@ const getStyles = (c) => StyleSheet.create({
         height: Metrics.buttonHeight,
         //alignItems: "center",
         borderRadius: Metrics.borderRadiusStandard,
+        justifyContent: "flex-end",
     },
     input: {
         color: c(Colors.black_dm),
         fontFamily: Fonts.type.regular,
-        fontSize: Fonts.size.sixteen
+        fontSize: Fonts.size.sixteen,
+        marginBottom: 1
     },
     underlineContainer: {
         backgroundColor: "transparent",
