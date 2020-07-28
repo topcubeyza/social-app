@@ -10,9 +10,14 @@ const emailConstraint = {
     }
 };
 
-export default ({email, password, passwordConfirm}) => {
+export default ({email, password, passwordConfirm, displayName}) => {
     
-    if (_.isEmpty(email) || _.isEmpty(password) || (passwordConfirm !== undefined && _.isEmpty(passwordConfirm))) {
+    if (
+        _.isEmpty(email) || 
+        _.isEmpty(password) || 
+        (passwordConfirm !== undefined && _.isEmpty(passwordConfirm)) || 
+        (displayName !== undefined && _.isEmpty(displayName))) 
+    {
         return {
             ok: false,
             message: I18n.t(TextNames.errorMessages.fillAllFields)
