@@ -34,8 +34,8 @@ class LoginWithEmailScreen extends Component {
             <AuthScreensWrapper
                 headerText={I18n.t(TextNames.login)}
                 textInputsParams={[
-                    { key: "email", placeholder: I18n.t(TextNames.email), type: "email" },
-                    { key: "password", placeholder: I18n.t(TextNames.password), type: "password" },
+                    { inputKey: "email", placeholder: I18n.t(TextNames.email), type: "email" },
+                    { inputKey: "password", placeholder: I18n.t(TextNames.password), type: "password" },
                 ]}
                 topButtonText={I18n.t(TextNames.login)}
                 transparentButtonText={I18n.t(TextNames.goBack)}
