@@ -31,7 +31,7 @@ class WelcomeScreen extends Component {
     // *** LIFECYCLE METHODS *** //
 
     componentDidMount() {
-        if (this.props.auth.user && this.props.auth.user.displayName) {
+        if (this.props.auth.user && this.props.auth.user.emailVerified == true) {
             this.props.navigation.navigate("SignedIn")
         }
     }
