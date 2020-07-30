@@ -48,10 +48,6 @@ class WelcomeScreen extends Component {
         let colorMode = getColorMode(this.props.theme.themeMode)
 
         this.props.changeTheme(colorMode == 'dark' ? 'light' : 'dark')
-
-        let currentLocale = I18n.currentLocale().substring(0, 2)
-        let newLocale = currentLocale == LanguageCodes.english ? LanguageCodes.turkish : LanguageCodes.english
-        this.props.changeLocale(newLocale)
     }
 
     // *** RENDER METHODS *** //
@@ -96,7 +92,7 @@ class WelcomeScreen extends Component {
                 }
                 transparentButtonComponent={
                     <Button
-                        text={I18n.t(TextNames.forgotPassword)}
+                        text={I18n.t(TextNames.changeTheme)}
                         textColor={Theme.c(Colors.midLightGrey_dm)}
                         onPress={this.onPress_ForgotPassword}
                         backgroundColor={"transparent"}

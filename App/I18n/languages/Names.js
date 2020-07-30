@@ -19,6 +19,7 @@ export const TextNames = {
     exploreApp: "exploreApp",
     displayName: "displayName",
     sendLink: "sendLink",
+    changeTheme: "changeTheme",
     errorMessages: {
         fillAllFields: "fillAllFields",
         enterValidEmail: "enterValidEmail",

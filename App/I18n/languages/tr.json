@@ -19,6 +19,7 @@
     "exploreApp": "Uygulamayı keşfetmeye devam etmek için lütfen geri dön.",
     "displayName":"İsim",
     "sendLink":"Bağlantı Gönder",
+    "changeTheme": "Renk temasını değiştir",
     "fillAllFields": "Lütfen bütün alanları doldurun.",
     "enterValidEmail": "Lütfen geçerli bir e-posta adresi girin.",
     "passwordsDontMatch": "Girdiğiniz şifreler aynı değil.",
