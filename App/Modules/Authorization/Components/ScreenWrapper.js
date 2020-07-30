@@ -5,12 +5,13 @@ import React, { Component } from "react"
 import {
     View,
     SafeAreaView,
-    ScrollView
+    ScrollView,
+    TouchableOpacity
 } from "react-native"
 
 
 // Styles
-import getStyles from "../Styles/WelcomeStyles"
+import getStyles from "../Styles/CommonStyles"
 import { Colors, Theme, Metrics } from '../../../Themes'
 
 class ScreenWrapper extends Component {

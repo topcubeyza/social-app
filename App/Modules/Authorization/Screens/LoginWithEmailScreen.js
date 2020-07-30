@@ -39,7 +39,7 @@ class LoginWithEmailScreen extends Component {
                     { inputKey: "password", placeholder: I18n.t(TextNames.password), type: "password" },
                 ]}
                 topButtonText={I18n.t(TextNames.login)}
-                transparentButtonText={I18n.t(TextNames.goBack)}
+                transparentButtonText={I18n.t(TextNames.forgotPassword)}
                 onPress_TransparentButton={this.onPress_Back}
                 request={this.loginRequest}
                 onRequestSuccess={() => {}}

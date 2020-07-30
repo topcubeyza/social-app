@@ -4,26 +4,23 @@ import getCommonStyles from "./CommonStyles"
 
 const getStyles = c => StyleSheet.create({
     ...getCommonStyles(c),
-    buttonsContainer: {
-        paddingVertical: Metrics.width * 0.04,
-    },
-    buttonContainer: {
-        paddingVertical: Metrics.width * 0.02,
-    },
-    welcomeContainer: {
+    messageContainer: {
         flexGrow: 1,
         justifyContent: "center",
         alignItems: "center",
     },
-    welcomeTextsContainer: {
-        alignItems: "center",
-        paddingVertical: Metrics.marginVertical,
-        borderRadius: Metrics.borderRadiusStandard,
-    },
-    bemagineText: {
+    helloText: {
         fontFamily: Fonts.type.brand,
-        fontSize: Fonts.size.twenty * 3,
+        fontSize: Fonts.size.twenty * 1.5,
         color: c(Colors.brandColor),
+    },
+    message: {
+        fontFamily: Fonts.type.light,
+        fontSize: Fonts.size.sixteen,
+        paddingTop: Metrics.width * 0.03,
+        color: c(Colors.textOnLightBackground_dm),
+        textAlign: "center",
+        lineHeight: Fonts.size.twenty
     }
 })
 

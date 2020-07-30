@@ -43,8 +43,8 @@ class SignupScreen extends Component {
                     { inputKey: "passwordConfirm", placeholder: I18n.t(TextNames.confirmPassword), type: "password" },
                 ]}
                 topButtonText={I18n.t(TextNames.signup)}
-                transparentButtonText={I18n.t(TextNames.loginInstead)}
-                onPress_TransparentButton={this.onPress_LoginInstead}
+                transparentButtonText={""}
+                onPress_TransparentButton={() => {}}
                 request={this.createUserRequest}
                 onRequestSuccess={this.onSignupSuccess}
                 dataFieldName="candidateUser"

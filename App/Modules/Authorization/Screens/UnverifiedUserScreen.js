@@ -19,12 +19,13 @@ import Button from "../../../Components/Button"
 import { AuthActions } from "../Redux/AuthRedux"
 
 // Styles
-import getStyles from "../Styles/WelcomeStyles"
+import getStyles from "../Styles/UnverifiedUserStyles"
 import { Colors, Theme } from '../../../Themes'
 import { TextNames, LanguageCodes } from "../../../I18n/languages/Names";
 import { LocalizationActions } from "../../../Redux/LocalizationRedux";
 import { ThemeActions } from "../../../Redux/ThemeRedux"
 import { ThemeModes, getColorMode } from "../../../Themes/Theme";
+import validate from "validate.js";
 
 class UnverifiedUserScreen extends Component {
 
@@ -39,14 +40,18 @@ class UnverifiedUserScreen extends Component {
     // *** RENDER METHODS *** //
 
     render() {
+        let user = this.props.auth.candidateUser
+        if (user == null || validate.isEmpty(user.displayName)) return null;
+
         let styles = getStyles(Theme.c)
         return (
             <ScreenWrapper
                 topContainerContent={
                     <>
-                        <View style={styles.welcomeContainer}>
-                            <Text style={styles.bemagineText}>Bemagine</Text>
-                            <Text style={styles.subText}>Verify your email</Text>
+                        <View style={styles.messageContainer}>
+                            <Text style={styles.helloText}>{"Hello, " + user.displayName}</Text>
+                            <Text style={styles.message}>Your account is created!</Text>
+                            <Text style={styles.message}>We have sent you an e-mail with a verification link. Please verify your e-mail address and come back to discover the app!</Text>
                         </View>
                     </>
                 }

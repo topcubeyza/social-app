@@ -52,6 +52,14 @@ const getStyles = c => StyleSheet.create({
         alignItems: "center",
         paddingBottom: Metrics.width * 0.04
     },
+    subText: {
+        fontFamily: Fonts.type.light,
+        fontSize: Fonts.size.fourteen,
+        paddingLeft: Metrics.width * 0.038,
+        paddingTop: Metrics.width * 0.03,
+        color: c(Colors.textOnLightBackground_dm),
+        textAlign: "center"
+    }
 })
 
 export default getStyles
