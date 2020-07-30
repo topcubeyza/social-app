@@ -30,7 +30,7 @@ import { getUpdateCause, UpdateCauses } from "../../../Helpers/ReduxHelpers";
 
 // Styles
 import getStyles from "../Styles/CommonStyles"
-import { Colors, Fonts, Theme } from '../../../Themes'
+import { Colors, Fonts, Theme, Metrics } from '../../../Themes'
 import { TextNames } from "../../../I18n/languages/Names";
 import validate from "validate.js";
 
@@ -235,13 +235,6 @@ class AuthScreensWrapper extends Component {
                 <TouchableWithoutFeedback onPress={this.onPress_Background}>
                     <View style={styles.container}>
                             <ScreenWrapper
-                                header={
-                                    <View style={styles.headerContainer}>
-                                        {/* HEADER */}
-                                        <Animated.Text
-                                            style={[styles.headerText, { fontSize: this.state.headerFontSize }]}>{this.props.headerText}</Animated.Text>
-                                    </View>
-                                }
                                 topContainerContent={
                                         <View style={styles.textinputsContainer} onStartShouldSetResponder={() => true}>
                                             {this.renderTextInputs()}

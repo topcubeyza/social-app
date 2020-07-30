@@ -84,7 +84,7 @@ class SingleLineInput extends Component {
                     ref={ref => this.textInput = ref}
                     onFocus={this.onFocus}
                     style={styles.input}
-                    placeholderTextColor={Theme.c(Colors.midLightGrey_dm)}>
+                    placeholderTextColor={Theme.c(Colors.midGrey_dm)}>
                 </TextInput>
                 <Animated.View style={underlineContainer}>
                     <View style={underline}></View>

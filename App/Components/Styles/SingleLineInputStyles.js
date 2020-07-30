@@ -11,7 +11,7 @@ const getStyles = (c) => StyleSheet.create({
     input: {
         color: c(Colors.black_dm),
         fontFamily: Fonts.type.regular,
-        fontSize: Fonts.size.sixteen,
+        fontSize: Fonts.size.eighteen,
         marginBottom: 1
     },
     underlineContainer: {

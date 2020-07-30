@@ -6,7 +6,7 @@ const { width, height } = Dimensions.get('window')
 const Metrics = {
   width,
   height,
-  marginHorizontal: width * 0.05,
+  marginHorizontal: width * 0.06,
   marginHorizontalLarge: width * 0.1,
   marginVertical: width * 0.05,
   horizontalLineHeight: 1,
@@ -15,7 +15,8 @@ const Metrics = {
   navBarHeight: (Platform.OS === 'ios') ? 64 : 54,
   borderRadiusFullRound: 50,
   borderRadiusStandard: 5 ,
-  buttonHeight: width * 0.12
+  buttonHeight: width * 0.12,
+  headerHeight: width * 0.22
 }
 
 export default Metrics

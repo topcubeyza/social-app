@@ -55,8 +55,12 @@ class SignupScreen extends Component {
 
 }
 
+const mapStateToProps = state => ({
+    locale: state.locale
+})
+
 const mapDispatchToProps = dispatch => ({
     createUserRequest: ({ email, password, displayName }) => dispatch(AuthActions.createUserRequest({ email, password, displayName })),
 })
 
-export default connect(null, mapDispatchToProps)(SignupScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(SignupScreen);

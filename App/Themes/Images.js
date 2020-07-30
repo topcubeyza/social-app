@@ -6,7 +6,8 @@ const animationFileLocation = "../Assets/Lottie/"
 const constantImages = {
   splashTransparent: require(imageFileLocation + "splash-transparent.png"),
   underConstruction: require(imageFileLocation + "under-construction.png"),
-  loadingAnimation: require(animationFileLocation + "loading.json")
+  loadingAnimation: require(animationFileLocation + "loading.json"),
+  leftArrow: require(imageFileLocation + "left-arrow.png")
 }
 
 export const lightThemeImages = {
@@ -21,6 +22,7 @@ const Images = {
   splashTransparent: "splashTransparent",
   underConstruction: "underConstruction",
   loadingAnimation: "loadingAnimation",
+  leftArrow: "leftArrow"
 }
 
 export default Images

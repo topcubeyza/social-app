@@ -8,19 +8,46 @@ import LoginWithEmailScreen from "../Modules/Authorization/Screens/LoginWithEmai
 import UnverifiedUserScreen from "../Modules/Authorization/Screens/UnverifiedUserScreen"
 import IncompleteScreen from "../Modules/Main/Screens/IncompleteScreen"
 
+// Components
+import SignedOutHeader from "../Components/SignedOutHeader"
+
 const SignedOutNavigator = createStackNavigator(
     {
         Welcome: {
             screen: WelcomeScreen,
+            navigationOptions: ({ navigation }) => {
+                return {
+                    header: getHeaderComponent({navigation, showLeft: false, showTitle: false, showRight: true, title: "Welcome"}),
+                    headerTransparent: true
+                };
+            }
         },
         Signup: {
-            screen: SignupScreen
+            screen: SignupScreen,
+            navigationOptions: ({ navigation }) => {
+                return {
+                    header: getHeaderComponent({navigation, showLeft: true, showTitle: true, showRight: false, title: "Signup"}),
+                    headerTransparent: true
+                };
+            }
         },
         LoginWithEmail: {
-            screen: LoginWithEmailScreen
+            screen: LoginWithEmailScreen,
+            navigationOptions: ({ navigation }) => {
+                return {
+                    header: getHeaderComponent({navigation, showLeft: true, showTitle: true, showRight: false, title: "Login"}),
+                    headerTransparent: true
+                };
+            }
         },
         UnverifiedUser: {
-            screen: UnverifiedUserScreen
+            screen: UnverifiedUserScreen,
+            navigationOptions: ({ navigation }) => {
+                return {
+                    header: getHeaderComponent({navigation, showLeft: false, showTitle: false, showRight: false}),
+                    headerTransparent: true
+                };
+            }
         },
         Incomplete: {
             screen: IncompleteScreen
@@ -28,11 +55,15 @@ const SignedOutNavigator = createStackNavigator(
     },
     {
         initialRouteName: "Welcome",
-        headerMode: "none",
         navigationOptions: {
-            headerTransparent: true
+            headerTransparent: true,
+            
         }
     }
 )
+
+const getHeaderComponent = (props) => {
+    return () => <SignedOutHeader {...props} />
+}
 
 export default SignedOutNavigator

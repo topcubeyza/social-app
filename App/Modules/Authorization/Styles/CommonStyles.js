@@ -4,10 +4,10 @@ import { Colors, Metrics, Fonts } from '../../../Themes'
 const getStyles = c => StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: "space-between"
+        justifyContent: "space-between",
+        backgroundColor: c(Colors.lightBackground_dm),
     },
     topContainer: {
-        backgroundColor: c(Colors.lightBackground_dm),
         flexGrow: 1,
         justifyContent: "space-between",
         marginHorizontal: Metrics.marginHorizontalLarge
