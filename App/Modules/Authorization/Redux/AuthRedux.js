@@ -3,12 +3,12 @@ import { createReducer, createActions } from 'reduxsauce'
 /* ------------- Types and Action Creators ------------- */
 
 const Types = {
+    CREATE_USER_REQUEST: "auth/create_user_request",
     SIGN_IN_REQUEST: "auth/sign_in_request",
-    SEND_LINK_REQUEST: "auth/send_link_request",
-    SEND_LINK_SUCCESS: "auth/send_link_success",
     SIGN_OUT_REQUEST: "auth/sign_out_request",
     AUTH_STATE_CHANGE: "auth/auth_state_change",
-    CANDIDATE_EMAIL: "auth/candidate_email",
+    SET_USER: "auth/set_user",
+    SET_CANDIDATE_USER: "auth/set_candidate_user",
     FAILURE: "auth/failure"
 }
 
@@ -17,23 +17,24 @@ const Actions = {
         type: Types.SIGN_IN_REQUEST,
         payload: {email, password}
     }),
-    sendLinkRequest: ({email}) => ({
-        type: Types.SEND_LINK_REQUEST,
-        payload: {email}
-    }),
-    sendLinkSuccess: () => ({
-        type: Types.SEND_LINK_SUCCESS,
+    createUserRequest: ({email, password, displayName}) => ({
+        type: Types.CREATE_USER_REQUEST,
+        payload: {email, password, displayName}
     }),
     signOutRequest: () => ({
         type: Types.SIGN_OUT_REQUEST
     }),
-    authStateChange: ({user}) => ({
-        type: Types.AUTH_STATE_CHANGE,
+    setUser: ({user}) => ({
+        type: Types.SET_USER,
         payload: {user}
     }),
-    candidateEmail: ({email}) => ({
-        type: Types.CANDIDATE_EMAIL,
-        payload: {email}
+    authStateChange: ({state}) => ({
+        type: Types.AUTH_STATE_CHANGE,
+        payload: {state}
+    }),
+    setCandidateUser: ({user}) => ({
+        type: Types.SET_CANDIDATE_USER,
+        payload: {user}
     }),
     failure: ({error}) => ({
         type: Types.FAILURE,
@@ -48,7 +49,7 @@ export const AuthActions = Actions
 
 export const INITIAL_STATE = {
     user: null,
-    candidateEmail: null,
+    candidateUser: null,
     fetching: null,
     error: null
 }
@@ -75,22 +76,16 @@ export const success = (state, action) => {
         ...state,
         fetching: false,
         error: null,
+        candidateUser: null,
         user
     }
 }
 
-export const sendLinkSuccess = (state, action) => {
+export const setCandidateUser = (state, action) => {
+    const {user} = action.payload
     return {
         ...state,
-        fetching: false
-    }
-}
-
-export const candidateEmail = (state, action) => {
-    const {email} = action.payload
-    return {
-        ...state,
-        candidateEmail: email
+        candidateUser: user
     }
 }
 
@@ -107,10 +102,9 @@ export const failure = (state, action) => {
 
 export const AuthReducer = createReducer(INITIAL_STATE, {
     [Types.SIGN_IN_REQUEST]: request,
-    [Types.SEND_LINK_REQUEST]: request,
+    [Types.CREATE_USER_REQUEST]: request,
     [Types.SIGN_OUT_REQUEST]: request,
-    [Types.AUTH_STATE_CHANGE]: success,
+    [Types.SET_USER]: success,
     [Types.FAILURE]: failure,
-    [Types.CANDIDATE_EMAIL]: candidateEmail,
-    [Types.SEND_LINK_SUCCESS]: sendLinkSuccess,
+    [Types.SET_CANDIDATE_USER]: setCandidateUser,
 })

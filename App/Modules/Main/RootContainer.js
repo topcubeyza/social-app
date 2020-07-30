@@ -1,7 +1,6 @@
 // Packages
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import auth from '@react-native-firebase/auth';
 import NetInfo from '@react-native-community/netinfo';
 import { StatusBar } from 'react-native';
 
@@ -9,6 +8,7 @@ import { StatusBar } from 'react-native';
 import ReduxNavigation from '../../Navigation/ReduxNavigation';
 import StartupActions from '../../Redux/StartupRedux';
 import ReduxPersist from '../../Config/ReduxPersist';
+import AuthorizationManager from "../Authorization/Components/AuthorizationManager"
 import ThemeManager from "../../Themes/ThemeManager"
 import LocalizationManager from "../../I18n/LocalizationManager"
 import AlertProvider from './AlertProvider';
@@ -28,7 +28,6 @@ class RootContainer extends Component {
       isInternetAvailable: null,
     };
     this.netInfoUnsubscribe;
-    this.firebaseAuthUnsubscribe;
   }
 
   // *** LIFECYCLE METHODS *** //
@@ -40,13 +39,11 @@ class RootContainer extends Component {
     }
 
     this.netInfoUnsubscribe = NetInfo.addEventListener(this.onNetStateChange);
-    this.firebaseAuthUnsubscribe = auth().onAuthStateChanged(this.onAuthStateChange);
 
   }
 
   componentWillUnmount = () => {
     this.netInfoUnsubscribe()
-    this.firebaseAuthUnsubscribe()
   }
 
   // *** CALLBACKS *** //
@@ -57,11 +54,6 @@ class RootContainer extends Component {
     });
   }
 
-  onAuthStateChange = data => {
-    let user = (data && data._user) ? data._user : data
-    this.props.authStateChange(user)
-  }
-
   // *** RENDER METHODS *** //
 
   render() {
@@ -70,14 +62,16 @@ class RootContainer extends Component {
       return null;
     }
     return (
-      <ThemeManager>
-        <LocalizationManager>
-          <AlertProvider>
-            <LoadingOverlay />
-            <ReduxNavigation />
-          </AlertProvider>
-        </LocalizationManager>
-      </ThemeManager>
+      <AuthorizationManager>
+        <ThemeManager>
+          <LocalizationManager>
+            <AlertProvider>
+              <LoadingOverlay />
+              <ReduxNavigation />
+            </AlertProvider>
+          </LocalizationManager>
+        </ThemeManager>
+      </AuthorizationManager>
     )
   }
 }
@@ -85,7 +79,6 @@ class RootContainer extends Component {
 const mapDispatchToProps = dispatch => {
   return {
     startup: () => dispatch(StartupActions.startup()),
-    authStateChange: (user) => dispatch(AuthActions.authStateChange({ user }))
   };
 };
 

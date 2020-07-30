@@ -29,17 +29,6 @@ class SignoutTestScreen extends Component {
 
     // *** LIFECYCLE METHODS *** //
 
-    componentDidUpdate(prevProps) {
-        let cause = getUpdateCause(prevProps.auth, this.props.auth, "user", data => data == null);
-        switch (cause) {
-            case UpdateCauses.success:
-                this.props.navigation.navigate("SignedOut");
-                break;
-            default:
-                break;
-        }
-    }
-
     // *** EVENT HANDLERS *** //
 
     onPress_Signout = () => {
@@ -86,12 +75,8 @@ class SignoutTestScreen extends Component {
 
 }
 
-const mapStateToProps = state => ({
-    auth: state.auth
-})
-
 const mapDispatchToProps = dispatch => ({
     signout: () => dispatch(AuthActions.signOutRequest())
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignoutTestScreen);
+export default connect(null, mapDispatchToProps)(SignoutTestScreen);

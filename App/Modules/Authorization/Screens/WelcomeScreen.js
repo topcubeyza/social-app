@@ -30,12 +30,6 @@ class WelcomeScreen extends Component {
 
     // *** LIFECYCLE METHODS *** //
 
-    componentDidMount() {
-        if (this.props.auth.user && this.props.auth.user.emailVerified == true) {
-            this.props.navigation.navigate("SignedIn")
-        }
-    }
-
     // *** EVENT HANDLERS *** //
 
     onPress_Login = () => {
@@ -47,7 +41,7 @@ class WelcomeScreen extends Component {
     }
 
     onPress_Signup = () => {
-        this.props.navigation.navigate("SendLink")
+        this.props.navigation.navigate("Signup")
     }
 
     onPress_ForgotPassword = () => {

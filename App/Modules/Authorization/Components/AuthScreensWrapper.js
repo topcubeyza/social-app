@@ -32,13 +32,18 @@ import { getUpdateCause, UpdateCauses } from "../../../Helpers/ReduxHelpers";
 import getStyles from "../Styles/CommonStyles"
 import { Colors, Fonts, Theme } from '../../../Themes'
 import { TextNames } from "../../../I18n/languages/Names";
+import validate from "validate.js";
 
 class AuthScreensWrapper extends Component {
 
     constructor(props) {
         super(props);
 
+        let inputsState = {}
+        this.props.textInputsParams.map(value => inputsState[value.inputKey] = null)
+
         this.state = {
+            ...inputsState,
             headerFontSize: new Animated.Value(Fonts.size.twenty * 2),
             errorMessage: "",
         }

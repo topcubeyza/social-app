@@ -17,6 +17,11 @@ import '../../Config';
 import DebugConfig from "../../Config/DebugConfig"
 import createStore from '../../Redux';
 import RootContainer from './RootContainer';
+import { NativeModules } from 'react-native';
+
+if (__DEV__) {
+  NativeModules.DevSettings.setIsDebuggingRemotely(true)
+}
 
 
 const { store, persistor } = createStore();

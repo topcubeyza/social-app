@@ -3,8 +3,9 @@ import I18n from "react-native-i18n"
 import { TextNames } from "../I18n/languages/Names"
 
 const signIn = async ({ email, password }) => {
-  await auth()
+  return await auth()
     .signInWithEmailAndPassword(email, password)
+    .then(() => null)
     .catch(error => {
       if (error.code === 'auth/invalid-email') {
         throw I18n.t(TextNames.errorMessages.invalidEmail)
@@ -22,30 +23,10 @@ const signIn = async ({ email, password }) => {
     })
 }
 
-const sendLink = async ({ email }) => {
-  let actionCodeSettings = {
-    url: 'https://bemagine-1c194.firebaseapp.com',
-    // This must be true.
-    handleCodeInApp: true,
-    dynamicLinkDomain: 'bemagine.page.link'
-  }
-    return await auth()
-      .sendSignInLinkToEmail(email, actionCodeSettings)
-      .then(response => {
-        debugger;
-        console.log(response)
-        return;
-      })
-      .catch(error => {
-        debugger;
-        console.log(error.code, error.message)
-        throw error.message
-      })
-}
-
 const createUser = async ({ email, password }) => {
-  await auth()
+  return await auth()
     .createUserWithEmailAndPassword(email, password)
+    .then(() => null)
     .catch(error => {
       if (error.code === 'auth/email-already-in-use') {
         throw I18n.t(TextNames.errorMessages.emailAddressAlreadyInUse)
@@ -63,8 +44,49 @@ const createUser = async ({ email, password }) => {
     })
 }
 
+const updateUserProfile = async ({ displayName, photoURL }) => {
+  let user = auth().currentUser;
+
+  return await user.updateProfile({
+    displayName,
+    photoURL
+  })
+    .then(() => null)
+    .catch(function (error) {
+      throw error.message
+    })
+}
+
+const sendVerificationEmail = async () => {
+  let user = auth().currentUser;
+
+  return await user.sendEmailVerification()
+    .then(() => null)
+    .catch(function (error) {
+      throw error.message
+    });
+}
+
+const reloadUser = async () => {
+  await auth().currentUser.reload()
+    .then((response) => {
+      return null;
+    })
+    .catch(error => {
+      throw error.message
+    });
+
+  return auth().currentUser
+}
+
+const checkIfEmailIsVerified = () => {
+  let user = auth().currentUser;
+  return user && user.emailVerified;
+}
+
 const signOut = async () => {
-  await auth().signOut()
+  return await auth().signOut()
+    .then(() => null)
     .catch(error => {
       throw I18n.t(TextNames.genericError)
     })
@@ -74,5 +96,8 @@ export default {
   signIn,
   createUser,
   signOut,
-  sendLink
+  sendVerificationEmail,
+  reloadUser,
+  updateUserProfile,
+  checkIfEmailIsVerified
 }

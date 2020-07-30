@@ -36,7 +36,6 @@ class AlertOverlay extends Component {
     // *** EVENT HANDLERS *** //
 
     onBackdropPress = () => {
-        debugger;
         if (this.props.cancellable) {
             validate.isFunction(this.props.onBackdropPress) ? this.props.onBackdropPress() : null
             this.props.close()
@@ -71,7 +70,6 @@ class AlertOverlay extends Component {
 
     render() {
         let styles = getStyles(Theme.c)
-        console.log(styles)
         return (
             <Modal
                 visible={this.props.isOpen}

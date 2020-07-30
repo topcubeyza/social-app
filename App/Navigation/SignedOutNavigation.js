@@ -5,7 +5,7 @@ import { createAppContainer, createStackNavigator } from "react-navigation"
 import WelcomeScreen from "../Modules/Authorization/Screens/WelcomeScreen"
 import SignupScreen from "../Modules/Authorization/Screens/SignupScreen"
 import LoginWithEmailScreen from "../Modules/Authorization/Screens/LoginWithEmailScreen"
-import SendLinkScreen from "../Modules/Authorization/Screens/SendLinkScreen"
+import UnverifiedUserScreen from "../Modules/Authorization/Screens/UnverifiedUserScreen"
 import IncompleteScreen from "../Modules/Main/Screens/IncompleteScreen"
 
 const SignedOutNavigator = createStackNavigator(
@@ -19,12 +19,12 @@ const SignedOutNavigator = createStackNavigator(
         LoginWithEmail: {
             screen: LoginWithEmailScreen
         },
-        SendLink: {
-            screen: SendLinkScreen
+        UnverifiedUser: {
+            screen: UnverifiedUserScreen
         },
         Incomplete: {
             screen: IncompleteScreen
-        }
+        },
     },
     {
         initialRouteName: "Welcome",

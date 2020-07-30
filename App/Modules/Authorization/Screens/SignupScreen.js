@@ -19,12 +19,11 @@ class SignupScreen extends Component {
 
     // *** EVENT HANDLERS *** //
 
-    signupRequest = ({email}) => {
-        this.props.sendLinkRequest({ email })
+    createUserRequest = ({email, password, displayName}) => {
+        this.props.createUserRequest({ email, password, displayName })
     }
 
     onSignupSuccess = () => {
-        this.props.navigation.navigate("SignedIn");
     }
 
     onPress_LoginInstead = () => {
@@ -44,12 +43,12 @@ class SignupScreen extends Component {
                     { inputKey: "passwordConfirm", placeholder: I18n.t(TextNames.confirmPassword), type: "password" },
                 ]}
                 topButtonText={I18n.t(TextNames.signup)}
-                transparentButtonText={""}
-                onPress_TransparentButton={() => {}}
-                request={this.signupRequest}
+                transparentButtonText={I18n.t(TextNames.loginInstead)}
+                onPress_TransparentButton={this.onPress_LoginInstead}
+                request={this.createUserRequest}
                 onRequestSuccess={this.onSignupSuccess}
-                dataFieldName="user"
-                dataFieldSuccess={data => data && !validate.isEmpty(data.displayName)}
+                dataFieldName="candidateUser"
+                isDataValid={data => data != null}
             />
         )
     }
@@ -57,7 +56,7 @@ class SignupScreen extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-    sendLinkRequest: ({ email }) => dispatch(AuthActions.sendLinkRequest({ email })),
+    createUserRequest: ({ email, password, displayName }) => dispatch(AuthActions.createUserRequest({ email, password, displayName })),
 })
 
 export default connect(null, mapDispatchToProps)(SignupScreen);
