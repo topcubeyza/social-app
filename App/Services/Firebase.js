@@ -58,6 +58,7 @@ const updateUserProfile = async ({ displayName, photoURL }) => {
 }
 
 const sendVerificationEmail = async () => {
+  auth().languageCode = I18n.currentLocale().substring(0, 2).toLowerCase()
   let user = auth().currentUser;
 
   return await user.sendEmailVerification()
