@@ -55,7 +55,6 @@ function* createUser(api, action) {
         yield call(api.sendVerificationEmail);
         let user = yield call(api.reloadUser)
         yield call(manageChangedAuthState, api, {payload:{state: user}})
-        yield put(AuthActions.authStateChange, )
     } catch (error) {
         if (validate.isString(error)) {
             yield put(AuthActions.failure({error}))
