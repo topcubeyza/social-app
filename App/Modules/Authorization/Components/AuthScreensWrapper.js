@@ -3,6 +3,7 @@ import React, { Component } from "react"
 import { connect } from "react-redux";
 import { duration } from "moment";
 import I18n from "react-native-i18n";
+import { getStatusBarHeight } from "react-native-status-bar-height"
 
 // RN Components
 import {
@@ -232,7 +233,7 @@ class AuthScreensWrapper extends Component {
     render() {
         let styles = getStyles(Theme.c)
         return (
-            <KeyboardAvoidingView style={{ flex: 1 }} keyboardVerticalOffset={Metrics.headerHeight} behavior={Platform.OS == "ios" ? "padding" : null}>
+            <KeyboardAvoidingView style={{ flex: 1 }} keyboardVerticalOffset={Metrics.headerHeight + getStatusBarHeight(true)} behavior={Platform.OS == "ios" ? "padding" : null}>
                 <TouchableWithoutFeedback onPress={this.onPress_Background}>
                     <View style={styles.container}>
                             <ScreenWrapper
