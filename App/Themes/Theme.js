@@ -28,7 +28,7 @@ const getColorByName = colorName => colors[colorName]
 const getImageByName = imageName => images[imageName]
 
 // colorMode is either 'dark' or 'light',
-// darkMode is 'dark', 'light', or 'device'
+// themeMode is 'dark', 'light', or 'device'
 export const getColorMode = (themeMode) => {
     let colorMode = themeMode;
     if (themeMode == ThemeModes.device) {
