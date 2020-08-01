@@ -1,6 +1,7 @@
-import { takeEvery, takeLatest, take, call, fork, put } from "redux-saga/effects"
+import { takeEvery, takeLatest, take, call, fork, put, delay } from "redux-saga/effects"
 import { AuthTypes, AuthActions } from "../Redux/AuthRedux"
 import validate from "validate.js";
+import moment from "moment";
 
 
 function* manageChangedAuthState(api, action) {
@@ -13,6 +14,9 @@ function* manageChangedAuthState(api, action) {
         else if (user && user.displayName){
             yield put(AuthActions.setCandidateUser({user}))
             while (!user.emailVerified) {
+                console.log("before",moment().format("h:mm:ss:SSS"))
+                let delayed = yield delay(1000, true)
+                console.log("after",moment().format("h:mm:ss:SSS"))
                 user = yield call(api.reloadUser);
             }
             yield put(AuthActions.setUser({user}))
@@ -66,6 +70,26 @@ function* watchCreateUserRequest(api) {
     yield takeLatest(AuthTypes.CREATE_USER_REQUEST, createUser, api)
 }
 
+function* resendVerificationEmail(api) {
+    try {
+        debugger;
+        yield call(api.sendVerificationEmail);
+        debugger;
+        yield put(AuthActions.resendVerificationEmailSuccess())
+    } catch (error) {
+        if (validate.isString(error)) {
+            yield put(AuthActions.failure({error}))
+        }    
+    }
+}
+
+function* watchResendVerificationEmail(api) {
+    while (true) {
+        let action = yield take(AuthTypes.RESEND_VERIFICATION_EMAIL_REQUEST);
+        yield call(resendVerificationEmail, api)
+    }
+}
+
 function* signOut(api) {
     try {
         yield call(api.signOut);
@@ -87,6 +111,7 @@ const authSagas = (api) => [
     fork(watchAuthStateChange, api),
     fork(watchSignInRequest, api),
     fork(watchCreateUserRequest, api),
+    fork(watchResendVerificationEmail, api),
     fork(watchSignOutRequest, api)
 ]
 

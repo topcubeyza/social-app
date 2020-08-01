@@ -9,6 +9,8 @@ const Types = {
     AUTH_STATE_CHANGE: "auth/auth_state_change",
     SET_USER: "auth/set_user",
     SET_CANDIDATE_USER: "auth/set_candidate_user",
+    RESEND_VERIFICATION_EMAIL_REQUEST: "auth/resend_verification_email_request",
+    RESEND_VERIFICATION_EMAIL_SUCCESS: "auth/resend_verification_email_success",
     FAILURE: "auth/failure"
 }
 
@@ -35,6 +37,12 @@ const Actions = {
     setCandidateUser: ({user}) => ({
         type: Types.SET_CANDIDATE_USER,
         payload: {user}
+    }),
+    resendVerificationEmailRequest: () => ({
+        type: Types.RESEND_VERIFICATION_EMAIL_REQUEST
+    }),
+    resendVerificationEmailSuccess: () => ({
+        type: Types.RESEND_VERIFICATION_EMAIL_SUCCESS
     }),
     failure: ({error}) => ({
         type: Types.FAILURE,
@@ -81,6 +89,14 @@ export const success = (state, action) => {
     }
 }
 
+export const resendVerificationEmailSuccess = (state, action) => {
+    return {
+        ...state,
+        fetching: false,
+        error: null
+    }
+}
+
 export const setCandidateUser = (state, action) => {
     const {user} = action.payload
     return {
@@ -107,4 +123,6 @@ export const AuthReducer = createReducer(INITIAL_STATE, {
     [Types.SET_USER]: success,
     [Types.FAILURE]: failure,
     [Types.SET_CANDIDATE_USER]: setCandidateUser,
+    [Types.RESEND_VERIFICATION_EMAIL_REQUEST]: request,
+    [Types.RESEND_VERIFICATION_EMAIL_SUCCESS]: resendVerificationEmailSuccess
 })

@@ -23,6 +23,7 @@ export const TextNames = {
     helloName: "helloName",
     accountCreated: "accountCreated",
     verifyEmail: "verifyEmail",
+    resendVerificationEmail: "resendVerificationEmail",
     errorMessages: {
         fillAllFields: "fillAllFields",
         enterValidEmail: "enterValidEmail",

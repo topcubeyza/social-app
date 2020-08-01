@@ -62,9 +62,16 @@ const sendVerificationEmail = async () => {
   let user = auth().currentUser;
 
   return await user.sendEmailVerification()
-    .then(() => null)
+    .then(() => {
+      debugger;
+      return null;
+    })
     .catch(function (error) {
-      throw error.message
+      if (error.code === "auth/too-many-requests") {
+        throw "We have just sent the e-mail. Please either check your spam box or check if you have provided the correc e-mail address.";
+      }
+
+      throw I18n.t(TextNames.genericError)
     });
 }
 
