@@ -49,9 +49,9 @@ class UnverifiedUserScreen extends Component {
                 topContainerContent={
                     <>
                         <View style={styles.messageContainer}>
-                            <Text style={styles.helloText}>{"Hello, " + user.displayName}</Text>
-                            <Text style={styles.message}>Your account is created!</Text>
-                            <Text style={styles.message}>We have sent you an e-mail with a verification link. Please verify your e-mail address and come back to discover the app!</Text>
+                            <Text style={styles.helloText}>{I18n.t(TextNames.helloName, { name: user.displayName })}</Text>
+                            <Text style={styles.message}>{I18n.t(TextNames.accountCreated)}</Text>
+                            <Text style={styles.message}>{I18n.t(TextNames.verifyEmail)}</Text>
                         </View>
                     </>
                 }
@@ -71,7 +71,8 @@ class UnverifiedUserScreen extends Component {
 }
 
 const mapStateToProps = state => ({
-    auth: state.auth
+    auth: state.auth,
+    locale: state.locale
 })
 
 const mapDispatchToProps = dispatch => ({

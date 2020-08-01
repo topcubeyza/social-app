@@ -41,7 +41,7 @@ const SignedOutNavigator = createStackNavigator(
             screen: UnverifiedUserScreen,
             navigationOptions: ({ navigation }) => {
                 return {
-                    header: getHeaderComponent({navigation, showLeft: false, showTitle: false, showRight: false}),
+                    header: getHeaderComponent({navigation, showLeft: false, showTitle: false, showRight: true}),
                 };
             }
         },

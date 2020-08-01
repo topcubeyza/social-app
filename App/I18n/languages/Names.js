@@ -20,6 +20,9 @@ export const TextNames = {
     displayName: "displayName",
     sendLink: "sendLink",
     changeTheme: "changeTheme",
+    helloName: "helloName",
+    accountCreated: "accountCreated",
+    verifyEmail: "verifyEmail",
     errorMessages: {
         fillAllFields: "fillAllFields",
         enterValidEmail: "enterValidEmail",
