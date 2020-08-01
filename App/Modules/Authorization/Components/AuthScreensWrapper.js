@@ -14,6 +14,7 @@ import {
     TouchableWithoutFeedback,
     Platform,
     Animated,
+    StatusBarIOS
 } from "react-native"
 
 // Components
@@ -231,7 +232,7 @@ class AuthScreensWrapper extends Component {
     render() {
         let styles = getStyles(Theme.c)
         return (
-            <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS == "ios" ? "padding" : null}>
+            <KeyboardAvoidingView style={{ flex: 1 }} keyboardVerticalOffset={Metrics.headerHeight} behavior={Platform.OS == "ios" ? "padding" : null}>
                 <TouchableWithoutFeedback onPress={this.onPress_Background}>
                     <View style={styles.container}>
                             <ScreenWrapper

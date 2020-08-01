@@ -9,7 +9,8 @@ import {
     SafeAreaView,
     TouchableOpacity,
     Text,
-    Image
+    Image,
+    Platform
 } from "react-native"
 
 // Components
@@ -80,10 +81,9 @@ class SignedOutHeader extends Component {
         }
     }
 
-    render() {
-        let styles = getStyles(Theme.c)
+    renderChildren = (styles) => {
         return (
-            <SafeAreaView style={styles.container}>
+            <>
                 <View style={styles.leftContainer}>
                     {this.renderLeft(styles)}
                 </View>
@@ -93,14 +93,35 @@ class SignedOutHeader extends Component {
                 <View style={styles.rightContainer}>
                     {this.renderRight(styles)}
                 </View>
-            </SafeAreaView>
+            </>
         )
+    }
+
+    render() {
+        let styles = getStyles(Theme.c)
+        if (Platform.OS == "ios") {
+            return (
+                <SafeAreaView style={styles.containerSafeArea}>
+                    <View style={styles.containerIOS}>
+                        {this.renderChildren(styles)}
+                    </View>
+                </SafeAreaView>
+            )
+        }
+        else {
+            return (
+                <View style={styles.containerAndroid}>
+                    {this.renderChildren(styles)}
+                </View>
+            )
+        }
     }
 
 }
 
 const mapStateToProps = state => ({
     locale: state.locale,
+    theme: state.theme
 })
 
 const mapDispatchToProps = dispatch => ({

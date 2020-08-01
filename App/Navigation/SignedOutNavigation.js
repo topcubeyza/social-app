@@ -18,7 +18,6 @@ const SignedOutNavigator = createStackNavigator(
             navigationOptions: ({ navigation }) => {
                 return {
                     header: getHeaderComponent({navigation, showLeft: false, showTitle: false, showRight: true, title: "Welcome"}),
-                    headerTransparent: true
                 };
             }
         },
@@ -27,7 +26,6 @@ const SignedOutNavigator = createStackNavigator(
             navigationOptions: ({ navigation }) => {
                 return {
                     header: getHeaderComponent({navigation, showLeft: true, showTitle: true, showRight: false, title: "Signup"}),
-                    headerTransparent: true
                 };
             }
         },
@@ -36,7 +34,6 @@ const SignedOutNavigator = createStackNavigator(
             navigationOptions: ({ navigation }) => {
                 return {
                     header: getHeaderComponent({navigation, showLeft: true, showTitle: true, showRight: false, title: "Login"}),
-                    headerTransparent: true
                 };
             }
         },
@@ -45,7 +42,6 @@ const SignedOutNavigator = createStackNavigator(
             navigationOptions: ({ navigation }) => {
                 return {
                     header: getHeaderComponent({navigation, showLeft: false, showTitle: false, showRight: false}),
-                    headerTransparent: true
                 };
             }
         },
@@ -55,10 +51,6 @@ const SignedOutNavigator = createStackNavigator(
     },
     {
         initialRouteName: "Welcome",
-        navigationOptions: {
-            headerTransparent: true,
-            
-        }
     }
 )
 

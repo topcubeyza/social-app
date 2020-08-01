@@ -2,14 +2,22 @@ import { StyleSheet, Platform } from 'react-native'
 import { Colors, Metrics, Fonts } from '../../Themes'
 
 const getStyles = c => StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: "center",
-        justifyContent: "center",
-        backgroundColor: "transparent",
+    containerSafeArea: {
+        backgroundColor: c(Colors.lightBackground_dm),
+    },
+    containerIOS: {
+        flex:1,
         height: Metrics.headerHeight,
         flexDirection: "row",
-        paddingLeft: 50,
+        alignItems: "center",
+        justifyContent: "center",
+    },
+    containerAndroid: {
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: c(Colors.lightBackground_dm),
+        height: Metrics.headerHeight,
+        flexDirection: "row",
     },
     leftContainer: {
         flex: 0.2,
@@ -32,7 +40,7 @@ const getStyles = c => StyleSheet.create({
     },
     backImageContainer: {
         alignItems: "flex-start",
-        paddingVertical: Metrics.width * 0.015
+        paddingVertical: Metrics.width * 0.04
     },
     backImage: {
         height: "100%",
@@ -48,7 +56,6 @@ const getStyles = c => StyleSheet.create({
         fontFamily: Fonts.type.regular,
         fontSize: Fonts.size.eighteen,
         color: c(Colors.midGrey_dm),
-        lineHeight: Fonts.size.twenty * 1.6
     },
 })
 
