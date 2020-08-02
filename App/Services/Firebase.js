@@ -71,7 +71,7 @@ const sendVerificationEmail = async () => {
     })
     .catch(function (error) {
       if (error.code === "auth/too-many-requests") {
-        throw "We have just sent the e-mail. Please either check your spam box or check if you have provided the correc e-mail address.";
+        throw I18n.t(TextNames.errorMessages.tooManyRequestsResend);
       }
 
       throw I18n.t(TextNames.genericError)

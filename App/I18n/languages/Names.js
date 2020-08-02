@@ -25,6 +25,7 @@ export const TextNames = {
     verifyEmail: "verifyEmail",
     resendVerificationEmail: "resendVerificationEmail",
     errorMessages: {
+        tooManyRequestsResend: "tooManyRequestsResend",
         fillAllFields: "fillAllFields",
         enterValidEmail: "enterValidEmail",
         passwordsDontMatch: "passwordsDontMatch",

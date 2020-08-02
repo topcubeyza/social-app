@@ -24,6 +24,7 @@
    "accountCreated": "Your account is created!",
    "verifyEmail": "We have sent you an e-mail with a verification link. Please verify your e-mail address and come back to discover the app!",
    "resendVerificationEmail":"Resend verification e-mail",
+   "tooManyRequestsResend": "We have just sent the e-mail. Please either check your spam box or ensure you have provided the correct e-mail address.",
    "fillAllFields": "Please fill all fields.",
    "enterValidEmail": "Please enter a valid e-mail address.",
    "passwordsDontMatch": "The passwords you entered do not match",

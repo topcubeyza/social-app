@@ -24,6 +24,7 @@
     "accountCreated": "Hesabın oluşturuldu!",
     "verifyEmail": "E-posta adresine bir doğrulama bağlantısı gönderdik. Bu bağlantıya tıklayarak e-posta adresini doğruladıktan sonra uygulamayı keşfetmeye devam edebilirsin!",
     "resendVerificationEmail": "Doğrulama e-postasını tekrar gönder",
+    "tooManyRequestsResend": "Az önce bir e-posta gönderdik. Lütfen 'ödemsiz' kutusunu da kontrol edin veya e-mail adresinizi doğru girdiğinizden emin olun.",
     "fillAllFields": "Lütfen bütün alanları doldurun.",
     "enterValidEmail": "Lütfen geçerli bir e-posta adresi girin.",
     "passwordsDontMatch": "Girdiğiniz şifreler aynı değil.",
