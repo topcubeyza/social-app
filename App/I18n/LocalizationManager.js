@@ -37,7 +37,7 @@ class LocalizationManager extends Component {
     handleLocalizationChange = () => {
         if (this.props.locale.localeType == LocaleTypes.device) {
             this.setState({
-                code: getLanguageCode(LocaleTypes.device)
+                languageCode: getLanguageCode(LocaleTypes.device)
             }, () => {
                 this.props.changeLocale(LocaleTypes.device)
             })

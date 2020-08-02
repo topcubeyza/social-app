@@ -51,8 +51,13 @@ class LoginWithEmailScreen extends Component {
 
 }
 
+const mapStateToProps = state => ({
+    theme: state.theme,
+    locale: state.locale,
+})
+
 const mapDispatchToProps = dispatch => ({
     signInRequest: ({ email, password }) => dispatch(AuthActions.signInRequest({ email, password })),
 })
 
-export default connect(null, mapDispatchToProps)(LoginWithEmailScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginWithEmailScreen);

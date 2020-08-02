@@ -56,7 +56,8 @@ class SignupScreen extends Component {
 }
 
 const mapStateToProps = state => ({
-    locale: state.locale
+    locale: state.locale,
+    theme: state.theme,
 })
 
 const mapDispatchToProps = dispatch => ({

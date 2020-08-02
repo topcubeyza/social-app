@@ -170,7 +170,8 @@ class UnverifiedUserScreen extends Component {
 
 const mapStateToProps = state => ({
     auth: state.auth,
-    locale: state.locale
+    locale: state.locale,
+    theme: state.theme
 })
 
 const mapDispatchToProps = dispatch => ({
