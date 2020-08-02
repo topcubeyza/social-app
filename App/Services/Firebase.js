@@ -3,6 +3,7 @@ import I18n from "react-native-i18n"
 import { TextNames } from "../I18n/languages/Names"
 
 const signIn = async ({ email, password }) => {
+  console.log("fb: signin")
   return await auth()
     .signInWithEmailAndPassword(email, password)
     .then(() => null)
@@ -24,6 +25,7 @@ const signIn = async ({ email, password }) => {
 }
 
 const createUser = async ({ email, password }) => {
+  console.log("fb: createUser")
   return await auth()
     .createUserWithEmailAndPassword(email, password)
     .then(() => null)
@@ -45,6 +47,7 @@ const createUser = async ({ email, password }) => {
 }
 
 const updateUserProfile = async ({ displayName, photoURL }) => {
+  console.log("fb: updateuserprofile")
   let user = auth().currentUser;
 
   return await user.updateProfile({
@@ -58,12 +61,12 @@ const updateUserProfile = async ({ displayName, photoURL }) => {
 }
 
 const sendVerificationEmail = async () => {
+  console.log("fb: sendVerificationEmail")
   auth().languageCode = I18n.currentLocale().substring(0, 2).toLowerCase()
   let user = auth().currentUser;
 
   return await user.sendEmailVerification()
     .then(() => {
-      debugger;
       return null;
     })
     .catch(function (error) {
@@ -76,6 +79,7 @@ const sendVerificationEmail = async () => {
 }
 
 const reloadUser = async () => {
+  console.log("fb: reloadUser")
   await auth().currentUser.reload()
     .then((response) => {
       return null;
@@ -88,11 +92,13 @@ const reloadUser = async () => {
 }
 
 const checkIfEmailIsVerified = () => {
+  console.log("fb: checkIfEmailIsVerified")
   let user = auth().currentUser;
   return user && user.emailVerified;
 }
 
 const signOut = async () => {
+  console.log("fb: signOut")
   return await auth().signOut()
     .then(() => null)
     .catch(error => {
