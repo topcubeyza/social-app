@@ -11,6 +11,8 @@ export const TextNames = {
     password: "password",
     confirmPassword: "confirmPassword",
     loginInstead: "loginInstead",
+    success: "success",
+    ok: "ok",
     cancel: "cancel",
     back: "back",
     goBack: "goBack",
@@ -24,6 +26,7 @@ export const TextNames = {
     accountCreated: "accountCreated",
     verifyEmail: "verifyEmail",
     resendVerificationEmail: "resendVerificationEmail",
+    resendSuccessfulMessage: "resendSuccessfulMessage",
     errorMessages: {
         tooManyRequestsResend: "tooManyRequestsResend",
         fillAllFields: "fillAllFields",

@@ -19,6 +19,9 @@ import Button from "../../../Components/Button"
 import { AuthActions } from "../Redux/AuthRedux"
 import { LoadingActions } from "../../../Redux/LoadingRedux"
 
+// Services
+import FirebaseApi from "../../../Services/Firebase"
+
 // Utils
 import { getUpdateCause, UpdateCauses } from "../../../Helpers/ReduxHelpers";
 
@@ -47,7 +50,7 @@ class UnverifiedUserScreen extends Component {
     // *** LIFECYCLE METHODS *** //
 
     componentDidUpdate(prevProps) {
-        let cause = getUpdateCause(prevProps.auth, this.props.auth, "unimportant", () => true);  
+        let cause = getUpdateCause(prevProps.auth, this.props.auth, "user", data => data == null);  
         switch (cause) {
             case UpdateCauses.fetching:
                 this.props.setLoadingMode(true)
@@ -57,15 +60,6 @@ class UnverifiedUserScreen extends Component {
                 this.props.setLoadingMode(false)
                 break;
             case UpdateCauses.success:
-                this.context.show({
-                    title: "Success", 
-                    message: "We have resent the verification e-mail", 
-                    buttons: [{
-                        text: "OK",
-                        onPress: () => this.context.close()
-                    }], 
-                    cancellable: true
-                })
                 this.props.setLoadingMode(false)
                 break;
             default:
@@ -100,8 +94,29 @@ class UnverifiedUserScreen extends Component {
         this.props.signout()
     }
 
-    onPress_ResendVerificatioNEmail = () => {
-        this.props.resendVerificationEmailRequest()
+    onPress_ResendVerificatioNEmail = async () => {
+        try {
+            this.props.setLoadingMode(true)
+            await FirebaseApi.sendVerificationEmail();
+            this.context.show({
+                title: I18n.t(TextNames.success), 
+                message: I18n.t(TextNames.resendSuccessfulMessage), 
+                buttons: [{
+                    text: I18n.t(TextNames.ok),
+                    onPress: () => this.context.close()
+                }], 
+                cancellable: true
+            })
+        } catch (error) {
+            let errorMessage = I18n.t(TextNames.genericError);
+            if (validate.isString(error)) {
+                errorMessage = error;
+            }
+
+            this.showErrorMessage(errorMessage)
+        } finally {
+            this.props.setLoadingMode(false)
+        }
     }
 
     // *** RENDER METHODS *** //
@@ -160,7 +175,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     signout: () => dispatch(AuthActions.signOutRequest()),
-    resendVerificationEmailRequest: () => dispatch(AuthActions.resendVerificationEmailRequest()),
     setLoadingMode: isLoading => dispatch(LoadingActions.setLoadingMode(isLoading))
 })
 
