@@ -8,7 +8,6 @@ export const UpdateCauses = {
 // returns if component updated because redux props updated
 // if it did, then returns the cause for update
 export const getUpdateCause = (prevProps, currentProps, dataFieldName, isDataFieldSuccess) => {
-    debugger;
     if (prevProps == currentProps) {
         return UpdateCauses.irrelevant
     }

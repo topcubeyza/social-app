@@ -48,7 +48,6 @@ class UnverifiedUserScreen extends Component {
 
     componentDidUpdate(prevProps) {
         let cause = getUpdateCause(prevProps.auth, this.props.auth, "unimportant", () => true);  
-        debugger;
         switch (cause) {
             case UpdateCauses.fetching:
                 this.props.setLoadingMode(true)
@@ -102,7 +101,6 @@ class UnverifiedUserScreen extends Component {
     }
 
     onPress_ResendVerificatioNEmail = () => {
-        debugger;
         this.props.resendVerificationEmailRequest()
     }
 
