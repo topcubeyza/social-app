@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { StatusBar } from 'react-native'
 import { connect } from "react-redux"
+import { Appearance } from "react-native-appearance"
 
 import { ThemeActions } from "../Redux/ThemeRedux"
 import Theme, { getColorMode, ThemeModes } from './Theme'
@@ -10,15 +11,37 @@ class ThemeManager extends Component {
     constructor(props) {
         super(props);
 
-        this.subscription
+        this.subscription;
         this.firstTime = true
+
+        this.state = {
+            colorMode: ""
+        }
 
     }
 
     componentDidMount() {
         let themeMode = this.props.theme.themeMode ? this.props.theme.themeMode : ThemeModes.device
 
-        this.props.changeTheme(themeMode)
+        this.subscription = Appearance.addChangeListener(({ colorScheme }) => {
+            if (this.props.theme.themeMode == ThemeModes.device) {
+                this.setState({
+                    colorMode: getColorMode(ThemeModes.device)
+                }, () => {
+                    this.props.changeTheme(ThemeModes.device)
+                })
+            }
+        });
+
+        this.setState({
+            colorMode: getColorMode(themeMode)
+        }, () => {
+            this.props.changeTheme(themeMode)
+        })
+    }
+
+    componentWillUnmount() {
+        this.subscription.remove();
     }
 
     render() {
