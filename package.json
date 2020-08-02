@@ -26,6 +26,7 @@
     "react-native-gesture-handler": "^1.7.0",
     "react-native-i18n": "^2.0.15",
     "react-native-loading-spinner-overlay": "^1.1.0",
+    "react-native-localize": "^1.4.1",
     "react-native-splash-screen": "^3.2.0",
     "react-native-status-bar-height": "^2.5.0",
     "react-navigation": "^3.11.0",
