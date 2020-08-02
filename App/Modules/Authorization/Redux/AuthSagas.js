@@ -3,30 +3,31 @@ import { AuthTypes, AuthActions } from "../Redux/AuthRedux"
 import validate from "validate.js";
 import moment from "moment";
 
+let pauseReloading = false;
 
 function* manageChangedAuthState(api, action) {
     try {
         let state = action.payload ? action.payload.state : action.state
         let user = (state && state._user) ? state._user : state;
         if (user && user.emailVerified) {
-            yield put(AuthActions.setUser({user}))
+            yield put(AuthActions.setUser({ user }))
         }
-        else if (user && user.displayName){
-            yield put(AuthActions.setCandidateUser({user}))
+        else if (user && user.displayName) {
+            yield put(AuthActions.setCandidateUser({ user }))
             while (!user.emailVerified) {
-                console.log("before",moment().format("h:mm:ss:SSS"))
                 let delayed = yield delay(1000, true)
-                console.log("after",moment().format("h:mm:ss:SSS"))
-                user = yield call(api.reloadUser);
+                if (!pauseReloading) {
+                    user = yield call(api.reloadUser);
+                }                
             }
-            yield put(AuthActions.setUser({user}))
+            yield put(AuthActions.setUser({ user }))
         }
         else if (user == null) {
-            yield put(AuthActions.setUser({user}))
+            yield put(AuthActions.setUser({ user }))
         }
     } catch (error) {
         if (validate.isString(error)) {
-            yield put(AuthActions.failure({error}))
+            yield put(AuthActions.failure({ error }))
         }
     }
 }
@@ -38,11 +39,11 @@ function* watchAuthStateChange(api) {
 function* signIn(api, action) {
     try {
         let { email, password } = action.payload;
-        yield call(api.signIn, {email, password});
+        yield call(api.signIn, { email, password });
     } catch (error) {
         if (validate.isString(error)) {
-            yield put(AuthActions.failure({error}))
-        }    
+            yield put(AuthActions.failure({ error }))
+        }
     }
 }
 
@@ -53,16 +54,16 @@ function* watchSignInRequest(api) {
 function* createUser(api, action) {
     try {
         let { email, password, displayName } = action.payload;
-        yield put(AuthActions.setCandidateUser({user:null}));
-        yield call(api.createUser, {email, password});
-        yield call(api.updateUserProfile, {displayName})
+        yield put(AuthActions.setCandidateUser({ user: null }));
+        yield call(api.createUser, { email, password });
+        yield call(api.updateUserProfile, { displayName })
         yield call(api.sendVerificationEmail);
         let user = yield call(api.reloadUser)
-        yield call(manageChangedAuthState, api, {payload:{state: user}})
+        yield call(manageChangedAuthState, api, { payload: { state: user } })
     } catch (error) {
         if (validate.isString(error)) {
-            yield put(AuthActions.failure({error}))
-        }    
+            yield put(AuthActions.failure({ error }))
+        }
     }
 }
 
@@ -72,14 +73,15 @@ function* watchCreateUserRequest(api) {
 
 function* resendVerificationEmail(api) {
     try {
-        debugger;
+        pauseReloading = true;
         yield call(api.sendVerificationEmail);
-        debugger;
+        pauseReloading = false;
         yield put(AuthActions.resendVerificationEmailSuccess())
     } catch (error) {
+        pauseReloading = false;
         if (validate.isString(error)) {
-            yield put(AuthActions.failure({error}))
-        }    
+            yield put(AuthActions.failure({ error }))
+        }
     }
 }
 
@@ -95,13 +97,13 @@ function* signOut(api) {
         yield call(api.signOut);
     } catch (error) {
         if (validate.isString(error)) {
-            yield put(AuthActions.failure({error}))
-        }        
+            yield put(AuthActions.failure({ error }))
+        }
     }
 }
 
 function* watchSignOutRequest(api) {
-    while(true) {
+    while (true) {
         let action = yield take(AuthTypes.SIGN_OUT_REQUEST);
         yield call(signOut, api)
     }
