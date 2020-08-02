@@ -50,7 +50,7 @@ class UnverifiedUserScreen extends Component {
     // *** LIFECYCLE METHODS *** //
 
     componentDidUpdate(prevProps) {
-        let cause = getUpdateCause(prevProps.auth, this.props.auth, "user", data => data == null);  
+        let cause = getUpdateCause(prevProps.auth, this.props.auth, "user", data => data == null);
         switch (cause) {
             case UpdateCauses.fetching:
                 this.props.setLoadingMode(true)
@@ -99,12 +99,12 @@ class UnverifiedUserScreen extends Component {
             this.props.setLoadingMode(true)
             await FirebaseApi.sendVerificationEmail();
             this.context.show({
-                title: I18n.t(TextNames.success), 
-                message: I18n.t(TextNames.resendSuccessfulMessage), 
+                title: I18n.t(TextNames.success),
+                message: I18n.t(TextNames.resendSuccessfulMessage),
                 buttons: [{
                     text: I18n.t(TextNames.ok),
                     onPress: () => this.context.close()
-                }], 
+                }],
                 cancellable: true
             })
         } catch (error) {
@@ -133,7 +133,7 @@ class UnverifiedUserScreen extends Component {
                         <View style={styles.messageContainer}>
                             <Text style={styles.helloText}>{I18n.t(TextNames.helloName, { name: user.displayName })}</Text>
                             <Text style={styles.message}>{I18n.t(TextNames.accountCreated)}</Text>
-                            <Text style={styles.message}>{I18n.t(TextNames.verifyEmail)}</Text>
+                            <Text style={styles.message}>{I18n.t(TextNames.verifyEmail, { email: user.email })}</Text>
                         </View>
                     </>
                 }

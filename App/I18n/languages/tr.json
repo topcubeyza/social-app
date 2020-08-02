@@ -24,7 +24,7 @@
     "changeTheme": "Renk temasını değiştir",
     "helloName": "Merhaba, %{name}!",
     "accountCreated": "Hesabın oluşturuldu!",
-    "verifyEmail": "E-posta adresine bir doğrulama bağlantısı gönderdik. Bu bağlantıya tıklayarak e-posta adresini doğruladıktan sonra uygulamayı keşfetmeye devam edebilirsin!",
+    "verifyEmail": "\"%{email}\" adresine bir doğrulama bağlantısı gönderdik. Bu bağlantıya tıklayarak e-posta adresini doğruladıktan sonra uygulamayı keşfetmeye devam edebilirsin!",
     "resendVerificationEmail": "Doğrulama e-postasını tekrar gönder",
     "resendSuccessfulMessage": "Doğrulama e-postasını tekrar gönderdik.",
     "tooManyRequestsResend": "Az önce bir e-posta gönderdik. Lütfen tekrar kontrol edin.",

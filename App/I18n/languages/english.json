@@ -24,7 +24,7 @@
    "changeTheme": "Change color theme",
    "helloName": "Hello, %{name}!",
    "accountCreated": "Your account is created!",
-   "verifyEmail": "We have sent you an e-mail with a verification link. Please verify your e-mail address and come back to discover the app!",
+   "verifyEmail": "We have sent an e-mail with a verification link to \"%{email}\". Please verify your e-mail address and come back to discover the app!",
    "resendVerificationEmail":"Resend verification e-mail",
    "resendSuccessfulMessage": "We have resent the verification e-mail.",
    "tooManyRequestsResend": "We have just sent the e-mail. Please check again.",
