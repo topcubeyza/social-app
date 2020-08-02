@@ -71,27 +71,6 @@ function* watchCreateUserRequest(api) {
     yield takeLatest(AuthTypes.CREATE_USER_REQUEST, createUser, api)
 }
 
-function* resendVerificationEmail(api) {
-    try {
-        pauseReloading = true;
-        yield call(api.sendVerificationEmail);
-        pauseReloading = false;
-        yield put(AuthActions.resendVerificationEmailSuccess())
-    } catch (error) {
-        pauseReloading = false;
-        if (validate.isString(error)) {
-            yield put(AuthActions.failure({ error }))
-        }
-    }
-}
-
-function* watchResendVerificationEmail(api) {
-    while (true) {
-        let action = yield take(AuthTypes.RESEND_VERIFICATION_EMAIL_REQUEST);
-        yield call(resendVerificationEmail, api)
-    }
-}
-
 function* signOut(api) {
     try {
         yield call(api.signOut);
@@ -113,7 +92,6 @@ const authSagas = (api) => [
     fork(watchAuthStateChange, api),
     fork(watchSignInRequest, api),
     fork(watchCreateUserRequest, api),
-    fork(watchResendVerificationEmail, api),
     fork(watchSignOutRequest, api)
 ]
 
