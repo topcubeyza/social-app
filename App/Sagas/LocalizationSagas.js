@@ -1,34 +1,18 @@
 import { takeEvery, takeLatest, take, call, fork, put } from "redux-saga/effects"
-import { LocalizationActions, LocalizationTypes } from "../Redux/LocalizationRedux"
-import { LanguageCodes } from "../I18n/languages/Names";
-import { Platform, NativeModules } from "react-native";
 import I18n from "react-native-i18n"
 
-getDeviceLocale = () => {
-    let locale;
-    // iOS:
-    if (Platform.OS == "ios") {
-        locale = NativeModules.SettingsManager.settings.AppleLocale ||
-        NativeModules.SettingsManager.settings.AppleLanguages[0]
-    }
-    else {
-        locale = NativeModules.I18nManager.localeIdentifier
-    }
+import { LocalizationActions, LocalizationTypes } from "../Redux/LocalizationRedux"
 
-    return locale ? locale.substring(0,2) : LanguageCodes.english;
-}
+import { getLanguageCode } from "../I18n/Utils"
 
 function* setLocale(action) {
     try {
-        let {languageCode} = action.payload;
-        let code = languageCode;
-        if (languageCode == LanguageCodes.device) {
-            code = getDeviceLocale();
-        }
+        let {localeType} = action.payload;
+        let code = getLanguageCode(localeType)
 
         I18n.locale = code
         yield put(LocalizationActions.changeLocale({
-            languageCode: code
+            localeType
         }))
     } catch (error) {
 

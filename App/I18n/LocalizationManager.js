@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { Platform } from 'react-native'
 import { connect } from "react-redux"
-import I18n from "react-native-i18n"
+import { addEventListener, removeEventListener } from "react-native-localize"
 import { LocalizationActions } from '../Redux/LocalizationRedux'
-import { LanguageCodes } from './languages/Names'
-import { NativeModules } from 'react-native'
+import { LocaleTypes } from './languages/Names'
+import { getLanguageCode } from './Utils'
 
 class LocalizationManager extends Component {
 
@@ -12,12 +12,36 @@ class LocalizationManager extends Component {
         super(props);
 
         this.firstRender = true;
+
+        this.state = {
+            languageCode: "",
+        }
     }
 
     componentDidMount() {
-        let languageCode = this.props.locale.languageCode ? this.props.locale.languageCode : LanguageCodes.device
+        let localeType = this.props.locale.localeType ? this.props.locale.localeType : LocaleTypes.device
 
-        this.props.changeLocale(languageCode)
+        this.setState({
+            languageCode: getLanguageCode(localeType)
+        }, () => {
+            this.props.changeLocale(localeType)
+        })
+
+        addEventListener("change", this.handleLocalizationChange)
+    }
+
+    componentWillUnmount() {
+        removeEventListener("change", this.handleLocalizationChange)
+    }
+
+    handleLocalizationChange = () => {
+        if (this.props.locale.localeType == LocaleTypes.device) {
+            this.setState({
+                code: getLanguageCode(LocaleTypes.device)
+            }, () => {
+                this.props.changeLocale(LocaleTypes.device)
+            })
+        }
     }
 
     render() {
@@ -39,7 +63,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => {
     return ({
-        changeLocale: languageCode => dispatch(LocalizationActions.changeLocaleRequest({languageCode}))
+        changeLocale: localeType => dispatch(LocalizationActions.changeLocaleRequest({localeType}))
     })
 }
 

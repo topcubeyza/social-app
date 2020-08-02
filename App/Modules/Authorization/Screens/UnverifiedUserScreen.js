@@ -28,7 +28,7 @@ import { getUpdateCause, UpdateCauses } from "../../../Helpers/ReduxHelpers";
 // Styles
 import getStyles from "../Styles/UnverifiedUserStyles"
 import { Colors, Theme } from '../../../Themes'
-import { TextNames, LanguageCodes } from "../../../I18n/languages/Names";
+import { TextNames } from "../../../I18n/languages/Names";
 import { LocalizationActions } from "../../../Redux/LocalizationRedux";
 import { ThemeActions } from "../../../Redux/ThemeRedux"
 import { ThemeModes, getColorMode } from "../../../Themes/Theme";

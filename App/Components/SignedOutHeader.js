@@ -23,7 +23,7 @@ import { LocalizationActions } from "../Redux/LocalizationRedux"
 // Styles
 import getStyles from "./Styles/SignedOutHeaderStyles"
 import { Colors, Fonts, Metrics, Theme, Images } from '../Themes'
-import { LanguageCodes } from "../I18n/languages/Names"
+import { LocaleTypes } from "../I18n/languages/Names"
 
 class SignedOutHeader extends Component {
 
@@ -46,7 +46,7 @@ class SignedOutHeader extends Component {
 
     toggleLocale = () => {
         let currentLocale = I18n.currentLocale().substring(0, 2)
-        let newLocale = currentLocale == LanguageCodes.english ? LanguageCodes.turkish : LanguageCodes.english
+        let newLocale = currentLocale == LocaleTypes.english ? LocaleTypes.turkish : LocaleTypes.english
         this.props.changeLocale(newLocale)
     }
 
@@ -125,7 +125,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    changeLocale: languageCode => dispatch(LocalizationActions.changeLocaleRequest({ languageCode })),
+    changeLocale: localeType => dispatch(LocalizationActions.changeLocaleRequest({ localeType })),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignedOutHeader);

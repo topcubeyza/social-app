@@ -1,5 +1,5 @@
 import { createReducer, createActions } from 'reduxsauce'
-import { LanguageCodes } from '../I18n/languages/Names'
+import { LocaleTypes } from '../I18n/languages/Names'
 
 /* ------------- Types and Action Creators ------------- */
 
@@ -9,16 +9,16 @@ const Types = {
 }
 
 const Actions = {
-    changeLocaleRequest: ({ languageCode }) => {
+    changeLocaleRequest: ({ localeType }) => {
         return ({
             type: Types.CHANGE_LOCALE_REQUEST,
-            payload: { languageCode }
+            payload: { localeType }
         })
     },
-    changeLocale: ({ languageCode }) => {
+    changeLocale: ({ localeType }) => {
         return ({
             type: Types.CHANGE_LOCALE,
-            payload: { languageCode }
+            payload: { localeType }
         })
     },
 }
@@ -29,16 +29,16 @@ export const LocalizationActions = Actions
 /* ------------- Initial State ------------- */
 
 export const INITIAL_STATE = {
-    languageCode: "",
+    localeType: "",
 }
 
 /* ------------- Reducers ------------- */
 
 export const changeLocale = (state, action) => {
-    let { languageCode } = action.payload
+    let { localeType } = action.payload
     return {
         ...state,
-        languageCode,
+        localeType,
     }
 }
 

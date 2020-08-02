@@ -40,7 +40,7 @@ export const TextNames = {
     }
  }
 
- export const LanguageCodes = {
+ export const LocaleTypes = {
      english: "en",
      turkish: "tr",
      device: "device",
