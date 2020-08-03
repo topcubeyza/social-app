@@ -7,7 +7,7 @@ import { Modal, View, TouchableOpacity, Text } from "react-native";
 import { AlertActions } from "../../Redux/AlertRedux"
 
 import getStyles from "./Styles/AlertStyles"
-import { Theme } from "../../Themes"
+import { themed } from "../../Theming"
 
 
 const initialState = {
@@ -75,7 +75,7 @@ class AlertManager extends Component {
     }
 
     render() {
-        let styles = getStyles(Theme.c)
+        let styles = getStyles(themed.color)
         return (
             <Modal
                 visible={this.props.alerts.length > 0}

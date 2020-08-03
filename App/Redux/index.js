@@ -11,7 +11,7 @@ import rootSaga from '../Sagas/';
 import { NavReducer } from "./NavigationRedux"
 import { AppReducer } from "./AppRedux"
 import { AuthReducer } from "../Modules/Authorization/Redux/AuthRedux"
-import { ThemeReducer } from "./ThemeRedux"
+import { ThemeReducer } from "../Theming/Redux/ThemeRedux"
 import { LocalizationReducer } from "./LocalizationRedux"
 import { LoadingReducer } from "./LoadingRedux"
 import { AlertReducer } from "./AlertRedux"

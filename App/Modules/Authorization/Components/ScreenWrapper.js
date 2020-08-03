@@ -13,14 +13,14 @@ import {
 // Styles
 import getStyles from "../Styles/CommonStyles"
 import { Fonts, Metrics } from "../../../StylingConstants"
-import { Colors, Theme } from '../../../Themes'
+import { Colors, themed } from '../../../Theming'
 
 class ScreenWrapper extends Component {
 
     // *** RENDER METHODS *** //
 
     render() {
-        let styles = getStyles(Theme.c)
+        let styles = getStyles(themed.color)
         return (
             <View style={styles.container}>
                 <SafeAreaView style={styles.topContainer} 

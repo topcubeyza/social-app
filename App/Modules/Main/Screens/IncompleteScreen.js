@@ -16,7 +16,7 @@ import Button from "../../../Components/Button"
 
 // Styles
 import getStyles from "../Styles/IncompleteStyles"
-import { Colors, Images, Theme } from '../../../Themes'
+import { Colors, Images, themed } from '../../../Theming'
 import { TextNames } from "../../../I18n/languages/Names";
 
 class IncompleteScreen extends Component {
@@ -30,12 +30,12 @@ class IncompleteScreen extends Component {
     }
 
     render() {
-        let styles = getStyles(Theme.c)
+        let styles = getStyles(themed.color)
 
         return (
             <SafeAreaView style={styles.container}>
                 <View style={styles.imageContainer}>
-                    <Image style={styles.image} source={Theme.i(Images.underConstruction)} />
+                    <Image style={styles.image} source={themed.image(Images.underConstruction)} />
                 </View>
                 <View style={styles.textsContainer}>
                     <Text style={styles.helloText}>{I18n.t(TextNames.heyCurious)}</Text>
@@ -45,9 +45,9 @@ class IncompleteScreen extends Component {
                 <View style={styles.gobackButtonContainer}>
                     <Button
                         text={I18n.t(TextNames.goBack)}
-                        textColor={Theme.c(Colors.textOnBrandColor)}
+                        textColor={themed.color(Colors.textOnBrandColor)}
                         onPress={this.onPress_BackButton}
-                        backgroundColor={Theme.c(Colors.brandColor)}
+                        backgroundColor={themed.color(Colors.brandColor)}
                     />
                 </View>
             </SafeAreaView>

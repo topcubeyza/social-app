@@ -23,7 +23,7 @@ import { LocalizationActions } from "../Redux/LocalizationRedux"
 // Styles
 import getStyles from "./Styles/SignedOutHeaderStyles"
 import { Fonts, Metrics } from "../StylingConstants"
-import { Colors, Theme, Images } from '../Themes'
+import { Colors, Images, themed } from '../Theming'
 import { LocaleTypes } from "../I18n/languages/Names"
 
 class SignedOutHeader extends Component {
@@ -57,7 +57,7 @@ class SignedOutHeader extends Component {
         if (this.props.showLeft) {
             return (
                 <TouchableOpacity style={styles.backImageContainer} onPress={() => this.props.navigation.goBack()}>
-                    <Image source={Theme.i(Images.leftArrow)} style={styles.backImage} />
+                    <Image source={themed.image(Images.leftArrow)} style={styles.backImage} />
                 </TouchableOpacity>
             )
         }
@@ -99,7 +99,7 @@ class SignedOutHeader extends Component {
     }
 
     render() {
-        let styles = getStyles(Theme.c)
+        let styles = getStyles(themed.color)
         if (Platform.OS == "ios") {
             return (
                 <SafeAreaView style={styles.containerSafeArea}>

@@ -11,17 +11,17 @@ import {
 
 // Styles
 import getStyles from "./Styles/LoadingOverlayStyles"
-import { Colors, Images, Theme } from '../../Themes'
+import { Colors, Images, themed } from '../../Theming'
 
 class LoadingOverlay extends Component {
 
     renderLoadingAnimation = () => {
-        let styles = getStyles(Theme.c)
+        let styles = getStyles(themed.color)
 
         return (
             <LottieView 
             speed={2}
-            source={Theme.i(Images.loadingAnimation)} 
+            source={themed.image(Images.loadingAnimation)} 
             style={styles.lottie}
             autoPlay 
             loop/>
@@ -34,7 +34,7 @@ class LoadingOverlay extends Component {
                 visible={this.props.isLoading}
                 cancelable={true}
                 animation="fade"
-                overlayColor={Theme.c(Colors.overlayColor)}
+                overlayColor={themed.color(Colors.overlayColor)}
                 customIndicator={this.renderLoadingAnimation()}
             />
         )

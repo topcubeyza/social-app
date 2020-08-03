@@ -1,5 +1,5 @@
 import { createReducer, createActions } from 'reduxsauce'
-import { ThemeModes } from '../Themes/Theme'
+import { ThemeModes } from '../index'
 
 /* ------------- Types and Action Creators ------------- */
 

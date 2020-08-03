@@ -20,11 +20,10 @@ import { AuthActions } from "../Redux/AuthRedux"
 
 // Styles
 import getStyles from "../Styles/WelcomeStyles"
-import { Colors, Theme } from '../../../Themes'
+import { Colors, themed, ThemeModes, getColorMode } from '../../../Theming'
 import { TextNames, LanguageCodes } from "../../../I18n/languages/Names";
 import { LocalizationActions } from "../../../Redux/LocalizationRedux";
-import { ThemeActions } from "../../../Redux/ThemeRedux"
-import { ThemeModes, getColorMode } from "../../../Themes/Theme";
+import { ThemeActions } from "../../../Theming/Redux/ThemeRedux"
 
 class WelcomeScreen extends Component {
 
@@ -53,7 +52,7 @@ class WelcomeScreen extends Component {
     // *** RENDER METHODS *** //
 
     render() {
-        let styles = getStyles(Theme.c)
+        let styles = getStyles(themed.color)
         return (
             <ScreenWrapper
                 topContainerContent={
@@ -66,17 +65,17 @@ class WelcomeScreen extends Component {
                             <View style={styles.buttonContainer}>
                                 <Button
                                     text={I18n.t(TextNames.loginWithGoogle)}
-                                    textColor={Theme.c(Colors.textOnDarkBackground)}
+                                    textColor={themed.color(Colors.textOnDarkBackground)}
                                     onPress={this.onPress_Login}
-                                    backgroundColor={Theme.c(Colors.googleColor)}
+                                    backgroundColor={themed.color(Colors.googleColor)}
                                 />
                             </View>
                             <View style={styles.buttonContainer}>
                                 <Button
                                     text={I18n.t(TextNames.loginWithEmail)}
-                                    textColor={Theme.c(Colors.textOnBrandColor)}
+                                    textColor={themed.color(Colors.textOnBrandColor)}
                                     onPress={this.onPress_LoginWithEmail}
-                                    backgroundColor={Theme.c(Colors.brandColor)}
+                                    backgroundColor={themed.color(Colors.brandColor)}
                                 />
                             </View>
                         </View>
@@ -85,15 +84,15 @@ class WelcomeScreen extends Component {
                 topButtonComponent={
                     <Button
                         text={I18n.t(TextNames.signup)}
-                        textColor={Theme.c(Colors.textOnLightBackground_dm)}
+                        textColor={themed.color(Colors.textOnLightBackground_dm)}
                         onPress={this.onPress_Signup}
-                        backgroundColor={Theme.c(Colors.lightBackground_dm)}
+                        backgroundColor={themed.color(Colors.lightBackground_dm)}
                     />
                 }
                 transparentButtonComponent={
                     <Button
                         text={I18n.t(TextNames.changeTheme)}
-                        textColor={Theme.c(Colors.midLightGrey_dm)}
+                        textColor={themed.color(Colors.midLightGrey_dm)}
                         onPress={this.onPress_ForgotPassword}
                         backgroundColor={"transparent"}
                     />

@@ -33,7 +33,7 @@ import { getUpdateCause, UpdateCauses } from "../../../Helpers/ReduxHelpers";
 // Styles
 import getStyles from "../Styles/CommonStyles"
 import { Fonts, Metrics } from "../../../StylingConstants"
-import { Colors, Theme } from '../../../Themes'
+import { Colors, themed } from '../../../Theming'
 import { TextNames } from "../../../I18n/languages/Names";
 import validate from "validate.js";
 
@@ -232,7 +232,7 @@ class AuthScreensWrapper extends Component {
     }
 
     render() {
-        let styles = getStyles(Theme.c)
+        let styles = getStyles(themed.color)
         return (
             <KeyboardAvoidingView style={{ flex: 1 }} keyboardVerticalOffset={Metrics.headerHeight + getStatusBarHeight(true)} behavior={Platform.OS == "ios" ? "padding" : null}>
                 <TouchableWithoutFeedback onPress={this.onPress_Background}>
@@ -255,15 +255,15 @@ class AuthScreensWrapper extends Component {
                                 topButtonComponent={
                                     <Button
                                         text={this.props.topButtonText}
-                                        textColor={Theme.c(Colors.textOnBrandColor)}
+                                        textColor={themed.color(Colors.textOnBrandColor)}
                                         onPress={this.onPress_TopButton}
-                                        backgroundColor={Theme.c(Colors.brandColor)}
+                                        backgroundColor={themed.color(Colors.brandColor)}
                                     />
                                 }
                                 transparentButtonComponent={
                                     <Button
                                         text={this.props.transparentButtonText}
-                                        textColor={Theme.c(Colors.midLightGrey_dm)}
+                                        textColor={themed.color(Colors.midLightGrey_dm)}
                                         onPress={this.props.onPress_TransparentButton}
                                         backgroundColor={"transparent"}
                                     />

@@ -22,7 +22,7 @@ import { getUpdateCause, UpdateCauses } from "../../../Helpers/ReduxHelpers";
 
 // Styles
 import getStyles from "../Styles/WelcomeStyles"
-import { Colors, Theme } from '../../../Themes'
+import { Colors, themed } from '../../../Theming'
 import { TextNames } from "../../../I18n/languages/Names";
 
 class SignoutTestScreen extends Component {
@@ -42,7 +42,7 @@ class SignoutTestScreen extends Component {
     // *** RENDER METHODS *** //
     
     render() {
-        let styles = getStyles(Theme.c)
+        let styles = getStyles(themed.color)
         return (
             <View style={styles.container}>
                 <SafeAreaView style={styles.topContainer}>
@@ -55,15 +55,15 @@ class SignoutTestScreen extends Component {
                     <View style={styles.bottomButtonContainer}>
                         <Button
                             text={I18n.t(TextNames.signout)}
-                            textColor={Theme.c(Colors.textOnLightBackground_dm)}
+                            textColor={themed.color(Colors.textOnLightBackground_dm)}
                             onPress={this.onPress_Signout}
-                            backgroundColor={Theme.c(Colors.lightBackground_dm)}
+                            backgroundColor={themed.color(Colors.lightBackground_dm)}
                         />
                     </View>
                     <View style={styles.transparentButtonContainer}>
                         <Button
                             text={I18n.t(TextNames.back)}
-                            textColor={Theme.c(Colors.midLightGrey_dm)}
+                            textColor={themed.color(Colors.midLightGrey_dm)}
                             onPress={this.onPress_Back}
                             backgroundColor={"transparent"}
                         />

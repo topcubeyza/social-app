@@ -11,10 +11,10 @@ import SingleLineInput from "../../../Components/SingleLineInput"
 
 // Styles
 import getStyles from "../Styles/CommonStyles"
-import { Colors, Theme } from '../../../Themes'
+import { Colors, themed } from '../../../Theming'
 
 const AuthInputsComponent = (props) => {
-        let styles = getStyles(Theme.c)
+        let styles = getStyles(themed.color)
         let { reference, inputKey, onFocus, placeholder, value, onChangeText, type, autoFocus } = props;
         return (
             <View style={styles.textinputContainer}>

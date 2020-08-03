@@ -9,7 +9,7 @@ import ReduxNavigation from '../../Navigation/ReduxNavigation';
 import StartupActions from '../../Redux/StartupRedux';
 import ReduxPersist from '../../Config/ReduxPersist';
 import AuthorizationManager from "../Authorization/Components/AuthorizationManager"
-import ThemeManager from "../../Themes/ThemeManager"
+import ThemeManager from "../../Theming/ThemeManager"
 import LocalizationManager from "../../I18n/LocalizationManager"
 import AlertManager from './AlertManager';
 

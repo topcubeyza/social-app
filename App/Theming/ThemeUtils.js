@@ -48,7 +48,7 @@ export const setThemeMode = themeMode => {
     images = Themes[colorMode].images;
 }
 
-export default {
-    c: getColorByName,
-    i: getImageByName
+export const themed = {
+    color: getColorByName,
+    image: getImageByName
 }

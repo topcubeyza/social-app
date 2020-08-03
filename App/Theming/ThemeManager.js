@@ -3,8 +3,8 @@ import { StatusBar } from 'react-native'
 import { connect } from "react-redux"
 import { Appearance } from "react-native-appearance"
 
-import { ThemeActions } from "../Redux/ThemeRedux"
-import Theme, { getColorMode, ThemeModes } from './Theme'
+import { ThemeActions } from "./Redux/ThemeRedux"
+import { getColorMode, ThemeModes, themed } from './index'
 
 class ThemeManager extends Component {
 
@@ -52,7 +52,7 @@ class ThemeManager extends Component {
         return (
             <>
                 <StatusBar
-                    backgroundColor={Theme.c(Colors.lightBackground_dm)}
+                    backgroundColor={themed.color(Colors.lightBackground_dm)}
                     barStyle={getColorMode(this.props.theme.themeMode) === ThemeModes.light ? 'dark-content' : 'light-content'}
                 />
                 {this.props.children}

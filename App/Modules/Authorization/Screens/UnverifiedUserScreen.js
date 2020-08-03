@@ -19,7 +19,7 @@ import Button from "../../../Components/Button"
 // Actions
 import { AuthActions } from "../Redux/AuthRedux"
 import { LoadingActions } from "../../../Redux/LoadingRedux"
-import { ThemeActions } from "../../../Redux/ThemeRedux"
+import { ThemeActions } from "../../../Theming/Redux/ThemeRedux"
 import { LocalizationActions } from "../../../Redux/LocalizationRedux";
 
 // Services
@@ -31,9 +31,8 @@ import { showAlert, closeAlert } from "../../../Helpers/AlertHelpers"
 
 // Styles
 import getStyles from "../Styles/UnverifiedUserStyles"
-import { Colors, Theme } from '../../../Themes'
+import { Colors, themed, ThemeModes, getColorMode } from '../../../Theming'
 import { TextNames } from "../../../I18n/languages/Names";
-import { ThemeModes, getColorMode } from "../../../Themes/Theme";
 
 class UnverifiedUserScreen extends Component {
 
@@ -123,7 +122,7 @@ class UnverifiedUserScreen extends Component {
         let user = this.props.auth.candidateUser
         if (user == null || validate.isEmpty(user.displayName)) return null;
 
-        let styles = getStyles(Theme.c)
+        let styles = getStyles(themed.color)
         return (
             <ScreenWrapper
                 topContainerContent={
@@ -147,15 +146,15 @@ class UnverifiedUserScreen extends Component {
                 topButtonComponent={
                     <Button
                         text={I18n.t(TextNames.resendVerificationEmail)}
-                        textColor={Theme.c(Colors.textOnLightBackground_dm)}
+                        textColor={themed.color(Colors.textOnLightBackground_dm)}
                         onPress={this.onPress_ResendVerificatioNEmail}
-                        backgroundColor={Theme.c(Colors.lightBackground_dm)}
+                        backgroundColor={themed.color(Colors.lightBackground_dm)}
                     />
                 }
                 transparentButtonComponent={
                     <Button
                         text={I18n.t(TextNames.signout)}
-                        textColor={Theme.c(Colors.midLightGrey_dm)}
+                        textColor={themed.color(Colors.midLightGrey_dm)}
                         onPress={this.onPress_Signout}
                         backgroundColor={"transparent"}
                     />

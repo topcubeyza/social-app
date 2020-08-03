@@ -1,6 +1,6 @@
 import { StyleSheet, Platform } from 'react-native'
-import { Fonts, Metrics } from "../../../StylingConstants"
-import { Colors } from '../../../Themes'
+import { Fonts, Metrics } from "../../StylingConstants"
+import { Colors } from '../../Theming'
 
 const getStyles = c => StyleSheet.create({
     container: {

@@ -1,6 +1,6 @@
 import { takeEvery, takeLatest, take, call, fork, put } from "redux-saga/effects"
-import { ThemeActions, ThemeTypes } from "../Redux/ThemeRedux"
-import { getColorMode, setThemeMode } from "../Themes/Theme";
+import { ThemeActions, ThemeTypes } from "./ThemeRedux"
+import { getColorMode, setThemeMode } from "..";
 
 function* setTheme(action) {
     try {
