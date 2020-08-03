@@ -17,7 +17,8 @@ import {
 
 // Styles
 import getStyles from "./Styles/TemplateStyles"
-import { Colors, Fonts, Metrics, Theme } from '../Themes'
+import { Fonts, Metrics } from "../StylingConstants"
+import { Colors, Theme } from '../Themes'
 
 class ClassComponentTemplate extends Component {
 

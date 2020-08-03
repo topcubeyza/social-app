@@ -22,7 +22,8 @@ import { LocalizationActions } from "../Redux/LocalizationRedux"
 
 // Styles
 import getStyles from "./Styles/SignedOutHeaderStyles"
-import { Colors, Fonts, Metrics, Theme, Images } from '../Themes'
+import { Fonts, Metrics } from "../StylingConstants"
+import { Colors, Theme, Images } from '../Themes'
 import { LocaleTypes } from "../I18n/languages/Names"
 
 class SignedOutHeader extends Component {

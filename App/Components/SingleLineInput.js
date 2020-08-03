@@ -5,7 +5,8 @@ import PropTypes from "prop-types"
 
 // Styles
 import getStyles from "./Styles/SingleLineInputStyles"
-import { Colors, Metrics, Theme } from "../Themes"
+import { Fonts, Metrics } from "../StylingConstants"
+import { Colors, Theme } from "../Themes"
 
 
 class SingleLineInput extends Component {

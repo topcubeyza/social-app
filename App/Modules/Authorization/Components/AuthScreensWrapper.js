@@ -32,7 +32,8 @@ import { getUpdateCause, UpdateCauses } from "../../../Helpers/ReduxHelpers";
 
 // Styles
 import getStyles from "../Styles/CommonStyles"
-import { Colors, Fonts, Theme, Metrics } from '../../../Themes'
+import { Fonts, Metrics } from "../../../StylingConstants"
+import { Colors, Theme } from '../../../Themes'
 import { TextNames } from "../../../I18n/languages/Names";
 import validate from "validate.js";
 

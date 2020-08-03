@@ -12,7 +12,8 @@ import {
 
 // Styles
 import getStyles from "../Styles/CommonStyles"
-import { Colors, Theme, Metrics } from '../../../Themes'
+import { Fonts, Metrics } from "../../../StylingConstants"
+import { Colors, Theme } from '../../../Themes'
 
 class ScreenWrapper extends Component {
 

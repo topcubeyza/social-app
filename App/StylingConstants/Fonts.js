@@ -1,4 +1,4 @@
-import Metrics from './Metrics'
+import Metrics from "./Metrics"
 
 const type = {
   regular: 'ProximaNova-Regular',
