@@ -15,6 +15,7 @@ import { AuthReducer } from "../Modules/Authorization/Redux/AuthRedux"
 import { ThemeReducer } from "./ThemeRedux"
 import { LocalizationReducer } from "./LocalizationRedux"
 import { LoadingReducer } from "./LoadingRedux"
+import { AlertReducer } from "./AlertRedux"
 
 
 export const reducers = combineReducers({
@@ -24,7 +25,8 @@ export const reducers = combineReducers({
     auth: AuthReducer,
     theme: ThemeReducer,
     locale: LocalizationReducer,
-    loading: LoadingReducer
+    loading: LoadingReducer,
+    alert: AlertReducer
 })
 
 export default () => {

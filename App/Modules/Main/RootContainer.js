@@ -11,7 +11,7 @@ import ReduxPersist from '../../Config/ReduxPersist';
 import AuthorizationManager from "../Authorization/Components/AuthorizationManager"
 import ThemeManager from "../../Themes/ThemeManager"
 import LocalizationManager from "../../I18n/LocalizationManager"
-import AlertProvider from './AlertProvider';
+import AlertManager from './AlertManager';
 
 // Components
 import LoadingOverlay from "../Main/LoadingOverlay"
@@ -65,10 +65,10 @@ class RootContainer extends Component {
       <AuthorizationManager>
         <ThemeManager>
           <LocalizationManager>
-            <AlertProvider>
+            <AlertManager>
               <LoadingOverlay />
               <ReduxNavigation />
-            </AlertProvider>
+            </AlertManager>
           </LocalizationManager>
         </ThemeManager>
       </AuthorizationManager>

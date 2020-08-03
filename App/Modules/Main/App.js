@@ -22,7 +22,7 @@ import { NativeModules } from 'react-native';
 
 
 
-const { store, persistor } = createStore();
+export const { store, persistor } = createStore();
 
 class App extends Component {
 

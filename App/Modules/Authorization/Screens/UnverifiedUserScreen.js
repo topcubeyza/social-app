@@ -3,6 +3,7 @@ import React, { Component } from "react"
 import { connect } from "react-redux";
 import I18n from "react-native-i18n"
 import { Appearance } from "react-native-appearance"
+import validate from "validate.js";
 
 // RN Components
 import {
@@ -18,22 +19,21 @@ import Button from "../../../Components/Button"
 // Actions
 import { AuthActions } from "../Redux/AuthRedux"
 import { LoadingActions } from "../../../Redux/LoadingRedux"
+import { ThemeActions } from "../../../Redux/ThemeRedux"
+import { LocalizationActions } from "../../../Redux/LocalizationRedux";
 
 // Services
 import FirebaseApi from "../../../Services/Firebase"
 
 // Utils
 import { getUpdateCause, UpdateCauses } from "../../../Helpers/ReduxHelpers";
+import { showAlert, closeAlert } from "../../../Helpers/AlertHelpers"
 
 // Styles
 import getStyles from "../Styles/UnverifiedUserStyles"
 import { Colors, Theme } from '../../../Themes'
 import { TextNames } from "../../../I18n/languages/Names";
-import { LocalizationActions } from "../../../Redux/LocalizationRedux";
-import { ThemeActions } from "../../../Redux/ThemeRedux"
 import { ThemeModes, getColorMode } from "../../../Themes/Theme";
-import validate from "validate.js";
-import { alertContext } from "../../Main/AlertProvider";
 
 class UnverifiedUserScreen extends Component {
 
@@ -44,8 +44,6 @@ class UnverifiedUserScreen extends Component {
             errorMessage: "",
         }
     }
-
-    static contextType = alertContext
 
     // *** LIFECYCLE METHODS *** //
 
@@ -98,12 +96,12 @@ class UnverifiedUserScreen extends Component {
         try {
             this.props.setLoadingMode(true)
             await FirebaseApi.sendVerificationEmail();
-            this.context.show({
+            showAlert({
                 title: I18n.t(TextNames.success),
                 message: I18n.t(TextNames.resendSuccessfulMessage),
                 buttons: [{
                     text: I18n.t(TextNames.ok),
-                    onPress: () => this.context.close()
+                    onPress: () => closeAlert()
                 }],
                 cancellable: true
             })
