@@ -1,4 +1,4 @@
-export const TextNames = {
+export const Texts = {
     genericError: "genericError",
     welcomeMessage: "welcomeMessage",
     loginWithGoogle: "loginWithGoogle",

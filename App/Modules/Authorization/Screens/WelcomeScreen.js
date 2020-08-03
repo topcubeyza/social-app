@@ -1,7 +1,6 @@
 // Packages
 import React, { Component } from "react"
 import { connect } from "react-redux";
-import I18n from "react-native-i18n"
 import { Appearance } from "react-native-appearance"
 
 // RN Components
@@ -17,13 +16,15 @@ import Button from "../../../Components/Button"
 
 // Actions
 import { AuthActions } from "../Redux/AuthRedux"
+import { LocalizationActions } from "../../../Localization/Redux/LocalizationRedux";
+import { ThemeActions } from "../../../Theming/Redux/ThemeRedux"
+
+// Utils
+import { Texts, localized, LocaleTypes } from "../../../Localization";
 
 // Styles
 import getStyles from "../Styles/WelcomeStyles"
 import { Colors, themed, ThemeModes, getColorMode } from '../../../Theming'
-import { TextNames, LanguageCodes } from "../../../I18n/languages/Names";
-import { LocalizationActions } from "../../../Redux/LocalizationRedux";
-import { ThemeActions } from "../../../Theming/Redux/ThemeRedux"
 
 class WelcomeScreen extends Component {
 
@@ -59,12 +60,12 @@ class WelcomeScreen extends Component {
                     <>
                         <View style={styles.welcomeContainer}>
                             <Text style={styles.bemagineText}>Bemagine</Text>
-                            <Text style={styles.subText}>{I18n.t(TextNames.welcomeMessage)}</Text>
+                            <Text style={styles.subText}>{localized.text(Texts.welcomeMessage)}</Text>
                         </View>
                         <View style={styles.buttonsContainer}>
                             <View style={styles.buttonContainer}>
                                 <Button
-                                    text={I18n.t(TextNames.loginWithGoogle)}
+                                    text={localized.text(Texts.loginWithGoogle)}
                                     textColor={themed.color(Colors.textOnDarkBackground)}
                                     onPress={this.onPress_Login}
                                     backgroundColor={themed.color(Colors.googleColor)}
@@ -72,7 +73,7 @@ class WelcomeScreen extends Component {
                             </View>
                             <View style={styles.buttonContainer}>
                                 <Button
-                                    text={I18n.t(TextNames.loginWithEmail)}
+                                    text={localized.text(Texts.loginWithEmail)}
                                     textColor={themed.color(Colors.textOnBrandColor)}
                                     onPress={this.onPress_LoginWithEmail}
                                     backgroundColor={themed.color(Colors.brandColor)}
@@ -83,7 +84,7 @@ class WelcomeScreen extends Component {
                 }
                 topButtonComponent={
                     <Button
-                        text={I18n.t(TextNames.signup)}
+                        text={localized.text(Texts.signup)}
                         textColor={themed.color(Colors.textOnLightBackground_dm)}
                         onPress={this.onPress_Signup}
                         backgroundColor={themed.color(Colors.lightBackground_dm)}
@@ -91,7 +92,7 @@ class WelcomeScreen extends Component {
                 }
                 transparentButtonComponent={
                     <Button
-                        text={I18n.t(TextNames.changeTheme)}
+                        text={localized.text(Texts.changeTheme)}
                         textColor={themed.color(Colors.midLightGrey_dm)}
                         onPress={this.onPress_ForgotPassword}
                         backgroundColor={"transparent"}

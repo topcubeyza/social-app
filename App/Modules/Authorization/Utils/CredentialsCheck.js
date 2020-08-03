@@ -1,7 +1,7 @@
 import _ from "lodash";
 import val from "validate.js"
-import I18n from "react-native-i18n"
-import { TextNames } from "../../../I18n/languages/Names";
+
+import { Texts, localized } from "../../../Localization";
 
 
 const emailConstraint = {
@@ -20,19 +20,19 @@ export default ({email, password, passwordConfirm, displayName}) => {
     {
         return {
             ok: false,
-            message: I18n.t(TextNames.errorMessages.fillAllFields)
+            message: localized.text(Texts.errorMessages.fillAllFields)
         };
     }
     if (val({ from: email }, emailConstraint)) {
         return {
             ok: false,
-            message: I18n.t(TextNames.errorMessages.enterValidEmail)
+            message: localized.text(Texts.errorMessages.enterValidEmail)
         };
     }
     if (passwordConfirm !== undefined && password !== passwordConfirm) {
         return {
             ok: false,
-            message: I18n.t(TextNames.errorMessages.passwordsDontMatch)
+            message: localized.text(Texts.errorMessages.passwordsDontMatch)
         };
     }
 

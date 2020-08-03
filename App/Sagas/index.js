@@ -12,7 +12,7 @@ import {StartupTypes} from '../Redux/StartupRedux';
 
 import {startup} from './StartupSagas';
 import authSagas from "../Modules/Authorization/Redux/AuthSagas";
-import localizationSagas from "./LocalizationSagas"
+import localizationSagas from "../Localization/Redux/LocalizationSagas"
 import themeSagas from '../Theming/Redux/ThemeSaga';
 
 /* ------------- API ------------- */

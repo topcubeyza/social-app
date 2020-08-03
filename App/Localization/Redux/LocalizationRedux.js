@@ -1,5 +1,5 @@
 import { createReducer, createActions } from 'reduxsauce'
-import { LocaleTypes } from '../I18n/languages/Names'
+import { LocaleTypes } from '../index'
 
 /* ------------- Types and Action Creators ------------- */
 

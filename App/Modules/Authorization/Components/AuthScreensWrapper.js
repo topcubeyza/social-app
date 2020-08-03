@@ -2,8 +2,8 @@
 import React, { Component } from "react"
 import { connect } from "react-redux";
 import { duration } from "moment";
-import I18n from "react-native-i18n";
 import { getStatusBarHeight } from "react-native-status-bar-height"
+import validate from "validate.js";
 
 // RN Components
 import {
@@ -34,8 +34,7 @@ import { getUpdateCause, UpdateCauses } from "../../../Helpers/ReduxHelpers";
 import getStyles from "../Styles/CommonStyles"
 import { Fonts, Metrics } from "../../../StylingConstants"
 import { Colors, themed } from '../../../Theming'
-import { TextNames } from "../../../I18n/languages/Names";
-import validate from "validate.js";
+import { Texts, localized } from "../../../Localization"
 
 class AuthScreensWrapper extends Component {
 

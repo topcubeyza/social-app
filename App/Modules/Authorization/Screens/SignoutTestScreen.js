@@ -1,7 +1,6 @@
 // Packages
 import React, { Component } from "react"
 import { connect } from "react-redux";
-import I18n from "react-native-i18n"
 import { Appearance } from "react-native-appearance"
 
 // RN Components
@@ -23,7 +22,8 @@ import { getUpdateCause, UpdateCauses } from "../../../Helpers/ReduxHelpers";
 // Styles
 import getStyles from "../Styles/WelcomeStyles"
 import { Colors, themed } from '../../../Theming'
-import { TextNames } from "../../../I18n/languages/Names";
+import { Texts, localized } from "../../../Localization";
+
 
 class SignoutTestScreen extends Component {
 
@@ -48,13 +48,13 @@ class SignoutTestScreen extends Component {
                 <SafeAreaView style={styles.topContainer}>
                     <View style={styles.welcomeContainer}>
                         <Text style={styles.bemagineText}>Bemagine</Text>
-                        <Text style={styles.subText}>{I18n.t(TextNames.welcomeMessage)}</Text>
+                        <Text style={styles.subText}>{localized.text(Texts.welcomeMessage)}</Text>
                     </View>
                 </SafeAreaView>
                 <SafeAreaView style={styles.bottomContainer}>
                     <View style={styles.bottomButtonContainer}>
                         <Button
-                            text={I18n.t(TextNames.signout)}
+                            text={localized.text(Texts.signout)}
                             textColor={themed.color(Colors.textOnLightBackground_dm)}
                             onPress={this.onPress_Signout}
                             backgroundColor={themed.color(Colors.lightBackground_dm)}
@@ -62,7 +62,7 @@ class SignoutTestScreen extends Component {
                     </View>
                     <View style={styles.transparentButtonContainer}>
                         <Button
-                            text={I18n.t(TextNames.back)}
+                            text={localized.text(Texts.back)}
                             textColor={themed.color(Colors.midLightGrey_dm)}
                             onPress={this.onPress_Back}
                             backgroundColor={"transparent"}

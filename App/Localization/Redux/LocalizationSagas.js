@@ -1,16 +1,14 @@
 import { takeEvery, takeLatest, take, call, fork, put } from "redux-saga/effects"
-import I18n from "react-native-i18n"
+import { LocalizationActions, LocalizationTypes } from "./LocalizationRedux"
 
-import { LocalizationActions, LocalizationTypes } from "../Redux/LocalizationRedux"
-
-import { getLanguageCode } from "../I18n/Utils"
+import { getLanguageCode, setCurrentLocale } from "../index"
 
 function* setLocale(action) {
     try {
         let {localeType} = action.payload;
         let code = getLanguageCode(localeType)
 
-        I18n.locale = code
+        setCurrentLocale(code)
         yield put(LocalizationActions.changeLocale({
             localeType
         }))

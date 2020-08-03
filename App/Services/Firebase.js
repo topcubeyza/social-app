@@ -1,6 +1,5 @@
 import auth from "@react-native-firebase/auth"
-import I18n from "react-native-i18n"
-import { TextNames } from "../I18n/languages/Names"
+import { Texts, localized, getCurrentLocale } from "../Localization"
 
 const signIn = async ({ email, password }) => {
   console.log("fb: signin")
@@ -9,18 +8,18 @@ const signIn = async ({ email, password }) => {
     .then(() => null)
     .catch(error => {
       if (error.code === 'auth/invalid-email') {
-        throw I18n.t(TextNames.errorMessages.invalidEmail)
+        throw localized.text(Texts.errorMessages.invalidEmail)
       }
 
       if (error.code === 'auth/user-not-found') {
-        throw I18n.t(TextNames.errorMessages.userNotFound)
+        throw localized.text(Texts.errorMessages.userNotFound)
       }
 
       if (error.code === 'auth/wrong-password') {
-        throw I18n.t(TextNames.errorMessages.wrongPassword)
+        throw localized.text(Texts.errorMessages.wrongPassword)
       }
 
-      throw I18n.t(TextNames.genericError)
+      throw localized.text(Texts.genericError)
     })
 }
 
@@ -31,18 +30,18 @@ const createUser = async ({ email, password }) => {
     .then(() => null)
     .catch(error => {
       if (error.code === 'auth/email-already-in-use') {
-        throw I18n.t(TextNames.errorMessages.emailAddressAlreadyInUse)
+        throw localized.text(Texts.errorMessages.emailAddressAlreadyInUse)
       }
 
       if (error.code === 'auth/invalid-email') {
-        throw I18n.t(TextNames.errorMessages.invalidEmail)
+        throw localized.text(Texts.errorMessages.invalidEmail)
       }
 
       if (error.code === 'auth/weak-password') {
-        throw I18n.t(TextNames.errorMessages.weakPassword)
+        throw localized.text(Texts.errorMessages.weakPassword)
       }
 
-      throw I18n.t(TextNames.genericError)
+      throw localized.text(Texts.genericError)
     })
 }
 
@@ -62,7 +61,7 @@ const updateUserProfile = async ({ displayName, photoURL }) => {
 
 const sendVerificationEmail = async () => {
   console.log("fb: sendVerificationEmail")
-  auth().languageCode = I18n.currentLocale().substring(0, 2).toLowerCase()
+  auth().languageCode = getCurrentLocale().toLowerCase()
   let user = auth().currentUser;
 
   return await user.sendEmailVerification()
@@ -71,10 +70,10 @@ const sendVerificationEmail = async () => {
     })
     .catch(function (error) {
       if (error.code === "auth/too-many-requests") {
-        throw I18n.t(TextNames.errorMessages.tooManyRequestsResend);
+        throw localized.text(Texts.errorMessages.tooManyRequestsResend);
       }
 
-      throw I18n.t(TextNames.genericError)
+      throw localized.text(Texts.genericError)
     });
 }
 
@@ -102,7 +101,7 @@ const signOut = async () => {
   return await auth().signOut()
     .then(() => null)
     .catch(error => {
-      throw I18n.t(TextNames.genericError)
+      throw localized.text(Texts.genericError)
     })
 }
 

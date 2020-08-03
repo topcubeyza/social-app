@@ -2,7 +2,6 @@
 import React, { Component } from "react"
 import { connect } from "react-redux";
 import { duration } from "moment";
-import I18n from "react-native-i18n";
 import validate from "validate.js"
 
 // RN Components
@@ -14,7 +13,7 @@ import AuthScreensWrapper from "../Components/AuthScreensWrapper"
 import { AuthActions } from "../Redux/AuthRedux"
 
 // Styles
-import { TextNames } from "../../../I18n/languages/Names";
+import { Texts, localized } from "../../../Localization";
 
 class LoginWithEmailScreen extends Component {
 
@@ -33,13 +32,13 @@ class LoginWithEmailScreen extends Component {
     render() {
         return (
             <AuthScreensWrapper
-                headerText={I18n.t(TextNames.login)}
+                headerText={localized.text(Texts.login)}
                 textInputsParams={[
-                    { inputKey: "email", placeholder: I18n.t(TextNames.email), type: "email" },
-                    { inputKey: "password", placeholder: I18n.t(TextNames.password), type: "password" },
+                    { inputKey: "email", placeholder: localized.text(Texts.email), type: "email" },
+                    { inputKey: "password", placeholder: localized.text(Texts.password), type: "password" },
                 ]}
-                topButtonText={I18n.t(TextNames.login)}
-                transparentButtonText={I18n.t(TextNames.forgotPassword)}
+                topButtonText={localized.text(Texts.login)}
+                transparentButtonText={localized.text(Texts.forgotPassword)}
                 onPress_TransparentButton={this.onPress_Back}
                 request={this.loginRequest}
                 onRequestSuccess={() => {}}

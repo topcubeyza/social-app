@@ -2,9 +2,8 @@ import React, { Component } from 'react'
 import { Platform } from 'react-native'
 import { connect } from "react-redux"
 import { addEventListener, removeEventListener } from "react-native-localize"
-import { LocalizationActions } from '../Redux/LocalizationRedux'
-import { LocaleTypes } from './languages/Names'
-import { getLanguageCode } from './Utils'
+import { LocalizationActions } from '../Localization/Redux/LocalizationRedux'
+import { getLanguageCode, LocaleTypes } from './index'
 
 class LocalizationManager extends Component {
 

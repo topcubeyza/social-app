@@ -1,7 +1,6 @@
 // Packages
 import React, { Component } from "react"
 import { connect } from "react-redux";
-import I18n from "react-native-i18n"
 import { Appearance } from "react-native-appearance"
 import validate from "validate.js";
 
@@ -20,7 +19,7 @@ import Button from "../../../Components/Button"
 import { AuthActions } from "../Redux/AuthRedux"
 import { LoadingActions } from "../../../Redux/LoadingRedux"
 import { ThemeActions } from "../../../Theming/Redux/ThemeRedux"
-import { LocalizationActions } from "../../../Redux/LocalizationRedux";
+import { LocalizationActions } from "../../../Localization/Redux/LocalizationRedux";
 
 // Services
 import FirebaseApi from "../../../Services/Firebase"
@@ -28,11 +27,11 @@ import FirebaseApi from "../../../Services/Firebase"
 // Utils
 import { getUpdateCause, UpdateCauses } from "../../../Helpers/ReduxHelpers";
 import { showAlert, closeAlert } from "../../../Helpers/AlertHelpers"
+import { Texts, localized } from "../../../Localization";
 
 // Styles
 import getStyles from "../Styles/UnverifiedUserStyles"
 import { Colors, themed, ThemeModes, getColorMode } from '../../../Theming'
-import { TextNames } from "../../../I18n/languages/Names";
 
 class UnverifiedUserScreen extends Component {
 
@@ -96,16 +95,16 @@ class UnverifiedUserScreen extends Component {
             this.props.setLoadingMode(true)
             await FirebaseApi.sendVerificationEmail();
             showAlert({
-                title: I18n.t(TextNames.success),
-                message: I18n.t(TextNames.resendSuccessfulMessage),
+                title: localized.text(Texts.success),
+                message: localized.text(Texts.resendSuccessfulMessage),
                 buttons: [{
-                    text: I18n.t(TextNames.ok),
+                    text: localized.text(Texts.ok),
                     onPress: () => closeAlert()
                 }],
                 cancellable: true
             })
         } catch (error) {
-            let errorMessage = I18n.t(TextNames.genericError);
+            let errorMessage = localized.text(Texts.genericError);
             if (validate.isString(error)) {
                 errorMessage = error;
             }
@@ -128,9 +127,9 @@ class UnverifiedUserScreen extends Component {
                 topContainerContent={
                     <>
                         <View style={styles.messageContainer}>
-                            <Text style={styles.helloText}>{I18n.t(TextNames.helloName, { name: user.displayName })}</Text>
-                            <Text style={styles.message}>{I18n.t(TextNames.accountCreated)}</Text>
-                            <Text style={styles.message}>{I18n.t(TextNames.verifyEmail, { email: user.email })}</Text>
+                            <Text style={styles.helloText}>{localized.text(Texts.helloName, { name: user.displayName })}</Text>
+                            <Text style={styles.message}>{localized.text(Texts.accountCreated)}</Text>
+                            <Text style={styles.message}>{localized.text(Texts.verifyEmail, { email: user.email })}</Text>
                         </View>
                     </>
                 }
@@ -145,7 +144,7 @@ class UnverifiedUserScreen extends Component {
                 }
                 topButtonComponent={
                     <Button
-                        text={I18n.t(TextNames.resendVerificationEmail)}
+                        text={localized.text(Texts.resendVerificationEmail)}
                         textColor={themed.color(Colors.textOnLightBackground_dm)}
                         onPress={this.onPress_ResendVerificatioNEmail}
                         backgroundColor={themed.color(Colors.lightBackground_dm)}
@@ -153,7 +152,7 @@ class UnverifiedUserScreen extends Component {
                 }
                 transparentButtonComponent={
                     <Button
-                        text={I18n.t(TextNames.signout)}
+                        text={localized.text(Texts.signout)}
                         textColor={themed.color(Colors.midLightGrey_dm)}
                         onPress={this.onPress_Signout}
                         backgroundColor={"transparent"}

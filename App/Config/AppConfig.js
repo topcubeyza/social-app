@@ -1,6 +1,6 @@
 // Simple React Native specific changes
 
-import '../I18n/I18n';
+import '../Localization/I18n';
 
 let AppConfig = {
   // font scaling override - RN default is on

@@ -1,7 +1,6 @@
 // Packages
 import React, { Component } from "react"
 import { connect } from "react-redux"
-import I18n from "react-native-i18n"
 
 // RN Components
 import {
@@ -16,15 +15,15 @@ import {
 // Components
 
 // Actions
-import { LocalizationActions } from "../Redux/LocalizationRedux"
+import { LocalizationActions } from "../Localization/Redux/LocalizationRedux"
 
 // Utils
+import { LocaleTypes, localized, getCurrentLocale } from "../Localization"
 
 // Styles
 import getStyles from "./Styles/SignedOutHeaderStyles"
 import { Fonts, Metrics } from "../StylingConstants"
 import { Colors, Images, themed } from '../Theming'
-import { LocaleTypes } from "../I18n/languages/Names"
 
 class SignedOutHeader extends Component {
 
@@ -46,7 +45,7 @@ class SignedOutHeader extends Component {
     }
 
     toggleLocale = () => {
-        let currentLocale = I18n.currentLocale().substring(0, 2)
+        let currentLocale = getCurrentLocale()
         let newLocale = currentLocale == LocaleTypes.english ? LocaleTypes.turkish : LocaleTypes.english
         this.props.changeLocale(newLocale)
     }
@@ -75,7 +74,7 @@ class SignedOutHeader extends Component {
         if (this.props.showRight) {
             return (
                 <TouchableOpacity style={styles.backImageContainer} onPress={this.toggleLocale}>
-                    <Text style={styles.rightText}>{I18n.currentLocale().substring(0, 2).toUpperCase()}</Text>
+                    <Text style={styles.rightText}>{getCurrentLocale().toUpperCase()}</Text>
                 </TouchableOpacity>
 
             )

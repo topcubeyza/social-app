@@ -2,7 +2,6 @@
 import React, { Component } from "react"
 import { connect } from "react-redux";
 import { duration } from "moment";
-import I18n from "react-native-i18n";
 
 // RN Components
 
@@ -12,8 +11,10 @@ import AuthScreensWrapper from "../Components/AuthScreensWrapper"
 // Actions
 import { AuthActions } from "../Redux/AuthRedux"
 
+// Utils
+import { Texts, localized } from "../../../Localization";
+
 // Styles
-import { TextNames } from "../../../I18n/languages/Names";
 
 class SignupScreen extends Component {
 
@@ -35,14 +36,14 @@ class SignupScreen extends Component {
     render() {
         return (
             <AuthScreensWrapper
-                headerText={I18n.t(TextNames.signup)}
+                headerText={localized.text(Texts.signup)}
                 textInputsParams={[
-                    { inputKey: "displayName", placeholder: I18n.t(TextNames.displayName), type: "text" },
-                    { inputKey: "email", placeholder: I18n.t(TextNames.email), type: "email" },
-                    { inputKey: "password", placeholder: I18n.t(TextNames.password), type: "password" },
-                    { inputKey: "passwordConfirm", placeholder: I18n.t(TextNames.confirmPassword), type: "password" },
+                    { inputKey: "displayName", placeholder: localized.text(Texts.displayName), type: "text" },
+                    { inputKey: "email", placeholder: localized.text(Texts.email), type: "email" },
+                    { inputKey: "password", placeholder: localized.text(Texts.password), type: "password" },
+                    { inputKey: "passwordConfirm", placeholder: localized.text(Texts.confirmPassword), type: "password" },
                 ]}
-                topButtonText={I18n.t(TextNames.signup)}
+                topButtonText={localized.text(Texts.signup)}
                 transparentButtonText={""}
                 onPress_TransparentButton={() => {}}
                 request={this.createUserRequest}
