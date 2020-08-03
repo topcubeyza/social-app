@@ -8,7 +8,7 @@ export const getDeviceLocale = () => {
         return locales[0].languageCode;
     }
 
-    return LanguageCodes.english;
+    return LocaleTypes.english;
 }
 
 export const getLanguageCode = localeType => {
