@@ -65,10 +65,9 @@ class RootContainer extends Component {
       <AuthorizationManager>
         <ThemeManager>
           <LocalizationManager>
-            <AlertManager>
+              <AlertManager />
               <LoadingOverlay />
               <ReduxNavigation />
-            </AlertManager>
           </LocalizationManager>
         </ThemeManager>
       </AuthorizationManager>

@@ -310,6 +310,8 @@ PODS:
     - React
   - RNI18n (2.0.15):
     - React
+  - RNLocalize (1.4.1):
+    - React
   - Yoga (1.14.0)
 
 DEPENDENCIES:
@@ -350,6 +352,7 @@ DEPENDENCIES:
   - "RNFBAuth (from `../node_modules/@react-native-firebase/auth`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNI18n (from `../node_modules/react-native-i18n`)
+  - RNLocalize (from `../node_modules/react-native-localize`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -435,6 +438,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-gesture-handler"
   RNI18n:
     :path: "../node_modules/react-native-i18n"
+  RNLocalize:
+    :path: "../node_modules/react-native-localize"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -485,6 +490,7 @@ SPEC CHECKSUMS:
   RNFBAuth: 82b94c2f0a851be529a19f5fda2dffb390bfdd7f
   RNGestureHandler: b6b359bb800ae399a9c8b27032bdbf7c18f08a08
   RNI18n: e2f7e76389fcc6e84f2c8733ea89b92502351fd8
+  RNLocalize: c388679af021ddd6069c215f7fdd2acf4e77ede5
   Yoga: ba3d99dbee6c15ea6bbe3783d1f0cb1ffb79af0f
 
 PODFILE CHECKSUM: e78e0f65d610b65c82e60f0111db5c644bc70c02

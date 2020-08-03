@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import validate from "validate.js"
+
+import { Modal, View, TouchableOpacity, Text } from "react-native";
 
 import { AlertActions } from "../../Redux/AlertRedux"
 
 import getStyles from "./Styles/AlertStyles"
+import { Theme } from "../../Themes"
 
 
 const initialState = {
@@ -29,8 +33,7 @@ class AlertManager extends Component {
 
     // *** RENDER METHODS *** //
 
-    renderButtons = (buttons) => {
-        let styles = getStyles(Theme.c)
+    renderButtons = (buttons, styles) => {
         if (validate.isArray(buttons)) {
             return buttons.map((button, index) => {
                 if (index < 2) {
@@ -53,7 +56,8 @@ class AlertManager extends Component {
         return null;
     }
 
-    renderLastAlert() {
+    renderLastAlert(styles) {
+        if (this.props.alerts.length == 0) return;
         let lastAlert = this.props.alerts[this.props.alerts.length - 1]
         return (
             <>
@@ -64,7 +68,7 @@ class AlertManager extends Component {
                     <Text style={styles.message} numberOfLines={100}>{lastAlert.message}</Text>
                 </View>
                 <View style={styles.buttonsContainer}>
-                    {this.renderButtons(lastAlert.buttons)}
+                    {this.renderButtons(lastAlert.buttons, styles)}
                 </View>
             </>
         )
@@ -78,7 +82,7 @@ class AlertManager extends Component {
                 transparent={true}>
                 <TouchableOpacity style={styles.modal} onPress={() => this.onPress_Backdrop()}>
                     <View style={styles.container} onStartShouldSetResponder={() => true}>
-                        {this.renderLastAlert()}
+                        {this.renderLastAlert(styles)}
                     </View>
                 </TouchableOpacity>
             </Modal>
@@ -94,4 +98,4 @@ const mapDispatchToProps = dispatch => ({
     removeLastAlert: () => dispatch(AlertActions.removeAlert())
 })
 
-export default connect(mapStateToProps)(AlertManager);
+export default connect(mapStateToProps, mapDispatchToProps)(AlertManager);
