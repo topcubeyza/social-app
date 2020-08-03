@@ -10,7 +10,6 @@ import rootSaga from '../Sagas/';
 // Reducers
 import { NavReducer } from "./NavigationRedux"
 import { AppReducer } from "./AppRedux"
-import { TestReducer } from "./TestRedux"
 import { AuthReducer } from "../Modules/Authorization/Redux/AuthRedux"
 import { ThemeReducer } from "./ThemeRedux"
 import { LocalizationReducer } from "./LocalizationRedux"
@@ -21,7 +20,6 @@ import { AlertReducer } from "./AlertRedux"
 export const reducers = combineReducers({
     nav: NavReducer,
     app: AppReducer,
-    test: TestReducer,
     auth: AuthReducer,
     theme: ThemeReducer,
     locale: LocalizationReducer,

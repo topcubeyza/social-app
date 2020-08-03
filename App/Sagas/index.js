@@ -11,7 +11,6 @@ import {StartupTypes} from '../Redux/StartupRedux';
 /* ------------- Sagas ------------- */
 
 import {startup} from './StartupSagas';
-import testSagas from "./TestSagas";
 import authSagas from "../Modules/Authorization/Redux/AuthSagas";
 import localizationSagas from "./LocalizationSagas"
 import themeSagas from './ThemeSaga';
@@ -29,7 +28,6 @@ export default function* root() {
   yield all([
     // some sagas only receive an action
     takeLatest(StartupTypes.STARTUP, startup),
-    ...(testSagas(api)),
     ...(authSagas(authAPI)),
     ...localizationSagas,
     ...themeSagas
