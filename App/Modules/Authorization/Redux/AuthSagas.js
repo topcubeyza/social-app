@@ -9,7 +9,7 @@ function* manageChangedAuthState(api, action) {
     try {
         let state = action.payload ? action.payload.state : action.state
         let user = (state && state._user) ? state._user : state;
-        if (user && user.emailVerified) {
+        if ((user && user.emailVerified) || user == null) {
             yield put(AuthActions.setUser({ user }))
         }
         else if (user && user.displayName) {
@@ -20,9 +20,6 @@ function* manageChangedAuthState(api, action) {
                     user = yield call(api.reloadUser);
                 }                
             }
-            yield put(AuthActions.setUser({ user }))
-        }
-        else if (user == null) {
             yield put(AuthActions.setUser({ user }))
         }
     } catch (error) {
