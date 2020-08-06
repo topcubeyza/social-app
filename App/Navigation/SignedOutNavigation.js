@@ -1,6 +1,9 @@
 import React from "react"
 import { createAppContainer, createStackNavigator } from "react-navigation"
 
+// Utils
+import { Texts } from "../Localization"
+
 // Screens
 import WelcomeScreen from "../Modules/Authorization/Screens/WelcomeScreen"
 import SignupScreen from "../Modules/Authorization/Screens/SignupScreen"
@@ -17,7 +20,7 @@ const SignedOutNavigator = createStackNavigator(
             screen: WelcomeScreen,
             navigationOptions: ({ navigation }) => {
                 return {
-                    header: getHeaderComponent({navigation, showLeft: false, showTitle: false, showRight: true, title: "Welcome"}),
+                    header: getHeaderComponent({navigation, showLeft: false, showTitle: false, showRight: true}),
                 };
             }
         },
@@ -25,7 +28,7 @@ const SignedOutNavigator = createStackNavigator(
             screen: SignupScreen,
             navigationOptions: ({ navigation }) => {
                 return {
-                    header: getHeaderComponent({navigation, showLeft: true, showTitle: true, showRight: false, title: "Signup"}),
+                    header: getHeaderComponent({navigation, showLeft: true, showTitle: true, showRight: false, title: Texts.screenTitles.titleSignup}),
                 };
             }
         },
@@ -33,7 +36,7 @@ const SignedOutNavigator = createStackNavigator(
             screen: LoginWithEmailScreen,
             navigationOptions: ({ navigation }) => {
                 return {
-                    header: getHeaderComponent({navigation, showLeft: true, showTitle: true, showRight: false, title: "Login"}),
+                    header: getHeaderComponent({navigation, showLeft: true, showTitle: true, showRight: false, title: Texts.screenTitles.titleLogin}),
                 };
             }
         },
