@@ -7,6 +7,7 @@ import { Texts } from "../Localization"
 // Components
 import TabScreenHeader from "../Components/TabScreenHeader"
 import StackScreenHeader from "../Components/StackScreenHeader"
+import TabBar from "../Components/TabBar";
 
 // Screens
 import HomeScreen from "../Modules/Home/Screens/HomeScreen"
@@ -15,28 +16,15 @@ import ProfileScreen from "../Modules/Profile/Screens/ProfileScreen"
 import IncompleteScreen from "../Modules/Main/Screens/IncompleteScreen"
 import SignoutTestScreen from "../Modules/Authorization/Screens/SignoutTestScreen";
 
-// Styles
-import { SVG } from "../StylingConstants"
-import { themed, Colors } from "../Theming"
 
 
 const TabNavigator = createBottomTabNavigator(
     {
         Home: {
             screen: HomeScreen,
-            navigationOptions: {
-                tabBarIcon: ({tintColor}) => (
-                    <SVG.Home width={"50%"} height={"50%"} color={tintColor} />
-                )
-            }
         },
         Preferences: {
             screen: PreferencesScreen,
-            navigationOptions: {
-                tabBarIcon: ({tintColor}) => (
-                    <SVG.Settings width={"57%"} height={"57%"} color={tintColor} />
-                )
-            }
         }
     },
     {
@@ -45,13 +33,7 @@ const TabNavigator = createBottomTabNavigator(
                 header: <TabScreenHeader navigation={navigation} />,
             };
         },
-        tabBarOptions: {
-            showLabel: false,
-            showIcon: true,
-            activeTintColor: themed.color(Colors.brandColor),
-            inactiveTintColor: themed.color(Colors.midLightGrey_dm),
-            
-        }
+        tabBarComponent: TabBar
     }
 )
 

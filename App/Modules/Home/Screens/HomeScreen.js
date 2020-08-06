@@ -32,7 +32,7 @@ class HomeScreen extends Component {
     render() {
         let styles = getStyles(themed.color)
         return (
-            <View><Text>HomeScreen</Text></View>
+            <View style={{flex:1, backgroundColor: themed.color(Colors.lightBackground_dm)}}><Text>HomeScreen</Text></View>
         )
     }
 

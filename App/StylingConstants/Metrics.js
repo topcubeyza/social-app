@@ -16,7 +16,8 @@ const Metrics = {
   borderRadiusFullRound: 50,
   borderRadiusStandard: 5 ,
   buttonHeight: width * 0.12,
-  headerHeight: width * 0.175
+  headerHeight: width * 0.175,
+  tabHeight: width * 0.15
 }
 
 export default Metrics
