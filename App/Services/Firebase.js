@@ -55,7 +55,7 @@ const updateUserProfile = async ({ displayName, photoURL }) => {
   })
     .then(() => null)
     .catch(function (error) {
-      throw error.message
+      throw localized.text(Texts.genericError)
     })
 }
 
@@ -84,7 +84,7 @@ const reloadUser = async () => {
       return null;
     })
     .catch(error => {
-      throw error.message
+      throw localized.text(Texts.genericError)
     });
 
   return auth().currentUser
