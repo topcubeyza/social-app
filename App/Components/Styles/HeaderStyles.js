@@ -72,19 +72,17 @@ const getStyles = c => StyleSheet.create({
     },
     profileImageContainer: {
         alignItems: "center",
-        marginVertical: Metrics.width * 0.045,
+        marginVertical: Metrics.width * 0.048,
         aspectRatio: 1,
-        padding: Metrics.width * 0.015,
-        borderRadius: Metrics.borderRadiusFullRound,
-        borderColor: c(Colors.brandColor),
-        borderWidth: Metrics.width * 0.005,
+        padding: Metrics.width * 0.018,
+        borderRadius: Metrics.borderRadiusStandard,
+        borderColor: c(Colors.midGrey_dm),
+        borderWidth: 1,
         // backgroundColor: "yellow"
     },
     profileImage: {
-        width: 10,
-        height: 10,
         aspectRatio: 1,
-        color: c(Colors.brandColor)
+        color: c(Colors.midGrey_dm)
     }
 })
 
