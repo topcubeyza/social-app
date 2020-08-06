@@ -12,6 +12,8 @@ const greyColors = {
 
 const constantColors = {
   ...greyColors,
+  githubColor: "#211F1F",
+  linkedinColor: "#0e76a8",
   googleColor: "#D9534E",
   brandColor: "#FC8B2A",
   textOnBrandColor: greyColors.white,
@@ -62,6 +64,8 @@ export default Colors = {
   midDarkGrey: "midDarkGrey",
   darkGrey: "darkGrey",
   black: "black",
+  githubColor: "githubColor",
+  linkedinColor: "linkedinColor",
   googleColor: "googleColor",
   brandColor: "brandColor",
   textOnBrandColor: "textOnBrandColor",

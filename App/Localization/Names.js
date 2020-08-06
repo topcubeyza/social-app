@@ -27,6 +27,10 @@ export const Texts = {
     verifyEmail: "verifyEmail",
     resendVerificationEmail: "resendVerificationEmail",
     resendSuccessfulMessage: "resendSuccessfulMessage",
+    welcomeToApp: "welcomeToApp",
+    noteFromDeveloper: "noteFromDeveloper",
+    appExplanation: "appExplanation",
+    linkedinProfile: "linkedinProfile",
     errorMessages: {
         tooManyRequestsResend: "tooManyRequestsResend",
         fillAllFields: "fillAllFields",

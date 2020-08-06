@@ -27,6 +27,10 @@
     "verifyEmail": "\"%{email}\" adresine bir doğrulama bağlantısı gönderdik. Bu bağlantıya tıklayarak e-posta adresini doğruladıktan sonra uygulamayı keşfetmeye devam edebilirsin!",
     "resendVerificationEmail": "Doğrulama e-postasını tekrar gönder",
     "resendSuccessfulMessage": "Doğrulama e-postasını tekrar gönderdik.",
+    "welcomeToApp": "Bemagine'e  Hoşgeldin!",
+    "noteFromDeveloper": "Geliştiricinin mesajı:",
+    "appExplanation": "Bemagine uygulamasının şu andaki tek amacı, kullanıcılara bir React Native Developer olarak yeteneklerimi sergilemek. Uygulamayı dilediğin gibi gezip keşfet.",
+    "linkedinProfile": "LinkedIn Profili",
 
     "titleLogin": "Giriş Yap",
     "titleSignup": "Kayıt Ol",
