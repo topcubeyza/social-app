@@ -22,7 +22,7 @@ import { LocaleTypes, localized } from "../Localization"
 // Styles
 import getStyles from "./Styles/HeaderStyles"
 import { Fonts, Metrics } from "../StylingConstants"
-import { Colors, Images, themed } from '../Theming'
+import { Colors, Images, SVG, themed } from '../Theming'
 
 class TabScreenHeader extends Component {
 
@@ -39,7 +39,7 @@ class TabScreenHeader extends Component {
     renderRight = (styles) => {
         return (
             <TouchableOpacity style={styles.profileImageContainer} onPress={() => this.props.navigation.navigate("Profile")}>
-                <Image source={themed.image(Images.iconProfile)} style={styles.profileImage} />
+                <SVG.Profile width={"100%"} height={"100%"} style={styles.profileImage}/>
             </TouchableOpacity >
 
         )

@@ -78,14 +78,13 @@ const getStyles = c => StyleSheet.create({
         borderRadius: Metrics.borderRadiusFullRound,
         borderColor: c(Colors.brandColor),
         borderWidth: Metrics.width * 0.005,
-        backgroundColor: c(Colors.lightGrey_dm)
         // backgroundColor: "yellow"
     },
     profileImage: {
-        height: "100%",
+        width: 10,
+        height: 10,
         aspectRatio: 1,
-        resizeMode: "contain",
-        // backgroundColor: "pink"
+        color: c(Colors.brandColor)
     }
 })
 

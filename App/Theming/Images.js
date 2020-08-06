@@ -9,7 +9,6 @@ const constantImages = {
   loadingAnimation: require(animationFileLocation + "loading.json"),
   leftArrow: require(imageFileLocation + "left-arrow.png"),
   logoOrange: require(imageFileLocation + "logo-orange.png"),
-  iconProfile: require(imageFileLocation + "icon-profile.png")
 }
 
 export const lightThemeImages = {
@@ -26,7 +25,6 @@ const Images = {
   loadingAnimation: "loadingAnimation",
   leftArrow: "leftArrow",
   logoOrange: "logoOrange",
-  iconProfile: "iconProfile"
 }
 
 export default Images
