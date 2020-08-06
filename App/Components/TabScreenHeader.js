@@ -21,8 +21,8 @@ import { LocaleTypes, localized } from "../Localization"
 
 // Styles
 import getStyles from "./Styles/HeaderStyles"
-import { Fonts, Metrics } from "../StylingConstants"
-import { Colors, Images, SVG, themed } from '../Theming'
+import { Fonts, Metrics, SVG } from "../StylingConstants"
+import { Colors, Images, themed } from '../Theming'
 
 class TabScreenHeader extends Component {
 

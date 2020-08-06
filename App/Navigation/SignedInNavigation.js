@@ -15,14 +15,28 @@ import ProfileScreen from "../Modules/Profile/Screens/ProfileScreen"
 import IncompleteScreen from "../Modules/Main/Screens/IncompleteScreen"
 import SignoutTestScreen from "../Modules/Authorization/Screens/SignoutTestScreen";
 
+// Styles
+import { SVG } from "../StylingConstants"
+import { themed, Colors } from "../Theming"
+
 
 const TabNavigator = createBottomTabNavigator(
     {
         Home: {
-            screen: HomeScreen
+            screen: HomeScreen,
+            navigationOptions: {
+                tabBarIcon: ({tintColor}) => (
+                    <SVG.Home width={"50%"} height={"50%"} color={tintColor} />
+                )
+            }
         },
         Preferences: {
-            screen: PreferencesScreen
+            screen: PreferencesScreen,
+            navigationOptions: {
+                tabBarIcon: ({tintColor}) => (
+                    <SVG.Settings width={"57%"} height={"57%"} color={tintColor} />
+                )
+            }
         }
     },
     {
@@ -30,6 +44,13 @@ const TabNavigator = createBottomTabNavigator(
             return {
                 header: <TabScreenHeader navigation={navigation} />,
             };
+        },
+        tabBarOptions: {
+            showLabel: false,
+            showIcon: true,
+            activeTintColor: themed.color(Colors.brandColor),
+            inactiveTintColor: themed.color(Colors.midLightGrey_dm),
+            
         }
     }
 )
