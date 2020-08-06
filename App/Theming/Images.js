@@ -7,7 +7,9 @@ const constantImages = {
   splashTransparent: require(imageFileLocation + "splash-transparent.png"),
   underConstruction: require(imageFileLocation + "under-construction.png"),
   loadingAnimation: require(animationFileLocation + "loading.json"),
-  leftArrow: require(imageFileLocation + "left-arrow.png")
+  leftArrow: require(imageFileLocation + "left-arrow.png"),
+  logoOrange: require(imageFileLocation + "logo-orange.png"),
+  iconProfile: require(imageFileLocation + "icon-profile.png")
 }
 
 export const lightThemeImages = {
@@ -22,7 +24,9 @@ const Images = {
   splashTransparent: "splashTransparent",
   underConstruction: "underConstruction",
   loadingAnimation: "loadingAnimation",
-  leftArrow: "leftArrow"
+  leftArrow: "leftArrow",
+  logoOrange: "logoOrange",
+  iconProfile: "iconProfile"
 }
 
 export default Images
