@@ -21,23 +21,11 @@ import { LocalizationActions } from "../Localization/Redux/LocalizationRedux"
 import { LocaleTypes, localized, getCurrentLocale } from "../Localization"
 
 // Styles
-import getStyles from "./Styles/SignedOutHeaderStyles"
+import getStyles from "./Styles/HeaderStyles"
 import { Fonts, Metrics } from "../StylingConstants"
 import { Colors, Images, themed } from '../Theming'
 
 class SignedOutHeader extends Component {
-
-    constructor(props) {
-        super(props);
-    }
-
-    // *** LIFECYCLE METHODS *** //
-
-    // *** CALLBACKS *** //
-
-    // *** REF METHODS *** //
-
-    // *** CONVENIENCE METHODS *** //
 
     // *** EVENT HANDLERS *** //
     onPress_Button = () => {
@@ -65,7 +53,7 @@ class SignedOutHeader extends Component {
     renderMiddle = (styles) => {
         if (this.props.showTitle) {
             return (
-                <Text style={styles.titleText}>{this.props.title}</Text>
+                <Text style={styles.titleText}>{localized.text(this.props.title)}</Text>
             )
         }
     }
