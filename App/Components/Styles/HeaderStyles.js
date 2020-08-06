@@ -37,7 +37,7 @@ const getStyles = c => StyleSheet.create({
         paddingRight: Metrics.marginHorizontal,
         alignItems: "flex-end",
         justifyContent: "center",
-        // backgroundColor: "lightblue"
+        // backgroundColor: "pink"
     },
     backImageContainer: {
         alignItems: "flex-start",
@@ -58,6 +58,35 @@ const getStyles = c => StyleSheet.create({
         fontSize: Fonts.size.eighteen,
         color: c(Colors.midGrey_dm),
     },
+    logoContainer: {
+        alignItems: "flex-start",
+        paddingVertical: Metrics.width * 0.05,
+        // backgroundColor: "lightblue"
+    },
+    logoImage: {
+        height: "100%",
+        aspectRatio: 1,
+        resizeMode: "contain",
+        borderRadius: Metrics.borderRadiusStandard,
+        // backgroundColor: "pink"
+    },
+    profileImageContainer: {
+        alignItems: "center",
+        marginVertical: Metrics.width * 0.045,
+        aspectRatio: 1,
+        padding: Metrics.width * 0.015,
+        borderRadius: Metrics.borderRadiusFullRound,
+        borderColor: c(Colors.brandColor),
+        borderWidth: Metrics.width * 0.005,
+        backgroundColor: c(Colors.lightGrey_dm)
+        // backgroundColor: "yellow"
+    },
+    profileImage: {
+        height: "100%",
+        aspectRatio: 1,
+        resizeMode: "contain",
+        // backgroundColor: "pink"
+    }
 })
 
 export default getStyles;
