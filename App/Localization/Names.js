@@ -37,6 +37,11 @@ export const Texts = {
         weakPassword: "weakPassword",
         userNotFound: "userNotFound",
         wrongPassword: "wrongPassword"
+    },
+    screenTitles: {
+        titleSignup: "titleSignup",
+        titleLogin: "titleLogin",
+        titleProfile: "titleProfile"
     }
  }
 

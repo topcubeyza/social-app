@@ -27,6 +27,11 @@
     "verifyEmail": "\"%{email}\" adresine bir doğrulama bağlantısı gönderdik. Bu bağlantıya tıklayarak e-posta adresini doğruladıktan sonra uygulamayı keşfetmeye devam edebilirsin!",
     "resendVerificationEmail": "Doğrulama e-postasını tekrar gönder",
     "resendSuccessfulMessage": "Doğrulama e-postasını tekrar gönderdik.",
+
+    "titleLogin": "Giriş Yap",
+    "titleSignup": "Kayıt Ol",
+    "titleProfile": "Profil",
+  
     "tooManyRequestsResend": "Az önce bir e-posta gönderdik. Lütfen tekrar kontrol edin.",
     "fillAllFields": "Lütfen bütün alanları doldurun.",
     "enterValidEmail": "Lütfen geçerli bir e-posta adresi girin.",
