@@ -23,7 +23,7 @@ class SlidingUpModal extends Component {
         super(props);
 
         this.state = {
-            isVisible: false
+            isVisible: true
         }
     }
 

@@ -4,18 +4,20 @@ import { View, Text, TextInput, Animated } from "react-native"
 import PropTypes from "prop-types"
 
 // Styles
-import getStyles from "./Styles/SingleLineInputStyles"
+import getStyles from "./Styles/SingleLineInputBackgroundStyles"
 import { Fonts, Metrics } from "../StylingConstants"
 import { Colors, themed } from "../Theming"
 
-
-class SingleLineInput extends Component {
+/**
+ * @augments {Component<Props,State>}
+ */
+class SingleLineInputBackground extends Component {
 
     constructor(props) {
         super(props)
 
         this.state = {
-            underlinePadding: new Animated.Value(Metrics.screenWidth - Metrics.marginHorizontalLarge * 2)
+            underlinePadding: new Animated.Value(Metrics.screenWidth - props.margin * 2)
         }
 
     }
@@ -51,6 +53,10 @@ class SingleLineInput extends Component {
     getModifiedStyles = (styles) => {
         let props = this.props;
         return {
+            container: [
+                styles.container,
+                props.backgroundColor ? { backgroundColor: props.backgroundColor }: null
+            ],
             underlineContainer: [
                 styles.underlineContainer,
                 { paddingRight: this.state.underlinePadding }
@@ -75,7 +81,7 @@ class SingleLineInput extends Component {
         let styles = getStyles(themed.color)
         let { container, underlineContainer, underline } = this.getModifiedStyles(styles)
         return (
-            <View style={styles.container}>
+            <View style={container}>
                 <TextInput
                     {...this.props}
                     ref={ref => this.textInput = ref}
@@ -91,21 +97,22 @@ class SingleLineInput extends Component {
     }
 }
 
-export default SingleLineInput
-
-SingleLineInput.propTypes = {
+SingleLineInputBackground.propTypes = {
     onChangeText: PropTypes.func.isRequired,
     value: PropTypes.string.isRequired,
     placeholder: PropTypes.string.isRequired,
+    margin: PropTypes.number.isRequired,
     secureTextEntry: PropTypes.bool,
     editable: PropTypes.bool,
     onFocus: PropTypes.func,
     backgroundColor: PropTypes.string
 }
 
-SingleLineInput.defaultProps = {
+SingleLineInputBackground.defaultProps = {
     secureTextEntry: false,
     editable: true,
     onFocus: () => { },
     backgroundColor: "transparent"
 }
+
+export default SingleLineInputBackground

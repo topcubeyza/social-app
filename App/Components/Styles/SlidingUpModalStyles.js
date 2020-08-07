@@ -4,9 +4,8 @@ import { Colors } from '../../Theming'
 
 const getStyles = (c) => StyleSheet.create({
     container: {
-        borderTopEndRadius: Metrics.borderRadiusStandard,
-        borderTopStartRadius: Metrics.borderRadiusStandard,
-        paddingHorizontal: Metrics.marginHorizontal,
+        borderTopEndRadius: Metrics.borderRadiusStandard * 2,
+        borderTopStartRadius: Metrics.borderRadiusStandard * 2,
         backgroundColor: c(Colors.lightBackground_dm),
     },
     modal: {

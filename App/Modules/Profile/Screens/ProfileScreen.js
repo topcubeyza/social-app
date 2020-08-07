@@ -12,6 +12,7 @@ import {
 
 // Components
 import SettingsButton from "../Components/SettingsButton"
+import PasswordConfirmationModal from "../Components/PasswordConfirmationModal"
 
 // Actions
 import { AuthActions } from "../../Authorization/Redux/AuthRedux"
@@ -27,7 +28,23 @@ import { SVG } from "../../../StylingConstants";
 
 class ProfileScreen extends Component {
 
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            isVisible_PasswordConfirmationModal: true
+        }
+    }
+
     // *** LIFECYCLE METHODS *** //
+
+    // *** CONVENIENCE METHODS *** //
+
+    showPasswordConfirmationModal = () => {
+        this.setState({
+            isVisible_PasswordConfirmationModal: true
+        })
+    }
 
     // *** EVENT HANDLERS *** //
 
@@ -50,7 +67,10 @@ class ProfileScreen extends Component {
             buttons: [
                 {
                     text: "Yes",
-                    onPress: () => {}
+                    onPress: () => {
+                        closeAlert()
+                        this.showPasswordConfirmationModal()
+                    }
                 },
                 {
                     text: "Cancel",
@@ -96,6 +116,11 @@ class ProfileScreen extends Component {
                         icon={SVG.Trash}
                         onPress={this.onPress_DeleteAccount} />
                 </View>
+
+                <PasswordConfirmationModal 
+                    isVisible={this.state.isVisible_PasswordConfirmationModal}
+                    onModalHide={() => this.setState({isVisible_PasswordConfirmationModal: false})} 
+                    onPasswordConfirmed={() => {}}/>
             </View>
         )
     }
