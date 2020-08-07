@@ -40,7 +40,7 @@
    "deleteAccount": "Delete Account",
    "sure": "Sure?",
    "sureToDeleteAccount": "Are you sure you want to delete your account?",
-   "passwordConfirmMessage": "Please enter your password to proceed",
+   "passwordConfirmMessage": "Please enter your current password to proceed",
 
    "titleLogin": "Login",
    "titleSignup": "Signup",

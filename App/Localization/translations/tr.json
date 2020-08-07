@@ -41,7 +41,7 @@
     "deleteAccount": "Hesabı Sil",
     "sure": "Emin misin?",
     "sureToDeleteAccount": "Hesabını silmek istediğine emin misin?",
-    "passwordConfirmMessage": "Devam etmek için lütfen şifrenizi girin",
+    "passwordConfirmMessage": "Devam etmek için lütfen mevcut şifrenizi girin",
 
     "titleLogin": "Giriş Yap",
     "titleSignup": "Kayıt Ol",
