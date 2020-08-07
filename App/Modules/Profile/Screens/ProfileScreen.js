@@ -13,6 +13,7 @@ import {
 // Components
 import SettingsButton from "../Components/SettingsButton"
 import PasswordConfirmationModal from "../Components/PasswordConfirmationModal"
+import ChangePasswordModal from "../Components/ChangePasswordModal"
 
 // Actions
 import { AuthActions } from "../../Authorization/Redux/AuthRedux"
@@ -33,6 +34,7 @@ class ProfileScreen extends Component {
 
         this.state = {
             isVisible_PasswordConfirmationModal: false,
+            isVisible_ChangePasswordModal: false,
             passwordConfirmationReason: ""
         }
     }
@@ -41,9 +43,16 @@ class ProfileScreen extends Component {
 
     // *** CONVENIENCE METHODS *** //
 
-    showPasswordConfirmationModal = () => {
+    showPasswordConfirmationModal = (reason) => {
         this.setState({
             isVisible_PasswordConfirmationModal: true,
+            passwordConfirmationReason: reason
+        })
+    }
+
+    showChangePasswordModal = () => {
+        this.setState({
+            isVisible_ChangePasswordModal: true
         })
     }
 
@@ -82,12 +91,18 @@ class ProfileScreen extends Component {
     }
 
     onPasswordConfirmed = () => {
-        if (this.state.passwordConfirmationReason == "account-deletion") {
-            // delete account
-        }
-        else if (this.state.passwordConfirmationReason == "password-change") {
-            // show password change modal
-        }
+        this.setState({
+            isVisible_PasswordConfirmationModal: false
+        }, () => {
+            if (this.state.passwordConfirmationReason == "account-deletion") {
+                // delete account
+            }
+            else if (this.state.passwordConfirmationReason == "password-change") {
+                this.setState({
+                    isVisible_ChangePasswordModal: true
+                })
+            }
+        })
     }
 
     // *** RENDER METHODS *** //
@@ -132,7 +147,12 @@ class ProfileScreen extends Component {
                 <PasswordConfirmationModal 
                     isVisible={this.state.isVisible_PasswordConfirmationModal}
                     onModalHide={() => this.setState({isVisible_PasswordConfirmationModal: false})} 
-                    onPasswordConfirmed={() => this.setState({isVisible_PasswordConfirmationModal: false})}/>
+                    onPasswordConfirmed={this.onPasswordConfirmed}/>
+
+                <ChangePasswordModal 
+                    isVisible={this.state.isVisible_ChangePasswordModal}
+                    onModalHide={() => this.setState({isVisible_ChangePasswordModal: false})}
+                    onPasswordChanged={() => this.setState({isVisible_ChangePasswordModal: false})}/>
             </View>
         )
     }
