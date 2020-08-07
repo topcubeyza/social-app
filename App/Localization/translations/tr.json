@@ -31,6 +31,10 @@
     "noteFromDeveloper": "Geliştiricinin mesajı:",
     "appExplanation": "Bemagine uygulamasının şu andaki tek amacı, kullanıcılara bir React Native Developer olarak yeteneklerimi sergilemek. Uygulamayı dilediğin gibi gezip keşfet.",
     "linkedinProfile": "LinkedIn Profili",
+    "profileSettings": "Profil Ayarları",
+    "editName": "İsmi Düzenle",
+    "changePassword": "Şifreyi Değiştir",
+    "deleteAccount": "Hesabı Sil",
 
     "titleLogin": "Giriş Yap",
     "titleSignup": "Kayıt Ol",

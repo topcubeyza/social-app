@@ -31,6 +31,10 @@ export const Texts = {
     noteFromDeveloper: "noteFromDeveloper",
     appExplanation: "appExplanation",
     linkedinProfile: "linkedinProfile",
+    profileSettings: "profileSettings",
+    editName: "editName",
+    changePassword: "changePassword",
+    deleteAccount: "deleteAccount",
     errorMessages: {
         tooManyRequestsResend: "tooManyRequestsResend",
         fillAllFields: "fillAllFields",

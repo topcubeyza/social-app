@@ -46,7 +46,7 @@ const SettingsButton = (props) => {
 }
 
 SettingsButton.propTypes = {
-    icon: PropTypes.element,
+    icon: PropTypes.func,
     color: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired,
     onPress: PropTypes.func,

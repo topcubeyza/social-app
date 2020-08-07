@@ -39,24 +39,24 @@ class ProfileScreen extends Component {
                     <Text style={styles.emailText}>{this.props.user.email}</Text>
                 </View>
                 <View style={styles.settingsContainer}>
-                    <Text style={styles.sectionHeader}>Profile Settings</Text>
-                    <SettingsButton 
-                        text="Edit Name" 
+                    <Text style={styles.sectionHeader}>{localized.text(Texts.profileSettings)}</Text>
+                    <SettingsButton
+                        text={localized.text(Texts.editName)}
                         color={themed.color(Colors.textOnLightBackground_dm)}
                         icon={SVG.Edit} />
-                    <SettingsButton 
-                        text="Change Password" 
+                    <SettingsButton
+                        text={localized.text(Texts.changePassword)}
                         color={themed.color(Colors.textOnLightBackground_dm)}
                         icon={SVG.EditPassword} />
                 </View>
                 <View style={styles.seriousActionsContainer}>
-                    <SettingsButton 
-                        text="Logout" 
+                    <SettingsButton
+                        text={localized.text(Texts.signout)}
                         color={themed.color(Colors.textOnLightBackground_dm)}
                         boldText
                         icon={SVG.Logout} />
-                    <SettingsButton 
-                        text="Delete Account" 
+                    <SettingsButton
+                        text={localized.text(Texts.deleteAccount)}
                         color={themed.color(Colors.brandColor)}
                         boldText
                         icon={SVG.Trash} />
