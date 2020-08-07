@@ -41,12 +41,6 @@ class StackScreenHeader extends Component {
 
     // *** EVENT HANDLERS *** //
 
-    toggleLocale = () => {
-        let currentLocale = getCurrentLocale()
-        let newLocale = currentLocale == LocaleTypes.english ? LocaleTypes.turkish : LocaleTypes.english
-        this.props.changeLocale(newLocale)
-    }
-
     // *** RENDER METHODS *** //
 
     renderLeft = (styles) => {
