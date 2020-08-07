@@ -33,7 +33,6 @@ class ProfileScreen extends Component {
 
         this.state = {
             isVisible_PasswordConfirmationModal: false,
-            confirmPassReason: ""
         }
     }
 
@@ -41,10 +40,9 @@ class ProfileScreen extends Component {
 
     // *** CONVENIENCE METHODS *** //
 
-    showPasswordConfirmationModal = (reason) => {
+    showPasswordConfirmationModal = () => {
         this.setState({
             isVisible_PasswordConfirmationModal: true,
-            confirmPassReason: reason
         })
     }
 
@@ -64,18 +62,18 @@ class ProfileScreen extends Component {
 
     onPress_DeleteAccount = () => {
         showAlert({
-            title:"Sure?",
-            message: "Are you sure you want to delete your account?",
+            title: localized.text(Texts.sure),
+            message: localized.text(Texts.sureToDeleteAccount),
             buttons: [
                 {
-                    text: "Yes",
+                    text: localized.text(Texts.yes),
                     onPress: () => {
                         closeAlert()
-                        this.showPasswordConfirmationModal("account deletion")
+                        this.showPasswordConfirmationModal()
                     }
                 },
                 {
-                    text: "Cancel",
+                    text: localized.text(Texts.cancel),
                     onPress: () => closeAlert()
                 }
             ]
@@ -122,7 +120,6 @@ class ProfileScreen extends Component {
                 <PasswordConfirmationModal 
                     isVisible={this.state.isVisible_PasswordConfirmationModal}
                     onModalHide={() => this.setState({isVisible_PasswordConfirmationModal: false})} 
-                    reason={this.state.confirmPassReason}
                     onPasswordConfirmed={() => {}}/>
             </View>
         )

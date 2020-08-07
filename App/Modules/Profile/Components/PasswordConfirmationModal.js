@@ -20,6 +20,7 @@ import Button from "../../../Components/Button"
 
 // Utils
 import checkFields from "../Utils/FieldsCheck"
+import { localized, Texts } from "../../../Localization"
 
 // Styles
 import getStyles from "../Styles/PasswordConfirmationModalStyles"
@@ -140,9 +141,7 @@ class PasswordConfirmationModal extends Component {
                             <SVG.EditPassword style={styles.icon} width={"100%"} height={"100%"} />
                         </View>
                         <View style={styles.messageContainer}>
-                            <Text style={styles.messageText}>{"Please enter your password before proceeding with "}
-                                <Text style={styles.reasonText}>{this.props.reason}</Text>
-                            </Text>
+                            <Text style={styles.messageText}>{localized.text(Texts.passwordConfirmMessage)}</Text>
                         </View>
                     </View>
                     <View style={styles.textinputContainer}>
@@ -150,7 +149,7 @@ class PasswordConfirmationModal extends Component {
                             ref={ref => this.passwordInput = ref}
                             backgroundColor={themed.color(Colors.lightGrey_dm)}
                             onChangeText={this.onChangeText_Password}
-                            placeholder="Password"
+                            placeholder={localized.text(Texts.password)}
                             value={this.state.password}
                             margin={Metrics.marginHorizontal}
                             autoCapitalize="none"
@@ -171,7 +170,7 @@ class PasswordConfirmationModal extends Component {
                     <View style={styles.buttonContainer}>
                         <Button
                             backgroundColor={themed.color(Colors.brandColor)}
-                            text="Confirm"
+                            text={localized.text(Texts.proceed)}
                             textColor={themed.color(Colors.textOnBrandColor)}
                             onPress={this.onPress_Confirm} />
                     </View>
@@ -187,7 +186,6 @@ PasswordConfirmationModal.propTypes = {
     isVisible: PropTypes.bool.isRequired,
     onPasswordConfirmed: PropTypes.func.isRequired,
     onModalHide: PropTypes.func,
-    reason: PropTypes.string.isRequired
 }
 
 PasswordConfirmationModal.defaultProps = {
