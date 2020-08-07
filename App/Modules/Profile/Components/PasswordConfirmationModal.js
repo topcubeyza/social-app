@@ -116,10 +116,18 @@ class PasswordConfirmationModal extends Component {
 
         FirebaseApi.reauthenticate({ email, password })
             .then(result => {
-                this.props.onPasswordConfirmed();
+                this.setState({
+                    loading: false
+                }, () => {
+                    this.props.onPasswordConfirmed();
+                })
             })
             .catch((error) => {
-                this.showErrorMessage(error);
+                this.setState({
+                    loading: false
+                }, () => {
+                    this.showErrorMessage(error);
+                })
             })
     }
 
@@ -138,7 +146,11 @@ class PasswordConfirmationModal extends Component {
         }
         else {
             Keyboard.dismiss();
-            this.reauthenticateUser();
+            this.setState({
+                loading: true
+            }, () => {
+                this.reauthenticateUser();
+            })
         }
     }
 
@@ -150,6 +162,7 @@ class PasswordConfirmationModal extends Component {
             <SlidingUpModal
                 isVisible={this.props.isVisible}
                 onModalHide={this.props.onModalHide}
+                loading={this.state.loading}
             >
                 <View style={styles.topContainer}>
                     <View style={styles.infoContainer}>
@@ -191,7 +204,6 @@ class PasswordConfirmationModal extends Component {
                             onPress={this.onPress_Proceed} />
                     </View>
                 </SafeAreaView>
-
             </SlidingUpModal>
         );
     }
