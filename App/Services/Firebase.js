@@ -105,6 +105,14 @@ const signOut = async () => {
     })
 }
 
+const deleteAccount = async () => {
+  console.log("fb: deleteAccount")
+  let user = auth().currentUser;
+  return await user.delete()
+    .then()
+    .catch()
+}
+
 export default {
   signIn,
   createUser,
