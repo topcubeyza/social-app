@@ -2,9 +2,14 @@
 import React, { Component } from "react"
 import Modal from "react-native-modal"
 import PropTypes from "prop-types"
+import LottieView from "lottie-react-native"
 
 // RN Components
-import { View, Text } from "react-native"
+import {
+    View,
+    Text,
+    SafeAreaView,
+} from "react-native"
 
 // Components
 
@@ -51,7 +56,7 @@ class SlidingUpModal extends Component {
 
     // *** EVENT HANDLERS *** //
 
-    onSwipeComplete = ({swipingDirection}) => {
+    onSwipeComplete = ({ swipingDirection }) => {
         console.log(swipingDirection)
         if (swipingDirection == "up") {
             this.hideModal()
@@ -63,7 +68,7 @@ class SlidingUpModal extends Component {
     render() {
         let styles = getStyles(themed.color)
         return (
-            <Modal 
+            <Modal
                 isVisible={this.state.isVisible}
                 avoidKeyboard={true}
                 backdropColor={themed.color(Colors.overlayColor)}
@@ -75,6 +80,19 @@ class SlidingUpModal extends Component {
                 onSwipeComplete={this.hideModal}>
                 <View style={styles.container}>
                     {this.props.children}
+
+                    {
+                        this.props.loading ?
+                            <SafeAreaView style={styles.loadingOverlay}>
+                                <LottieView
+                                    speed={2}
+                                    source={themed.image(Images.loadingAnimation)}
+                                    style={styles.lottie}
+                                    autoPlay
+                                    loop />
+                            </SafeAreaView>
+                            : null
+                    }
                 </View>
             </Modal>
         );
@@ -88,7 +106,7 @@ SlidingUpModal.propTypes = {
 }
 
 SlidingUpModal.defaultProps = {
-    onModalHide: () => {}
+    onModalHide: () => { }
 }
 
 export default SlidingUpModal;
