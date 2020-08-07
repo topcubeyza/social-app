@@ -2,22 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import validate from "validate.js"
 
-import { Modal, View, TouchableOpacity, Text } from "react-native";
+import { Modal, View, TouchableOpacity, TouchableHighlight, Text } from "react-native";
 
 import { AlertActions } from "../../Redux/AlertRedux"
 
 import getStyles from "./Styles/AlertStyles"
-import { themed } from "../../Theming"
-
-
-const initialState = {
-    isOpen: false,
-    title: '',
-    message: '',
-    buttons: [],
-    onBackdropPress: () => { },
-    cancellable: true
-};
+import { themed, Colors } from "../../Theming"
 
 class AlertManager extends Component {
 
@@ -25,7 +15,7 @@ class AlertManager extends Component {
 
     onPress_Backdrop = () => {
         let lastAlert = this.props.alerts[this.props.alerts.length - 1]
-        if (lastAlert.cancellable) {
+        if (lastAlert.cancellable == undefined || lastAlert.cancellable === true) {
             validate.isFunction(lastAlert.onBackdropPress) ? lastAlert.onBackdropPress() : null
             this.props.removeLastAlert()
         }
@@ -39,6 +29,7 @@ class AlertManager extends Component {
                 if (index < 2) {
                     return (
                         <TouchableOpacity
+                            activeOpacity={0}
                             key={"button-" + index}
                             style={styles.button}
                             onPress={validate.isFunction(button.onPress) ? button.onPress : () => { }}>
@@ -80,11 +71,15 @@ class AlertManager extends Component {
             <Modal
                 visible={this.props.alerts.length > 0}
                 transparent={true}>
-                <TouchableOpacity style={styles.modal} onPress={() => this.onPress_Backdrop()}>
+                <TouchableHighlight
+                    activeOpacity={1}
+                    underlayColor={themed.color(Colors.overlayColor)}
+                    style={styles.modal} 
+                    onPress={() => this.onPress_Backdrop()}>
                     <View style={styles.container} onStartShouldSetResponder={() => true}>
                         {this.renderLastAlert(styles)}
                     </View>
-                </TouchableOpacity>
+                </TouchableHighlight>
             </Modal>
         );
     }

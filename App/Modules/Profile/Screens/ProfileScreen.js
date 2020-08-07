@@ -1,6 +1,7 @@
 // Packages
 import React, { Component } from "react"
 import { connect } from "react-redux";
+import validate from "validate.js";
 
 // RN Components
 import {
@@ -17,12 +18,12 @@ import { AuthActions } from "../../Authorization/Redux/AuthRedux"
 
 // Utils
 import { Texts, localized } from "../../../Localization";
+import { showAlert, closeAlert } from "../../../Helpers/AlertHelpers";
 
 // Styles
 import getStyles from "../Styles/ProfileStyles"
 import { Colors, themed } from '../../../Theming'
 import { SVG } from "../../../StylingConstants";
-import validate from "validate.js";
 
 class ProfileScreen extends Component {
 
@@ -43,7 +44,20 @@ class ProfileScreen extends Component {
     }
 
     onPress_DeleteAccount = () => {
-
+        showAlert({
+            title:"Sure?",
+            message: "Are you sure you want to delete your account?",
+            buttons: [
+                {
+                    text: "Yes",
+                    onPress: () => {}
+                },
+                {
+                    text: "Cancel",
+                    onPress: () => closeAlert()
+                }
+            ]
+        })
     }
 
     // *** RENDER METHODS *** //
@@ -79,7 +93,8 @@ class ProfileScreen extends Component {
                         text={localized.text(Texts.deleteAccount)}
                         color={themed.color(Colors.brandColor)}
                         boldText
-                        icon={SVG.Trash} />
+                        icon={SVG.Trash}
+                        onPress={this.onPress_DeleteAccount} />
                 </View>
             </View>
         )
