@@ -33,6 +33,7 @@ class ProfileScreen extends Component {
 
         this.state = {
             isVisible_PasswordConfirmationModal: false,
+            passwordConfirmationReason: ""
         }
     }
 
@@ -53,7 +54,7 @@ class ProfileScreen extends Component {
     }
 
     onPress_ChangePassword = () => {
-
+        this.showPasswordConfirmationModal("password-change")
     }
 
     onPress_Signout = () => {
@@ -69,7 +70,7 @@ class ProfileScreen extends Component {
                     text: localized.text(Texts.yes),
                     onPress: () => {
                         closeAlert()
-                        this.showPasswordConfirmationModal()
+                        this.showPasswordConfirmationModal({reason: "account-deletion"})
                     }
                 },
                 {
@@ -78,6 +79,15 @@ class ProfileScreen extends Component {
                 }
             ]
         })
+    }
+
+    onPasswordConfirmed = () => {
+        if (this.state.passwordConfirmationReason == "account-deletion") {
+            // delete account
+        }
+        else if (this.state.passwordConfirmationReason == "password-change") {
+            // show password change modal
+        }
     }
 
     // *** RENDER METHODS *** //
@@ -96,11 +106,13 @@ class ProfileScreen extends Component {
                     <SettingsButton
                         text={localized.text(Texts.editName)}
                         color={themed.color(Colors.textOnLightBackground_dm)}
-                        icon={SVG.Edit} />
+                        icon={SVG.Edit}
+                        onPress={this.onPress_EditName} />
                     <SettingsButton
                         text={localized.text(Texts.changePassword)}
                         color={themed.color(Colors.textOnLightBackground_dm)}
-                        icon={SVG.EditPassword} />
+                        icon={SVG.EditPassword}
+                        onPress={this.onPress_ChangePassword} />
                 </View>
                 <View style={styles.seriousActionsContainer}>
                     <SettingsButton
