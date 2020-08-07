@@ -9,6 +9,7 @@ const getStyles = (c) => StyleSheet.create({
     },
     infoContainer: {
         paddingTop: Metrics.marginHorizontal,
+        paddingBottom: Metrics.width * 0.025,
         flexDirection: "row",
         alignItems: "center"
     },
@@ -32,15 +33,14 @@ const getStyles = (c) => StyleSheet.create({
         color: c(Colors.textOnLightBackground_dm),
     },
     textinputContainer: {
-        paddingVertical: Metrics.marginVertical
+        paddingVertical: Metrics.marginHorizontal,
     },
     bottomContainer: {
         backgroundColor: c(Colors.lightGrey_dm),
     },
     buttonContainer: {
         flexDirection: "row",
-        paddingVertical: Metrics.marginHorizontal,
-        paddingHorizontal: Metrics.marginHorizontal
+        padding: Metrics.marginHorizontal,
     },
     errorTextContainer:{
         height: Metrics.buttonHeight / 1.25,      
