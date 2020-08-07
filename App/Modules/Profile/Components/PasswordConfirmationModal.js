@@ -131,7 +131,7 @@ class PasswordConfirmationModal extends Component {
         let styles = getStyles(themed.color)
         return (
             <SlidingUpModal
-                isVisible={true}
+                isVisible={this.props.isVisible}
                 onModalHide={this.props.onModalHide}
             >
                 <View style={styles.topContainer}>
@@ -140,7 +140,9 @@ class PasswordConfirmationModal extends Component {
                             <SVG.EditPassword style={styles.icon} width={"100%"} height={"100%"} />
                         </View>
                         <View style={styles.messageContainer}>
-                            <Text style={styles.messageText}>Please enter your password before proceeding with bla bla</Text>
+                            <Text style={styles.messageText}>{"Please enter your password before proceeding with "}
+                                <Text style={styles.reasonText}>{this.props.reason}</Text>
+                            </Text>
                         </View>
                     </View>
                     <View style={styles.textinputContainer}>
@@ -185,6 +187,7 @@ PasswordConfirmationModal.propTypes = {
     isVisible: PropTypes.bool.isRequired,
     onPasswordConfirmed: PropTypes.func.isRequired,
     onModalHide: PropTypes.func,
+    reason: PropTypes.string.isRequired
 }
 
 PasswordConfirmationModal.defaultProps = {

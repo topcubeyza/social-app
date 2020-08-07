@@ -32,6 +32,9 @@ const getStyles = (c) => StyleSheet.create({
         fontSize: Fonts.size.eighteen,
         color: c(Colors.textOnLightBackground_dm),
     },
+    reasonText: {
+        color: c(Colors.brandColor),
+    },
     textinputContainer: {
         paddingVertical: Metrics.marginHorizontal,
     },
