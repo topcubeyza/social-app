@@ -13,6 +13,7 @@ import {
 import SettingsButton from "../Components/SettingsButton"
 
 // Actions
+import { AuthActions } from "../../Authorization/Redux/AuthRedux"
 
 // Utils
 import { Texts, localized } from "../../../Localization";
@@ -21,6 +22,7 @@ import { Texts, localized } from "../../../Localization";
 import getStyles from "../Styles/ProfileStyles"
 import { Colors, themed } from '../../../Theming'
 import { SVG } from "../../../StylingConstants";
+import validate from "validate.js";
 
 class ProfileScreen extends Component {
 
@@ -28,9 +30,26 @@ class ProfileScreen extends Component {
 
     // *** EVENT HANDLERS *** //
 
+    onPress_EditName = () => {
+
+    }
+
+    onPress_ChangePassword = () => {
+
+    }
+
+    onPress_Signout = () => {
+        this.props.signoutRequest();
+    }
+
+    onPress_DeleteAccount = () => {
+
+    }
+
     // *** RENDER METHODS *** //
 
     render() {
+        if (validate.isEmpty(this.props.user)) return null;
         let styles = getStyles(themed.color)
         return (
             <View style={styles.container}>
@@ -54,7 +73,8 @@ class ProfileScreen extends Component {
                         text={localized.text(Texts.signout)}
                         color={themed.color(Colors.textOnLightBackground_dm)}
                         boldText
-                        icon={SVG.Logout} />
+                        icon={SVG.Logout}
+                        onPress={this.onPress_Signout} />
                     <SettingsButton
                         text={localized.text(Texts.deleteAccount)}
                         color={themed.color(Colors.brandColor)}
@@ -74,6 +94,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
+    signoutRequest: () => dispatch(AuthActions.signOutRequest())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfileScreen);

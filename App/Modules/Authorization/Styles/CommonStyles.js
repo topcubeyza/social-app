@@ -46,6 +46,7 @@ const getStyles = c => StyleSheet.create({
         backgroundColor: c(Colors.lightGrey_dm),
     },
     topButtonContainer: {
+        flexDirection: "row",
         paddingTop: Metrics.width * 0.06,
         paddingHorizontal: Metrics.marginHorizontalLarge
     },

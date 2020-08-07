@@ -53,6 +53,11 @@ const getStyles = c => StyleSheet.create({
         fontSize: Fonts.size.twenty * 1.3,
         color: c(Colors.textOnLightBackground_dm),
     },
+    stackTitleText: {
+        fontFamily: Fonts.type.brand,
+        fontSize: Fonts.size.twenty,
+        color: c(Colors.textOnLightBackground_dm),
+    },
     rightText: {
         fontFamily: Fonts.type.regular,
         fontSize: Fonts.size.eighteen,

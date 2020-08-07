@@ -18,7 +18,7 @@ const getStyles = c => StyleSheet.create({
     displayNameText: {
         color: c(Colors.textOnLightBackground_dm),
         fontFamily: Fonts.type.bold,
-        fontSize: Fonts.size.twentytwo,
+        fontSize: Fonts.size.twentysix,
         paddingBottom: Metrics.width * 0.02
     },
     emailText: {

@@ -17,7 +17,9 @@ const size = {
   sixteen: Metrics.width * 0.042,
   eighteen: Metrics.width * 0.047,
   twenty: Metrics.width * 0.052,
-  twentytwo: Metrics.width * 0.057
+  twentytwo: Metrics.width * 0.057,
+  twentyfour: Metrics.width * 0.062,
+  twentysix: Metrics.width * 0.067
 }
 
 const style = {

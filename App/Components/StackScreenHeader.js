@@ -59,7 +59,7 @@ class StackScreenHeader extends Component {
 
     renderMiddle = (styles) => {
         return (
-            <Text style={styles.titleText}>{localized.text(this.props.title)}</Text>
+            <Text style={styles.stackTitleText}>{localized.text(this.props.title)}</Text>
         )
     }
 
