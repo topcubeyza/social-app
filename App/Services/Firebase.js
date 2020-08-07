@@ -96,6 +96,22 @@ const checkIfEmailIsVerified = () => {
   return user && user.emailVerified;
 }
 
+const reauthenticate = async ({ email, password }) => {
+  console.log("fb: reauthenticate")
+  let user = auth().currentUser;
+  let credential = auth.EmailAuthProvider.credential(email, password);
+
+  return await user.reauthenticateWithCredential(credential)
+    .then(() => { })
+    .catch((error) => {
+      if (error.code === 'auth/wrong-password') {
+        throw localized.text(Texts.errorMessages.wrongPassword)
+      }
+
+      throw localized.text(Texts.genericError)
+    });
+}
+
 const signOut = async () => {
   console.log("fb: signOut")
   return await auth().signOut()
@@ -120,5 +136,6 @@ export default {
   sendVerificationEmail,
   reloadUser,
   updateUserProfile,
-  checkIfEmailIsVerified
+  checkIfEmailIsVerified,
+  reauthenticate
 }

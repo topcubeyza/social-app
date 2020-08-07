@@ -55,5 +55,5 @@
    "invalidEmail": "The e-mail address you entered is invalid!",
    "weakPassword": "The password you entered is weak!",
    "userNotFound": "There is no user with the e-mail you entered!",
-   "wrongPassword": "The e-mail or password you entered is wrong!"
+   "wrongPassword": "The e-mail you entered is wrong!"
 }

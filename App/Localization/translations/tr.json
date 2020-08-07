@@ -55,5 +55,5 @@
     "invalidEmail": "Girdiğiniz e-posta adresi geçersiz!",
     "weakPassword": "Girdiğiniz şifre zayıf!",
     "userNotFound": "Bu e-posta adresi ile ilişkili bir kullanıcı bulunmamaktadır!",
-    "wrongPassword": "Girdiğiniz e-posta adresi veya şifre yanlış!"
+    "wrongPassword": "Girdiğiniz şifre yanlış!"
  }

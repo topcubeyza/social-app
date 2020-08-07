@@ -120,7 +120,7 @@ class ProfileScreen extends Component {
                 <PasswordConfirmationModal 
                     isVisible={this.state.isVisible_PasswordConfirmationModal}
                     onModalHide={() => this.setState({isVisible_PasswordConfirmationModal: false})} 
-                    onPasswordConfirmed={() => {}}/>
+                    onPasswordConfirmed={() => this.setState({isVisible_PasswordConfirmationModal: false})}/>
             </View>
         )
     }

@@ -1,5 +1,6 @@
 // Packages
 import React, { Component } from "react"
+import { connect } from "react-redux"
 import Modal from "react-native-modal"
 import PropTypes from "prop-types"
 
@@ -21,6 +22,7 @@ import Button from "../../../Components/Button"
 // Utils
 import checkFields from "../Utils/FieldsCheck"
 import { localized, Texts } from "../../../Localization"
+import FirebaseApi from "../../../Services/Firebase"
 
 // Styles
 import getStyles from "../Styles/PasswordConfirmationModalStyles"
@@ -108,6 +110,19 @@ class PasswordConfirmationModal extends Component {
         })
     }
 
+    reauthenticateUser = () => {
+        let email = this.props.user.email;
+        let password = this.state.password;
+
+        FirebaseApi.reauthenticate({ email, password })
+            .then(result => {
+                this.props.onPasswordConfirmed();
+            })
+            .catch((error) => {
+                this.showErrorMessage(error);
+            })
+    }
+
     // *** EVENT HANDLERS *** //
 
     onChangeText_Password = (text) => {
@@ -116,13 +131,14 @@ class PasswordConfirmationModal extends Component {
         })
     }
 
-    onPress_Confirm = () => {
+    onPress_Proceed = () => {
         let { ok, message } = checkFields({ password: this.state.password });
         if (!ok) {
             this.showErrorMessage(message)
         }
         else {
             Keyboard.dismiss();
+            this.reauthenticateUser();
         }
     }
 
@@ -172,7 +188,7 @@ class PasswordConfirmationModal extends Component {
                             backgroundColor={themed.color(Colors.brandColor)}
                             text={localized.text(Texts.proceed)}
                             textColor={themed.color(Colors.textOnBrandColor)}
-                            onPress={this.onPress_Confirm} />
+                            onPress={this.onPress_Proceed} />
                     </View>
                 </SafeAreaView>
 
@@ -192,4 +208,8 @@ PasswordConfirmationModal.defaultProps = {
     onModalHide: () => { }
 }
 
-export default PasswordConfirmationModal;
+const mapStateToProps = state => ({
+    user: state.auth.user
+})
+
+export default connect(mapStateToProps)(PasswordConfirmationModal);
