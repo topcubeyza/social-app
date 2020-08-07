@@ -42,7 +42,7 @@ class SingleLineInputBackground extends Component {
         Animated.timing(
             this.state.underlinePadding,
             {
-                toValue: Metrics.screenWidth - Metrics.marginHorizontalLarge * 2,
+                toValue: Metrics.screenWidth - this.props.margin * 2,
                 duration: 300
             }
         ).start()
