@@ -43,6 +43,7 @@ export const Texts = {
     sure: "sure",
     sureToDeleteAccount: "sureToDeleteAccount",
     passwordConfirmMessage: "passwordConfirmMessage",
+    newName: "newName",
     errorMessages: {
         tooManyRequestsResend: "tooManyRequestsResend",
         fillAllFields: "fillAllFields",

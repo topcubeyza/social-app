@@ -42,6 +42,7 @@
    "sure": "Sure?",
    "sureToDeleteAccount": "Are you sure you want to delete your account?",
    "passwordConfirmMessage": "Please enter your current password to proceed",
+   "newName": "New Name",
 
    "titleLogin": "Login",
    "titleSignup": "Signup",

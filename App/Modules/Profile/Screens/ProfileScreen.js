@@ -14,6 +14,7 @@ import {
 import SettingsButton from "../Components/SettingsButton"
 import PasswordConfirmationModal from "../Components/PasswordConfirmationModal"
 import ChangePasswordModal from "../Components/ChangePasswordModal"
+import EditNameModal from "../Components/EditNameModal"
 
 // Actions
 import { AuthActions } from "../../Authorization/Redux/AuthRedux"
@@ -35,6 +36,7 @@ class ProfileScreen extends Component {
         this.state = {
             isVisible_PasswordConfirmationModal: false,
             isVisible_ChangePasswordModal: false,
+            isVisible_EditNameModal: false,
             passwordConfirmationReason: ""
         }
     }
@@ -56,10 +58,16 @@ class ProfileScreen extends Component {
         })
     }
 
+    showEditNameModal = () => {
+        this.setState({
+            isVisible_EditNameModal: true
+        })
+    }
+
     // *** EVENT HANDLERS *** //
 
     onPress_EditName = () => {
-
+        this.showEditNameModal();
     }
 
     onPress_ChangePassword = () => {
@@ -153,6 +161,11 @@ class ProfileScreen extends Component {
                     isVisible={this.state.isVisible_ChangePasswordModal}
                     onModalHide={() => this.setState({isVisible_ChangePasswordModal: false})}
                     onPasswordChanged={() => this.setState({isVisible_ChangePasswordModal: false})}/>
+
+                <EditNameModal 
+                    isVisible={this.state.isVisible_EditNameModal}
+                    onModalHide={() => this.setState({isVisible_EditNameModal: false})}
+                    onNameEdited={() => this.setState({isVisible_EditNameModal: false})}/>
             </View>
         )
     }
