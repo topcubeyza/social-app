@@ -7,7 +7,8 @@ import PropTypes from "prop-types"
 import {
     View,
     Text,
-    SafeAreaView
+    SafeAreaView,
+    Keyboard
 } from "react-native"
 
 // Components
@@ -18,6 +19,7 @@ import Button from "../../../Components/Button"
 // Actions
 
 // Utils
+import checkFields from "../Utils/FieldsCheck"
 
 // Styles
 import getStyles from "../Styles/PasswordConfirmationModalStyles"
@@ -33,17 +35,77 @@ class PasswordConfirmationModal extends Component {
         super(props);
 
         this.state = {
-            password: ""
+            password: "",
+            errorMessage: "",
         }
+
+        this.passwordInput = null;
+        this.keyboardVisible = false;
     }
 
     // *** LIFECYCLE METHODS *** //
 
+    componentDidMount() {
+        this.keyboardDidShowListener = Keyboard.addListener("keyboardDidShow", this.onKeyboardDidShow)
+        if (Platform.OS == "ios") {
+            this.keyboardWillHideListener = Keyboard.addListener("keyboardWillHide", this.onKeyboardDidHide)
+        }
+        else {
+            this.keyboardDidHideListeneer = Keyboard.addListener("keyboardDidHide", this.onKeyboardDidHide)
+        }
+    }
+
+    componentWillUnmount() {
+        this.keyboardDidShowListener.remove();
+        if (Platform.OS == "ios") {
+            this.keyboardWillHideListener.remove();
+        }
+        else {
+            this.keyboardDidHideListeneer.remove();
+        }
+    }
+
     // *** CALLBACKS *** //
+
+    onKeyboardDidShow = () => {
+        if (!this.keyboardVisible) {
+            this.keyboardVisible = true;
+        }
+    }
+
+    onKeyboardDidHide = () => {
+        if (this.keyboardVisible) {
+            this.keyboardVisible = false;
+
+            // When keyboard hides, underline of the textinput must be removed
+            if (this.passwordInput != null) {
+                this.passwordInput.removeUnderline()
+            }
+        }
+    }
 
     // *** REF METHODS *** //
 
     // *** CONVENIENCE METHODS *** //
+
+    showErrorMessage = (message) => {
+        this.setState({
+            errorMessage: message
+        }, () => {
+            // Show an error message for two seconds if fields are not valid
+
+            // clear timeout so that when user taps button repeatedly,
+            // disappearing of error message will be delayed
+            if (this.errorMessageTimeout) {
+                clearTimeout(this.errorMessageTimeout)
+            }
+            this.errorMessageTimeout = setTimeout(() => {
+                this.setState({
+                    errorMessage: ""
+                })
+            }, 2000);
+        })
+    }
 
     // *** EVENT HANDLERS *** //
 
@@ -54,7 +116,13 @@ class PasswordConfirmationModal extends Component {
     }
 
     onPress_Confirm = () => {
-
+        let { ok, message } = checkFields({ password: this.state.password });
+        if (!ok) {
+            this.showErrorMessage(message)
+        }
+        else {
+            Keyboard.dismiss();
+        }
     }
 
     // *** RENDER METHODS *** //
@@ -77,14 +145,24 @@ class PasswordConfirmationModal extends Component {
                     </View>
                     <View style={styles.textinputContainer}>
                         <SingleLineInputBackground
+                            ref={ref => this.passwordInput = ref}
                             backgroundColor={themed.color(Colors.lightGrey_dm)}
                             onChangeText={this.onChangeText_Password}
                             placeholder="Password"
                             value={this.state.password}
-                            margin={Metrics.marginHorizontal} />
+                            margin={Metrics.marginHorizontal}
+                            autoCapitalize="none"
+                            secureTextEntry={true} />
                     </View>
                     <View style={styles.errorTextContainer}>
-                        <Text style={styles.errorText}>Error</Text>
+                        {
+                            this.state.errorMessage === "" ?
+                                null
+                                :
+                                <Text numberOfLines={2} style={styles.errorText}>
+                                    {this.state.errorMessage}
+                                </Text>
+                        }
                     </View>
                 </View>
                 <SafeAreaView style={styles.bottomContainer}>
