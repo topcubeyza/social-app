@@ -41,7 +41,7 @@ const getStyles = c => StyleSheet.create({
     },
     backImageContainer: {
         alignItems: "flex-start",
-        paddingVertical: Metrics.width * 0.04
+        paddingVertical: Metrics.width * 0.045
     },
     backImage: {
         height: "100%",
