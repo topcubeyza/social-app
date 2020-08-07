@@ -63,6 +63,12 @@ class SlidingUpModal extends Component {
         }
     }
 
+    onPress_Backdrop = () => {
+        if (!this.props.loading) {
+            this.hideModal()
+        }
+    }
+
     // *** RENDER METHODS *** //
 
     render() {
@@ -73,7 +79,7 @@ class SlidingUpModal extends Component {
                 avoidKeyboard={true}
                 backdropColor={themed.color(Colors.overlayColor)}
                 backdropOpacity={1}
-                onBackdropPress={this.hideModal}
+                onBackdropPress={this.onPress_Backdrop}
                 onModalHide={this.props.onModalHide}
                 style={styles.modal}
                 swipeDirection="down"
