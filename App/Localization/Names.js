@@ -9,6 +9,7 @@ export const Texts = {
     forgotPassword: "forgotPassword",
     email: "email",
     password: "password",
+    newPassword: "newPassword",
     confirmPassword: "confirmPassword",
     loginInstead: "loginInstead",
     success: "success",

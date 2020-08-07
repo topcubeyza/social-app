@@ -9,6 +9,7 @@
    "forgotPassword": "Forgot Password?",
    "email": "E-mail address",
    "password": "Password",
+   "newPassword": "New Password",
    "confirmPassword": "Confirm Password",
    "loginInstead": "Login instead?",
    "success": "Success!",
