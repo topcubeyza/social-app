@@ -14,7 +14,10 @@ import getStyles from "../Styles/SettingsButtonStyles"
 import { SVG } from "../../../StylingConstants"
 import { themed } from "../../../Theming"
 
-
+/**
+ * 
+ * @augments {Component<Props,State>}
+ */
 const SettingsButton = (props) => {
     let styles = getStyles(themed.color)
     let textStyle = [

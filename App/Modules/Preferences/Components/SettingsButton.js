@@ -14,7 +14,10 @@ import getStyles from "../Styles/SettingsButtonStyles"
 import { SVG } from "../../../StylingConstants"
 import { themed, Colors } from "../../../Theming"
 
-
+/**
+ * 
+ * @augments {Component<Props,State>}
+ */
 const SettingsButton = (props) => {
     let styles = getStyles(themed.color)
     let textStyle = [
@@ -69,11 +72,13 @@ SettingsButton.propTypes = {
     onPress: PropTypes.func,
     selected: PropTypes.bool.isRequired,
     endIcon: PropTypes.elementType,
-    onPressEndIcon: PropTypes.func
+    onPressEndIcon: PropTypes.func,
+    disabled: PropTypes.bool
 }
 
 SettingsButton.defaultProps = {
     onPress: () => { },
+    disabled: false
 }
 
 export default SettingsButton
