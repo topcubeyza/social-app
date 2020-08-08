@@ -18,14 +18,13 @@ const getStyles = (c) => StyleSheet.create({
     icon: {
         // backgroundColor: "green",
         aspectRatio: 1,
-        color: c(Colors.brandColor),
     },
     textContainer: {
         flex: 0.9
     },
     textBold: {
         fontFamily: Fonts.type.bold,
-        fontSize: Fonts.size.eighteen,
+        fontSize: Fonts.size.sixteen,
     },
     textRegular: {
         fontFamily: Fonts.type.regular,

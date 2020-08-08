@@ -47,6 +47,9 @@
    "passwordChangeSuccessMessage": "Your password is changed successfully!",
    "enterEmailToReset": "Please enter your e-mail address and we will send a password reset e-mail.",
    "resetEmailSuccessMessage": "We have sent a password reset e-mail to \"%{email}\". You can reset your password by following the link in the e-mail.",
+   "preferences": "Preferences",
+   "themePreference": "Theme Preference",
+   "languagePreference": "Language Preference",
 
    "titleLogin": "Login",
    "titleSignup": "Signup",

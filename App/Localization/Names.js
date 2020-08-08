@@ -48,6 +48,9 @@ export const Texts = {
     passwordChangeSuccessMessage: "passwordChangeSuccessMessage",
     enterEmailToReset: "enterEmailToReset",
     resetEmailSuccessMessage: "resetEmailSuccessMessage",
+    preferences: "preferences",
+    themePreference: "themePreference",
+    languagePreference: "languagePreference",
     errorMessages: {
         tooManyRequestsResend: "tooManyRequestsResend",
         fillAllFields: "fillAllFields",
