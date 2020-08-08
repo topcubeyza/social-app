@@ -7,6 +7,7 @@ const getStyles = c => StyleSheet.create({
         flex: 1,
         justifyContent: "space-between",
         backgroundColor: c(Colors.lightBackground_dm),
+        paddingHorizontal: Metrics.marginHorizontalLarge
     },
     imageContainer: {
         flexGrow: 0.5,
@@ -26,15 +27,17 @@ const getStyles = c => StyleSheet.create({
         fontFamily: Fonts.type.brand,
         fontSize: Fonts.size.twenty,
         paddingBottom: Metrics.width * 0.02,
-        color: c(Colors.black_dm)
+        color: c(Colors.black_dm),
+        textAlign: "center"
     },
     subText: {
         fontFamily: Fonts.type.light,
         fontSize: Fonts.size.fourteen,
-        color: c(Colors.textOnLightBackground_dm)
+        color: c(Colors.textOnLightBackground_dm),
+        textAlign: "center"
     },
     gobackButtonContainer: {
-        paddingHorizontal: Metrics.marginHorizontalLarge,
+        flexDirection: "row",
         paddingBottom: Metrics.marginHorizontalLarge
     }
 })
