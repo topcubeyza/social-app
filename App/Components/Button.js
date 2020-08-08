@@ -7,7 +7,9 @@ import PropTypes from "prop-types"
 import getStyles from "./Styles/ButtonStyles"
 import { themed } from "../Theming"
 
-
+/**
+ * The component used as Button all around the app
+ */
 const Button = (props) => {
     let styles = getStyles(themed.color)
     let containerStyle = [

@@ -9,7 +9,9 @@ import { Fonts, Metrics } from "../StylingConstants"
 import { Colors, themed } from "../Theming"
 
 /**
- * @augments {Component<Props,State>}
+ * @augments {Component<Props>}
+ * @classdesc The component used as TextInput. Difference from SingleLineInput is that
+ * this one accepts and adapts to backgroundColor.
  */
 class SingleLineInputBackground extends Component {
 

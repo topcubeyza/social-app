@@ -27,6 +27,7 @@ import { Colors, Images, themed } from '../Theming'
 
 /**
  * @augments {Components<Props,State>}
+ * @classdesc Header to use for screens in the TabNavigator, shows brand logo and profile icon
  */
 class TabScreenHeader extends Component {
 

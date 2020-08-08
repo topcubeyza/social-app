@@ -27,7 +27,8 @@ import { Fonts, Metrics } from "../StylingConstants"
 import { Colors, Images, themed } from '../Theming'
 
 /**
- * @augments {Component<Props, State>}
+ * @augments {Component<Props>}
+ * @classdesc Header to use for screens in the SignedOutNavigation, i.e. Authorization screens
  */
 class SignedOutHeader extends Component {
 

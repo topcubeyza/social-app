@@ -9,7 +9,8 @@ import { Fonts, Metrics } from "../StylingConstants"
 import { Colors, themed } from "../Theming"
 
 /**
- * @augments {Component<Props,State>}
+ * @augments {Component<Props>}
+ * @classdesc The component used as TextInput all around the app
  */
 class SingleLineInput extends Component {
 

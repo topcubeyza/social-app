@@ -23,7 +23,9 @@ import { Fonts, Metrics } from "../StylingConstants"
 import { Colors, Images, themed } from '../Theming'
 
 /**
- * @augments {Component<Props,State>}
+ * @augments {Component<Props>}
+ * @classdesc The component is a bottom modal that slides from bottom to top.
+ * Also shows a loading animation that covers the modal only, if given as props.
  */
 class SlidingUpModal extends Component {
 

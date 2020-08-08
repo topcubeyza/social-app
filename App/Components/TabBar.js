@@ -24,6 +24,9 @@ import getStyles from "./Styles/TabBarStyles"
 import { Fonts, Metrics, SVG } from "../StylingConstants"
 import { Colors, Images, themed } from '../Theming'
 
+/**
+ * @classdesc The component for Bottom Tab Bar in the Navigation
+ */
 class TabBarComponent extends Component {
 
     // *** RENDER METHODS *** //
