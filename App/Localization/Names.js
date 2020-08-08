@@ -41,9 +41,11 @@ export const Texts = {
     changePassword: "changePassword",
     deleteAccount: "deleteAccount",
     sure: "sure",
+    sorry: "sorry",
     sureToDeleteAccount: "sureToDeleteAccount",
     passwordConfirmMessage: "passwordConfirmMessage",
     newName: "newName",
+    passwordChangeSuccessMessage: "passwordChangeSuccessMessage",
     errorMessages: {
         tooManyRequestsResend: "tooManyRequestsResend",
         fillAllFields: "fillAllFields",

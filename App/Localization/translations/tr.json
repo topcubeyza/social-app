@@ -41,9 +41,11 @@
     "changePassword": "Şifreyi Değiştir",
     "deleteAccount": "Hesabı Sil",
     "sure": "Emin misin?",
+    "sorry": "Üzgünüz",
     "sureToDeleteAccount": "Hesabını silmek istediğine emin misin?",
     "passwordConfirmMessage": "Devam etmek için lütfen mevcut şifrenizi girin",
     "newName": "Yeni İsim",
+    "passwordChangeSuccessMessage": "Şifreniz başarıyla değiştirildi!",
 
     "titleLogin": "Giriş Yap",
     "titleSignup": "Kayıt Ol",

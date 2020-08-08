@@ -3,6 +3,7 @@ import React, { Component } from "react"
 import { connect } from "react-redux"
 import Modal from "react-native-modal"
 import PropTypes from "prop-types"
+import _ from "lodash"
 
 // RN Components
 import {
@@ -18,6 +19,7 @@ import SingleLineInputBackground from "../../../Components/SingleLineInputBackgr
 import Button from "../../../Components/Button"
 
 // Actions
+import { AuthActions } from "../../Authorization/Redux/AuthRedux"
 
 // Utils
 import checkFields from "../Utils/FieldsCheck"
@@ -40,6 +42,7 @@ class EditNameModal extends Component {
         this.state = {
             displayName: "",
             errorMessage: "",
+            loading: false
         }
 
         this.nameInput = null;
@@ -111,7 +114,25 @@ class EditNameModal extends Component {
     }
 
     changeName = () => {
+        FirebaseApi.updateUserProfile({displayName: this.state.displayName})
+            .then(() => {
+                this.setState({
+                    loading: false
+                }, () => {
+                    let user = _.cloneDeep(this.props.user);
+                    user.displayName = this.state.displayName;
 
+                    this.props.setUser(user);
+                    this.props.onNameEdited();
+                })
+            })
+            .catch((error) => {
+                this.setState({
+                    loading: false
+                }, () => {
+                    this.showErrorMessage(error);
+                })
+            })
     }
 
     // *** EVENT HANDLERS *** //
@@ -154,7 +175,7 @@ class EditNameModal extends Component {
                             backgroundColor={themed.color(Colors.lightGrey_dm)}
                             onChangeText={this.onChangeText_DisplayName}
                             placeholder={localized.text(Texts.newName)}
-                            value={this.state.name}
+                            value={this.state.displayName}
                             margin={Metrics.marginHorizontal} />
                     </View>
                     <View style={styles.errorTextContainer}>
@@ -197,4 +218,8 @@ const mapStateToProps = state => ({
     user: state.auth.user
 })
 
-export default connect(mapStateToProps)(EditNameModal);
+const mapDispatchToProps = dispatch => ({
+    setUser: (user) => dispatch(AuthActions.setUser({user}))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(EditNameModal);

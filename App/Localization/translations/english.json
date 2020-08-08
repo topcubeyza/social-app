@@ -40,9 +40,11 @@
    "changePassword": "Change Password",
    "deleteAccount": "Delete Account",
    "sure": "Sure?",
+   "sorry": "Sorry",
    "sureToDeleteAccount": "Are you sure you want to delete your account?",
    "passwordConfirmMessage": "Please enter your current password to proceed",
    "newName": "New Name",
+   "passwordChangeSuccessMessage": "Your password is changed successfully!",
 
    "titleLogin": "Login",
    "titleSignup": "Signup",

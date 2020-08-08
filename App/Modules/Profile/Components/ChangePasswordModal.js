@@ -41,6 +41,7 @@ class ChangePasswordModal extends Component {
             password: "",
             passwordConfirm: "",
             errorMessage: "",
+            loading: false
         }
 
         this.passwordInput = null;
@@ -114,7 +115,23 @@ class ChangePasswordModal extends Component {
     }
 
     changePassword = () => {
+        let newPassword = this.state.password;
 
+        FirebaseApi.changePassword({ newPassword })
+            .then(() => {
+                this.setState({
+                    loading: false
+                }, () => {
+                    this.props.onPasswordChanged();
+                })
+            })
+            .catch((error) => {
+                this.setState({
+                    loading: false
+                }, () => {
+                    this.showErrorMessage(error);
+                })
+            })
     }
 
     // *** EVENT HANDLERS *** //
@@ -217,7 +234,7 @@ class ChangePasswordModal extends Component {
 
 ChangePasswordModal.propTypes = {
     isVisible: PropTypes.bool.isRequired,
-    onPasswordChanges: PropTypes.func.isRequired,
+    onPasswordChanged: PropTypes.func.isRequired,
     onModalHide: PropTypes.func,
 }
 

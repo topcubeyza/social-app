@@ -112,6 +112,20 @@ const reauthenticate = async ({ email, password }) => {
     });
 }
 
+const changePassword = async ({ newPassword }) => {
+  var user = auth().currentUser;
+
+  return await user.updatePassword(newPassword)
+    .then(() => null)
+    .catch(error => {
+      if (error.code === 'auth/weak-password') {
+        throw localized.text(Texts.errorMessages.weakPassword)
+      }
+
+      throw localized.text(Texts.genericError)
+    });
+}
+
 const signOut = async () => {
   console.log("fb: signOut")
   return await auth().signOut()
@@ -126,7 +140,9 @@ const deleteAccount = async () => {
   let user = auth().currentUser;
   return await user.delete()
     .then()
-    .catch()
+    .catch(error => {
+      throw localized.text(Texts.genericError)
+    })
 }
 
 export default {
@@ -137,5 +153,7 @@ export default {
   reloadUser,
   updateUserProfile,
   checkIfEmailIsVerified,
-  reauthenticate
+  reauthenticate,
+  changePassword,
+  deleteAccount
 }

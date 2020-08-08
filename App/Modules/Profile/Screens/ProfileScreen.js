@@ -22,6 +22,7 @@ import { AuthActions } from "../../Authorization/Redux/AuthRedux"
 // Utils
 import { Texts, localized } from "../../../Localization";
 import { showAlert, closeAlert } from "../../../Helpers/AlertHelpers";
+import FirebaseApi from "../../../Services/Firebase";
 
 // Styles
 import getStyles from "../Styles/ProfileStyles"
@@ -64,6 +65,24 @@ class ProfileScreen extends Component {
         })
     }
 
+    deleteAccount = () => {
+        FirebaseApi.deleteAccount()
+            .catch(error => {
+                showAlert({
+                    title: localized.text(Texts.sorry),
+                    message: error,
+                    buttons: [
+                        {
+                            text: localized.text(Texts.ok),
+                            onPress: () => {
+                                closeAlert()
+                            }
+                        },
+                    ]
+                })
+            })
+    }
+
     // *** EVENT HANDLERS *** //
 
     onPress_EditName = () => {
@@ -87,7 +106,7 @@ class ProfileScreen extends Component {
                     text: localized.text(Texts.yes),
                     onPress: () => {
                         closeAlert()
-                        this.showPasswordConfirmationModal({reason: "account-deletion"})
+                        this.showPasswordConfirmationModal("account-deletion")
                     }
                 },
                 {
@@ -103,13 +122,40 @@ class ProfileScreen extends Component {
             isVisible_PasswordConfirmationModal: false
         }, () => {
             if (this.state.passwordConfirmationReason == "account-deletion") {
-                // delete account
+                this.deleteAccount();
             }
             else if (this.state.passwordConfirmationReason == "password-change") {
                 this.setState({
                     isVisible_ChangePasswordModal: true
                 })
             }
+        })
+    }
+
+    onNameEdited = () => {
+        this.setState({
+            isVisible_EditNameModal: false
+        }, () => {
+
+        })
+    }
+
+    onPasswordChanged = () => {
+        this.setState({
+            isVisible_ChangePasswordModal: false
+        }, () => {
+            showAlert({
+                title: localized.text(Texts.success),
+                message: localized.text(Texts.passwordChangeSuccessMessage),
+                buttons: [
+                    {
+                        text: localized.text(Texts.ok),
+                        onPress: () => {
+                            closeAlert()
+                        }
+                    },
+                ]
+            })
         })
     }
 
@@ -152,20 +198,20 @@ class ProfileScreen extends Component {
                         onPress={this.onPress_DeleteAccount} />
                 </View>
 
-                <PasswordConfirmationModal 
+                <PasswordConfirmationModal
                     isVisible={this.state.isVisible_PasswordConfirmationModal}
-                    onModalHide={() => this.setState({isVisible_PasswordConfirmationModal: false})} 
-                    onPasswordConfirmed={this.onPasswordConfirmed}/>
+                    onModalHide={() => this.setState({ isVisible_PasswordConfirmationModal: false })}
+                    onPasswordConfirmed={this.onPasswordConfirmed} />
 
-                <ChangePasswordModal 
+                <ChangePasswordModal
                     isVisible={this.state.isVisible_ChangePasswordModal}
-                    onModalHide={() => this.setState({isVisible_ChangePasswordModal: false})}
-                    onPasswordChanged={() => this.setState({isVisible_ChangePasswordModal: false})}/>
+                    onModalHide={() => this.setState({ isVisible_ChangePasswordModal: false })}
+                    onPasswordChanged={this.onPasswordChanged} />
 
-                <EditNameModal 
+                <EditNameModal
                     isVisible={this.state.isVisible_EditNameModal}
-                    onModalHide={() => this.setState({isVisible_EditNameModal: false})}
-                    onNameEdited={() => this.setState({isVisible_EditNameModal: false})}/>
+                    onModalHide={() => this.setState({ isVisible_EditNameModal: false })}
+                    onNameEdited={this.onNameEdited} />
             </View>
         )
     }
