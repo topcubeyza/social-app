@@ -8,6 +8,7 @@ import Trash from "../Assets/SVGIcons/icon-trash.svg"
 import Mail from "../Assets/SVGIcons/icon-mail.svg"
 import Circle from "../Assets/SVGIcons/icon-circle.svg"
 import CheckedCircle from "../Assets/SVGIcons/icon-circle-checked.svg"
+import Info from "../Assets/SVGIcons/icon-info.svg"
 
 const SVG = {
     Home,
@@ -19,7 +20,8 @@ const SVG = {
     Trash,
     Mail,
     Circle,
-    CheckedCircle
+    CheckedCircle,
+    Info,
   }
   
   export default SVG

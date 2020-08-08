@@ -15,12 +15,19 @@ const getStyles = (c) => StyleSheet.create({
         justifyContent: "flex-start",
         // backgroundColor: "pink"
     },
+    endIconContainer: {
+        flex: 0.2,
+        paddingVertical: Metrics.width * 0.025,
+        alignItems: "center",
+        // backgroundColor: "pink"
+    },
     icon: {
         // backgroundColor: "green",
         aspectRatio: 1,
+        color: c(Colors.textOnLightBackground_dm)
     },
     textContainer: {
-        flex: 0.9
+        flex: 0.7
     },
     textBold: {
         fontFamily: Fonts.type.bold,

@@ -57,7 +57,6 @@ class SlidingUpModal extends Component {
     // *** EVENT HANDLERS *** //
 
     onSwipeComplete = ({ swipingDirection }) => {
-        console.log(swipingDirection)
         if (swipingDirection == "up") {
             this.hideModal()
         }

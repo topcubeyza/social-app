@@ -43,6 +43,7 @@ class PreferencesScreen extends Component {
     // *** RENDER METHODS *** //
 
     renderThemes = () => {
+        let length = Object.entries(ThemeModes).length
         return Object.entries(ThemeModes).map((themeMode, index) => {
             let selected = themeMode[1] == this.props.theme.themeMode;
             return (
@@ -51,12 +52,15 @@ class PreferencesScreen extends Component {
                     text={localized.text(Texts[themeMode[0] + "Theme"])}
                     onPress={() => this.onPress_ThemeMode(themeMode[1])}
                     icon={selected ? SVG.CheckedCircle : SVG.Circle}
-                    selected={selected} />
+                    selected={selected}
+                    endIcon={index == length -1 ? SVG.Info : null}
+                    onPressEndIcon={() => {}} />
             )
         })
     }
 
     renderLocales = () => {
+        let length = Object.entries(LocaleTypes).length
         return Object.entries(LocaleTypes).map((localeType, index) => {
             let selected = localeType[1] == this.props.locale.localeType;
             return (
@@ -65,7 +69,9 @@ class PreferencesScreen extends Component {
                     text={localized.text(Texts[localeType[0] + "Locale"])}
                     onPress={() => this.onPress_LocaleType(localeType[1])}
                     icon={selected ? SVG.CheckedCircle : SVG.Circle}
-                    selected={selected} />
+                    selected={selected}
+                    endIcon={index == length -1 ? SVG.Info : null}
+                    onPressEndIcon={() => {}} />
             )
         })
     }

@@ -3,11 +3,11 @@ import React from "react"
 import PropTypes from "prop-types"
 
 // RN Components
-import { 
-    TouchableOpacity, 
+import {
+    TouchableOpacity,
     View,
     Text,
- } from "react-native"
+} from "react-native"
 
 // Styles
 import getStyles from "../Styles/SettingsButtonStyles"
@@ -27,6 +27,7 @@ const SettingsButton = (props) => {
     ]
 
     let IconComponent = props.icon
+    let EndIconComponent = props.endIcon
 
     return (
         <TouchableOpacity
@@ -46,15 +47,29 @@ const SettingsButton = (props) => {
             <View style={styles.textContainer}>
                 <Text style={textStyle}>{props.text}</Text>
             </View>
+            {
+                EndIconComponent ?
+                    <TouchableOpacity 
+                        onPress={props.onPressEndIcon}
+                        style={styles.endIconContainer}>
+                        <EndIconComponent
+                            style={styles.icon}
+                            width={"100%"}
+                            height={"100%"} />
+                    </TouchableOpacity>
+                    : null
+            }
         </TouchableOpacity>
     )
 }
 
 SettingsButton.propTypes = {
-    icon: PropTypes.func,
+    icon: PropTypes.elementType,
     text: PropTypes.string.isRequired,
     onPress: PropTypes.func,
-    selected: PropTypes.bool.isRequired
+    selected: PropTypes.bool.isRequired,
+    endIcon: PropTypes.elementType,
+    onPressEndIcon: PropTypes.func
 }
 
 SettingsButton.defaultProps = {
