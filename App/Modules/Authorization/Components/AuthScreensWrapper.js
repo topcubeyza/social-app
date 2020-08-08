@@ -1,6 +1,7 @@
 // Packages
 import React, { Component } from "react"
 import { connect } from "react-redux";
+import PropTypes from "prop-types"
 import { duration } from "moment";
 import { getStatusBarHeight } from "react-native-status-bar-height"
 import validate from "validate.js";
@@ -36,6 +37,9 @@ import { Fonts, Metrics } from "../../../StylingConstants"
 import { Colors, themed } from '../../../Theming'
 import { Texts, localized } from "../../../Localization"
 
+/**
+ * @augments {Components<Props,State>}
+ */
 class AuthScreensWrapper extends Component {
 
     constructor(props) {
@@ -274,6 +278,22 @@ class AuthScreensWrapper extends Component {
         )
     }
 
+}
+
+AuthScreensWrapper.propTypes = {
+    textInputsParams: PropTypes.array.isRequired,
+    dataFieldName: PropTypes.string.isRequired,
+    isDataValid: PropTypes.func.isRequired,
+    onRequestSuccess: PropTypes.func.isRequired,
+    request: PropTypes.func.isRequired,
+    topButtonText: PropTypes.string.isRequired,
+    transparentButtonText: PropTypes.string,
+    onPress_TransparentButton: PropTypes.func
+}
+
+AuthScreensWrapper.defaultProps = {
+    transparentButtonText: "",
+    onPress_TransparentButton: () => {}
 }
 
 const mapStateToProps = state => ({

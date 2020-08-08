@@ -1,5 +1,6 @@
 // Packages
 import React, { Component } from "react"
+import PropTypes from "prop-types"
 
 // RN Components
 import {
@@ -15,6 +16,9 @@ import getStyles from "../Styles/CommonStyles"
 import { Fonts, Metrics } from "../../../StylingConstants"
 import { Colors, themed } from '../../../Theming'
 
+/**
+ * @augments {Component<Props,State>}
+ */
 class ScreenWrapper extends Component {
 
     // *** RENDER METHODS *** //
@@ -47,6 +51,14 @@ class ScreenWrapper extends Component {
         )
     }
 
+}
+
+ScreenWrapper.propTypes = {
+    header: PropTypes.element,
+    topContainerContent: PropTypes.element,
+    errorContent: PropTypes.element,
+    topButtonComponent: PropTypes.element,
+    transparentButtonComponent: PropTypes.element
 }
 
 export default ScreenWrapper;
