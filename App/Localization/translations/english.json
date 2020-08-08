@@ -56,6 +56,8 @@
    "deviceLocale": "Device Language",
    "englishLocale": "English",
    "turkishLocale": "Türkçe",
+   "deviceThemeInfo": "When this option is selected, the app's theme will be the selected theme in your device settings. When you change the theme of your device, the app's theme will be automatically changed.",
+   "deviceLocaleInfo": "When this option is selected, the app's language will be the selected language in your device settings. When you change the language of your device, the app's language will be automatically changed. Only the above languages are supported.",
 
    "titleLogin": "Login",
    "titleSignup": "Signup",

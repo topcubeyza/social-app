@@ -57,6 +57,8 @@ export const Texts = {
     deviceLocale: "deviceLocale",
     englishLocale: "englishLocale",
     turkishLocale: "turkishLocale",
+    deviceLocaleInfo: "deviceLocaleInfo",
+    deviceThemeInfo: "deviceThemeInfo",
     errorMessages: {
         tooManyRequestsResend: "tooManyRequestsResend",
         fillAllFields: "fillAllFields",
