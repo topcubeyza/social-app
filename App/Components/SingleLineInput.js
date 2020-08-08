@@ -1,6 +1,6 @@
 // Packages
 import React, { Component } from "react"
-import { View, Text, TextInput, Animated } from "react-native"
+import { View, Text, TextInput, Animated, TextInputProps } from "react-native"
 import PropTypes from "prop-types"
 
 // Styles
@@ -8,7 +8,9 @@ import getStyles from "./Styles/SingleLineInputStyles"
 import { Fonts, Metrics } from "../StylingConstants"
 import { Colors, themed } from "../Theming"
 
-
+/**
+ * @augments {Component<Props,State>}
+ */
 class SingleLineInput extends Component {
 
     constructor(props) {
@@ -91,21 +93,15 @@ class SingleLineInput extends Component {
     }
 }
 
-export default SingleLineInput
-
 SingleLineInput.propTypes = {
-    onChangeText: PropTypes.func.isRequired,
-    value: PropTypes.string.isRequired,
-    placeholder: PropTypes.string.isRequired,
-    secureTextEntry: PropTypes.bool,
-    editable: PropTypes.bool,
+    underline: PropTypes.string,
     onFocus: PropTypes.func,
-    backgroundColor: PropTypes.string
 }
 
 SingleLineInput.defaultProps = {
-    secureTextEntry: false,
+    underline: null,
+    onFocus: () => {},
     editable: true,
-    onFocus: () => { },
-    backgroundColor: "transparent"
 }
+
+export default SingleLineInput

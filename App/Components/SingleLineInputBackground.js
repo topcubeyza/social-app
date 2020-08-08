@@ -98,21 +98,15 @@ class SingleLineInputBackground extends Component {
 }
 
 SingleLineInputBackground.propTypes = {
-    onChangeText: PropTypes.func.isRequired,
-    value: PropTypes.string.isRequired,
-    placeholder: PropTypes.string.isRequired,
-    margin: PropTypes.number.isRequired,
-    secureTextEntry: PropTypes.bool,
-    editable: PropTypes.bool,
+    underline: PropTypes.string,
     onFocus: PropTypes.func,
-    backgroundColor: PropTypes.string
+    margin: PropTypes.number.isRequired,
 }
 
 SingleLineInputBackground.defaultProps = {
-    secureTextEntry: false,
+    underline: null,
+    onFocus: () => {},
     editable: true,
-    onFocus: () => { },
-    backgroundColor: "transparent"
 }
 
 export default SingleLineInputBackground

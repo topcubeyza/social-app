@@ -1,6 +1,7 @@
 // Packages
 import React, { Component } from "react"
 import { connect } from "react-redux"
+import PropTypes from "prop-types"
 
 // RN Components
 import {
@@ -24,6 +25,9 @@ import getStyles from "./Styles/HeaderStyles"
 import { Fonts, Metrics, SVG } from "../StylingConstants"
 import { Colors, Images, themed } from '../Theming'
 
+/**
+ * @augments {Components<Props,State>}
+ */
 class TabScreenHeader extends Component {
 
     // *** RENDER METHODS *** //
@@ -81,6 +85,10 @@ class TabScreenHeader extends Component {
         }
     }
 
+}
+
+TabScreenHeader.propTypes = {
+    navigation: PropTypes.object
 }
 
 const mapStateToProps = state => ({

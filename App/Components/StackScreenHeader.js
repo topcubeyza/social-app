@@ -1,6 +1,7 @@
 // Packages
 import React, { Component } from "react"
 import { connect } from "react-redux"
+import PropTypes from "prop-types"
 
 // RN Components
 import {
@@ -25,21 +26,10 @@ import getStyles from "./Styles/HeaderStyles"
 import { Fonts, Metrics } from "../StylingConstants"
 import { Colors, Images, themed } from '../Theming'
 
+/**
+ * @augments {Component<Props,State>}
+ */
 class StackScreenHeader extends Component {
-
-    constructor(props) {
-        super(props);
-    }
-
-    // *** LIFECYCLE METHODS *** //
-
-    // *** CALLBACKS *** //
-
-    // *** REF METHODS *** //
-
-    // *** CONVENIENCE METHODS *** //
-
-    // *** EVENT HANDLERS *** //
 
     // *** RENDER METHODS *** //
 
@@ -99,5 +89,14 @@ const mapStateToProps = state => ({
     locale: state.locale,
     theme: state.theme
 })
+
+StackScreenHeader.propTypes = {
+    title: PropTypes.string.isRequired,
+    navigation: PropTypes.object
+}
+
+StackScreenHeader.defaultProps = {
+
+}
 
 export default connect(mapStateToProps)(StackScreenHeader);

@@ -22,6 +22,9 @@ import getStyles from "./Styles/SlidingUpModalStyles"
 import { Fonts, Metrics } from "../StylingConstants"
 import { Colors, Images, themed } from '../Theming'
 
+/**
+ * @augments {Component<Props,State>}
+ */
 class SlidingUpModal extends Component {
 
     constructor(props) {
@@ -107,11 +110,13 @@ class SlidingUpModal extends Component {
 
 SlidingUpModal.propTypes = {
     isVisible: PropTypes.bool.isRequired,
-    onModalHide: PropTypes.func
+    onModalHide: PropTypes.func,
+    loading: PropTypes.bool,
 }
 
 SlidingUpModal.defaultProps = {
-    onModalHide: () => { }
+    onModalHide: () => { },
+    loading: false,
 }
 
 export default SlidingUpModal;

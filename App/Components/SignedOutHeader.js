@@ -1,6 +1,7 @@
 // Packages
 import React, { Component } from "react"
 import { connect } from "react-redux"
+import PropTypes from "prop-types"
 
 // RN Components
 import {
@@ -25,6 +26,9 @@ import getStyles from "./Styles/HeaderStyles"
 import { Fonts, Metrics } from "../StylingConstants"
 import { Colors, Images, themed } from '../Theming'
 
+/**
+ * @augments {Component<Props, State>}
+ */
 class SignedOutHeader extends Component {
 
     // *** EVENT HANDLERS *** //
@@ -105,6 +109,20 @@ class SignedOutHeader extends Component {
         }
     }
 
+}
+
+SignedOutHeader.propTypes = {
+    showLeft: PropTypes.bool,
+    showTitle: PropTypes.bool,
+    showRight: PropTypes.bool,
+    title: PropTypes.string,
+    navigation: PropTypes.object,
+}
+
+SignedOutHeader.defaultProps = {
+    showLeft: false,
+    showTitle: false,
+    showRight: false 
 }
 
 const mapStateToProps = state => ({
