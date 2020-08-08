@@ -18,35 +18,27 @@ const SignedOutNavigator = createStackNavigator(
     {
         Welcome: {
             screen: WelcomeScreen,
-            navigationOptions: ({ navigation }) => {
-                return {
-                    header: getHeaderComponent({navigation, showLeft: false, showTitle: false, showRight: true}),
-                };
-            }
+            navigationOptions: getNavigationOptions({ showRight: true })
         },
         Signup: {
             screen: SignupScreen,
-            navigationOptions: ({ navigation }) => {
-                return {
-                    header: getHeaderComponent({navigation, showLeft: true, showTitle: true, showRight: false, title: Texts.screenTitles.titleSignup}),
-                };
-            }
+            navigationOptions: getNavigationOptions({
+                showLeft: true,
+                showTitle: true,
+                title: Texts.screenTitles.titleSignup
+            })
         },
         LoginWithEmail: {
             screen: LoginWithEmailScreen,
-            navigationOptions: ({ navigation }) => {
-                return {
-                    header: getHeaderComponent({navigation, showLeft: true, showTitle: true, showRight: false, title: Texts.screenTitles.titleLogin}),
-                };
-            }
+            navigationOptions: getNavigationOptions({
+                showLeft: true,
+                showTitle: true,
+                title: Texts.screenTitles.titleLogin
+            })
         },
         UnverifiedUser: {
             screen: UnverifiedUserScreen,
-            navigationOptions: ({ navigation }) => {
-                return {
-                    header: getHeaderComponent({navigation, showLeft: false, showTitle: false, showRight: true}),
-                };
-            }
+            navigationOptions: getNavigationOptions({ showRight: true })
         },
         Incomplete: {
             screen: IncompleteScreen
@@ -57,8 +49,10 @@ const SignedOutNavigator = createStackNavigator(
     }
 )
 
-const getHeaderComponent = (props) => {
-    return () => <SignedOutHeader {...props} />
+const getNavigationOptions = (props) => ({ navigation }) => {
+    return {
+        header: () => <SignedOutHeader {...props} navigation={navigation} />,
+    }
 }
 
 export default SignedOutNavigator
