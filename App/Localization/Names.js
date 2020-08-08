@@ -46,6 +46,8 @@ export const Texts = {
     passwordConfirmMessage: "passwordConfirmMessage",
     newName: "newName",
     passwordChangeSuccessMessage: "passwordChangeSuccessMessage",
+    enterEmailToReset: "enterEmailToReset",
+    resetEmailSuccessMessage: "resetEmailSuccessMessage",
     errorMessages: {
         tooManyRequestsResend: "tooManyRequestsResend",
         fillAllFields: "fillAllFields",

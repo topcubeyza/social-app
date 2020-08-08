@@ -5,6 +5,7 @@ import Edit from "../Assets/SVGIcons/icon-edit.svg"
 import EditPassword from "../Assets/SVGIcons/icon-edit-password.svg"
 import Logout from "../Assets/SVGIcons/icon-logout.svg"
 import Trash from "../Assets/SVGIcons/icon-trash.svg"
+import Mail from "../Assets/SVGIcons/icon-mail.svg"
 
 const SVG = {
     Home,
@@ -13,7 +14,8 @@ const SVG = {
     Edit,
     EditPassword,
     Logout,
-    Trash
+    Trash,
+    Mail
   }
   
   export default SVG

@@ -45,6 +45,8 @@
    "passwordConfirmMessage": "Please enter your current password to proceed",
    "newName": "New Name",
    "passwordChangeSuccessMessage": "Your password is changed successfully!",
+   "enterEmailToReset": "Please enter your e-mail address and we will send a password reset e-mail.",
+   "resetEmailSuccessMessage": "We have sent a password reset e-mail to \"%{email}\". You can reset your password by following the link in the e-mail.",
 
    "titleLogin": "Login",
    "titleSignup": "Signup",

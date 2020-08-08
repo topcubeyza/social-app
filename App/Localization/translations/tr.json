@@ -46,6 +46,8 @@
     "passwordConfirmMessage": "Devam etmek için lütfen mevcut şifrenizi girin",
     "newName": "Yeni İsim",
     "passwordChangeSuccessMessage": "Şifreniz başarıyla değiştirildi!",
+    "enterEmailToReset": "Lütfen şifre sıfırlama e-postası göndereceğimiz e-posta adresinizi girin.",
+    "resetEmailSuccessMessage": "\"%{email}\" adresine bir şifre sıfırlama e-postası gönderdik. E-postadaki linke tıklayarak şifrenizi sıfırlayabilirsiniz.",
 
     "titleLogin": "Giriş Yap",
     "titleSignup": "Kayıt Ol",

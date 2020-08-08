@@ -96,6 +96,19 @@ const checkIfEmailIsVerified = () => {
   return user && user.emailVerified;
 }
 
+const sendPasswordResetEmail = async ({ email }) => {
+
+  return await auth().sendPasswordResetEmail(email)
+    .then(() => null)
+    .catch(error => {
+      if (error.code === 'auth/user-not-found') {
+        throw localized.text(Texts.errorMessages.userNotFound)
+      }
+
+      throw localized.text(Texts.genericError)
+    });
+}
+
 const reauthenticate = async ({ email, password }) => {
   console.log("fb: reauthenticate")
   let user = auth().currentUser;
@@ -150,6 +163,7 @@ export default {
   createUser,
   signOut,
   sendVerificationEmail,
+  sendPasswordResetEmail,
   reloadUser,
   updateUserProfile,
   checkIfEmailIsVerified,
