@@ -45,7 +45,7 @@ class PreferencesScreen extends Component {
             let selected = themeMode[0] == this.props.theme.themeMode;
             return (
                 <SettingsButton
-                    text={themeMode[0]}
+                    text={localized.text(Texts[themeMode[0] + "Theme"])}
                     onPress={() => this.onPress_ThemeMode(themeMode[0])}
                     icon={selected ? SVG.CheckedCircle : SVG.Circle}
                     selected={selected} />
@@ -58,7 +58,7 @@ class PreferencesScreen extends Component {
             let selected = localeType[0] == this.props.locale.localeType;
             return (
                 <SettingsButton
-                    text={localeType[0]}
+                    text={localized.text(Texts[localeType[0] + "Locale"])}
                     onPress={() => this.onPress_LocaleType(localeType[0])}
                     icon={selected ? SVG.CheckedCircle : SVG.Circle}
                     selected={selected} />

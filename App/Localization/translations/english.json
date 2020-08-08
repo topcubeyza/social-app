@@ -50,6 +50,12 @@
    "preferences": "Preferences",
    "themePreference": "Theme Preference",
    "languagePreference": "Language Preference",
+   "deviceTheme": "Device Theme",
+   "darkTheme": "Dark",
+   "lightTheme": "Light",
+   "deviceLocale": "Device Language",
+   "englishLocale": "English",
+   "turkishLocale": "Türkçe",
 
    "titleLogin": "Login",
    "titleSignup": "Signup",

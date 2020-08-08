@@ -51,6 +51,12 @@ export const Texts = {
     preferences: "preferences",
     themePreference: "themePreference",
     languagePreference: "languagePreference",
+    deviceTheme: "deviceTheme",
+    darkTheme: "darkTheme",
+    lightTheme: "lightTheme",
+    deviceLocale: "deviceLocale",
+    englishLocale: "englishLocale",
+    turkishLocale: "turkishLocale",
     errorMessages: {
         tooManyRequestsResend: "tooManyRequestsResend",
         fillAllFields: "fillAllFields",

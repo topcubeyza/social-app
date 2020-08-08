@@ -51,6 +51,12 @@
     "preferences": "Tercihler",
     "themePreference": "Tema Tercihi",
     "languagePreference": "Dil Tercihi",
+    "deviceTheme": "Cihaz Teması",
+    "darkTheme": "Karanlık",
+    "lightTheme": "Aydınlık",
+    "deviceLocale": "Cihaz Dili",
+    "englishLocale": "English",
+    "turkishLocale": "Türkçe",
 
     "titleLogin": "Giriş Yap",
     "titleSignup": "Kayıt Ol",
