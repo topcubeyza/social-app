@@ -1,3 +1,8 @@
+/**
+ * The names of all the texts used in the app that needs translation.
+ * Provides ease of use with the help of intellisense.
+ * Lowers the possibility of typos.
+ */
 export const Texts = {
     genericError: "genericError",
     welcomeMessage: "welcomeMessage",

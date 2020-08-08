@@ -8,6 +8,7 @@ function* setLocale(action) {
         let {localeType} = action.payload;
         let code = getLanguageCode(localeType)
 
+        // set the locale of the localization tool first, ex: I18n's locale
         setCurrentLocale(code)
         yield put(LocalizationActions.changeLocale({
             localeType
