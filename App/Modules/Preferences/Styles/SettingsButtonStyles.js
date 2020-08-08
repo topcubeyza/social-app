@@ -17,7 +17,7 @@ const getStyles = (c) => StyleSheet.create({
     },
     endIconContainer: {
         flex: 0.2,
-        paddingVertical: Metrics.width * 0.025,
+        paddingVertical: Metrics.width * 0.022,
         alignItems: "center",
         // backgroundColor: "pink"
     },
