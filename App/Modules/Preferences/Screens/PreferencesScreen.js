@@ -7,7 +7,8 @@ import {
     View,
     Text,
     SafeAreaView,
-    ScrollView
+    ScrollView,
+    Animated
 } from "react-native"
 
 // Components
@@ -31,6 +32,9 @@ class PreferencesScreen extends Component {
     state = {
         isVisible_DeviceThemeInfo: false,
         isVisible_DeviceLocaleInfo: false,
+        themeMaxHeight: new Animated.Value(0),
+        localeMaxHeight: new Animated.Value(0)
+
     }
 
     // *** LIFECYCLE METHODS *** //
@@ -41,11 +45,27 @@ class PreferencesScreen extends Component {
         if (type == "theme") {
             this.setState({
                 isVisible_DeviceThemeInfo: !this.state.isVisible_DeviceThemeInfo
+            }, () => {
+                Animated.timing(
+                    this.state.themeMaxHeight,
+                    {
+                        toValue: this.state.isVisible_DeviceThemeInfo ? 500 : 0,
+                        duration: 300
+                    }
+                ).start()
             })
         }
         else if (type == "locale") {
             this.setState({
                 isVisible_DeviceLocaleInfo: !this.state.isVisible_DeviceLocaleInfo
+            }, () => {
+                Animated.timing(
+                    this.state.localeMaxHeight,
+                    {
+                        toValue: this.state.isVisible_DeviceLocaleInfo ? 500 : 0,
+                        duration: 300
+                    }
+                ).start()
             })
         }
     }
@@ -107,14 +127,13 @@ class PreferencesScreen extends Component {
 
         let info = type == "theme" ? deviceThemeInfo : deviceLocaleInfo;
         let isVisible = type == "theme" ? this.state.isVisible_DeviceThemeInfo : this.state.isVisible_DeviceLocaleInfo
+        let maxHeight = type == "theme" ? this.state.themeMaxHeight : this.state.localeMaxHeight
 
-        if (isVisible) {
-            return (
-                <View style={styles.infoContainer}>
-                    <Text style={styles.infoText}>{info}</Text>
-                </View>
-            )
-        }
+        return (
+            <Animated.View style={[styles.infoContainer, { maxHeight }]}>
+                <Text style={styles.infoText}>{info}</Text>
+            </Animated.View>
+        )
     }
 
     render() {
@@ -128,13 +147,13 @@ class PreferencesScreen extends Component {
                     <View style={styles.settingsContainer}>
                         <Text style={styles.sectionHeader}>{localized.text(Texts.themePreference)}</Text>
                         {this.renderThemes()}
-                        {this.renderInfo("theme")}
                     </View>
+                    {this.renderInfo("theme")}
                     <View style={styles.settingsContainer}>
                         <Text style={styles.sectionHeader}>{localized.text(Texts.languagePreference)}</Text>
                         {this.renderLocales()}
-                        {this.renderInfo("locale")}
                     </View>
+                    {this.renderInfo("locale")}
                 </ScrollView>
             </View>
         )
