@@ -21,7 +21,7 @@ const getStyles = c => StyleSheet.create({
         paddingBottom: Metrics.width * 0.02
     },
     settingsContainer: {
-        paddingTop: Metrics.width * 0.075,
+        paddingTop: Metrics.width * 0.05,
         paddingBottom: Metrics.width * 0.05,
     },
     sectionHeader: {

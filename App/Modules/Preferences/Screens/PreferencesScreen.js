@@ -103,7 +103,7 @@ class PreferencesScreen extends Component {
     renderInfo = (type) => {
         let styles = getStyles(themed.color)
         let deviceThemeInfo = "When this option is selected, the app's theme will be the selected theme in your device settings. When you change the theme of your device, the app's theme will be automatically changed.";
-        let deviceLocaleInfo = "When this option is selected, the app's language will be the selected language in your device settings. When you change the language of your device, the app's language will be automatically changed.";
+        let deviceLocaleInfo = "When this option is selected, the app's language will be the selected language in your device settings. When you change the language of your device, the app's language will be automatically changed. Only the above languages are supported.";
 
         let info = type == "theme" ? deviceThemeInfo : deviceLocaleInfo;
         let isVisible = type == "theme" ? this.state.isVisible_DeviceThemeInfo : this.state.isVisible_DeviceLocaleInfo
