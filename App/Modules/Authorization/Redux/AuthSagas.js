@@ -9,16 +9,19 @@ function* manageChangedAuthState(api, action) {
     try {
         let state = action.payload ? action.payload.state : action.state
         let user = (state && state._user) ? state._user : state;
+
         if ((user && user.emailVerified) || user == null) {
             yield put(AuthActions.setUser({ user }))
         }
         else if (user && user.displayName) {
             yield put(AuthActions.setCandidateUser({ user }))
+            let authState = state;
             while (!user.emailVerified) {
+                user = (authState && authState._user) ? authState._user : authState;
                 let delayed = yield delay(1000, true)
                 if (!pauseReloading) {
-                    user = yield call(api.reloadUser);
-                }                
+                    authState = yield call(api.reloadUser);
+                }
             }
             yield put(AuthActions.setUser({ user }))
         }
