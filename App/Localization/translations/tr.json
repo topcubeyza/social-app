@@ -59,6 +59,8 @@
     "turkishLocale": "Türkçe",
     "deviceThemeInfo": "Bu seçeneği seçtiğinizde, uygulamanın teması, cihazınızın ayarlarında seçili tema olacak. Cihazınızın temasını değiştirdiğinizde, uygulamanın teması da otomatik olarak değişecek.",
     "deviceLocaleInfo": "Bu seçeneği seçtiğinizde, uygulamanın dili, cihazınızın ayarlarında seçili dil olacak. Cihazınızın dilini değiştirdiğinizde, uygulamanın dili da otomatik olarak değişecek. Yalnızca yukarıdaki diller desteklenmektedir.",
+    "netGoneTitle": "Çevrimdışısınız!",
+    "netGoneMessage": "Bu uygulamayı kullanmak için ağ bağlantınız olmalı. Lütfen bağlantınızı kontrol edin.",
 
     "titleLogin": "Giriş Yap",
     "titleSignup": "Kayıt Ol",

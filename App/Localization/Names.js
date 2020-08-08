@@ -59,6 +59,8 @@ export const Texts = {
     turkishLocale: "turkishLocale",
     deviceLocaleInfo: "deviceLocaleInfo",
     deviceThemeInfo: "deviceThemeInfo",
+    netGoneTitle: "netGoneTitle",
+    netGoneMessage: "netGoneMessage",
     errorMessages: {
         tooManyRequestsResend: "tooManyRequestsResend",
         fillAllFields: "fillAllFields",

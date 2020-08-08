@@ -18,6 +18,8 @@ import LoadingOverlay from "../Main/LoadingOverlay"
 
 // Actions
 import { AuthActions } from "../Authorization/Redux/AuthRedux"
+import { showAlert, closeAlert } from '../../Helpers/AlertHelpers';
+import { localized, Texts } from '../../Localization';
 
 // styles
 
@@ -42,6 +44,10 @@ class RootContainer extends Component {
 
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    
+  }
+
   componentWillUnmount = () => {
     this.netInfoUnsubscribe()
   }
@@ -49,8 +55,24 @@ class RootContainer extends Component {
   // *** CALLBACKS *** //
 
   onNetStateChange = state => {
+    let wasInternetAvailable = this.state.isInternetAvailable;
+    let isInternetAvailable = state.isConnected && state.isInternetReachable
+    let netIsGoneNow = (wasInternetAvailable == null || wasInternetAvailable == true) && !isInternetAvailable
+    let netIsBackNow = !wasInternetAvailable && isInternetAvailable;
+
     this.setState({
-      isInternetAvailable: state.isConnected && state.isInternetReachable,
+      isInternetAvailable: isInternetAvailable,
+    }, () => {
+      if (netIsBackNow) {
+        closeAlert();
+      }
+      else if (netIsGoneNow) {
+        showAlert({
+          title: localized.text(Texts.netGoneTitle),
+          message: localized.text(Texts.netGoneMessage),
+          cancellable: false,
+        })
+      }
     });
   }
 
@@ -58,16 +80,16 @@ class RootContainer extends Component {
 
   render() {
     const { isInternetAvailable } = this.state;
-    if (isInternetAvailable === false) {
-      return null;
-    }
     return (
       <AuthorizationManager>
         <ThemeManager>
           <LocalizationManager>
-              <AlertManager />
-              <LoadingOverlay />
-              <ReduxNavigation />
+            <AlertManager />
+            <LoadingOverlay />
+            {
+              isInternetAvailable ?
+              <ReduxNavigation /> : null
+            }
           </LocalizationManager>
         </ThemeManager>
       </AuthorizationManager>

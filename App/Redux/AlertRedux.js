@@ -40,7 +40,9 @@ export const addAlert = (state, action) => {
 
 export const removeLastAlert = (state, action) => {
     let newState = _.cloneDeep(state);
-    newState.alerts.pop();
+    if (newState.alerts.length > 0) {
+        newState.alerts.pop();
+    }
 
     return newState;
 }
