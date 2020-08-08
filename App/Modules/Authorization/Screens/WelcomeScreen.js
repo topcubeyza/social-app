@@ -92,9 +92,8 @@ class WelcomeScreen extends Component {
                 }
                 transparentButtonComponent={
                     <Button
-                        text={localized.text(Texts.changeTheme)}
+                        text={""}
                         textColor={themed.color(Colors.midLightGrey_dm)}
-                        onPress={this.onPress_ForgotPassword}
                         backgroundColor={"transparent"}
                     />
                 }
