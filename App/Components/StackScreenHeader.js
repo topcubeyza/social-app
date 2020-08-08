@@ -34,6 +34,7 @@ class StackScreenHeader extends Component {
 
     // *** RENDER METHODS *** //
 
+    // renders a back button on the left
     renderLeft = (styles) => {
         return (
             <TouchableOpacity style={styles.backImageContainer} onPress={() => this.props.navigation.goBack()}>
@@ -42,6 +43,7 @@ class StackScreenHeader extends Component {
         )
     }
 
+    // renders title on the middle
     renderMiddle = (styles) => {
         return (
             <Text style={styles.stackTitleText}>{localized.text(this.props.title)}</Text>
@@ -57,8 +59,8 @@ class StackScreenHeader extends Component {
                 <View style={styles.middleContainer}>
                     {this.renderMiddle(styles)}
                 </View>
+                {/* This part is kept to have the same flex layout among different header components */}
                 <View style={styles.rightContainer}>
-                    {/* {this.renderRight(styles)} */}
                 </View>
             </>
         )
@@ -66,6 +68,9 @@ class StackScreenHeader extends Component {
 
     render() {
         let styles = getStyles(themed.color)
+
+        // Header renders differently in ios and android
+        // The below structure renders the same in both platforms
         if (Platform.OS == "ios") {
             return (
                 <SafeAreaView style={styles.containerSafeArea}>
@@ -86,18 +91,15 @@ class StackScreenHeader extends Component {
 
 }
 
-const mapStateToProps = state => ({
-    locale: state.locale,
-    theme: state.theme
-})
-
 StackScreenHeader.propTypes = {
     title: PropTypes.string.isRequired,
     navigation: PropTypes.object
 }
 
-StackScreenHeader.defaultProps = {
-
-}
+// Consuming locale and theme to immediately respond to changes in them
+const mapStateToProps = state => ({
+    locale: state.locale,
+    theme: state.theme
+})
 
 export default connect(mapStateToProps)(StackScreenHeader);

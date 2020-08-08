@@ -31,6 +31,11 @@ class TabBarComponent extends Component {
 
     // *** RENDER METHODS *** //
 
+    /**
+     * Iterates through the routes in the tab navigation
+     * Draws each tab with an icon. 
+     * Icons are named exactly as the label of the route
+     */
     renderTabs = (styles) => {
         const {
             getLabelText,
@@ -47,6 +52,7 @@ class TabBarComponent extends Component {
                 let isRouteActive = routeIndex === activeRouteIndex;
                 let tintColor = isRouteActive ? Colors.brandColor : Colors.midLightGrey_dm;
                 let IconComponent = SVG[getLabelText({ route })]
+
                 return (
                     <TouchableOpacity
                         key={routeIndex}
@@ -69,6 +75,9 @@ class TabBarComponent extends Component {
 
     render() {
         let styles = getStyles(themed.color)
+
+        // Tabbar renders differently in ios and android
+        // The below structure renders the same in both platforms
         if (Platform.OS == "ios") {
             return (
                 <SafeAreaView style={styles.containerSafeArea}>
@@ -89,6 +98,7 @@ class TabBarComponent extends Component {
 
 }
 
+// Consuming locale and theme to immediately respond to changes in them
 const mapStateToProps = state => ({
     locale: state.locale,
     theme: state.theme

@@ -33,6 +33,7 @@ class TabScreenHeader extends Component {
 
     // *** RENDER METHODS *** //
 
+    // renders brand logo on the left with a link to Home screen
     renderLeft = (styles) => {
         return (
             <TouchableOpacity style={styles.logoContainer} onPress={() => this.props.navigation.navigate("Home")}>
@@ -41,6 +42,7 @@ class TabScreenHeader extends Component {
         )
     }
 
+    // renders profile icon on the right with a link to Profile screen
     renderRight = (styles) => {
         return (
             <TouchableOpacity style={styles.profileImageContainer} onPress={() => this.props.navigation.navigate("Profile")}>
@@ -56,8 +58,8 @@ class TabScreenHeader extends Component {
                 <View style={styles.leftContainer}>
                     {this.renderLeft(styles)}
                 </View>
+                {/* This part is kept to have the same flex layout among different header components */}
                 <View style={styles.middleContainer}>
-                    {/* {this.renderMiddle(styles)} */}
                 </View>
                 <View style={styles.rightContainer}>
                     {this.renderRight(styles)}
@@ -68,6 +70,9 @@ class TabScreenHeader extends Component {
 
     render() {
         let styles = getStyles(themed.color)
+
+        // Header renders differently in ios and android
+        // The below structure renders the same in both platforms
         if (Platform.OS == "ios") {
             return (
                 <SafeAreaView style={styles.containerSafeArea}>
@@ -92,6 +97,8 @@ TabScreenHeader.propTypes = {
     navigation: PropTypes.object
 }
 
+
+// Consuming locale and theme to immediately respond to changes in them
 const mapStateToProps = state => ({
     locale: state.locale,
     theme: state.theme

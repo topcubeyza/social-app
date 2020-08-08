@@ -33,10 +33,8 @@ import { Colors, Images, themed } from '../Theming'
 class SignedOutHeader extends Component {
 
     // *** EVENT HANDLERS *** //
-    onPress_Button = () => {
 
-    }
-
+    // toggle locales between turkish and english
     toggleLocale = () => {
         let currentLocale = getCurrentLocale()
         let newLocale = currentLocale == LocaleTypes.english ? LocaleTypes.turkish : LocaleTypes.english
@@ -45,6 +43,7 @@ class SignedOutHeader extends Component {
 
     // *** RENDER METHODS *** //
 
+    // renders a back button on the left
     renderLeft = (styles) => {
         if (this.props.showLeft) {
             return (
@@ -55,6 +54,7 @@ class SignedOutHeader extends Component {
         }
     }
 
+    // renders the title
     renderMiddle = (styles) => {
         if (this.props.showTitle) {
             return (
@@ -63,6 +63,7 @@ class SignedOutHeader extends Component {
         }
     }
 
+    // renders a button on the right to toggle locale
     renderRight = (styles) => {
         if (this.props.showRight) {
             return (
@@ -92,6 +93,9 @@ class SignedOutHeader extends Component {
 
     render() {
         let styles = getStyles(themed.color)
+
+        // Header renders differently in ios and android
+        // The below structure renders the same in both platforms
         if (Platform.OS == "ios") {
             return (
                 <SafeAreaView style={styles.containerSafeArea}>
@@ -126,11 +130,13 @@ SignedOutHeader.defaultProps = {
     showRight: false 
 }
 
+// Consuming locale and theme to immediately respond to changes in them
 const mapStateToProps = state => ({
     locale: state.locale,
     theme: state.theme
 })
 
+// Uses changeLocale to toggle the locale with the right button
 const mapDispatchToProps = dispatch => ({
     changeLocale: localeType => dispatch(LocalizationActions.changeLocaleRequest({ localeType })),
 })

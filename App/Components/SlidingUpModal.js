@@ -40,16 +40,14 @@ class SlidingUpModal extends Component {
     // *** LIFECYCLE METHODS *** //
 
     componentDidUpdate(prevProps) {
+        // Update state only if props.isVisible changed
+        // props.isVisible is put to state.isVisible because visibility is also controlled within this component
         if (this.props.isVisible != prevProps.isVisible) {
             this.setState({
                 isVisible: this.props.isVisible
             })
         }
     }
-
-    // *** CALLBACKS *** //
-
-    // *** REF METHODS *** //
 
     // *** CONVENIENCE METHODS *** //
 
@@ -61,13 +59,18 @@ class SlidingUpModal extends Component {
 
     // *** EVENT HANDLERS *** //
 
+    // Modal's onSwipeComplete handler.
+    // Hides the modal.
     onSwipeComplete = ({ swipingDirection }) => {
         if (swipingDirection == "up") {
             this.hideModal()
         }
     }
 
-    onPress_Backdrop = () => {
+    // Modal's onBackdropPress handler
+    // Hides the modal.
+    // Prevents hiding if modal is in loading state
+    onBackdropPress = () => {
         if (!this.props.loading) {
             this.hideModal()
         }
@@ -83,14 +86,17 @@ class SlidingUpModal extends Component {
                 avoidKeyboard={true}
                 backdropColor={themed.color(Colors.overlayColor)}
                 backdropOpacity={1}
-                onBackdropPress={this.onPress_Backdrop}
+                onBackdropPress={this.onBackdropPress}
                 onModalHide={this.props.onModalHide}
                 style={styles.modal}
                 swipeDirection="down"
                 onSwipeComplete={this.hideModal}>
                 <View style={styles.container}>
+                    
+                    {/* Children */}
                     {this.props.children}
 
+                    {/* Loading Overlay */}
                     {
                         this.props.loading ?
                             <SafeAreaView style={styles.loadingOverlay}>

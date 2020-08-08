@@ -18,6 +18,7 @@ class SingleLineInput extends Component {
         super(props)
 
         this.state = {
+            // controls the animated drawing and removing of underline of the input
             underlinePadding: new Animated.Value(Metrics.screenWidth - Metrics.marginHorizontalLarge * 2)
         }
 
@@ -25,10 +26,16 @@ class SingleLineInput extends Component {
 
     // *** REF METHODS *** //
 
+    // used by the parent component
     isFocused = () => {
         return this.textInput && this.textInput.isFocused()
     }
 
+    /**
+     * draws a line under input 
+     * it works by decreasing the left padding of the underline container
+     * the result is an animation that looks like the line is lengthening towards right
+     */
     drawUnderline = () => {
         Animated.timing(
             this.state.underlinePadding,
@@ -39,6 +46,11 @@ class SingleLineInput extends Component {
         ).start()
     }
 
+    /**
+     * removes the line under input 
+     * it works by increasing the left padding of the underline container
+     * the result is an animation that looks like the line is shortening towards left
+     */
     removeUnderline = () => {
         Animated.timing(
             this.state.underlinePadding,
@@ -51,6 +63,7 @@ class SingleLineInput extends Component {
 
     // *** CONVENIENCE METHODS *** //
 
+    // modifies styles based on props and state
     getModifiedStyles = (styles) => {
         let props = this.props;
         return {
@@ -67,6 +80,7 @@ class SingleLineInput extends Component {
 
     // *** EVENTS *** //
 
+    // draws the underline of input when it is focused
     onFocus = () => {
         this.drawUnderline();
         this.props.onFocus()
@@ -79,6 +93,7 @@ class SingleLineInput extends Component {
         let { container, underlineContainer, underline } = this.getModifiedStyles(styles)
         return (
             <View style={styles.container}>
+                {/* Input */}
                 <TextInput
                     {...this.props}
                     ref={ref => this.textInput = ref}
@@ -86,6 +101,7 @@ class SingleLineInput extends Component {
                     style={styles.input}
                     placeholderTextColor={themed.color(Colors.midGrey_dm)}>
                 </TextInput>
+                {/* Underline */}
                 <Animated.View style={underlineContainer}>
                     <View style={underline}></View>
                 </Animated.View>
