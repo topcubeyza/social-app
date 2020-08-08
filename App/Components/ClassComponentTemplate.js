@@ -1,6 +1,7 @@
 // Packages
 import React, { Component } from "react"
 import {connect} from "react-redux"
+import PropTypes from "prop-types"
 
 // RN Components
 import {
@@ -20,6 +21,9 @@ import getStyles from "./Styles/TemplateStyles"
 import { Fonts, Metrics } from "../StylingConstants"
 import { Colors, themed } from '../Theming'
 
+/**
+ * @augments {Component<Props>}
+ */
 class ClassComponentTemplate extends Component {
 
     constructor(props) {
@@ -53,6 +57,14 @@ class ClassComponentTemplate extends Component {
         )
     }
 
+}
+
+ClassComponentTemplate.propTypes = {
+
+}
+
+ClassComponentTemplate.defaultProps = {
+    
 }
 
 export default connect()(ClassComponentTemplate);

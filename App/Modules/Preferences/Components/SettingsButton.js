@@ -16,7 +16,7 @@ import { themed, Colors } from "../../../Theming"
 
 /**
  * 
- * @augments {Component<Props,State>}
+ * @augments {Component<Props>}
  */
 const SettingsButton = (props) => {
     let styles = getStyles(themed.color)

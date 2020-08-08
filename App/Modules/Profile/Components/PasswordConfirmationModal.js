@@ -30,7 +30,7 @@ import { Fonts, Metrics, SVG } from "../../../StylingConstants"
 import { Colors, Images, themed } from '../../../Theming'
 
 /**
- * @augments {Component<Props,State>}
+ * @augments {Component<Props>}
  */
 class PasswordConfirmationModal extends Component {
 

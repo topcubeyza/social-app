@@ -32,7 +32,7 @@ import { Fonts, Metrics, SVG } from "../../../StylingConstants"
 import { Colors, Images, themed } from '../../../Theming'
 
 /**
- * @augments {Component<Props,State>}
+ * @augments {Component<Props>}
  */
 class EditNameModal extends Component {
 

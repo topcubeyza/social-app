@@ -1,5 +1,6 @@
 // Packages
 import React from "react"
+import PropTypes from "prop-types"
 
 // RN Components
 import {
@@ -29,6 +30,14 @@ const FunctionalComponentTemplate = props => {
             </TouchableOpacity>
         </View>
     )
+}
+
+FunctionalComponentTemplate.propTypes = {
+
+}
+
+FunctionalComponentTemplate.defaultProps = {
+    
 }
 
 export default FunctionalComponentTemplate;

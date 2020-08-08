@@ -17,7 +17,7 @@ import { Fonts, Metrics } from "../../../StylingConstants"
 import { Colors, themed } from '../../../Theming'
 
 /**
- * @augments {Component<Props,State>}
+ * @augments {Component<Props>}
  */
 class ScreenWrapper extends Component {
 
