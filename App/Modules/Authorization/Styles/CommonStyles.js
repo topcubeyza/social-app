@@ -51,6 +51,7 @@ const getStyles = c => StyleSheet.create({
         paddingHorizontal: Metrics.marginHorizontalLarge
     },
     transparentButtonContainer: {
+        flexDirection: "row",
         alignItems: "center",
         paddingBottom: Metrics.width * 0.04
     },
