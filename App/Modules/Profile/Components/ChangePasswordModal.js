@@ -37,12 +37,14 @@ class ChangePasswordModal extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {
+        this.initialState = {
             password: "",
             passwordConfirm: "",
             errorMessage: "",
             loading: false
         }
+
+        this.state = {...this.initialState}
 
         this.passwordInput = null;
         this.passwordConfirmInput = null;
@@ -136,6 +138,11 @@ class ChangePasswordModal extends Component {
 
     // *** EVENT HANDLERS *** //
 
+    onModalHide = () => {
+        this.props.onModalHide();
+        this.setState({...this.initialState})
+    }
+
     onChangeText_Password = (text) => {
         this.setState({
             password: text
@@ -178,7 +185,7 @@ class ChangePasswordModal extends Component {
         return (
             <SlidingUpModal
                 isVisible={this.props.isVisible}
-                onModalHide={this.props.onModalHide}
+                onModalHide={this.onModalHide}
                 loading={this.state.loading}
             >
                 <View style={styles.topContainer}>

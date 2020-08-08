@@ -39,11 +39,13 @@ class EditNameModal extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {
+        this.initialState = {
             displayName: "",
             errorMessage: "",
             loading: false
         }
+
+        this.state = {...this.initialState}
 
         this.nameInput = null;
         this.keyboardVisible = false;
@@ -137,6 +139,11 @@ class EditNameModal extends Component {
 
     // *** EVENT HANDLERS *** //
 
+    onModalHide = () => {
+        this.props.onModalHide();
+        this.setState({...this.initialState})
+    }
+
     onChangeText_DisplayName = (text) => {
         this.setState({
             displayName: text
@@ -165,7 +172,7 @@ class EditNameModal extends Component {
         return (
             <SlidingUpModal
                 isVisible={this.props.isVisible}
-                onModalHide={this.props.onModalHide}
+                onModalHide={this.onModalHide}
                 loading={this.state.loading}
             >
                 <View style={styles.topContainer}>

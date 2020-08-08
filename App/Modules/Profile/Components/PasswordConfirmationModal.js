@@ -37,10 +37,12 @@ class PasswordConfirmationModal extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {
+        this.initialState = {
             password: "",
             errorMessage: "",
         }
+
+        this.state = {...this.initialState}
 
         this.passwordInput = null;
         this.keyboardVisible = false;
@@ -90,6 +92,11 @@ class PasswordConfirmationModal extends Component {
     // *** REF METHODS *** //
 
     // *** CONVENIENCE METHODS *** //
+
+    onModalHide = () => {
+        this.props.onModalHide();
+        this.setState({...this.initialState})
+    }
 
     showErrorMessage = (message) => {
         this.setState({
@@ -161,7 +168,7 @@ class PasswordConfirmationModal extends Component {
         return (
             <SlidingUpModal
                 isVisible={this.props.isVisible}
-                onModalHide={this.props.onModalHide}
+                onModalHide={this.onModalHide}
                 loading={this.state.loading}
             >
                 <View style={styles.topContainer}>
