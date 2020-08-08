@@ -1,5 +1,10 @@
 import auth from "@react-native-firebase/auth"
+import { GoogleSignin } from "@react-native-community/google-signin"
 import { Texts, localized, getCurrentLocale } from "../Localization"
+
+GoogleSignin.configure({
+  webClientId: '463746538605-j11n338qjttnth36h5q6vujnfqgf1oj8.apps.googleusercontent.com',
+});
 
 const googleProvider = auth.GoogleAuthProvider;
 
@@ -26,26 +31,24 @@ const signIn = async ({ email, password }) => {
 }
 
 const signInWithGoogle = async () => {
+  // Get the users ID token
+  const { idToken } = await GoogleSignin.signIn();
 
-  return await signInWithPopUp(googleProvider)
+  // Create a Google credential with the token
+  const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+
+  // Sign-in the user with the credential
+  return await signInWithCredential(googleCredential)
 }
 
-const signInWithPopUp = async (provider) => {
+const signInWithCredential = async (credential) => {
   auth().languageCode = getCurrentLocale().toLowerCase()
 
-  // return await auth().signInWithPopup(provider)
-  //   .then(result => {
-  //     // This gives you a Google Access Token. You can use it to access the Google API.
-  //     // let token = result.credential.accessToken;
-
-  //     // The signed-in user info.
-  //     let user = result.user;
-  //     console.log(user)
-  //     // ...
-  //   })
-  //   .catch(error => {
-  //     console.log(error.message)
-  //   });
+  return await auth().signInWithCredential(credential)
+    .then(() => null)
+    .catch(error => {
+      console.log("signinwithcredentail", error)
+    })
 }
 
 const createUser = async ({ email, password }) => {
