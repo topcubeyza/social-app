@@ -2,15 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CFBundleURLTypes</key>
-	<array>
-		<dict>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string></string>
-			</array>
-		</dict>
-	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -29,6 +20,18 @@
 	<string>1.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.463746538605-mk1vb0sqhoist7i0lvmvo5vmp8f7qf3d</string>
+			</array>
+		</dict>
+		<dict/>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
@@ -48,6 +51,16 @@
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>BerkshireSwash-Regular.ttf</string>
+		<string>ProximaNova-Bold-Italic.ttf</string>
+		<string>ProximaNova-Bold.ttf</string>
+		<string>ProximaNova-Light-Italic.ttf</string>
+		<string>ProximaNova-Light.ttf</string>
+		<string>ProximaNova-Regular-Italic.ttf</string>
+		<string>ProximaNova-Regular.ttf</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -62,15 +75,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>UIAppFonts</key>
-	<array>
-		<string>BerkshireSwash-Regular.ttf</string>
-		<string>ProximaNova-Bold-Italic.ttf</string>
-		<string>ProximaNova-Bold.ttf</string>
-		<string>ProximaNova-Light-Italic.ttf</string>
-		<string>ProximaNova-Light.ttf</string>
-		<string>ProximaNova-Regular-Italic.ttf</string>
-		<string>ProximaNova-Regular.ttf</string>
-	</array>
 </dict>
 </plist>

@@ -1,6 +1,8 @@
 import auth from "@react-native-firebase/auth"
 import { Texts, localized, getCurrentLocale } from "../Localization"
 
+const googleProvider = auth.GoogleAuthProvider;
+
 const signIn = async ({ email, password }) => {
   console.log("fb: signin")
   return await auth()
@@ -21,6 +23,29 @@ const signIn = async ({ email, password }) => {
 
       throw localized.text(Texts.genericError)
     })
+}
+
+const signInWithGoogle = async () => {
+
+  return await signInWithPopUp(googleProvider)
+}
+
+const signInWithPopUp = async (provider) => {
+  auth().languageCode = getCurrentLocale().toLowerCase()
+
+  // return await auth().signInWithPopup(provider)
+  //   .then(result => {
+  //     // This gives you a Google Access Token. You can use it to access the Google API.
+  //     // let token = result.credential.accessToken;
+
+  //     // The signed-in user info.
+  //     let user = result.user;
+  //     console.log(user)
+  //     // ...
+  //   })
+  //   .catch(error => {
+  //     console.log(error.message)
+  //   });
 }
 
 const createUser = async ({ email, password }) => {
@@ -169,5 +194,6 @@ export default {
   checkIfEmailIsVerified,
   reauthenticate,
   changePassword,
-  deleteAccount
+  deleteAccount,
+  signInWithGoogle
 }

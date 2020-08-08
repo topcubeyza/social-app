@@ -25,12 +25,17 @@ import { Texts, localized, LocaleTypes } from "../../../Localization";
 // Styles
 import getStyles from "../Styles/WelcomeStyles"
 import { Colors, themed, ThemeModes, getColorMode } from '../../../Theming'
+import Firebase from "../../../Services/Firebase";
 
 class WelcomeScreen extends Component {
 
     // *** LIFECYCLE METHODS *** //
 
     // *** EVENT HANDLERS *** //
+
+    onPress_Google = () => {
+        Firebase.signInWithGoogle();
+    }
 
     onPress_Login = () => {
         this.props.navigation.navigate("Incomplete")
@@ -67,7 +72,7 @@ class WelcomeScreen extends Component {
                                 <Button
                                     text={localized.text(Texts.loginWithGoogle)}
                                     textColor={themed.color(Colors.textOnDarkBackground)}
-                                    onPress={this.onPress_Login}
+                                    onPress={this.onPress_Google}
                                     backgroundColor={themed.color(Colors.googleColor)}
                                 />
                             </View>
