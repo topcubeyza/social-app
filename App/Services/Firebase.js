@@ -6,8 +6,7 @@ GoogleSignin.configure({
   webClientId: '463746538605-j11n338qjttnth36h5q6vujnfqgf1oj8.apps.googleusercontent.com',
 });
 
-const googleProvider = auth.GoogleAuthProvider;
-
+// Signs in with the given email and password
 const signIn = async ({ email, password }) => {
   console.log("fb: signin")
   return await auth()
@@ -30,6 +29,7 @@ const signIn = async ({ email, password }) => {
     })
 }
 
+// Signs in with Google Popup
 const signInWithGoogle = async () => {
   // Get the users ID token
   const { idToken } = await GoogleSignin.signIn();
@@ -41,7 +41,9 @@ const signInWithGoogle = async () => {
   return await signInWithCredential(googleCredential)
 }
 
+// Signs in with the given credentials, ex: Google Credentials for Google Sign-in
 const signInWithCredential = async (credential) => {
+  console.log("fb: signInWithCredential")
   auth().languageCode = getCurrentLocale().toLowerCase()
 
   return await auth().signInWithCredential(credential)
@@ -51,6 +53,7 @@ const signInWithCredential = async (credential) => {
     })
 }
 
+// Create a user with the given email and password
 const createUser = async ({ email, password }) => {
   console.log("fb: createUser")
   return await auth()
@@ -73,6 +76,7 @@ const createUser = async ({ email, password }) => {
     })
 }
 
+// Update the current user's displayName and photoURL
 const updateUserProfile = async ({ displayName, photoURL }) => {
   console.log("fb: updateuserprofile")
   let user = auth().currentUser;
@@ -87,6 +91,8 @@ const updateUserProfile = async ({ displayName, photoURL }) => {
     })
 }
 
+// Send a verification email to the current user's email address.
+// The email includes a link
 const sendVerificationEmail = async () => {
   console.log("fb: sendVerificationEmail")
   auth().languageCode = getCurrentLocale().toLowerCase()
@@ -105,6 +111,7 @@ const sendVerificationEmail = async () => {
     });
 }
 
+// Reload the user and return the user object with the reloaded values
 const reloadUser = async () => {
   console.log("fb: reloadUser")
   await auth().currentUser.reload()
@@ -118,12 +125,16 @@ const reloadUser = async () => {
   return auth().currentUser
 }
 
+// Checks if the current user's email is verified
 const checkIfEmailIsVerified = () => {
   console.log("fb: checkIfEmailIsVerified")
   let user = auth().currentUser;
   return user && user.emailVerified;
 }
 
+// Send a password reset email to the given email adress.
+// The email includes a link.
+// When clicked, redirects to a page where the user can enter new password
 const sendPasswordResetEmail = async ({ email }) => {
 
   return await auth().sendPasswordResetEmail(email)
@@ -137,6 +148,7 @@ const sendPasswordResetEmail = async ({ email }) => {
     });
 }
 
+// Reauthenticate the current user, with the given email and password
 const reauthenticate = async ({ email, password }) => {
   console.log("fb: reauthenticate")
   let user = auth().currentUser;
@@ -153,6 +165,7 @@ const reauthenticate = async ({ email, password }) => {
     });
 }
 
+// Update the user's password with the given new password
 const changePassword = async ({ newPassword }) => {
   var user = auth().currentUser;
 
@@ -167,6 +180,7 @@ const changePassword = async ({ newPassword }) => {
     });
 }
 
+// Simply signs out the current user
 const signOut = async () => {
   console.log("fb: signOut")
   return await auth().signOut()
@@ -176,6 +190,7 @@ const signOut = async () => {
     })
 }
 
+// Deletes the current user's account
 const deleteAccount = async () => {
   console.log("fb: deleteAccount")
   let user = auth().currentUser;
