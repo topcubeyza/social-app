@@ -13,6 +13,8 @@ import {
 import SettingsButton from "../Components/SettingsButton"
 
 // Actions
+import { LocalizationActions } from "../../../Localization/Redux/LocalizationRedux"
+import { ThemeActions } from "../../../Theming/Redux/ThemeRedux"
 
 // Utils
 import { Texts, localized, LocaleTypes } from "../../../Localization";
@@ -31,22 +33,23 @@ class PreferencesScreen extends Component {
     // *** EVENT HANDLERS *** //
 
     onPress_ThemeMode = (themeMode) => {
-
+        this.props.changeThemeRequest(themeMode)
     }
 
     onPress_LocaleType = (localeType) => {
-
+        this.props.changeLocaleRequest(localeType)
     }
 
     // *** RENDER METHODS *** //
 
     renderThemes = () => {
         return Object.entries(ThemeModes).map((themeMode, index) => {
-            let selected = themeMode[0] == this.props.theme.themeMode;
+            let selected = themeMode[1] == this.props.theme.themeMode;
             return (
                 <SettingsButton
+                    key={themeMode[0]}
                     text={localized.text(Texts[themeMode[0] + "Theme"])}
-                    onPress={() => this.onPress_ThemeMode(themeMode[0])}
+                    onPress={() => this.onPress_ThemeMode(themeMode[1])}
                     icon={selected ? SVG.CheckedCircle : SVG.Circle}
                     selected={selected} />
             )
@@ -55,11 +58,12 @@ class PreferencesScreen extends Component {
 
     renderLocales = () => {
         return Object.entries(LocaleTypes).map((localeType, index) => {
-            let selected = localeType[0] == this.props.locale.localeType;
+            let selected = localeType[1] == this.props.locale.localeType;
             return (
                 <SettingsButton
+                    key={localeType[0]}
                     text={localized.text(Texts[localeType[0] + "Locale"])}
-                    onPress={() => this.onPress_LocaleType(localeType[0])}
+                    onPress={() => this.onPress_LocaleType(localeType[1])}
                     icon={selected ? SVG.CheckedCircle : SVG.Circle}
                     selected={selected} />
             )
@@ -93,7 +97,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-
+    changeLocaleRequest: (localeType) => dispatch(LocalizationActions.changeLocaleRequest({localeType})),
+    changeThemeRequest: (themeMode) => dispatch(ThemeActions.changeThemeRequest({themeMode}))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(PreferencesScreen);
