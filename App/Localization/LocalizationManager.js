@@ -22,6 +22,7 @@ class LocalizationManager extends Component {
 
     componentDidMount() {
         // If the localeType was not set in redux store before, set it to device locale
+        // This condition occurs on the first launch of app when redux-persist hasn't yet persisted any locale state
 
         let localeType = this.props.locale.localeType ? this.props.locale.localeType : LocaleTypes.device
 

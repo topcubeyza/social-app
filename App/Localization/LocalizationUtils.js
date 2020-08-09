@@ -16,10 +16,10 @@ export const getDeviceLocale = () => {
 }
 
 /**
- * Returns the language code (en or tr) if locale type is not device.
+ * Returns the language code ('en' or 'tr') if locale type is not device.
  * If locale type is device, gets the device language code and returns that.
- * @param {String} localeType - en, tr, or device
- * @returns languageCode - en, tr
+ * @param {String} localeType - 'en', 'tr', or 'device'
+ * @returns languageCode - 'en', 'tr'
  */
 export const getLanguageCode = localeType => {
     let code = localeType;
