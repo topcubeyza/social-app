@@ -24,9 +24,10 @@ import { Texts, localized } from "../../../Localization";
 import getStyles from "../Styles/HomeStyles"
 import { Colors, themed } from '../../../Theming'
 
+/**
+ * The home screen for a signed in user 
+ */
 class HomeScreen extends Component {
-
-    // *** LIFECYCLE METHODS *** //
 
     // *** EVENT HANDLERS *** //
 
@@ -46,12 +47,14 @@ class HomeScreen extends Component {
         if (user == null || validate.isEmpty(user.displayName)) return null;
         return (
             <View style={styles.container}>
+                {/* Information about app and developer */}
                 <View style={styles.messageContainer}>
                     <Text style={styles.helloText}>{localized.text(Texts.welcomeToApp)}</Text>
                     <Text style={styles.message}>{localized.text(Texts.noteFromDeveloper)}</Text>
                     <Text style={styles.message}>{localized.text(Texts.appExplanation)}</Text>
                     <Text style={styles.message}>Beyza Topçu</Text>
                 </View>
+                {/* Buttons to visit github repo of the app and linkedin account of the developer */}
                 <View style={styles.buttonsContainer}>
                     <View style={styles.buttonContainer}>
                         <Button
