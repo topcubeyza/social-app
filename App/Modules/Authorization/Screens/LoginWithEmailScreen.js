@@ -20,6 +20,9 @@ import { showAlert, closeAlert } from "../../../Helpers/AlertHelpers";
 // Styles
 import { Texts, localized } from "../../../Localization";
 
+/**
+ * A screen that renders a ui for the user to login with email and password
+ */
 class LoginWithEmailScreen extends Component {
 
     state = {
@@ -29,24 +32,26 @@ class LoginWithEmailScreen extends Component {
     // *** EVENT HANDLERS *** //
 
     loginRequest = ({ email, password }) => {
+        // Call the Auth Action to login
         this.props.signInRequest({ email, password })
     }
 
-    onPress_Back = () => {
-        this.props.navigation.navigate("Welcome");
-    }
-
     onPress_ForgotPass = () => {
+        // Dismiss keyboard and slide the ForgotPasswordModal
         Keyboard.dismiss();
         this.setState({
             isVisible_ForgotPasswordModal: true
         })
     }
 
+    // The callback function for ForgotPasswordModal
+    // to call after the password-reset email is successfully sent
     onLinkSent = (email) => {
+        // Hide the modal
         this.setState({
             isVisible_ForgotPasswordModal: false
         }, () => {
+            // Give user feedback and tell them to check their mailbox in an alert
             showAlert({
                 title: localized.text(Texts.success),
                 message: localized.text(Texts.resetEmailSuccessMessage, {email}),

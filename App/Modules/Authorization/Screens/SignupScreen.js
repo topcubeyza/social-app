@@ -16,19 +16,16 @@ import { Texts, localized } from "../../../Localization";
 
 // Styles
 
+/**
+ * A screen that renders a ui for the user to signup with email, password, and displayName
+ */
 class SignupScreen extends Component {
 
     // *** EVENT HANDLERS *** //
 
     createUserRequest = ({email, password, displayName}) => {
+        // Call the Auth Action
         this.props.createUserRequest({ email, password, displayName })
-    }
-
-    onSignupSuccess = () => {
-    }
-
-    onPress_LoginInstead = () => {
-        this.props.navigation.navigate("Welcome");
     }
 
     // *** RENDER METHODS *** //
@@ -45,7 +42,7 @@ class SignupScreen extends Component {
                 ]}
                 topButtonText={localized.text(Texts.signup)}
                 request={this.createUserRequest}
-                onRequestSuccess={this.onSignupSuccess}
+                onRequestSuccess={() => {}}
                 dataFieldName="candidateUser"
                 isDataValid={data => data != null}
             />

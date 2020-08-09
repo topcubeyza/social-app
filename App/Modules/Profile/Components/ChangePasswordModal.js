@@ -101,7 +101,7 @@ class ChangePasswordModal extends Component {
         this.setState({
             errorMessage: message
         }, () => {
-            // Show an error message for two seconds if fields are not valid
+            // Show an error message for two seconds
 
             // clear timeout so that when user taps button repeatedly,
             // disappearing of error message will be delayed

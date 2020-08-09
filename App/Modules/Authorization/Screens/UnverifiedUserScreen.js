@@ -33,6 +33,9 @@ import { Texts, localized } from "../../../Localization";
 import getStyles from "../Styles/UnverifiedUserStyles"
 import { Colors, themed, ThemeModes, getColorMode } from '../../../Theming'
 
+/**
+ * A screen that informs the unverified user on email verification
+ */
 class UnverifiedUserScreen extends Component {
 
     constructor(props) {
@@ -47,6 +50,7 @@ class UnverifiedUserScreen extends Component {
 
     componentDidUpdate(prevProps) {
         let cause = getUpdateCause(prevProps.auth, this.props.auth, "user", data => data == null);
+
         switch (cause) {
             case UpdateCauses.fetching:
                 this.props.setLoadingMode(true)
@@ -69,7 +73,7 @@ class UnverifiedUserScreen extends Component {
         this.setState({
             errorMessage: message
         }, () => {
-            // Show an error message for two seconds if fields are not valid
+            // Show the error message for two seconds
 
             // clear timeout so that when user taps button repeatedly,
             // disappearing of error message will be delayed
@@ -87,13 +91,19 @@ class UnverifiedUserScreen extends Component {
     // *** EVENT HANDLERS *** //
 
     onPress_Signout = () => {
+        // Request to signout the user using Redux action
         this.props.signout()
     }
 
     onPress_ResendVerificatioNEmail = async () => {
         try {
+            // Show the loading overlay using the Redux action
             this.props.setLoadingMode(true)
+
+            // Call the Firebase API's method
             await FirebaseApi.sendVerificationEmail();
+
+            // Inform the user that mail is sent
             showAlert({
                 title: localized.text(Texts.success),
                 message: localized.text(Texts.resendSuccessfulMessage),
@@ -104,13 +114,10 @@ class UnverifiedUserScreen extends Component {
                 cancellable: true
             })
         } catch (error) {
-            let errorMessage = localized.text(Texts.genericError);
-            if (validate.isString(error)) {
-                errorMessage = error;
-            }
-
-            this.showErrorMessage(errorMessage)
+            // Show the error message
+            this.showErrorMessage(error)
         } finally {
+            // Hide the loading overlay using Redux action
             this.props.setLoadingMode(false)
         }
     }
@@ -118,14 +125,17 @@ class UnverifiedUserScreen extends Component {
     // *** RENDER METHODS *** //
 
     render() {
+        // The user of this screen is the candidate user with unverifified email address
         let user = this.props.auth.candidateUser
+        // Render only when the user is not null and the user's displayName is set
         if (user == null || validate.isEmpty(user.displayName)) return null;
 
         let styles = getStyles(themed.color)
         return (
             <ScreenWrapper
                 topContainerContent={
-                    <>
+                    // Informative Message about Email Verification
+                    <>                    
                         <View style={styles.messageContainer}>
                             <Text style={styles.helloText}>{localized.text(Texts.helloName, { name: user.displayName })}</Text>
                             <Text style={styles.message}>{localized.text(Texts.accountCreated)}</Text>
@@ -134,6 +144,7 @@ class UnverifiedUserScreen extends Component {
                     </>
                 }
                 errorContent={
+                    // Error Message
                     <View style={styles.errorTextContainer}>
                         {
                             this.state.errorMessage ?
@@ -143,6 +154,7 @@ class UnverifiedUserScreen extends Component {
                     </View>
                 }
                 topButtonComponent={
+                    // Button to ask to resend the verification email
                     <Button
                         text={localized.text(Texts.resendVerificationEmail)}
                         textColor={themed.color(Colors.textOnLightBackground_dm)}
@@ -151,6 +163,7 @@ class UnverifiedUserScreen extends Component {
                     />
                 }
                 transparentButtonComponent={
+                    // Button to signout
                     <Button
                         text={localized.text(Texts.signout)}
                         textColor={themed.color(Colors.midLightGrey_dm)}

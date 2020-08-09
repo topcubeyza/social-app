@@ -27,6 +27,9 @@ import getStyles from "../Styles/WelcomeStyles"
 import { Colors, themed, ThemeModes, getColorMode } from '../../../Theming'
 import Firebase from "../../../Services/Firebase";
 
+/**
+ * The firstmost screen that a user sees, presenting options of signin and signup
+ */
 class WelcomeScreen extends Component {
 
     // *** LIFECYCLE METHODS *** //
@@ -49,12 +52,6 @@ class WelcomeScreen extends Component {
         this.props.navigation.navigate("Signup")
     }
 
-    onPress_ForgotPassword = () => {
-        let colorMode = getColorMode(this.props.theme.themeMode)
-
-        this.props.changeTheme(colorMode == 'dark' ? 'light' : 'dark')
-    }
-
     // *** RENDER METHODS *** //
 
     render() {
@@ -63,11 +60,13 @@ class WelcomeScreen extends Component {
             <ScreenWrapper
                 topContainerContent={
                     <>
+                    {/* Giant Welcome Message */}
                         <View style={styles.welcomeContainer}>
                             <Text style={styles.bemagineText}>Bemagine</Text>
                             <Text style={styles.subText}>{localized.text(Texts.welcomeMessage)}</Text>
                         </View>
                         <View style={styles.buttonsContainer}>
+                            {/* Login with Google */}
                             <View style={styles.buttonContainer}>
                                 <Button
                                     text={localized.text(Texts.loginWithGoogle)}
@@ -76,6 +75,7 @@ class WelcomeScreen extends Component {
                                     backgroundColor={themed.color(Colors.googleColor)}
                                 />
                             </View>
+                            {/* Login with Email */}
                             <View style={styles.buttonContainer}>
                                 <Button
                                     text={localized.text(Texts.loginWithEmail)}
@@ -88,6 +88,7 @@ class WelcomeScreen extends Component {
                     </>
                 }
                 topButtonComponent={
+                    // Signup Button
                     <Button
                         text={localized.text(Texts.signup)}
                         textColor={themed.color(Colors.textOnLightBackground_dm)}
@@ -96,6 +97,8 @@ class WelcomeScreen extends Component {
                     />
                 }
                 transparentButtonComponent={
+                    // Providing button component with no text
+                    // To allow for some padding on the bottom
                     <Button
                         text={""}
                         textColor={themed.color(Colors.midLightGrey_dm)}
