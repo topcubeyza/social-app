@@ -44,8 +44,6 @@ class SignupScreen extends Component {
                     { inputKey: "passwordConfirm", placeholder: localized.text(Texts.confirmPassword), type: "password" },
                 ]}
                 topButtonText={localized.text(Texts.signup)}
-                transparentButtonText={""}
-                onPress_TransparentButton={() => {}}
                 request={this.createUserRequest}
                 onRequestSuccess={this.onSignupSuccess}
                 dataFieldName="candidateUser"

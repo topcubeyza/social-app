@@ -38,22 +38,28 @@ import { Colors, themed } from '../../../Theming'
 import { Texts, localized } from "../../../Localization"
 
 /**
- * @augments {Components<Props,State>}
+ * This is a wrapper class for Auth Screens that have a similar structure.
+ * i.e. a number of text inputs, a button below etc.
+ * @augments {Component<Props>}
  */
 class AuthScreensWrapper extends Component {
 
     constructor(props) {
         super(props);
 
+        // forming an object with 'key: key of the textinputs' & 'value: value of the textinputs'
+        // i.e. { password: "abc" }
         let inputsState = {}
-        this.props.textInputsParams.map(value => inputsState[value.inputKey] = null)
+        this.props.textInputsParams.map(textInputParams => inputsState[textInputParams.inputKey] = null)
 
+        // put the textinput key:value pairs in the component state
         this.state = {
             ...inputsState,
-            headerFontSize: new Animated.Value(Fonts.size.twenty * 2),
             errorMessage: "",
         }
 
+        // this variable will hold the references of the text inputs
+        // key: textinput component key - value: textinput reference
         this.textinputs = {}
         this.keyboardVisible = false;
     }
@@ -71,16 +77,19 @@ class AuthScreensWrapper extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        let cause = getUpdateCause(prevProps.auth, this.props.auth, this.props.dataFieldName, this.props.isDataValid);  
+        let cause = getUpdateCause(prevProps.auth, this.props.auth, this.props.dataFieldName, this.props.isDataValid);
         switch (cause) {
             case UpdateCauses.fetching:
+                // Show a loading overlay when fetching starts
                 this.props.setLoadingMode(true)
                 break;
             case UpdateCauses.fail:
+                // Show the error message and hide the loading overlay
                 this.showErrorMessage(this.props.auth.error)
                 this.turnOffLoadingMode()
                 break;
             case UpdateCauses.success:
+                // Call the parent classes onSuccess method and hide the loading overlay
                 this.props.onRequestSuccess();
                 this.turnOffLoadingMode()
                 break;
@@ -104,7 +113,10 @@ class AuthScreensWrapper extends Component {
     onKeyboardDidShow = () => {
         if (!this.keyboardVisible) {
             this.keyboardVisible = true;
+
+            // When keyboard is shown, underline of the active textinput must be drawn
             Object.entries(this.textinputs).map(entry => {
+                // checking if the textinput is mounted and is focused
                 if (entry[1] != null && entry[1].isFocused()) {
                     entry[1].drawUnderline();
                 }
@@ -118,13 +130,11 @@ class AuthScreensWrapper extends Component {
 
             // When keyboard hides, underline of the active textinput must be removed
             Object.entries(this.textinputs).map(textinput => {
-                // checking if the textinput is mounted
+                // checking if the textinput is mounted and is focused
                 if (textinput[1] != null && !textinput[1].isFocused()) {
                     textinput[1].removeUnderline()
                 }
             })
-
-            this.increaseHeaderFontSize()
         }
     }
 
@@ -134,7 +144,7 @@ class AuthScreensWrapper extends Component {
         this.setState({
             errorMessage: message
         }, () => {
-            // Show an error message for two seconds if fields are not valid
+            // Show an error message for two seconds
 
             // clear timeout so that when user taps button repeatedly,
             // disappearing of error message will be delayed
@@ -149,41 +159,29 @@ class AuthScreensWrapper extends Component {
         })
     }
 
-    increaseHeaderFontSize = () => {
-        Animated.timing(
-            this.state.headerFontSize,
-            {
-                toValue: Fonts.size.twenty * 2,
-                duration: 300
-            }
-        ).start()
-    }
-
-    decreaseHeaderFontSize = () => {
-        Animated.timing(
-            this.state.headerFontSize,
-            {
-                toValue: Fonts.size.twenty * 1.5,
-                duration: 300
-            }
-        ).start()
-    }
-
+    // Closes the loading overlay with a redux action
     turnOffLoadingMode = () => {
         this.props.setLoadingMode(false)
-        this.decreaseHeaderFontSize()
     }
 
     // *** EVENT HANDLERS *** //
 
+    // Called when text changes in any of the text inputs
+    // 'key' is the key of the text input
     onChangeText = (text, key) => {
+
+        // update the value of the text input on the state
+        // i.e. this.setState({ password: "abc" })
         let newState = {}
         newState[key] = text;
         this.setState(newState)
     }
 
     onPress_TopButton = () => {
+        // Check the values of the inputs.
         let { ok, message } = checkCredentials(this.state)
+
+        // If values are invalid, show error message. Otherwise, send the request.
         if (!ok) {
             this.showErrorMessage(message)
         }
@@ -192,38 +190,38 @@ class AuthScreensWrapper extends Component {
         }
     }
 
-    // key: key of the textinput
+    /**
+     * When a text input is focused, this method is called with the key of the text input
+     * It removes the underline of the other text inputs.
+     * @param {any} key - the key of text input
+     */
     onFocus_TextInput = (key) => {
-        // Remove underline of the previously focused textinput
+        // Iterate through the refs of the text inputs
         Object.entries(this.textinputs).map(entry => {
+            // if the 'entry' is not the entry that has just been focused AND if it is not null: 
+            // Remove its underline
             if (entry[0] != key && entry[1] != null) {
                 entry[1].removeUnderline()
             }
         })
 
-        // If keyboard was not previously visible and it will be shown just in a moment,
-        // Shrink the header with animation
-        if (!this.keyboardVisible) {
-            this.decreaseHeaderFontSize()
-        }
-
     }
 
+    // When the background is touched, dismiss the keyboard if it is visible
     onPress_Background = () => {
-        // If keyboard was previously visible and it will be hidden just in a moment,
-        // Enlarge the header with animation
         if (!this.keyboardVisible) return;
         Keyboard.dismiss();
     }
 
     // *** RENDER METHODS *** //
 
+    // Renders the inputs based on the array provided by props 'textInputsParams'
     renderTextInputs = () => {
         return this.props.textInputsParams.map((value, index) => {
             return (
                 <AuthInputsComponent
                     {...value}
-                    autoFocus={index==0}
+                    autoFocus={index == 0}
                     key={value.inputKey}
                     reference={ref => this.textinputs[value.inputKey] = ref}
                     onFocus={this.onFocus_TextInput}
@@ -237,41 +235,46 @@ class AuthScreensWrapper extends Component {
     render() {
         let styles = getStyles(themed.color)
         return (
+            // The keyboard vertical offset in iOS is the sum of the navigation header's height and the iOS status bar height
             <KeyboardAvoidingView style={{ flex: 1 }} keyboardVerticalOffset={Metrics.headerHeight + getStatusBarHeight(true)} behavior={Platform.OS == "ios" ? "padding" : null}>
                 <TouchableWithoutFeedback onPress={this.onPress_Background}>
                     <View style={styles.container}>
-                            <ScreenWrapper
-                                topContainerContent={
-                                        <View style={styles.textinputsContainer} onStartShouldSetResponder={() => true}>
-                                            {this.renderTextInputs()}
-                                        </View>
-                                }
-                                errorContent={
-                                        <View style={styles.errorTextContainer}>
-                                            {
-                                                this.state.errorMessage ?
-                                                    <Text numberOfLines={2} style={styles.errorText}>{this.state.errorMessage}</Text>
-                                                    : null
-                                            }
-                                        </View>
-                                }
-                                topButtonComponent={
-                                    <Button
-                                        text={this.props.topButtonText}
-                                        textColor={themed.color(Colors.textOnBrandColor)}
-                                        onPress={this.onPress_TopButton}
-                                        backgroundColor={themed.color(Colors.brandColor)}
-                                    />
-                                }
-                                transparentButtonComponent={
-                                    <Button
-                                        text={this.props.transparentButtonText}
-                                        textColor={themed.color(Colors.midLightGrey_dm)}
-                                        onPress={this.props.onPress_TransparentButton}
-                                        backgroundColor={"transparent"}
-                                    />
-                                }
-                            />
+                        <ScreenWrapper
+                            topContainerContent={
+                                // TextInputs
+                                <View style={styles.textinputsContainer} onStartShouldSetResponder={() => true}>
+                                    {this.renderTextInputs()}
+                                </View>
+                            }
+                            errorContent={
+                                // Error message
+                                <View style={styles.errorTextContainer}>
+                                    {
+                                        this.state.errorMessage ?
+                                            <Text numberOfLines={2} style={styles.errorText}>{this.state.errorMessage}</Text>
+                                            : null
+                                    }
+                                </View>
+                            }
+                            topButtonComponent={
+                                // The text and function of this button comes from props
+                                <Button
+                                    text={this.props.topButtonText}
+                                    textColor={themed.color(Colors.textOnBrandColor)}
+                                    onPress={this.onPress_TopButton}
+                                    backgroundColor={themed.color(Colors.brandColor)}
+                                />
+                            }
+                            transparentButtonComponent={
+                                // The text and function of this button comes from props
+                                <Button
+                                    text={this.props.transparentButtonText}
+                                    textColor={themed.color(Colors.midLightGrey_dm)}
+                                    onPress={this.props.onPress_TransparentButton}
+                                    backgroundColor={"transparent"}
+                                />
+                            }
+                        />
                     </View>
                 </TouchableWithoutFeedback>
             </KeyboardAvoidingView>
@@ -281,19 +284,26 @@ class AuthScreensWrapper extends Component {
 }
 
 AuthScreensWrapper.propTypes = {
-    textInputsParams: PropTypes.array.isRequired,
+    /** an array of objects */
+    textInputsParams: PropTypes.array<Object>.isRequired,
+    /** see the method Helpers/ReduxHelpers/getUpdateCause */
     dataFieldName: PropTypes.string.isRequired,
+    /** see the method Helpers/ReduxHelpers/getUpdateCause */
     isDataValid: PropTypes.func.isRequired,
+    /** called when update cause is success, no params */
     onRequestSuccess: PropTypes.func.isRequired,
+    /** the request function to call when top button is pressed */
     request: PropTypes.func.isRequired,
     topButtonText: PropTypes.string.isRequired,
+    /** the text on the bottommost transparent background button. Default: "" */
     transparentButtonText: PropTypes.string,
+    /** onPress event handler for the bottommost transparent background button. Default: () => {} */
     onPress_TransparentButton: PropTypes.func
 }
 
 AuthScreensWrapper.defaultProps = {
     transparentButtonText: "",
-    onPress_TransparentButton: () => {}
+    onPress_TransparentButton: () => { }
 }
 
 const mapStateToProps = state => ({

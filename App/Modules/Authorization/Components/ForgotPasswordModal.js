@@ -30,6 +30,7 @@ import { Fonts, Metrics, SVG } from "../../../StylingConstants"
 import { Colors, Images, themed } from '../../../Theming'
 
 /**
+ * A modal that renders a ui for the user to reset password
  * @augments {Component<Props>}
  */
 class ForgotPasswordModal extends Component {
@@ -37,6 +38,7 @@ class ForgotPasswordModal extends Component {
     constructor(props) {
         super(props);
 
+        // The initial state must be saved to return to it when modal hides
         this.initialState = {
             email: "",
             errorMessage: "",
@@ -45,6 +47,7 @@ class ForgotPasswordModal extends Component {
 
         this.state = { ...this.initialState }
 
+        // Holds the reference to email input
         this.emailInput = null;
         this.keyboardVisible = false;
     }
@@ -83,14 +86,12 @@ class ForgotPasswordModal extends Component {
         if (this.keyboardVisible) {
             this.keyboardVisible = false;
 
-            // When keyboard hides, underline of the textinputs must be removed
+            // When keyboard hides, underline of the email input must be removed
             if (this.emailInput != null) {
                 this.emailInput.removeUnderline()
             }
         }
     }
-
-    // *** REF METHODS *** //
 
     // *** CONVENIENCE METHODS *** //
 
@@ -113,9 +114,11 @@ class ForgotPasswordModal extends Component {
         })
     }
 
+    // Calls the API to send reset link
     sendLink = () => {
         FirebaseApi.sendPasswordResetEmail({ email: this.state.email })
             .then(() => {
+                // Set the loading mode off and call the parent's callback
                 this.setState({
                     loading: false
                 }, () => {
@@ -123,6 +126,7 @@ class ForgotPasswordModal extends Component {
                 })
             })
             .catch((error) => {
+                // Set the loading mode off and show the error message
                 this.setState({
                     loading: false
                 }, () => {
@@ -135,21 +139,29 @@ class ForgotPasswordModal extends Component {
 
     onModalHide = () => {
         this.props.onModalHide();
+
+        // Return to initial state, so that when the modal is shown again, it will be brand new
         this.setState({ ...this.initialState })
     }
 
     onChangeText_Email = (text) => {
+
+        // Simply updating state when the email text changes
         this.setState({
             email: text
         })
     }
 
+    // The Send button's onPress method
     onPress_Send = () => {
+        // Check the validity of email first.
         let { ok, message } = checkFields({ email: this.state.email });
         if (!ok) {
+            // Show the error message if email is not valid
             this.showErrorMessage(message)
         }
         else {
+            // Dismiss the keyboard, show the loading overlay and call the api
             Keyboard.dismiss();
             this.setState({
                 loading: true
@@ -170,6 +182,7 @@ class ForgotPasswordModal extends Component {
                 loading={this.state.loading}
             >
                 <View style={styles.topContainer}>
+                    {/* The part that shows an explanatory message to user */}
                     <View style={styles.infoContainer}>
                         <View style={styles.iconContainer}>
                             <SVG.Mail style={styles.icon} width={"100%"} height={"100%"} />
@@ -178,6 +191,7 @@ class ForgotPasswordModal extends Component {
                             <Text style={styles.messageText}>{localized.text(Texts.enterEmailToReset)}</Text>
                         </View>
                     </View>
+                    {/* Email Input */}
                     <View style={styles.textinputContainer}>
                         <SingleLineInputBackground
                             ref={ref => this.emailInput = ref}
@@ -188,6 +202,7 @@ class ForgotPasswordModal extends Component {
                             margin={Metrics.marginHorizontal}
                             autoCapitalize="none" />
                     </View>
+                    {/* Error message */}
                     <View style={styles.errorTextContainer}>
                         {
                             this.state.errorMessage === "" ?
@@ -199,6 +214,8 @@ class ForgotPasswordModal extends Component {
                         }
                     </View>
                 </View>
+                {/* The part that renders the button in a container with a different background color
+                Use SafeAreaView to put the button inside the safe area */}
                 <SafeAreaView style={styles.bottomContainer}>
                     <View style={styles.buttonContainer}>
                         <Button
@@ -215,7 +232,9 @@ class ForgotPasswordModal extends Component {
 }
 
 ForgotPasswordModal.propTypes = {
+    /** The visibility of the modal */
     isVisible: PropTypes.bool.isRequired,
+    /** The callback function to call when the password reset email is successfully sent */
     onLinkSent: PropTypes.func.isRequired,
     onModalHide: PropTypes.func,
 }
