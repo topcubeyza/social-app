@@ -25,8 +25,10 @@ import { Texts, localized, LocaleTypes } from "../../../Localization";
 import getStyles from "../Styles/PreferencesStyles"
 import { Colors, themed, ThemeModes } from '../../../Theming'
 import { SVG } from "../../../StylingConstants";
-import { TouchableOpacity } from "react-native-gesture-handler";
 
+/**
+ * A screen that renders the user preferences like theme and locale
+ */
 class PreferencesScreen extends Component {
 
     state = {
@@ -37,11 +39,17 @@ class PreferencesScreen extends Component {
 
     }
 
-    // *** LIFECYCLE METHODS *** //
-
     // *** CONVENIENCE METHODS *** //
 
+    // Toggles the visibility of the info component
+    // 'type': either 'theme' or 'locale'
     toggleInfoVisibility = (type) => {
+
+        // Show or hide the component in an animated way,
+        // If it was hidden, show it by increasing the maxHeight of the component's container from 0 to 500
+        // If it was shown, hide it by decreasing the maxHeight from 500 to 0
+        // 500 is an arbitrary high number that is apparently greater than the component's container's original height.
+
         if (type == "theme") {
             this.setState({
                 isVisible_DeviceThemeInfo: !this.state.isVisible_DeviceThemeInfo
@@ -72,22 +80,31 @@ class PreferencesScreen extends Component {
 
     // *** EVENT HANDLERS *** //
 
+    // Change the theme to the selected option using Theme redux action
     onPress_ThemeMode = (themeMode) => {
         this.props.changeThemeRequest(themeMode)
     }
 
+    // Change the locale to the selected option using Locale redux action
     onPress_LocaleType = (localeType) => {
         this.props.changeLocaleRequest(localeType)
     }
 
     // *** RENDER METHODS *** //
 
+    // Renders the theme options
     renderThemes = () => {
-        let length = Object.entries(ThemeModes).length
+
+        // The little info icon to the right of the 'device' option
+        // Make it a close icon if the info message is shown at the moment
         let infoIcon = this.state.isVisible_DeviceThemeInfo ? SVG.XCircle : SVG.Info;
 
+        // Iterate through the theme modes and render each
         return Object.entries(ThemeModes).map((themeMode, index) => {
+            // [0] is the property name and [1] is the property value
+
             let selected = themeMode[1] == this.props.theme.themeMode;
+
             return (
                 <SettingsButton
                     key={themeMode[0]}
@@ -95,18 +112,26 @@ class PreferencesScreen extends Component {
                     onPress={() => this.onPress_ThemeMode(themeMode[1])}
                     icon={selected ? SVG.CheckedCircle : SVG.Circle}
                     selected={selected}
-                    endIcon={index == length - 1 ? infoIcon : null}
+                    // Show the end info icon only if this is the 'device' option
+                    endIcon={themeMode[1] == ThemeModes.device ? infoIcon : null}
                     onPressEndIcon={() => this.toggleInfoVisibility("theme")} />
             )
         })
     }
 
+    // Renders the locale options
     renderLocales = () => {
-        let length = Object.entries(LocaleTypes).length
+
+        // The little info icon to the right of the 'device' option
+        // Make it a close icon if the info message is shown at the moment
         let infoIcon = this.state.isVisible_DeviceLocaleInfo ? SVG.XCircle : SVG.Info;
 
+        // Iterate through the locale types and render each
         return Object.entries(LocaleTypes).map((localeType, index) => {
+            // [0] is the property name and [1] is the property value
+
             let selected = localeType[1] == this.props.locale.localeType;
+
             return (
                 <SettingsButton
                     key={localeType[0]}
@@ -114,21 +139,25 @@ class PreferencesScreen extends Component {
                     onPress={() => this.onPress_LocaleType(localeType[1])}
                     icon={selected ? SVG.CheckedCircle : SVG.Circle}
                     selected={selected}
-                    endIcon={index == length - 1 ? infoIcon : null}
+                    // Show the end info icon only if this is the 'device' option
+                    endIcon={localeType[1] == LocaleTypes.device ? infoIcon : null}
                     onPressEndIcon={() => this.toggleInfoVisibility("locale")} />
             )
         })
     }
 
+    // Renders the info about the option 'device'
     renderInfo = (type) => {
         let styles = getStyles(themed.color)
+
+        // Get the translated info messages
         let deviceThemeInfo = localized.text(Texts.deviceThemeInfo);
         let deviceLocaleInfo = localized.text(Texts.deviceLocaleInfo);
 
         let info = type == "theme" ? deviceThemeInfo : deviceLocaleInfo;
-        let isVisible = type == "theme" ? this.state.isVisible_DeviceThemeInfo : this.state.isVisible_DeviceLocaleInfo
         let maxHeight = type == "theme" ? this.state.themeMaxHeight : this.state.localeMaxHeight
 
+        // Show an info component with an animated view, using maxHeight styling property
         return (
             <Animated.View style={[styles.infoContainer, { maxHeight }]}>
                 <Text style={styles.infoText}>{info}</Text>
@@ -141,14 +170,20 @@ class PreferencesScreen extends Component {
         return (
             <View style={styles.container}>
                 <ScrollView contentContainerStyle={styles.scrollContentContainer} bounces={false}>
+
+                    {/* Screen Title */}
                     <View style={styles.screenTitleContainer}>
                         <Text style={styles.screenTitleText}>{localized.text(Texts.preferences)}</Text>
                     </View>
+
+                    {/* Theme Preferences */}
                     <View style={styles.settingsContainer}>
                         <Text style={styles.sectionHeader}>{localized.text(Texts.themePreference)}</Text>
                         {this.renderThemes()}
                     </View>
                     {this.renderInfo("theme")}
+
+                    {/* Language Preferences */}
                     <View style={styles.settingsContainer}>
                         <Text style={styles.sectionHeader}>{localized.text(Texts.languagePreference)}</Text>
                         {this.renderLocales()}
