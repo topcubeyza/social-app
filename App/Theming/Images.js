@@ -19,6 +19,11 @@ export const darkThemeImages = {
   ...constantImages,
 }
 
+/**
+ * The names of all the images used in the app.
+ * Provides ease of use with the help of intellisense.
+ * Lowers the possibility of typos.
+ */
 const Images = {
   splashTransparent: "splashTransparent",
   underConstruction: "underConstruction",

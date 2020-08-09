@@ -23,6 +23,7 @@ const constantColors = {
   darkBackground: greyColors.darkGrey
 }
 
+// colors used when the app is in light mode
 export const lightThemeColors = {
   ...constantColors,
   white_dm: constantColors.white,
@@ -40,6 +41,7 @@ export const lightThemeColors = {
   lightOverlayColor: "rgba(0,0,0,0.4)",
 }
 
+// colors used when the app is in dark mode
 export const darkThemeColors = {
   ...constantColors,
   white_dm: constantColors.darkGrey,
@@ -58,7 +60,12 @@ export const darkThemeColors = {
 
 }
 
-
+/**
+ * The names of all the colors used in the app.
+ * Provides ease of use with the help of intellisense.
+ * Lowers the possibility of typos.
+ * _dm suffix implies that this color changes when the theme of the app changes
+ */
 export default Colors = {
   white: "white",
   lightGrey: "lightGrey",

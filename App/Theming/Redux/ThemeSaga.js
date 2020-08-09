@@ -5,6 +5,8 @@ import { getColorMode, setThemeMode } from "..";
 function* setTheme(action) {
     try {
         let {themeMode} = action.payload;
+
+        // set the value of the global theme mode first
         setThemeMode(themeMode)
         yield put(ThemeActions.changeTheme({
             themeMode
