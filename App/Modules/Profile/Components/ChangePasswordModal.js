@@ -30,6 +30,7 @@ import { Fonts, Metrics, SVG } from "../../../StylingConstants"
 import { Colors, Images, themed } from '../../../Theming'
 
 /**
+ * A modal that renders a ui for the user to change password
  * @augments {Component<Props>}
  */
 class ChangePasswordModal extends Component {
@@ -37,6 +38,7 @@ class ChangePasswordModal extends Component {
     constructor(props) {
         super(props);
 
+        // The initial state must be saved to return to it when modal hides
         this.initialState = {
             password: "",
             passwordConfirm: "",
@@ -44,10 +46,12 @@ class ChangePasswordModal extends Component {
             loading: false
         }
 
-        this.state = {...this.initialState}
+        this.state = { ...this.initialState }
 
+        // These two variables hold the reference to the inputs on the screen
         this.passwordInput = null;
         this.passwordConfirmInput = null;
+
         this.keyboardVisible = false;
     }
 
@@ -93,8 +97,6 @@ class ChangePasswordModal extends Component {
         }
     }
 
-    // *** REF METHODS *** //
-
     // *** CONVENIENCE METHODS *** //
 
     showErrorMessage = (message) => {
@@ -116,11 +118,13 @@ class ChangePasswordModal extends Component {
         })
     }
 
+    // Calls the API to change the password
     changePassword = () => {
         let newPassword = this.state.password;
 
         FirebaseApi.changePassword({ newPassword })
             .then(() => {
+                // Set the loading mode off and call the parent's callback
                 this.setState({
                     loading: false
                 }, () => {
@@ -128,6 +132,7 @@ class ChangePasswordModal extends Component {
                 })
             })
             .catch((error) => {
+                // Set the loading mode off and show the error message
                 this.setState({
                     loading: false
                 }, () => {
@@ -140,27 +145,36 @@ class ChangePasswordModal extends Component {
 
     onModalHide = () => {
         this.props.onModalHide();
-        this.setState({...this.initialState})
+
+        // Return to initial state, so that when the modal is shown again, it will be brand new
+        this.setState({ ...this.initialState })
     }
 
     onChangeText_Password = (text) => {
+
+        // Simply updating state when the password text changes
         this.setState({
             password: text
         })
     }
 
     onChangeText_PasswordConfirm = (text) => {
+        // Simply updating state when the password confirm text changes
         this.setState({
             passwordConfirm: text
         })
     }
 
+    // The Confirm button's onPress method
     onPress_Confirm = () => {
+        // Check the validity of the fields first.
         let { ok, message } = checkFields({ password: this.state.password, passwordConfirm: this.state.passwordConfirm });
         if (!ok) {
+            // Show the error message if the fields are not valid
             this.showErrorMessage(message)
         }
         else {
+            // Dismiss the keyboard, show the loading overlay and call the api
             Keyboard.dismiss();
             this.setState({
                 loading: true
@@ -171,10 +185,12 @@ class ChangePasswordModal extends Component {
     }
 
     onFocus_Password = () => {
+        // When password input is focused, passwordConfirm input's underline must be removed
         this.passwordConfirmInput.removeUnderline()
     }
 
     onFocus_PasswordConfirm = () => {
+        // When passwordConfirm input is focused, password input's underline must be removed
         this.passwordInput.removeUnderline();
     }
 
@@ -189,6 +205,7 @@ class ChangePasswordModal extends Component {
                 loading={this.state.loading}
             >
                 <View style={styles.topContainer}>
+                    {/* Password Input */}
                     <View style={styles.textinputContainer}>
                         <SingleLineInputBackground
                             ref={ref => this.passwordInput = ref}
@@ -201,6 +218,7 @@ class ChangePasswordModal extends Component {
                             secureTextEntry={true}
                             onFocus={this.onFocus_Password} />
                     </View>
+                    {/* Password Confirm Input */}
                     <View style={styles.textinputContainer}>
                         <SingleLineInputBackground
                             ref={ref => this.passwordConfirmInput = ref}
@@ -213,6 +231,7 @@ class ChangePasswordModal extends Component {
                             secureTextEntry={true}
                             onFocus={this.onFocus_PasswordConfirm} />
                     </View>
+                    {/* Error Message */}
                     <View style={styles.errorTextContainer}>
                         {
                             this.state.errorMessage === "" ?
@@ -224,6 +243,8 @@ class ChangePasswordModal extends Component {
                         }
                     </View>
                 </View>
+                {/* The part that renders the 'confirm' button in a container with a different background color
+                Use SafeAreaView to put the button inside the safe area */}
                 <SafeAreaView style={styles.bottomContainer}>
                     <View style={styles.buttonContainer}>
                         <Button
@@ -240,7 +261,9 @@ class ChangePasswordModal extends Component {
 }
 
 ChangePasswordModal.propTypes = {
+    /** The visibility of the modal */
     isVisible: PropTypes.bool.isRequired,
+    /** The callback function to call when the password is successfully changed */
     onPasswordChanged: PropTypes.func.isRequired,
     onModalHide: PropTypes.func,
 }

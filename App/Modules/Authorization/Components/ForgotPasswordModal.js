@@ -214,7 +214,7 @@ class ForgotPasswordModal extends Component {
                         }
                     </View>
                 </View>
-                {/* The part that renders the button in a container with a different background color
+                {/* The part that renders the 'send' button in a container with a different background color
                 Use SafeAreaView to put the button inside the safe area */}
                 <SafeAreaView style={styles.bottomContainer}>
                     <View style={styles.buttonContainer}>

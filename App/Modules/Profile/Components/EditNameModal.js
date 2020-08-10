@@ -32,6 +32,7 @@ import { Fonts, Metrics, SVG } from "../../../StylingConstants"
 import { Colors, Images, themed } from '../../../Theming'
 
 /**
+ *  A modal that renders a ui for the user to change her display name
  * @augments {Component<Props>}
  */
 class EditNameModal extends Component {
@@ -39,15 +40,18 @@ class EditNameModal extends Component {
     constructor(props) {
         super(props);
 
+        // The initial state must be saved to return to it when modal hides
         this.initialState = {
             displayName: "",
             errorMessage: "",
             loading: false
         }
 
-        this.state = {...this.initialState}
+        this.state = { ...this.initialState }
 
+        // Holds the reference to name input
         this.nameInput = null;
+
         this.keyboardVisible = false;
     }
 
@@ -85,14 +89,12 @@ class EditNameModal extends Component {
         if (this.keyboardVisible) {
             this.keyboardVisible = false;
 
-            // When keyboard hides, underline of the textinputs must be removed
+            // When keyboard hides, underline of the name input must be removed
             if (this.nameInput != null) {
                 this.nameInput.removeUnderline()
             }
         }
     }
-
-    // *** REF METHODS *** //
 
     // *** CONVENIENCE METHODS *** //
 
@@ -100,7 +102,7 @@ class EditNameModal extends Component {
         this.setState({
             errorMessage: message
         }, () => {
-            // Show an error message for two seconds if fields are not valid
+            // Show an error message for two seconds
 
             // clear timeout so that when user taps button repeatedly,
             // disappearing of error message will be delayed
@@ -116,8 +118,9 @@ class EditNameModal extends Component {
     }
 
     changeName = () => {
-        FirebaseApi.updateUserProfile({displayName: this.state.displayName})
+        FirebaseApi.updateUserProfile({ displayName: this.state.displayName })
             .then(() => {
+                // Set the loading mode off, set the user with Auth Action, and call the parent's callback
                 this.setState({
                     loading: false
                 }, () => {
@@ -129,6 +132,7 @@ class EditNameModal extends Component {
                 })
             })
             .catch((error) => {
+                // Set the loading mode off and show the error message
                 this.setState({
                     loading: false
                 }, () => {
@@ -141,21 +145,29 @@ class EditNameModal extends Component {
 
     onModalHide = () => {
         this.props.onModalHide();
-        this.setState({...this.initialState})
+
+        // Return to initial state, so that when the modal is shown again, it will be brand new
+        this.setState({ ...this.initialState })
     }
 
     onChangeText_DisplayName = (text) => {
+
+        // Simply updating state when the name text changes
         this.setState({
             displayName: text
         })
     }
 
+    // The Confirm button's onPress method
     onPress_Confirm = () => {
+        // Check the validity of displayName first.
         let { ok, message } = checkFields({ displayName: this.state.displayName });
         if (!ok) {
+            // Show the error message if displayName is not valid
             this.showErrorMessage(message)
         }
         else {
+            // Dismiss the keyboard, show the loading overlay and call the api
             Keyboard.dismiss();
             this.setState({
                 loading: true
@@ -176,6 +188,7 @@ class EditNameModal extends Component {
                 loading={this.state.loading}
             >
                 <View style={styles.topContainer}>
+                    {/* Display Name Input */}
                     <View style={styles.textinputContainer}>
                         <SingleLineInputBackground
                             ref={ref => this.nameInput = ref}
@@ -185,6 +198,7 @@ class EditNameModal extends Component {
                             value={this.state.displayName}
                             margin={Metrics.marginHorizontal} />
                     </View>
+                    {/* Error message */}
                     <View style={styles.errorTextContainer}>
                         {
                             this.state.errorMessage === "" ?
@@ -196,6 +210,8 @@ class EditNameModal extends Component {
                         }
                     </View>
                 </View>
+                {/* The part that renders the 'confirm' button in a container with a different background color
+                Use SafeAreaView to put the button inside the safe area */}
                 <SafeAreaView style={styles.bottomContainer}>
                     <View style={styles.buttonContainer}>
                         <Button
@@ -212,7 +228,9 @@ class EditNameModal extends Component {
 }
 
 EditNameModal.propTypes = {
+    /** The visibility of the modal */
     isVisible: PropTypes.bool.isRequired,
+    /** The callback function to call when the display name is successfully changed */
     onNameEdited: PropTypes.func.isRequired,
     onModalHide: PropTypes.func,
 }
@@ -226,7 +244,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    setUser: (user) => dispatch(AuthActions.setUser({user}))
+    setUser: (user) => dispatch(AuthActions.setUser({ user }))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditNameModal);

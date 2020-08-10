@@ -30,6 +30,7 @@ import { Fonts, Metrics, SVG } from "../../../StylingConstants"
 import { Colors, Images, themed } from '../../../Theming'
 
 /**
+ *  A modal that renders a ui for the user to reauthenticate herself with her password
  * @augments {Component<Props>}
  */
 class PasswordConfirmationModal extends Component {
@@ -37,6 +38,7 @@ class PasswordConfirmationModal extends Component {
     constructor(props) {
         super(props);
 
+        // The initial state must be saved to return to it when modal hides
         this.initialState = {
             password: "",
             errorMessage: "",
@@ -44,7 +46,9 @@ class PasswordConfirmationModal extends Component {
 
         this.state = {...this.initialState}
 
+        // Holds the reference to password input
         this.passwordInput = null;
+
         this.keyboardVisible = false;
     }
 
@@ -82,21 +86,14 @@ class PasswordConfirmationModal extends Component {
         if (this.keyboardVisible) {
             this.keyboardVisible = false;
 
-            // When keyboard hides, underline of the textinput must be removed
+            // When keyboard hides, underline of the password input must be removed
             if (this.passwordInput != null) {
                 this.passwordInput.removeUnderline()
             }
         }
     }
 
-    // *** REF METHODS *** //
-
     // *** CONVENIENCE METHODS *** //
-
-    onModalHide = () => {
-        this.props.onModalHide();
-        this.setState({...this.initialState})
-    }
 
     showErrorMessage = (message) => {
         this.setState({
@@ -117,12 +114,14 @@ class PasswordConfirmationModal extends Component {
         })
     }
 
+    // Calls the API to reauthenticate user
     reauthenticateUser = () => {
         let email = this.props.user.email;
         let password = this.state.password;
 
         FirebaseApi.reauthenticate({ email, password })
             .then(result => {
+                // Set the loading mode off and call the parent's callback
                 this.setState({
                     loading: false
                 }, () => {
@@ -130,6 +129,7 @@ class PasswordConfirmationModal extends Component {
                 })
             })
             .catch((error) => {
+                // Set the loading mode off and show the error message
                 this.setState({
                     loading: false
                 }, () => {
@@ -140,18 +140,31 @@ class PasswordConfirmationModal extends Component {
 
     // *** EVENT HANDLERS *** //
 
+    onModalHide = () => {
+        this.props.onModalHide();
+
+        // Return to initial state, so that when the modal is shown again, it will be brand new
+        this.setState({...this.initialState})
+    }
+
     onChangeText_Password = (text) => {
+
+        // Simply updating state when the password text changes
         this.setState({
             password: text
         })
     }
 
+    // The Proceed button's onPress method
     onPress_Proceed = () => {
+        // Check the validity of password first.
         let { ok, message } = checkFields({ password: this.state.password });
         if (!ok) {
+            // Show the error message if password is not valid
             this.showErrorMessage(message)
         }
         else {
+            // Dismiss the keyboard, show the loading overlay and call the api
             Keyboard.dismiss();
             this.setState({
                 loading: true
@@ -172,6 +185,7 @@ class PasswordConfirmationModal extends Component {
                 loading={this.state.loading}
             >
                 <View style={styles.topContainer}>
+                    {/* The part that shows an explanatory message to user */}
                     <View style={styles.infoContainer}>
                         <View style={styles.iconContainer}>
                             <SVG.EditPassword style={styles.icon} width={"100%"} height={"100%"} />
@@ -180,6 +194,7 @@ class PasswordConfirmationModal extends Component {
                             <Text style={styles.messageText}>{localized.text(Texts.passwordConfirmMessage)}</Text>
                         </View>
                     </View>
+                    {/* Password Input */}
                     <View style={styles.textinputContainer}>
                         <SingleLineInputBackground
                             ref={ref => this.passwordInput = ref}
@@ -191,6 +206,7 @@ class PasswordConfirmationModal extends Component {
                             autoCapitalize="none"
                             secureTextEntry={true} />
                     </View>
+                    {/* Error message */}
                     <View style={styles.errorTextContainer}>
                         {
                             this.state.errorMessage === "" ?
@@ -202,6 +218,8 @@ class PasswordConfirmationModal extends Component {
                         }
                     </View>
                 </View>
+                {/* The part that renders the 'proceed' button in a container with a different background color
+                Use SafeAreaView to put the button inside the safe area */}
                 <SafeAreaView style={styles.bottomContainer}>
                     <View style={styles.buttonContainer}>
                         <Button
@@ -218,7 +236,9 @@ class PasswordConfirmationModal extends Component {
 }
 
 PasswordConfirmationModal.propTypes = {
+    /** The visibility of the modal */
     isVisible: PropTypes.bool.isRequired,
+    /** The callback function to call when the user is successfully reauthenticated */
     onPasswordConfirmed: PropTypes.func.isRequired,
     onModalHide: PropTypes.func,
 }

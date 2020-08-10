@@ -29,6 +29,9 @@ import getStyles from "../Styles/ProfileStyles"
 import { Colors, themed } from '../../../Theming'
 import { SVG } from "../../../StylingConstants";
 
+/**
+ * A screen that renders the user's profile and gives opportunity to edit things.
+ */
 class ProfileScreen extends Component {
 
     constructor(props) {
@@ -42,32 +45,44 @@ class ProfileScreen extends Component {
         }
     }
 
-    // *** LIFECYCLE METHODS *** //
-
     // *** CONVENIENCE METHODS *** //
 
+    /**
+     * Updates state to show PasswordConfirmationModal and sets the reason
+     * @param {String} reason - why we need a password confirmation (reauthenticaiton), 
+     * for 'password-change' or for 'account-deletion' 
+     */
     showPasswordConfirmationModal = (reason) => {
+        //
         this.setState({
             isVisible_PasswordConfirmationModal: true,
             passwordConfirmationReason: reason
         })
     }
 
+    /**
+     * Updates state to show ChangePasswordModal
+     */
     showChangePasswordModal = () => {
         this.setState({
             isVisible_ChangePasswordModal: true
         })
     }
 
+    /**
+     * Updates state to show ChangePasswordModal
+     */
     showEditNameModal = () => {
         this.setState({
             isVisible_EditNameModal: true
         })
     }
 
+    // Calls the Firebase API to delete the current user's account
     deleteAccount = () => {
         FirebaseApi.deleteAccount()
             .catch(error => {
+                // Show an alert in case an error occurs.
                 showAlert({
                     title: localized.text(Texts.sorry),
                     message: error,
@@ -94,10 +109,12 @@ class ProfileScreen extends Component {
     }
 
     onPress_Signout = () => {
+        // Sign out the current user with Auth Action
         this.props.signoutRequest();
     }
 
     onPress_DeleteAccount = () => {
+        // First show an alert to make sure the user knows what she's doing.
         showAlert({
             title: localized.text(Texts.sure),
             message: localized.text(Texts.sureToDeleteAccount),
@@ -105,6 +122,7 @@ class ProfileScreen extends Component {
                 {
                     text: localized.text(Texts.yes),
                     onPress: () => {
+                        // If she is sure, then go ahead and ask for reauthentication
                         closeAlert()
                         this.showPasswordConfirmationModal("account-deletion")
                     }
@@ -118,12 +136,15 @@ class ProfileScreen extends Component {
     }
 
     onPasswordConfirmed = () => {
+        // Close the PasswordConfirmationModal
         this.setState({
             isVisible_PasswordConfirmationModal: false
         }, () => {
+            // If the reason was deleting account, then delete the account
             if (this.state.passwordConfirmationReason == "account-deletion") {
                 this.deleteAccount();
             }
+            // If the reason was changing the password, show ChangePasswordModal
             else if (this.state.passwordConfirmationReason == "password-change") {
                 this.setState({
                     isVisible_ChangePasswordModal: true
@@ -133,17 +154,18 @@ class ProfileScreen extends Component {
     }
 
     onNameEdited = () => {
+        // Close the EditNameModal when the name is successfuly updated
         this.setState({
             isVisible_EditNameModal: false
-        }, () => {
-
         })
     }
 
     onPasswordChanged = () => {
+        // Close the ChangePasswordModal when the password is successfuly updated
         this.setState({
             isVisible_ChangePasswordModal: false
         }, () => {
+            // Inform the user that the password is succesfuly updated
             showAlert({
                 title: localized.text(Texts.success),
                 message: localized.text(Texts.passwordChangeSuccessMessage),
@@ -166,10 +188,12 @@ class ProfileScreen extends Component {
         let styles = getStyles(themed.color)
         return (
             <View style={styles.container}>
+                {/* User's Information */}
                 <View style={styles.infoContainer}>
                     <Text style={styles.displayNameText}>{this.props.user.displayName}</Text>
                     <Text style={styles.emailText}>{this.props.user.email}</Text>
                 </View>
+                {/* Settings - Editing name or password, etc. */}
                 <View style={styles.settingsContainer}>
                     <Text style={styles.sectionHeader}>{localized.text(Texts.profileSettings)}</Text>
                     <SettingsButton
@@ -183,6 +207,7 @@ class ProfileScreen extends Component {
                         icon={SVG.EditPassword}
                         onPress={this.onPress_ChangePassword} />
                 </View>
+                {/* Serious Actions - Signing out, Deleting account, etc. */}
                 <View style={styles.seriousActionsContainer}>
                     <SettingsButton
                         text={localized.text(Texts.signout)}
@@ -198,6 +223,8 @@ class ProfileScreen extends Component {
                         onPress={this.onPress_DeleteAccount} />
                 </View>
 
+                {/* The Modals */}
+                
                 <PasswordConfirmationModal
                     isVisible={this.state.isVisible_PasswordConfirmationModal}
                     onModalHide={() => this.setState({ isVisible_PasswordConfirmationModal: false })}

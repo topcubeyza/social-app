@@ -77,9 +77,7 @@ const SettingsButton = (props) => {
 SettingsButton.propTypes = {
     /** Left icon component type */
     icon: PropTypes.elementType,
-    /** Options text */
     text: PropTypes.string.isRequired,
-    /** onPress to pass on to Option Touchable */
     onPress: PropTypes.func,
     /** Is the option selected? */
     selected: PropTypes.bool.isRequired,
