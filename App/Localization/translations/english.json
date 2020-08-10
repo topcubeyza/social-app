@@ -1,5 +1,5 @@
 {
-   "genericError": "An error has occurred",
+   "genericError": "An error has occurred. Try again a moment later.",
    "welcomeMessage": "Where imagination meets hardwork",
    "loginWithGoogle": "Login with Google",
    "loginWithEmail": "Login with E-mail",
@@ -42,7 +42,9 @@
    "sure": "Sure?",
    "sorry": "Sorry",
    "sureToDeleteAccount": "Are you sure you want to delete your account?",
-   "passwordConfirmMessage": "Please enter your current password to proceed",
+   "reauthenticationMessage": "Please confirm your account to proceed.",
+   "confirmWithGoogle": "Confirm with Google",
+   "confirmWithPassword": "Confirm with Password",
    "newName": "New Name",
    "passwordChangeSuccessMessage": "Your password is changed successfully!",
    "enterEmailToReset": "Please enter your e-mail address and we will send a password reset e-mail.",
@@ -74,5 +76,5 @@
    "invalidEmail": "The e-mail address you entered is invalid!",
    "weakPassword": "The password you entered is weak!",
    "userNotFound": "There is no user with the e-mail you entered!",
-   "wrongPassword": "The e-mail you entered is wrong!"
+   "wrongPassword": "The password you entered is wrong!"
 }

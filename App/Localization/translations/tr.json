@@ -1,5 +1,5 @@
 {
-    "genericError": "Bir hata oluştu",
+    "genericError": "Bir hata oluştu. Kısa bir süre sonra tekrar deneyin.",
     "welcomeMessage": "Hayal gücünün emekle buluştuğu yer",
     "loginWithGoogle": "Google ile Giriş Yap",
     "loginWithEmail": "E-mail ile Giriş Yap",
@@ -43,7 +43,9 @@
     "sure": "Emin misin?",
     "sorry": "Üzgünüz",
     "sureToDeleteAccount": "Hesabını silmek istediğine emin misin?",
-    "passwordConfirmMessage": "Devam etmek için lütfen mevcut şifrenizi girin",
+    "reauthenticationMessage": "Devam etmek için lütfen hesabınızı onaylayın",
+    "confirmWithGoogle": "Google ile Onayla",
+    "confirmWithPassword": "Şifre ile Onayla",
     "newName": "Yeni İsim",
     "passwordChangeSuccessMessage": "Şifreniz başarıyla değiştirildi!",
     "enterEmailToReset": "Lütfen şifre sıfırlama e-postası göndereceğimiz e-posta adresinizi girin.",

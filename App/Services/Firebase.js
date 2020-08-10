@@ -6,6 +6,9 @@ GoogleSignin.configure({
   webClientId: '463746538605-j11n338qjttnth36h5q6vujnfqgf1oj8.apps.googleusercontent.com',
 });
 
+const googleProviderId = auth.GoogleAuthProvider.PROVIDER_ID;
+const emailProviderId = auth.EmailAuthProvider.PROVIDER_ID;
+
 // Signs in with the given email and password
 const signIn = async ({ email, password }) => {
   console.log("fb: signin")
@@ -148,15 +151,46 @@ const sendPasswordResetEmail = async ({ email }) => {
     });
 }
 
-// Reauthenticate the current user, with the given email and password
-const reauthenticate = async ({ email, password }) => {
-  console.log("fb: reauthenticate")
-  let user = auth().currentUser;
-  let credential = auth.EmailAuthProvider.credential(email, password);
+// Returns the ID of the providers of the current user, google, password, etc.
+const getProviderIds = () => {
 
-  return await user.reauthenticateWithCredential(credential)
+  let providerIds = [];
+
+  let user = auth().currentUser;
+  user.providerData.forEach(function (profile) {
+    providerIds.push(profile.providerId);
+  });
+  
+  return providerIds;
+}
+
+// Reauthenticate the current user with google credentials
+const reauthenticateWithGoogle = async () => {
+
+  const { idToken } = await GoogleSignin.signIn();
+  const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+
+  await reauthenticate(googleCredential)
+}
+
+// Reauthenticate the current user with email and password
+const reauthenticateWithEmailPassword = async ({ email, password }) => {
+
+  let emailCredential = auth.EmailAuthProvider.credential(email, password);
+
+  await reauthenticate(emailCredential)
+}
+
+// Reauthenticate the current user, with the given credential
+const reauthenticate = async (credential) => {
+  console.log("fb: reauthenticate")
+
+  let user = auth().currentUser;
+
+  await user.reauthenticateWithCredential(credential)
     .then(() => { })
     .catch((error) => {
+      console.log(error.code)
       if (error.code === 'auth/wrong-password') {
         throw localized.text(Texts.errorMessages.wrongPassword)
       }
@@ -210,8 +244,12 @@ export default {
   reloadUser,
   updateUserProfile,
   checkIfEmailIsVerified,
-  reauthenticate,
   changePassword,
   deleteAccount,
-  signInWithGoogle
+  signInWithGoogle,
+  getProviderIds,
+  reauthenticateWithEmailPassword,
+  reauthenticateWithGoogle,
+  googleProviderId,
+  emailProviderId
 }

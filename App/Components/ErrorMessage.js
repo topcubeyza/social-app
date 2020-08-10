@@ -31,6 +31,15 @@ class ErrorMessage extends Component {
         errorMessage: ""
     }
 
+    // *** LIFECYCLE METHODS *** //
+
+    componentWillUnmount() {
+        // Clear the timeout if there is one to prevent state updates on an unmounted component
+        if (this.errorMessageTimeout) {
+            clearTimeout(this.errorMessageTimeout)
+        }
+    }
+
     // *** REF METHODS *** //
 
     // The method called by parent to show the error message

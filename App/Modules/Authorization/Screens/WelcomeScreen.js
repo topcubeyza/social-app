@@ -18,6 +18,7 @@ import Button from "../../../Components/Button"
 import { AuthActions } from "../Redux/AuthRedux"
 import { LocalizationActions } from "../../../Localization/Redux/LocalizationRedux";
 import { ThemeActions } from "../../../Theming/Redux/ThemeRedux"
+import { LoadingActions } from "../../../Redux/LoadingRedux"
 
 // Utils
 import { Texts, localized, LocaleTypes } from "../../../Localization";
@@ -37,7 +38,10 @@ class WelcomeScreen extends Component {
     // *** EVENT HANDLERS *** //
 
     onPress_Google = () => {
-        Firebase.signInWithGoogle();
+        this.props.setLoadingMode(true)
+        Firebase.signInWithGoogle().finally(() => {
+            this.props.setLoadingMode(false)
+        });
     }
 
     onPress_Login = () => {
@@ -119,7 +123,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     changeLocale: languageCode => dispatch(LocalizationActions.changeLocaleRequest({ languageCode })),
-    changeTheme: themeMode => dispatch(ThemeActions.changeThemeRequest({ themeMode }))
+    changeTheme: themeMode => dispatch(ThemeActions.changeThemeRequest({ themeMode })),
+    setLoadingMode: isLoading => dispatch(LoadingActions.setLoadingMode(isLoading))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(WelcomeScreen);

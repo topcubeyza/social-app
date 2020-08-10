@@ -12,7 +12,7 @@ import {
 
 // Components
 import SettingsButton from "../Components/SettingsButton"
-import PasswordConfirmationModal from "../Components/PasswordConfirmationModal"
+import ReauthenticationModal from "../Components/ReauthenticationModal"
 import ChangePasswordModal from "../Components/ChangePasswordModal"
 import EditNameModal from "../Components/EditNameModal"
 
@@ -38,25 +38,25 @@ class ProfileScreen extends Component {
         super(props);
 
         this.state = {
-            isVisible_PasswordConfirmationModal: false,
+            isVisible_ReauthenticationModal: false,
             isVisible_ChangePasswordModal: false,
             isVisible_EditNameModal: false,
-            passwordConfirmationReason: ""
+            reauthenticationReason: ""
         }
     }
 
     // *** CONVENIENCE METHODS *** //
 
     /**
-     * Updates state to show PasswordConfirmationModal and sets the reason
-     * @param {String} reason - why we need a password confirmation (reauthenticaiton), 
+     * Updates state to show ReauthenticationModal and sets the reason
+     * @param {String} reason - why we need a reauthentication, 
      * for 'password-change' or for 'account-deletion' 
      */
-    showPasswordConfirmationModal = (reason) => {
+    showReauthenticationModal = (reason) => {
         //
         this.setState({
-            isVisible_PasswordConfirmationModal: true,
-            passwordConfirmationReason: reason
+            isVisible_ReauthenticationModal: true,
+            reauthenticationReason: reason
         })
     }
 
@@ -105,7 +105,7 @@ class ProfileScreen extends Component {
     }
 
     onPress_ChangePassword = () => {
-        this.showPasswordConfirmationModal("password-change")
+        this.showReauthenticationModal("password-change")
     }
 
     onPress_Signout = () => {
@@ -124,7 +124,7 @@ class ProfileScreen extends Component {
                     onPress: () => {
                         // If she is sure, then go ahead and ask for reauthentication
                         closeAlert()
-                        this.showPasswordConfirmationModal("account-deletion")
+                        this.showReauthenticationModal("account-deletion")
                     }
                 },
                 {
@@ -135,17 +135,17 @@ class ProfileScreen extends Component {
         })
     }
 
-    onPasswordConfirmed = () => {
-        // Close the PasswordConfirmationModal
+    onUserReauthenticated = () => {
+        // Close the ReauthenticationModal
         this.setState({
-            isVisible_PasswordConfirmationModal: false
+            isVisible_ReauthenticationModal: false
         }, () => {
             // If the reason was deleting account, then delete the account
-            if (this.state.passwordConfirmationReason == "account-deletion") {
+            if (this.state.reauthenticationReason == "account-deletion") {
                 this.deleteAccount();
             }
             // If the reason was changing the password, show ChangePasswordModal
-            else if (this.state.passwordConfirmationReason == "password-change") {
+            else if (this.state.reauthenticationReason == "password-change") {
                 this.setState({
                     isVisible_ChangePasswordModal: true
                 })
@@ -225,10 +225,10 @@ class ProfileScreen extends Component {
 
                 {/* The Modals */}
                 
-                <PasswordConfirmationModal
-                    isVisible={this.state.isVisible_PasswordConfirmationModal}
-                    onModalHide={() => this.setState({ isVisible_PasswordConfirmationModal: false })}
-                    onPasswordConfirmed={this.onPasswordConfirmed} />
+                <ReauthenticationModal
+                    isVisible={this.state.isVisible_ReauthenticationModal}
+                    onModalHide={() => this.setState({ isVisible_ReauthenticationModal: false })}
+                    onUserReauthenticated={this.onUserReauthenticated} />
 
                 <ChangePasswordModal
                     isVisible={this.state.isVisible_ChangePasswordModal}
