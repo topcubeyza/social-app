@@ -27,7 +27,7 @@ import { Colors, themed } from '../Theming'
  */
 class ErrorMessage extends Component {
 
-    this.state = {
+    state = {
         errorMessage: ""
     }
 
@@ -66,11 +66,6 @@ class ErrorMessage extends Component {
         return null;
     }
 
-}
-
-ErrorMessage.propTypes = {
-    /** Use ref to call showErrorMessage(message) */
-    ref: PropTypes.func
 }
 
 export default ErrorMessage;

@@ -262,7 +262,7 @@ class AuthScreensWrapper extends Component {
 
 AuthScreensWrapper.propTypes = {
     /** an array of objects */
-    textInputsParams: PropTypes.array<Object>.isRequired,
+    textInputsParams: PropTypes.arrayOf(PropTypes.object).isRequired,
     /** see the method Helpers/ReduxHelpers/getUpdateCause */
     dataFieldName: PropTypes.string.isRequired,
     /** see the method Helpers/ReduxHelpers/getUpdateCause */

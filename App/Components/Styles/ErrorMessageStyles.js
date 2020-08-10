@@ -1,6 +1,6 @@
 import { StyleSheet, Platform } from 'react-native'
-import { Fonts, Metrics } from "../../../StylingConstants"
-import { Colors } from '../../../Theming'
+import { Fonts, Metrics } from "../../StylingConstants"
+import { Colors } from '../../Theming'
 
 const getStyles = c => StyleSheet.create({
     errorText: {
@@ -8,4 +8,6 @@ const getStyles = c => StyleSheet.create({
         fontSize: Fonts.size.fourteen,
         color: c(Colors.brandColor),
     },
-}
+})
+
+export default getStyles

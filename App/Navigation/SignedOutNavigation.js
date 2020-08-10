@@ -14,6 +14,13 @@ import IncompleteScreen from "../Modules/Main/Screens/IncompleteScreen"
 // Components
 import SignedOutHeader from "../Components/SignedOutHeader"
 
+
+const getNavigationOptions = (props) => ({ navigation }) => {
+    return {
+        header: () => <SignedOutHeader {...props} navigation={navigation} />,
+    }
+}
+
 const SignedOutNavigator = createStackNavigator(
     {
         Welcome: {
@@ -48,11 +55,5 @@ const SignedOutNavigator = createStackNavigator(
         initialRouteName: "Welcome",
     }
 )
-
-const getNavigationOptions = (props) => ({ navigation }) => {
-    return {
-        header: () => <SignedOutHeader {...props} navigation={navigation} />,
-    }
-}
 
 export default SignedOutNavigator
