@@ -32,7 +32,7 @@ import { Fonts, Metrics, SVG } from "../../../StylingConstants"
 import { Colors, Images, themed } from '../../../Theming'
 
 /**
- *  A modal that renders a ui for the user to reauthenticate herself with her password
+ *  A modal that renders a ui for the user to reauthenticate herself
  * @augments {Component<Props>}
  */
 class ReauthenticationModal extends Component {
@@ -72,13 +72,11 @@ class ReauthenticationModal extends Component {
 
     // *** CONVENIENCE METHODS *** //
 
-    // Calls the API to reauthenticate user with password
-    reauthenticateUserWithPassword = (password) => {
-        let email = this.props.user.email;
+    reauthenticateUserWith = (apiMethod, params) => {
         this.setState({
             loading: true
         }, () => {
-            FirebaseApi.reauthenticateWithEmailPassword({ email, password })
+            apiMethod(params)
                 .then(result => {
                     // Set the loading mode off and call the parent's callback
                     this.setState({
@@ -98,28 +96,16 @@ class ReauthenticationModal extends Component {
         })
     }
 
+    // Calls the API to reauthenticate user with password
+    reauthenticateUserWithPassword = (password) => {
+        let email = this.props.user.email;
+        this.reauthenticateUserWith(FirebaseApi.reauthenticateWithEmailPassword, {email, password})
+    }
+
     // Calls the API to reauthenticate user with Google
     reauthenticateUserWithGoogle = () => {
 
-        this.setState({
-            loading: true
-        }, () => {
-            FirebaseApi.reauthenticateWithGoogle()
-                .then(result => {
-                    // Set the loading mode off and call the parent's callback
-                    this.setState({
-                        loading: false
-                    }, () => {
-                        this.props.onUserReauthenticated();
-                    })
-                })
-                .catch((error) => {
-                    // Set the loading mode off and show the error message
-                    this.setState({
-                        loading: false
-                    })
-                })
-        })
+        this.reauthenticateUserWith(FirebaseApi.reauthenticateWithGoogle)
     }
 
     // *** EVENT HANDLERS *** //
@@ -152,7 +138,7 @@ class ReauthenticationModal extends Component {
             >
                 {
                     this.state.isShowingConfirmPasswordContent ?
-                        <ConfirmPasswordModalContent 
+                        <ConfirmPasswordModalContent
                             ref={ref => this.confirmPassRef = ref}
                             reauthenticateUser={password => this.reauthenticateUserWithPassword(password)} />
                         :
