@@ -58,7 +58,7 @@ class AuthProvidersModalContent extends Component {
                                 <Button
                                     backgroundColor={themed.color(Colors.googleColor)}
                                     text={localized.text(Texts.confirmWithGoogle)}
-                                    textColor={themed.color(Colors.textOnLightBackground_dm)}
+                                    textColor={themed.color(Colors.textOnDarkBackground)}
                                     onPress={this.props.onPress_ReauthenticateWithGoogle} />
                             </View>
                             : null
