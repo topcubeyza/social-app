@@ -23,6 +23,7 @@ import {
 import ScreenWrapper from "../Components/ScreenWrapper"
 import Button from "../../../Components/Button"
 import AuthInputsComponent from "../Components/AuthInputsComponent"
+import ErrorMessage from "../../../Components/ErrorMessage"
 
 // Actions
 import { LoadingActions } from "../../../Redux/LoadingRedux";
@@ -55,7 +56,6 @@ class AuthScreensWrapper extends Component {
         // put the textinput key:value pairs in the component state
         this.state = {
             ...inputsState,
-            errorMessage: "",
         }
 
         // this variable will hold the references of the text inputs
@@ -85,7 +85,7 @@ class AuthScreensWrapper extends Component {
                 break;
             case UpdateCauses.fail:
                 // Show the error message and hide the loading overlay
-                this.showErrorMessage(this.props.auth.error)
+                this.errorRef && this.errorRef.showErrorMessage(this.props.auth.error);
                 this.turnOffLoadingMode()
                 break;
             case UpdateCauses.success:
@@ -140,25 +140,6 @@ class AuthScreensWrapper extends Component {
 
     // *** CONVENIENCE METHODS *** //
 
-    showErrorMessage = (message) => {
-        this.setState({
-            errorMessage: message
-        }, () => {
-            // Show an error message for two seconds
-
-            // clear timeout so that when user taps button repeatedly,
-            // disappearing of error message will be delayed
-            if (this.errorMessageTimeout) {
-                clearTimeout(this.errorMessageTimeout)
-            }
-            this.errorMessageTimeout = setTimeout(() => {
-                this.setState({
-                    errorMessage: ""
-                })
-            }, 2000);
-        })
-    }
-
     // Closes the loading overlay with a redux action
     turnOffLoadingMode = () => {
         this.props.setLoadingMode(false)
@@ -183,7 +164,7 @@ class AuthScreensWrapper extends Component {
 
         // If values are invalid, show error message. Otherwise, send the request.
         if (!ok) {
-            this.showErrorMessage(message)
+            this.errorRef && this.errorRef.showErrorMessage(message);
         }
         else {
             this.props.request(this.state)
@@ -249,11 +230,7 @@ class AuthScreensWrapper extends Component {
                             errorContent={
                                 // Error message
                                 <View style={styles.errorTextContainer}>
-                                    {
-                                        this.state.errorMessage ?
-                                            <Text numberOfLines={2} style={styles.errorText}>{this.state.errorMessage}</Text>
-                                            : null
-                                    }
+                                    <ErrorMessage key="auth-screens-wrapper-error" ref={ref => this.errorRef = ref}/>
                                 </View>
                             }
                             topButtonComponent={

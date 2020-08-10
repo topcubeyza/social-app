@@ -14,6 +14,7 @@ import {
 // Components
 import ScreenWrapper from "../Components/ScreenWrapper"
 import Button from "../../../Components/Button"
+import ErrorMessage from "../../../Components/ErrorMessage"
 
 // Actions
 import { AuthActions } from "../Redux/AuthRedux"
@@ -38,14 +39,6 @@ import { Colors, themed, ThemeModes, getColorMode } from '../../../Theming'
  */
 class UnverifiedUserScreen extends Component {
 
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            errorMessage: "",
-        }
-    }
-
     // *** LIFECYCLE METHODS *** //
 
     componentDidUpdate(prevProps) {
@@ -56,7 +49,7 @@ class UnverifiedUserScreen extends Component {
                 this.props.setLoadingMode(true)
                 break;
             case UpdateCauses.fail:
-                this.showErrorMessage(this.props.auth.error)
+                this.errorRef && this.errorRef.showErrorMessage(this.props.auth.error);
                 this.props.setLoadingMode(false)
                 break;
             case UpdateCauses.success:
@@ -65,27 +58,6 @@ class UnverifiedUserScreen extends Component {
             default:
                 break;
         }
-    }
-
-    // *** CONVENIENCE METHODS *** //
-
-    showErrorMessage = (message) => {
-        this.setState({
-            errorMessage: message
-        }, () => {
-            // Show the error message for two seconds
-
-            // clear timeout so that when user taps button repeatedly,
-            // disappearing of error message will be delayed
-            if (this.errorMessageTimeout) {
-                clearTimeout(this.errorMessageTimeout)
-            }
-            this.errorMessageTimeout = setTimeout(() => {
-                this.setState({
-                    errorMessage: ""
-                })
-            }, 2000);
-        })
     }
 
     // *** EVENT HANDLERS *** //
@@ -115,7 +87,7 @@ class UnverifiedUserScreen extends Component {
             })
         } catch (error) {
             // Show the error message
-            this.showErrorMessage(error)
+            this.errorRef && this.errorRef.showErrorMessage(error);
         } finally {
             // Hide the loading overlay using Redux action
             this.props.setLoadingMode(false)
@@ -135,7 +107,7 @@ class UnverifiedUserScreen extends Component {
             <ScreenWrapper
                 topContainerContent={
                     // Informative Message about Email Verification
-                    <>                    
+                    <>
                         <View style={styles.messageContainer}>
                             <Text style={styles.helloText}>{localized.text(Texts.helloName, { name: user.displayName })}</Text>
                             <Text style={styles.message}>{localized.text(Texts.accountCreated)}</Text>
@@ -146,11 +118,7 @@ class UnverifiedUserScreen extends Component {
                 errorContent={
                     // Error Message
                     <View style={styles.errorTextContainer}>
-                        {
-                            this.state.errorMessage ?
-                                <Text numberOfLines={2} style={styles.errorText}>{this.state.errorMessage}</Text>
-                                : null
-                        }
+                        <ErrorMessage key="auth-screens-wrapper-error" ref={ref => this.errorRef = ref} />
                     </View>
                 }
                 topButtonComponent={

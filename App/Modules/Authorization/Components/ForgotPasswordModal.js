@@ -16,6 +16,7 @@ import {
 import SlidingUpModal from "../../../Components/SlidingUpModal"
 import SingleLineInputBackground from "../../../Components/SingleLineInputBackground"
 import Button from "../../../Components/Button"
+import ErrorMessage from "../../../Components/ErrorMessage"
 
 // Actions
 
@@ -41,7 +42,6 @@ class ForgotPasswordModal extends Component {
         // The initial state must be saved to return to it when modal hides
         this.initialState = {
             email: "",
-            errorMessage: "",
             loading: false
         }
 
@@ -95,25 +95,6 @@ class ForgotPasswordModal extends Component {
 
     // *** CONVENIENCE METHODS *** //
 
-    showErrorMessage = (message) => {
-        this.setState({
-            errorMessage: message
-        }, () => {
-            // Show an error message for two seconds
-
-            // clear timeout so that when user taps button repeatedly,
-            // disappearing of error message will be delayed
-            if (this.errorMessageTimeout) {
-                clearTimeout(this.errorMessageTimeout)
-            }
-            this.errorMessageTimeout = setTimeout(() => {
-                this.setState({
-                    errorMessage: ""
-                })
-            }, 2000);
-        })
-    }
-
     // Calls the API to send reset link
     sendLink = () => {
         FirebaseApi.sendPasswordResetEmail({ email: this.state.email })
@@ -130,7 +111,7 @@ class ForgotPasswordModal extends Component {
                 this.setState({
                     loading: false
                 }, () => {
-                    this.showErrorMessage(error);
+                    this.errorRef && this.errorRef.showErrorMessage(error);
                 })
             })
     }
@@ -158,7 +139,7 @@ class ForgotPasswordModal extends Component {
         let { ok, message } = checkFields({ email: this.state.email });
         if (!ok) {
             // Show the error message if email is not valid
-            this.showErrorMessage(message)
+            this.errorRef && this.errorRef.showErrorMessage(message);
         }
         else {
             // Dismiss the keyboard, show the loading overlay and call the api
@@ -204,14 +185,7 @@ class ForgotPasswordModal extends Component {
                     </View>
                     {/* Error message */}
                     <View style={styles.errorTextContainer}>
-                        {
-                            this.state.errorMessage === "" ?
-                                null
-                                :
-                                <Text numberOfLines={2} style={styles.errorText}>
-                                    {this.state.errorMessage}
-                                </Text>
-                        }
+                        <ErrorMessage key="forgot-password-modal-error" ref={ref => this.errorRef = ref}/>
                     </View>
                 </View>
                 {/* The part that renders the 'send' button in a container with a different background color

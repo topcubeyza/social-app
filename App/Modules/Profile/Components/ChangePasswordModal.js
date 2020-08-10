@@ -16,6 +16,7 @@ import {
 import SlidingUpModal from "../../../Components/SlidingUpModal"
 import SingleLineInputBackground from "../../../Components/SingleLineInputBackground"
 import Button from "../../../Components/Button"
+import ErrorMessage from "../../../Components/ErrorMessage"
 
 // Actions
 
@@ -42,7 +43,6 @@ class ChangePasswordModal extends Component {
         this.initialState = {
             password: "",
             passwordConfirm: "",
-            errorMessage: "",
             loading: false
         }
 
@@ -99,25 +99,6 @@ class ChangePasswordModal extends Component {
 
     // *** CONVENIENCE METHODS *** //
 
-    showErrorMessage = (message) => {
-        this.setState({
-            errorMessage: message
-        }, () => {
-            // Show an error message for two seconds
-
-            // clear timeout so that when user taps button repeatedly,
-            // disappearing of error message will be delayed
-            if (this.errorMessageTimeout) {
-                clearTimeout(this.errorMessageTimeout)
-            }
-            this.errorMessageTimeout = setTimeout(() => {
-                this.setState({
-                    errorMessage: ""
-                })
-            }, 2000);
-        })
-    }
-
     // Calls the API to change the password
     changePassword = () => {
         let newPassword = this.state.password;
@@ -136,7 +117,7 @@ class ChangePasswordModal extends Component {
                 this.setState({
                     loading: false
                 }, () => {
-                    this.showErrorMessage(error);
+                    this.errorRef && this.errorRef.showErrorMessage(error);
                 })
             })
     }
@@ -171,7 +152,7 @@ class ChangePasswordModal extends Component {
         let { ok, message } = checkFields({ password: this.state.password, passwordConfirm: this.state.passwordConfirm });
         if (!ok) {
             // Show the error message if the fields are not valid
-            this.showErrorMessage(message)
+            this.errorRef && this.errorRef.showErrorMessage(message);
         }
         else {
             // Dismiss the keyboard, show the loading overlay and call the api
@@ -233,14 +214,7 @@ class ChangePasswordModal extends Component {
                     </View>
                     {/* Error Message */}
                     <View style={styles.errorTextContainer}>
-                        {
-                            this.state.errorMessage === "" ?
-                                null
-                                :
-                                <Text numberOfLines={2} style={styles.errorText}>
-                                    {this.state.errorMessage}
-                                </Text>
-                        }
+                        <ErrorMessage key="auth-screens-wrapper-error" ref={ref => this.errorRef = ref} />
                     </View>
                 </View>
                 {/* The part that renders the 'confirm' button in a container with a different background color

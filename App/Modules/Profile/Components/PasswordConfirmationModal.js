@@ -16,6 +16,7 @@ import {
 import SlidingUpModal from "../../../Components/SlidingUpModal"
 import SingleLineInputBackground from "../../../Components/SingleLineInputBackground"
 import Button from "../../../Components/Button"
+import ErrorMessage from "../../../Components/ErrorMessage"
 
 // Actions
 
@@ -41,10 +42,9 @@ class PasswordConfirmationModal extends Component {
         // The initial state must be saved to return to it when modal hides
         this.initialState = {
             password: "",
-            errorMessage: "",
         }
 
-        this.state = {...this.initialState}
+        this.state = { ...this.initialState }
 
         // Holds the reference to password input
         this.passwordInput = null;
@@ -95,25 +95,6 @@ class PasswordConfirmationModal extends Component {
 
     // *** CONVENIENCE METHODS *** //
 
-    showErrorMessage = (message) => {
-        this.setState({
-            errorMessage: message
-        }, () => {
-            // Show an error message for two seconds
-
-            // clear timeout so that when user taps button repeatedly,
-            // disappearing of error message will be delayed
-            if (this.errorMessageTimeout) {
-                clearTimeout(this.errorMessageTimeout)
-            }
-            this.errorMessageTimeout = setTimeout(() => {
-                this.setState({
-                    errorMessage: ""
-                })
-            }, 2000);
-        })
-    }
-
     // Calls the API to reauthenticate user
     reauthenticateUser = () => {
         let email = this.props.user.email;
@@ -133,7 +114,7 @@ class PasswordConfirmationModal extends Component {
                 this.setState({
                     loading: false
                 }, () => {
-                    this.showErrorMessage(error);
+                    this.errorRef && this.errorRef.showErrorMessage(error);
                 })
             })
     }
@@ -144,7 +125,7 @@ class PasswordConfirmationModal extends Component {
         this.props.onModalHide();
 
         // Return to initial state, so that when the modal is shown again, it will be brand new
-        this.setState({...this.initialState})
+        this.setState({ ...this.initialState })
     }
 
     onChangeText_Password = (text) => {
@@ -161,7 +142,7 @@ class PasswordConfirmationModal extends Component {
         let { ok, message } = checkFields({ password: this.state.password });
         if (!ok) {
             // Show the error message if password is not valid
-            this.showErrorMessage(message)
+            this.errorRef && this.errorRef.showErrorMessage(message);
         }
         else {
             // Dismiss the keyboard, show the loading overlay and call the api
@@ -208,14 +189,7 @@ class PasswordConfirmationModal extends Component {
                     </View>
                     {/* Error message */}
                     <View style={styles.errorTextContainer}>
-                        {
-                            this.state.errorMessage === "" ?
-                                null
-                                :
-                                <Text numberOfLines={2} style={styles.errorText}>
-                                    {this.state.errorMessage}
-                                </Text>
-                        }
+                        <ErrorMessage key="auth-screens-wrapper-error" ref={ref => this.errorRef = ref} />
                     </View>
                 </View>
                 {/* The part that renders the 'proceed' button in a container with a different background color
