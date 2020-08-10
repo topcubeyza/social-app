@@ -181,6 +181,7 @@ class ChangePasswordModal extends Component {
         let styles = getStyles(themed.color)
         return (
             <SlidingUpModal
+                keyAsProp="change-password"
                 isVisible={this.props.isVisible}
                 onModalHide={this.onModalHide}
                 loading={this.state.loading}

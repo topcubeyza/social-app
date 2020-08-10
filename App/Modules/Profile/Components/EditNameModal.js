@@ -164,6 +164,7 @@ class EditNameModal extends Component {
         let styles = getStyles(themed.color)
         return (
             <SlidingUpModal
+                keyAsProp="edit-name"
                 isVisible={this.props.isVisible}
                 onModalHide={this.onModalHide}
                 loading={this.state.loading}

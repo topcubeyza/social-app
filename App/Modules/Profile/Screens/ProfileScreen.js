@@ -41,7 +41,8 @@ class ProfileScreen extends Component {
             isVisible_ReauthenticationModal: false,
             isVisible_ChangePasswordModal: false,
             isVisible_EditNameModal: false,
-            reauthenticationReason: ""
+            reauthenticationReason: "",
+            userReauthenticationSuccess: false
         }
     }
 
@@ -56,7 +57,8 @@ class ProfileScreen extends Component {
         //
         this.setState({
             isVisible_ReauthenticationModal: true,
-            reauthenticationReason: reason
+            reauthenticationReason: reason,
+            userReauthenticationSuccess: false
         })
     }
 
@@ -138,8 +140,20 @@ class ProfileScreen extends Component {
     onUserReauthenticated = () => {
         // Close the ReauthenticationModal
         this.setState({
-            isVisible_ReauthenticationModal: false
-        }, () => {
+            isVisible_ReauthenticationModal: false,
+            userReauthenticationSuccess: true
+        })
+    }
+
+    onModalHide_ReauthenticationModal = () => {
+        // If this method was called after modal was hidden by the ReathenticationModal and not this screen
+        if (this.state.isVisible_ReauthenticationModal) {
+            this.setState({
+                isVisible_ReauthenticationModal: false
+            })
+        }
+        // If this screen hid the modal because reauthentication was successful (by onUserReauthenticated)
+        else if (this.state.userReauthenticationSuccess) {
             // If the reason was deleting account, then delete the account
             if (this.state.reauthenticationReason == "account-deletion") {
                 this.deleteAccount();
@@ -150,7 +164,7 @@ class ProfileScreen extends Component {
                     isVisible_ChangePasswordModal: true
                 })
             }
-        })
+        }
     }
 
     onNameEdited = () => {
@@ -224,10 +238,10 @@ class ProfileScreen extends Component {
                 </View>
 
                 {/* The Modals */}
-                
+
                 <ReauthenticationModal
                     isVisible={this.state.isVisible_ReauthenticationModal}
-                    onModalHide={() => this.setState({ isVisible_ReauthenticationModal: false })}
+                    onModalHide={this.onModalHide_ReauthenticationModal}
                     onUserReauthenticated={this.onUserReauthenticated} />
 
                 <ChangePasswordModal

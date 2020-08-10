@@ -72,7 +72,7 @@ class ReauthenticationModal extends Component {
 
     // *** CONVENIENCE METHODS *** //
 
-    reauthenticateUserWith = (apiMethod, params) => {
+    reauthenticateUserWith = (apiMethod, params, showErrorMessageMethod) => {
         this.setState({
             loading: true
         }, () => {
@@ -90,7 +90,7 @@ class ReauthenticationModal extends Component {
                     this.setState({
                         loading: false
                     }, () => {
-                        this.confirmPassRef && this.confirmPassRef.showErrorMessage(error);
+                        showErrorMessageMethod(error)
                     })
                 })
         })
@@ -99,13 +99,18 @@ class ReauthenticationModal extends Component {
     // Calls the API to reauthenticate user with password
     reauthenticateUserWithPassword = (password) => {
         let email = this.props.user.email;
-        this.reauthenticateUserWith(FirebaseApi.reauthenticateWithEmailPassword, {email, password})
+        this.reauthenticateUserWith(
+            FirebaseApi.reauthenticateWithEmailPassword,
+            { email, password },
+            error => {
+                this.confirmPassRef && this.confirmPassRef.showErrorMessage(error);
+            })
     }
 
     // Calls the API to reauthenticate user with Google
     reauthenticateUserWithGoogle = () => {
 
-        this.reauthenticateUserWith(FirebaseApi.reauthenticateWithGoogle)
+        this.reauthenticateUserWith(FirebaseApi.reauthenticateWithGoogle, null, () => {})
     }
 
     // *** EVENT HANDLERS *** //
@@ -132,6 +137,7 @@ class ReauthenticationModal extends Component {
     render() {
         return (
             <SlidingUpModal
+                keyAsProp="reauthentication"
                 isVisible={this.props.isVisible}
                 onModalHide={this.onModalHide}
                 loading={this.state.loading}
