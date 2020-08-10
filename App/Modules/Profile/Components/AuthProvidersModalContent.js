@@ -29,7 +29,7 @@ import { Fonts, Metrics, SVG } from "../../../StylingConstants"
 import { Colors, Images, themed } from '../../../Theming'
 
 /**
- *  A component that renders a ui for the user to reauthenticate herself with her password
+ *  A component that renders a ui for the user to pick a method to reauthenticate herself
  * @augments {Component<Props>}
  */
 class AuthProvidersModalContent extends Component {
