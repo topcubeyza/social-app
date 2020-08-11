@@ -35,7 +35,13 @@ const signIn = async ({ email, password }) => {
 // Signs in with Google Popup
 const signInWithGoogle = async () => {
   // Get the users ID token
-  const { idToken } = await GoogleSignin.signIn();
+  let idToken;
+  try {
+    let result = await GoogleSignin.signIn();
+    idToken = result.idToken;
+  } catch (error) {
+    console.log(error)
+  }
 
   // Create a Google credential with the token
   const googleCredential = auth.GoogleAuthProvider.credential(idToken);
