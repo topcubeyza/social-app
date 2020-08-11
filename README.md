@@ -99,7 +99,7 @@ Next Steps
 Contact Me
 -----
 
-If you have any suggestion or criticism, I would be happy to learn how can I do better.
+If you have any suggestion or criticism, I would be happy to learn how I can do better.
 
 If you have any question or want to develop a feature similar to the ones in this app, I would be happy to share what I know.
 
