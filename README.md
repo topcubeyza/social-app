@@ -50,7 +50,7 @@ The application is being developed with __React Native 0.61__. Some of the signi
   Used for persisting data in Redux Store between reloads.
 
 - __I18n for React Native__ `2.0.15`  
-  [react-native-i18n](https://github.com/AlexanderZaytsev/react-native-i18n | width=50)  
+  [react-native-i18n](https://github.com/AlexanderZaytsev/react-native-i18n)  
   Used for managing localization.
 
   
