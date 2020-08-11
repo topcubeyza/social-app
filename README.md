@@ -77,7 +77,7 @@ The app folder is actually the source folder where the developer's code lives.
 
 - Modules: UI Modules. Each UI Module has the same subfolder structure as shown in the image.  
 
-  ![alt text](https://github.com/topcubeyza/social-app/blob/master/GithubReadmeImages/LocalizationFolder.png?raw=true)  
+  ![alt text](https://github.com/topcubeyza/social-app/blob/master/GithubReadmeImages/ModulesFolder.png?raw=true)  
 
 - Navigation: React-Navigation-related files.
 - Redux: Global Redux files, configuration files...
