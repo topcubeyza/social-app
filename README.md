@@ -17,7 +17,7 @@ Current Features
 
 _** Please note that the app is currently being developed and there will be new features._
 
-You can download and test the app for Android: [APK Download Link](https://drive.google.com/file/d/1EsVQkiUQb3tzN11BVG4h7FKj-gFm7fy7/view?usp=sharing).
+You can download and test the app for Android: [APK Download Link](https://drive.google.com/file/d/1Nco7eguxj7wm3ZmF6auAdPujA8dTOpGZ/view?usp=sharing).
 
 Tools & Technologies Used
 -----
