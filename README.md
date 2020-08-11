@@ -17,6 +17,7 @@ Current Features
 
 _** Please note that the app is currently being developed and there will be new features._
 
+You can download and test the app for Android: [APK Download Link](https://drive.google.com/file/d/1EsVQkiUQb3tzN11BVG4h7FKj-gFm7fy7/view?usp=sharing).
 
 Tools & Technologies Used
 -----
@@ -50,7 +51,7 @@ The application is being developed with __React Native 0.61__. Some of the signi
   Used for persisting data in Redux Store between reloads.
 
 - __I18n for React Native__ `2.0.15`  
-  [react-native-i18n](https://github.com/AlexanderZaytsev/react-native-i18n | width=50)  
+  [react-native-i18n](https://github.com/AlexanderZaytsev/react-native-i18n)  
   Used for managing localization.
 
   
@@ -66,25 +67,25 @@ The app folder is actually the source folder where the developer's code lives.
 
 <img src="https://github.com/topcubeyza/social-app/blob/master/GithubReadmeImages/AppFolder.png?raw=true" width="150"/>  
 
-- Assets: Images, fonts, animations and svg files.
-- Components: React components used globally in the app and their styles.
-- Config: Global config files.
-- Fixtures: Dummy api data.
-- Helpers: Files that have helper methods used globally in the app.
-- Localization: This is the localization module. I18n configuration, translations, redux files, and any other file that is related to localization are located in this folder.  
+- __Assets:__ Images, fonts, animations and svg files.
+- __Components:__ React components used globally in the app and their styles.
+- __Config:__ Global config files.
+- __Fixtures:__ Dummy api data.
+- __Helpers:__ Files that have helper methods used globally in the app.
+- __Localization:__ This is the localization module. I18n configuration, translations, redux files, and any other file that is related to localization are located in this folder.  
 
   ![alt text](https://github.com/topcubeyza/social-app/blob/master/GithubReadmeImages/LocalizationFolder.png?raw=true)  
 
-- Modules: UI Modules. Each UI Module has the same subfolder structure as shown in the image.  
+- __Modules:__ UI Modules. Each UI Module has the same subfolder structure as shown in the image.  
 
   ![alt text](https://github.com/topcubeyza/social-app/blob/master/GithubReadmeImages/ModulesFolder.png?raw=true)  
 
-- Navigation: React-Navigation-related files.
-- Redux: Global Redux files, configuration files...
-- Sagas: Global Saga files, configuration files...
-- Services: Files that have methods to send requests to API
-- StylingConstants: Fonts, Metrics, and SVG components
-- Theming: This is the theming module. Configuration, colors, images, redux files, and any other file that is related to theming are located in this folder.  
+- __Navigation:__ React-Navigation-related files.
+- __Redux:__ Global Redux files, configuration files...
+- __Sagas:__ Global Saga files, configuration files...
+- __Services:__ Files that have methods to send requests to API
+- __StylingConstants:__ Fonts, Metrics, and SVG components
+- __Theming:__ This is the theming module. Configuration, colors, images, redux files, and any other file that is related to theming are located in this folder.  
 
   ![alt text](https://github.com/topcubeyza/social-app/blob/master/GithubReadmeImages/ThemingFolder.png?raw=true)  
 
@@ -99,5 +100,6 @@ Next Steps
 Contact Me
 -----
 
-If you have any suggestion or criticism, I would be happy to learn how can I do better.
+If you have any suggestion or criticism, I would be happy to learn how I can do better.
+
 If you have any question or want to develop a feature similar to the ones in this app, I would be happy to share what I know.
