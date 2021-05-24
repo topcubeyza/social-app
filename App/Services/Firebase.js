@@ -39,15 +39,16 @@ const signInWithGoogle = async () => {
   try {
     let result = await GoogleSignin.signIn();
     idToken = result.idToken;
+
+    // Create a Google credential with the token
+    const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+
+    // Sign-in the user with the credential
+    return await signInWithCredential(googleCredential)
+    
   } catch (error) {
     console.log(error)
   }
-
-  // Create a Google credential with the token
-  const googleCredential = auth.GoogleAuthProvider.credential(idToken);
-
-  // Sign-in the user with the credential
-  return await signInWithCredential(googleCredential)
 }
 
 // Signs in with the given credentials, ex: Google Credentials for Google Sign-in
